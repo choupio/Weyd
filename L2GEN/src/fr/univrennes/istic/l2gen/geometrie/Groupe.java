@@ -101,8 +101,13 @@ public class Groupe implements IForme {
 
     @Override
     public String enSVG() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        String s = "";
+        s += "<g>\n";
+        for (IForme iForme : listFormes) {
+            s += iForme.enSVG() + "\n";
+        }
+        s += "</g>";
+        return s;
     }
 
 }
