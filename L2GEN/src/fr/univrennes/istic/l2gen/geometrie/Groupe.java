@@ -92,8 +92,7 @@ public class Groupe implements IForme {
 
     @Override
     public void redimmensioner(double h, double l) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
+        listFormes.stream().forEach(x -> x.redimmensioner(h, l));
     }
 
     @Override
