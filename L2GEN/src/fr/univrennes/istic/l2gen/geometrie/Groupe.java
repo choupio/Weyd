@@ -20,22 +20,22 @@ public class Groupe implements IForme {
         return new Groupe(nouveauTableau);
     }
 
-    public String 
     @Override
     public Point centre() {
-        if (formes.length == 0) {
+        if (listFormes.isEmpty()) {
             return null;
         }
         double centreX = 0.0;
         double centreY = 0.0;
-        for (IForme forme : formes) {
+        for (IForme forme : listFormes) {
             Point centreForme = forme.centre();
             centreX += centreForme.x();
             centreY += centreForme.y();
         }
-        centreX /= formes.length;
-        centreY /= formes.length;
-        return new Point(centreX, centreY);
+        centreX /= listFormes.size();
+        centreY /= listFormes.size();
+        Point centre = new Point(centreX, centreY);
+        return centre;
     }
 
     @Override
