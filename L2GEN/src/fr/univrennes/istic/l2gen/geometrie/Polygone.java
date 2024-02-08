@@ -96,12 +96,23 @@ public class Polygone implements IForme {
     }
 
     @Override
-    public void redimmensionner(double px, double py) {
+    public void redimmensioner(double h, double l) {
         for (Point point : points) {
             Point centre = this.centre();
             double distance = Math.sqrt(Math.pow(centre.x() - point.x(), 2) + Math.pow(centre.y(), point.y()));
-            point = new Point(point.x() + distance * (1 - px), point.y() + distance * (1 - py));
+            point = new Point(point.x() + distance * (1 - h), point.y() + distance * (1 - l));
         }
+    }
+
+    @Override
+    public String enSVG() {
+        String s = "<polygon points=\"";
+        for (Point point : points) {
+            s += point.x() + " " + point.y() + " ";
+        }
+        s.substring(0, s.length() - 1);
+        s += " fille=\"white\" stroke=\"black\"/>";
+        return s;
     }
 
 }
