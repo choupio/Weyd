@@ -84,14 +84,18 @@ public class Groupe implements IForme {
 
     @Override
     public void deplacer(double dx, double dy) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
+        for (IForme iForme : listFormes) {
+            iForme.deplacer(dx, dy);
+        }
     }
 
     @Override
     public IForme dupliquer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dupliquer'");
+        Groupe groupe = new Groupe();
+        for (IForme iForme : listFormes) {
+            groupe.ajouter(iForme.dupliquer());
+        }
+        return groupe;
     }
 
     @Override
