@@ -78,4 +78,28 @@ public class Groupe implements IForme {
         return description;
     }
 
+    @Override
+    public void deplacer(double dx, double dy) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
+    }
+
+    @Override
+    public IForme dupliquer() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'dupliquer'");
+    }
+
+    @Override
+    public void redimmensioner(double h, double l) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
+    }
+
+    @Override
+    public String enSVG() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+    }
+
 }
