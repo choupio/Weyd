@@ -68,16 +68,12 @@ public class Groupe implements IForme {
 
     @Override
     public String description(int entier) {
-        if (listFormes.length == 0) {
-            return "Groupe vide.";
+        if (listFormes.size() == 0) {
+            return "Le groupe est vide.";
         }
-        String indentation = "";
-        for (int i = 0; i < entier; i++) {
-            indentation += " ";
-        }
-        String description = indentation + "Groupe :\n";
+        String description = "Groupe : \n";
         for (IForme forme : listFormes) {
-            description += forme.description(entier + 2) + "\n";
+            description += forme.description(entier) + "\n";
         }
         return description;
     }
