@@ -1,0 +1,6 @@
+# bloop, metals and vscode
+.bloop
+.vscode
+.bsp
+.metals
+bin
