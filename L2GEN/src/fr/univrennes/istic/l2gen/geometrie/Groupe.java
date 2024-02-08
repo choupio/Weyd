@@ -53,11 +53,11 @@ public class Groupe implements IForme {
 
     @Override
     public double largeur() {
-        if (formes.length == 0) {
+        if (listFormes.isEmpty()) {
             return 0;
         }
-        double largeurMax = formes[0].largeur();
-        for (IForme forme : formes) {
+        double largeurMax = listFormes.get(0).hauteur();
+        for (IForme forme : listFormes) {
             double largeurForme = forme.largeur();
             if (largeurForme > largeurMax) {
                 largeurMax = largeurForme;
