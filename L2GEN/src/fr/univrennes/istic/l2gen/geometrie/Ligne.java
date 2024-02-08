@@ -59,4 +59,21 @@ public class Ligne implements IForme{
         result=result+"\" fill=\"white\" stroke=\"black\"";
         return result;
     }
+    @Override
+    public void deplacer(double dx, double dy) {
+        for(int i=0;i<ligne.length;i++){
+            ligne[i]=new Point(ligne[i].x()+dx,ligne[i].y()+dy);
+        }
+    }
+    @Override
+    public IForme dupliquer() {
+        Ligne L=new Ligne(this.getSommets());
+        return L;
+    }
+    @Override
+    public void redimmensioner(double h, double l) {
+        for(int i=0;i<ligne.length;i++){
+            ligne[i]=new Point(ligne[i].x()*h,ligne[i].y()*l);
+        }
+    }
 }
