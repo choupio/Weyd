@@ -14,10 +14,8 @@ public class Groupe implements IForme {
     }
 
     public Groupe ajouter(IForme nouvelleForme) {
-        IForme[] nouveauTableau = new IForme[listFormes.length + 1];
-        System.arraycopy(listFormes, 0, nouveauTableau, 0, listFormes.length);
-        nouveauTableau[listFormes.length] = nouvelleForme;
-        return new Groupe(nouveauTableau);
+        listFormes.add(nouvelleForme);
+        return this;
     }
 
     @Override
