@@ -38,11 +38,11 @@ public class Groupe implements IForme {
 
     @Override
     public double hauteur() {
-        if (formes.length == 0) {
+        if (listFormes.size() == 0) {
             return 0;
         }
-        double hauteurMax = formes[0].hauteur();
-        for (IForme forme : formes) {
+        double hauteurMax = listFormes.get(0).hauteur();
+        for (IForme forme : listFormes) {
             double hauteurForme = forme.hauteur();
             if (hauteurForme > hauteurMax) {
                 hauteurMax = hauteurForme;
