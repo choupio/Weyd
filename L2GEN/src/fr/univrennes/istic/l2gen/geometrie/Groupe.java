@@ -1,10 +1,16 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Groupe implements IForme {
-    private IForme[] listFormes;
+    private List<IForme> listFormes;
 
     public Groupe(IForme... listFormes) {
-        this.listFormes = listFormes;
+        this.listFormes = new ArrayList<>();
+        for (IForme iForme : listFormes) {
+            this.listFormes.add(iForme);
+        }
     }
 
     public Groupe ajouter(IForme nouvelleForme) {
