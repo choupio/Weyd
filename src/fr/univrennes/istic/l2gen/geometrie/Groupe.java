@@ -137,35 +137,18 @@ public class Groupe implements IForme {
         for (IForme forme : listFormes) {
             forme.colorier(couleurs[i]);
             i++;
-<<<<<<< HEAD
+
             if(i>= listFormes.size()) {i=0;}
         }
     }
-    public void createSvgFile() {
-        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-        
-    
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Groupe.svg"))) {
-                writer.write(svgContent);
-                writer.write(enSVG());
-                writer.write("</svg>");
-                System.out.println("Fichier créé avec succès !");
-            } catch (IOException e) {
-                System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
-=======
-            if (i >= listFormes.size()) {
-                i = 0;
->>>>>>> 1c99f0880e18e11a4914883f21a3825fd8ef347b
-            }
-        }
-    }
+
 
     /**
      * Crée un fichier SVG représentant le groupe.
      */
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Groupe.svg"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Groupe.svg"))) {
             writer.write(svgContent);
             writer.write(enSVG());
             writer.write("</svg>");
