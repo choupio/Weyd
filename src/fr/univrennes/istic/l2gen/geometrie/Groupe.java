@@ -110,4 +110,7 @@ public class Groupe implements IForme {
         return s;
     }
 
+    public void colorier(String... couleurs) {
+    }
+
 }

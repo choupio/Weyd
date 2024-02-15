@@ -1,12 +1,17 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
-public class Ellipse implements IForme{
+public class Ellipse implements IForme {
 
-    private Point centre; 
+    private Point centre;
     private double hauteur;
     private double largeur;
+    private String couleur;
 
-    
+    // Bloc d'initialisation
+    {
+        couleur = "black";
+    }
+
     public Ellipse(double centre1, double centre2, double hauteur, double largeur) {
         this.centre = new Point(centre1, centre2);
         this.largeur = largeur;
@@ -49,5 +54,8 @@ public class Ellipse implements IForme{
             description += "C'est une ellipse standard.";
         }
         return description;
+    }
+
+    public void colorier(String... couleurs) {
     }
 }
