@@ -9,6 +9,12 @@ public class Secteur implements IForme {
     private double angle;
     private Point centre;
     private double rayon;
+    private String couleur;
+
+    // Bloc d'initialisation
+    {
+        couleur = "black";
+    }
 
     /**
      * Calcule la hauteur du secteur.
@@ -190,7 +196,7 @@ public class Secteur implements IForme {
 
         return "<path d=\"M " + startX + " " + startY + " A " + getRayon() + " " + getRayon()
                 + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.x() + " " + centre.y() + " Z\"\n"
-                + "\t" + "fill=\"white\"" + " stroke=\"black\"/>";
+                + "\t" + "fill=\"white\"" + " stroke=\"" + couleur + "\"/>";
     }
 
     public void colorier(String... couleurs) {
