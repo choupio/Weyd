@@ -1,10 +1,18 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class RectangleTest {
+    Rectangle r;
+    @Before
+    public void setUp(){
+        r=new Rectangle(5, 6,5,8);
+    }
+
     @Test
     public void testCentre() {
+        
 
     }
 
