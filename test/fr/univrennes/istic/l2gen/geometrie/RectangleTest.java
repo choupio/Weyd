@@ -1,5 +1,7 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,17 +14,24 @@ public class RectangleTest {
 
     @Test
     public void testCentre() {
-        
-
+        Point c=new Point(5,6);
+        Point centre=r.centre();
+        assertEquals(c, centre);
     }
 
     @Test
     public void testColorier() {
-
+        r.colorier("rouge");
+        assertEquals("<rect x=\"" + r.centre().x() + "\" y=\"" + r.centre().y() + "\" height=\"" + r.hauteur() + "\" width=\""
+        + r.largeur()
+        + "\"\n" + "\t" + "fill=\"" + "rouge" + "\"" + " stroke=\"black\"/>", r.enSVG());
     }
 
     @Test
     public void testDeplacer() {
+        Point c=new Point(r.centre().x()+8, r.centre().y()+5);
+        r.deplacer(8, 5);
+        assertEquals(c, r.centre());
 
     }
 
