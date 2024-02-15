@@ -83,4 +83,7 @@ public class Triangle implements IForme {
         return "";
     }
 
+    public void colorier(String... couleurs) {
+    }
+
 }
