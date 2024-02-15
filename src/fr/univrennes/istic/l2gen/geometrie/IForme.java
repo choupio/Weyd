@@ -17,4 +17,6 @@ public interface IForme {
     public void redimmensioner(double h, double l);
 
     public String enSVG();
+
+    public void colorier(String... couleurs);
 }
