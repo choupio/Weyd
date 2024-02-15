@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.univrennes.istic.l2gen.geometrie.Point;
 
 public class PointTest {
     Point p;
