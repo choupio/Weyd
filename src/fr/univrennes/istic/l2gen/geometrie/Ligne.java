@@ -90,7 +90,7 @@ public class Ligne implements IForme {
     @Override
     public IForme dupliquer() {
         List <Double> li = this.getSommets();
-        Ligne l2=new Ligne(li.getFirst(),li.get(1));
+        Ligne l2=new Ligne(li.get(0),li.get(1));
         while(!li.isEmpty()){
             
         }
