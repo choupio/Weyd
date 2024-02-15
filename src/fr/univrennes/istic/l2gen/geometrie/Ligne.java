@@ -82,10 +82,11 @@ public class Ligne implements IForme {
     }
 
     @Override
-    public void deplacer(double dx, double dy) {
+    public IForme deplacer(double dx, double dy) {
         for (int i = 0; i < ligne.length; i++) {
             ligne[i] = new Point(ligne[i].x() + dx, ligne[i].y() + dy);
         }
+        return this;
     }
 
     @Override
