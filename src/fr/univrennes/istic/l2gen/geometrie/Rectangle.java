@@ -95,19 +95,20 @@ public class Rectangle implements IForme {
     }
 
     public String enSVG() {
-        return "<rect x=\"" + centre().x() + "\" y=\"" + centre().y() + "\" width=\"" + largeur() + "\" height=\""
-                + hauteur()
+        return "<rect x=\"" + centre().x() + "\" y=\"" + centre().y() + "\" height=\"" + hauteur() + "\" width=\""
+                + largeur()
                 + "\"\n" + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
     }
 
     public void colorier(String... couleurs) {
         couleur = couleurs[0];
     }
-        public void createSvgFile() {
-    String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-    
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Rectangle.svg"))) {
+    public void createSvgFile() {
+        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+
+        try (BufferedWriter writer = new BufferedWriter(
+                new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Rectangle.svg"))) {
             writer.write(svgContent);
             writer.write(enSVG());
             writer.write("</svg>");

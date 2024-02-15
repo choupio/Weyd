@@ -1,4 +1,4 @@
-package test.fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometrie;
 
 import static org.junit.Assert.assertArrayEquals;
 
@@ -12,9 +12,10 @@ import fr.univrennes.istic.l2gen.geometrie.Polygone;
 
 public class PolygoneTest {
     @Before
-    public void setUp(){
+    public void setUp() {
         Polygone polygone = new Polygone(null);
     }
+
     @Test
     public void testAjouterSommet() {
         assertArrayEquals(Collections.emptyList(), polygone.getPoint());
