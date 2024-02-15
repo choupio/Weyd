@@ -6,9 +6,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La classe Groupe représente un groupe de formes géométriques.
+ */
 public class Groupe implements IForme {
-    private List<IForme> listFormes;
 
+    private List<IForme> listFormes; // Liste des formes dans le groupe
+
+    /**
+     * Constructeur de la classe Groupe prenant en paramètre un tableau de formes.
+     *
+     * @param listFormes Un tableau de formes à ajouter au groupe.
+     */
     public Groupe(IForme... listFormes) {
         this.listFormes = new ArrayList<>();
         for (IForme iForme : listFormes) {
@@ -16,6 +25,12 @@ public class Groupe implements IForme {
         }
     }
 
+    /**
+     * Ajoute une nouvelle forme au groupe.
+     *
+     * @param nouvelleForme La forme à ajouter au groupe.
+     * @return Le groupe avec la nouvelle forme ajoutée.
+     */
     public Groupe ajouter(IForme nouvelleForme) {
         listFormes.add(nouvelleForme);
         return this;
@@ -99,13 +114,12 @@ public class Groupe implements IForme {
 
     @Override
     public void redimmensioner(double h, double l) {
-        listFormes.stream().forEach(x -> x.redimmensioner(h, l));
+        listFormes.forEach(x -> x.redimmensioner(h, l));
     }
 
     @Override
     public String enSVG() {
-        String s = "";
-        s += "<g>\n";
+        String s = "<g>\n";
         for (IForme iForme : listFormes) {
             s += iForme.enSVG() + "\n";
         }
@@ -113,11 +127,17 @@ public class Groupe implements IForme {
         return s;
     }
 
+    /**
+     * Colorie chaque forme dans le groupe avec les couleurs spécifiées.
+     *
+     * @param couleurs Un tableau de couleurs à appliquer aux formes du groupe.
+     */
     public void colorier(String... couleurs) {
         int i = 0;
         for (IForme forme : listFormes) {
             forme.colorier(couleurs[i]);
             i++;
+<<<<<<< HEAD
             if(i>= listFormes.size()) {i=0;}
         }
     }
@@ -132,8 +152,26 @@ public class Groupe implements IForme {
                 System.out.println("Fichier créé avec succès !");
             } catch (IOException e) {
                 System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+=======
+            if (i >= listFormes.size()) {
+                i = 0;
+>>>>>>> 1c99f0880e18e11a4914883f21a3825fd8ef347b
             }
         }
+    }
 
-
+    /**
+     * Crée un fichier SVG représentant le groupe.
+     */
+    public void createSvgFile() {
+        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Groupe.svg"))) {
+            writer.write(svgContent);
+            writer.write(enSVG());
+            writer.write("</svg>");
+            System.out.println("Fichier créé avec succès !");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        }
+    }
 }
