@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.univrennes.istic.l2gen.geometrie.Point;
 
 public class PointTest {
     Point p;
@@ -34,8 +33,6 @@ public class PointTest {
         Point p2=p.plus(4,3);
         Point p3=new Point(p.x()+4, p.y()+3);
         assertEquals(true, p2.equals(p3));
-
-
     }
 
     @Test
