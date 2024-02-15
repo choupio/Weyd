@@ -133,7 +133,7 @@ public class Secteur implements IForme {
         for (int i = 0; i < indentation; i++) {
             indent.append("  ");
         }
-        return "Secteur " + indent.toString() + "centre=" + centre.getX() + "," + centre.getY() +" Angle=" + getAngle() + " Arc=" + getArc();
+        return "Secteur " + indent.toString() + "centre=" + centre.x() + "," + centre.y() +" Angle=" + getAngle() + " Arc=" + getArc();
     }
 
     /**
@@ -161,16 +161,16 @@ public class Secteur implements IForme {
         double startAngle = Math.toRadians(getAngle());
         double endAngle = Math.toRadians(getAngle() + getArc());
 
-        double startX = centre.getX() + getRayon() * Math.cos(startAngle);
-        double startY = centre.getY() - getRayon() * Math.sin(startAngle);
+        double startX = centre.x() + getRayon() * Math.cos(startAngle);
+        double startY = centre.y() - getRayon() * Math.sin(startAngle);
 
-        double endX = centre.getX() + getRayon() * Math.cos(endAngle);
-        double endY = centre.getY() - getRayon() * Math.sin(endAngle);
+        double endX = centre.x() + getRayon() * Math.cos(endAngle);
+        double endY = centre.y() - getRayon() * Math.sin(endAngle);
 
         int largeArcFlag = (getArc() > 180) ? 1 : 0;
 
         return "<path d=\"M " + startX + " " + startY + " A " + getRayon() + " " + getRayon() 
-        + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.getX() + " " + centre.getY() + " Z\"\n"
+        + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.x() + " " + centre.y() + " Z\"\n"
                 + "\t" + "fill=\"white\"" + " stroke=\"black\"/>";  
     }
 
