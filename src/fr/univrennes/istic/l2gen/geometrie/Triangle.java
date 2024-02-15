@@ -18,8 +18,8 @@ public class Triangle implements IForme {
     }
 
     public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
-        point1 = new Point(x1, y1);
-        point2 = new Point(x2, y2);
+        point1 = new Point(x1-y1/2, y1*2);
+        point2 = new Point(x2-y2/2, y2);
         point3 = new Point(x3, y3);
     }
 

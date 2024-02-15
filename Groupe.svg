@@ -9,5 +9,5 @@
 	fill="white" stroke="black"/>
 <path d="M 384.0 256.0 A 128.0 128.0 0 0 0 320.0 145.14874831559186 L 256.0 256.0 Z"
 	fill="white" stroke="black"/>
-
+<polygon points="128.0,256.0 192.0,128.0 256.0,256.0" fill="white" stroke="black"/>
 </g></svg>
