@@ -1,4 +1,4 @@
-package test.fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometrie;
 
 import org.junit.Test;
 
