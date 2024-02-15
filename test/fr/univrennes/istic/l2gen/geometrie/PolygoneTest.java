@@ -99,16 +99,25 @@ public class PolygoneTest {
     public void testHauteur2() {
         polygone.ajouterSommet(10, 32);
         polygone.ajouterSommet(12, 56);
-        assertEquals(46, polygone.hauteur(), 0.00001);
+        assertEquals(24, polygone.hauteur(), 0.00001);
     }
 
     @Test
     public void testLargeur() {
+        polygone.ajouterSommet(0, 0);
+        polygone.ajouterSommet(0, 56);
+        assertEquals(0, polygone.largeur(), 0.00001);
+    }
 
+    @Test
+    public void testLargeur2() {
+        polygone.ajouterSommet(10, 32);
+        polygone.ajouterSommet(12, 56);
+        assertEquals(2, polygone.largeur(), 0.00001);
     }
 
     @Test
     public void testRedimmensioner() {
-
+        
     }
 }
