@@ -12,7 +12,7 @@ public class Polygone implements IForme {
     private String couleur;
 
     {
-        couleur = "black";
+        couleur = "white";
     }
 
     public Polygone(double... d) {
@@ -119,7 +119,7 @@ public class Polygone implements IForme {
             s += point.x() + " " + point.y() + " ";
         }
 
-        s += "\" fille=\"white\" stroke=\"" + couleur + "\"/>";
+        s += "\" fill=\"" + couleur + "\" stroke=\"black\"/>";
         return s;
     }
 

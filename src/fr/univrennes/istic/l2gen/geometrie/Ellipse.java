@@ -13,7 +13,7 @@ public class Ellipse implements IForme {
 
     // Bloc d'initialisation
     {
-        couleur = "black";
+        couleur = "white";
     }
 
     public Ellipse(double centre1, double centre2, double hauteur, double largeur) {

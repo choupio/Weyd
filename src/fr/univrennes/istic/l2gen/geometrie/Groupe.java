@@ -114,6 +114,12 @@ public class Groupe implements IForme {
     }
 
     public void colorier(String... couleurs) {
+        int i = 0;
+        for (IForme forme : listFormes) {
+            forme.colorier(couleurs[i]);
+            i++;
+            if(i>= listFormes.size()) {i=0;}
+        }
     }
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";

@@ -13,7 +13,7 @@ public class Rectangle implements IForme {
 
     // Bloc d'initialisation
     {
-        couleur = "black";
+        couleur = "white";
     }
 
     public Point centre() {
@@ -97,7 +97,7 @@ public class Rectangle implements IForme {
     public String enSVG() {
         return "<rect x=\"" + centre().x() + "\" y=\"" + centre().y() + "\" width=\"" + largeur() + "\" height=\""
                 + hauteur()
-                + "\"\n" + "\t" + "fill=\"white\"" + " stroke=\"" + couleur + "\"/>";
+                + "\"\n" + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
     }
 
     public void colorier(String... couleurs) {
