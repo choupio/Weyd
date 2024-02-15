@@ -14,7 +14,7 @@ public interface IForme {
 
     public IForme dupliquer();
 
-    public void redimmensioner(double h, double l);
+    public IForme redimmensioner(double h, double l);
 
     public String enSVG();
 

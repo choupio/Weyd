@@ -126,7 +126,7 @@ public class Secteur implements IForme {
     public Secteur(double x, double y, double rayon, double angle, double arc) {
         this.centre = new Point(x, y);
         this.rayon = rayon;
-        this.angle = angle;
+        this.angle = angle + 30;
         this.arc = arc;
     }
 
@@ -142,7 +142,7 @@ public class Secteur implements IForme {
     public Secteur(Point f, double rayon, double angle, double arc) {
         this.centre = f;
         this.rayon = rayon;
-        this.angle = angle;
+        this.angle = angle + 30;
         this.arc = arc;
     }
 
