@@ -10,7 +10,7 @@ public interface IForme {
 
     public double largeur();
 
-    public void deplacer(double dx, double dy);
+    public IForme deplacer(double dx, double dy);
 
     public IForme dupliquer();
 

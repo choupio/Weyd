@@ -65,8 +65,8 @@ public class Ellipse implements IForme {
         this.rayon = rayon * largeur;
     }
 
-    public void deplacer(double dx, double dy) {
-        this.centre = this.centre.plus(dx, dy);
+    public IForme deplacer(double dx, double dy) {
+        return new Ellipse(dx, dy, this.hauteur(), this.largeur());
     }
 
     public IForme dupliquer() {

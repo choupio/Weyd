@@ -18,8 +18,8 @@ public class Triangle implements IForme {
     }
 
     public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
-        point1 = new Point(x1, y1);
-        point2 = new Point(x2, y2);
+        point1 = new Point(x1-y1/2, y1*2);
+        point2 = new Point(x2-y2/2, y2);
         point3 = new Point(x3, y3);
     }
 
@@ -55,7 +55,9 @@ public class Triangle implements IForme {
 
     @Override
     public double hauteur() {
-        return 0; // TODO si quelqu'un a une idée qu'il se fasse plaisir
+        double minY = Math.min(point1.y(), Math.min(point2.y(), point3.y()));
+        double maxY = Math.max(point1.y(), Math.max(point2.y(), point3.y()));
+        return maxY - minY;
     }
 
     @Override
@@ -82,14 +84,25 @@ public class Triangle implements IForme {
 
     @Override
     public void redimmensioner(double h, double l) {
-        Point leCentre = centre(); // TODO finir ça
-        // Du centre aux 3 nouveaux points
+        Point leCentre = centre();
+        double halfHeight = h / 2;
+        double halfWidth = l / 2;
+        double newPoint1X = leCentre.x() - halfWidth;
+        double newPoint1Y = leCentre.y() - halfHeight;
+        double newPoint2X = leCentre.x() + halfWidth;
+        double newPoint2Y = leCentre.y() - halfHeight;
+        double newPoint3X = leCentre.x();
+        double newPoint3Y = leCentre.y() + halfHeight;
+        point1 = new Point(newPoint1X, newPoint1Y);
+        point2 = new Point(newPoint2X, newPoint2Y);
+        point3 = new Point(newPoint3X, newPoint3Y);
     }
 
     @Override
     public String enSVG() {
-        // TODO a faire
-        return "";
+    // Generates SVG representation of the triangle
+    return "<polygon points=\"" + point1.x() + "," + point1.y() + " " + point2.x() + "," + point2.y() + " " + point3.x() + "," + point3.y() + "\" " +
+        "fill=\"" + couleur + "\" stroke=\"black\"/>";
     }
 
     public void colorier(String... couleurs) {

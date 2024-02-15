@@ -22,5 +22,6 @@ public class App {
         tableau . ajouter ( new Secteur (256 , 256 , 128 , 0 , 60));
         tableau . ajouter ( new Triangle (192 , 128 , 256 , 128 , 256 , 256));
         tableau.createSvgFile();
+        new Rectangle (256 , 256 , 256 , 128).createSvgFile();
     }
 }
