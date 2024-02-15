@@ -34,7 +34,7 @@ public class Cercle implements IForme {
         for (int i = 0; i < x; i++) {
             indentation += " ";
         }
-        return (indentation + "Cercle centre=" + point.x() + "," + point.y() + " r=" + rayon);
+        return (indentation + "Cercle centre= " + point.x() + ", " + point.y() + " r= " + rayon);
     }
 
     @Override

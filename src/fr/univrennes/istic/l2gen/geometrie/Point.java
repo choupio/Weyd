@@ -78,7 +78,9 @@ public class Point {
      * @return Un nouveau point dont les coordonnées sont la somme des coordonnées de ce point et du point spécifié.
      */
     public Point plus(Point p) {
-        return new Point(this.x() + p.x(), this.y() + p.y());
+        setX(this.x+p.x());
+        setY(this.y+p.y());
+        return new Point(this.x, this.y);
     }
 
     /**
@@ -89,6 +91,8 @@ public class Point {
      * @return Un nouveau point dont les coordonnées sont la somme des coordonnées de ce point et des coordonnées spécifiées.
      */
     public Point plus(double x1, double y1) {
-        return new Point(this.x() + x1, this.y() + y1);
+        setX(this.x+x1);
+        setY(this.y+y1);
+        return new Point(this.x, this.y);
     }
 }

@@ -47,10 +47,10 @@ public class Triangle implements IForme {
     public String description(int entier) {
         String cran = "";
         for (int i = 0; i < entier; i += 1) {
-            cran += "  ";
+            cran += " ";
         }
-        return "Triangle" + cran + point1.x() + "," + point1.y() + cran + point2.x() + "," + point2.y() + cran
-                + point3.x() + "," + point3.y();
+        return cran + "Triangle " + point1.x() + ", " + point1.y() + " " + point2.x() + ", " + point2.y() + " "
+                + point3.x() + ", " + point3.y();
     }
 
     @Override
