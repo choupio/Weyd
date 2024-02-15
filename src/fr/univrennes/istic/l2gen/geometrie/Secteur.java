@@ -200,7 +200,7 @@ public class Secteur implements IForme {
     }
 
     public void colorier(String... couleurs) {
-
+        couleur = couleurs[0];
     }
 
 }
