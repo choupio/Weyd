@@ -7,6 +7,12 @@ public class Triangle implements IForme {
     private Point point1;
     private Point point2;
     private Point point3;
+    private String couleur;
+
+    // Bloc d'initialisation
+    {
+        couleur = "white";
+    }
 
     public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
         point1 = new Point(x1, y1);
@@ -84,6 +90,7 @@ public class Triangle implements IForme {
     }
 
     public void colorier(String... couleurs) {
+        couleur = couleurs[0];
     }
 
 }

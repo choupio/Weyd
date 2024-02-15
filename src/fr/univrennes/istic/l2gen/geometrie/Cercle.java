@@ -50,7 +50,7 @@ public class Cercle implements IForme {
     @Override
     public String enSVG() {
         return "<circle cx=\"" + centre().x() + "\" cy=\"" + centre().y() + "\" r=\"" + hauteur() / 2 + "\"" + '\n'
-                + " fill=\"white\" stroke\"" + couleur + "\"/>";
+                + " fill=\"" + couleur + "\" stroke\"black\"/>";
     }
 
     @Override
