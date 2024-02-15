@@ -42,13 +42,14 @@ public class Ligne implements IForme {
     }
 
     public String description(int identation) {
-        String result = "Ligne";
+        String result ;
         String identa = "";
         for (int i = 0; i < identation; i++) {
-            identa = identa + " ";
+            identa += "  ";
         }
+        result= identa+"Ligne";
         for (int i = 0; i < ligne.length; i++) {
-            result = result + identa + ligne[i].x() + ',' + ligne[i].y();
+            result = result +" "+ ligne[i].x() + ',' + ligne[i].y();
         }
         return result;
     }
@@ -81,10 +82,11 @@ public class Ligne implements IForme {
     }
 
     @Override
-    public void deplacer(double dx, double dy) {
+    public IForme deplacer(double dx, double dy) {
         for (int i = 0; i < ligne.length; i++) {
             ligne[i] = new Point(ligne[i].x() + dx, ligne[i].y() + dy);
         }
+        return this;
     }
 
     @Override
