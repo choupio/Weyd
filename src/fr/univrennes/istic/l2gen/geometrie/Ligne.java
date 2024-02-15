@@ -1,4 +1,8 @@
 package fr.univrennes.istic.l2gen.geometrie;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ligne implements IForme{
     private Point[] ligne;
     public Ligne(double...l){
@@ -34,13 +38,11 @@ public class Ligne implements IForme{
         }
         return result;
     }
-    public Double[] getSommets(){
-        Double[]result=new Double[ligne.length*2];
-        int y =0;
+    public List<Double> getSommets(){
+        List <Double> result=new ArrayList<>();
         for(int i=0;i<ligne.length;i++){
-            result[y]=ligne[i].x();
-            result[y+1]=ligne[i].y();
-            y=y+2;
+            result.add(ligne[i].x());
+            result.add(ligne[i].y()); 
         }
         return result;
     }
@@ -67,8 +69,7 @@ public class Ligne implements IForme{
     }
     @Override
     public IForme dupliquer() {
-        Ligne L=new Ligne(this.getSommets());
-        return L;
+        return new Ligne(this.getSommets());
     }
     @Override
     public void redimmensioner(double h, double l) {

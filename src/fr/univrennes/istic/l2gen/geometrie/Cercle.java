@@ -42,7 +42,7 @@ public class Cercle implements IForme {
     public IForme dupliquer(){
         return new Cercle(point, rayon);
     }
-    public void redimmensionner(double i,double j){
+    public void redimmensioner(double i,double j){
         if(i == j){rayon *= i;}
         else if(i == 0){rayon *= j;}
         else if(j ==0){rayon*=i;}
