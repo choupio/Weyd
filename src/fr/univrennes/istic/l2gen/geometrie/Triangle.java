@@ -72,15 +72,18 @@ public class Triangle implements IForme {
     }
 
     @Override
-    public void redimmensioner(double px, double py) {
+    public void redimmensioner(double h, double l) {
         Point leCentre = centre(); // TODO finir ça
-
+        // Du centre aux 3 nouveaux points
     }
 
     @Override
     public String enSVG() {
         // TODO a faire
         return "";
+    }
+
+    public void colorier(String... couleurs) {
     }
 
 }
