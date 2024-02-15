@@ -1,14 +1,17 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
+import java.io.File;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ligne implements IForme{
     private Point[] ligne;
+    // private List<Point> ligne;
     public Ligne(double...l){
-        ligne=new Point[l.length/2];
+        this.ligne=new Point[l.length/2];//new ArrayListe
         int j=0;
-        for(int i=0;i<l.length;i=i+2){
+        for(int i=0;i<l.length;i=i+2){//int i: l
             ligne[j]=new Point(l[i],l[i+1]);
             j++;
         }
@@ -53,12 +56,14 @@ public class Ligne implements IForme{
         return ligne[ligne.length-1].x()-ligne[0].x();
     }
     public String enSVG(){
+        
         String result="<polyline points=\"";
         result=result+ligne[0].x()+' '+ligne[0].y()+' ';
         for(int i=1;i<ligne.length;i++){
             result=result+ligne[i].y()+' '+ligne[i].y()+' ';
         }
         result=result+"\" fill=\"white\" stroke=\"black\"";
+        // File.write("C:/Users/user/Documents/COURS/GEN/TP/l2gen_5_coupdumarteau/ligne.SVG",result);
         return result;
     }
     @Override
@@ -69,12 +74,23 @@ public class Ligne implements IForme{
     }
     @Override
     public IForme dupliquer() {
-        return new Ligne(this.getSommets());
+        List <Double> li = this.getSommets();
+        Ligne l2=new Ligne(li.getFirst(),li.get(1));
+        while(!li.isEmpty()){
+            
+        }
+
+        return l2;
     }
     @Override
     public void redimmensioner(double h, double l) {
         for(int i=0;i<ligne.length;i++){
             ligne[i]=new Point(ligne[i].x()*h,ligne[i].y()*l);
         }
+    }
+    @Override
+    public void colorier(String... couleurs) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'colorier'");
     }
 }
