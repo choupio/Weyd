@@ -86,7 +86,13 @@ public class Ligne implements IForme {
 
     @Override
     public IForme dupliquer() {
-        return new Ligne(this.getSommets());
+        List <Double> li = this.getSommets();
+        Ligne l2=new Ligne(li.getFirst(),li.get(1));
+        while(!li.isEmpty()){
+            
+        }
+
+        return l2;
     }
 
     @Override
@@ -95,7 +101,7 @@ public class Ligne implements IForme {
             ligne[i] = new Point(ligne[i].x() * h, ligne[i].y() * l);
         }
     }
-
+    @Override
     public void colorier(String... couleurs) {
 
     }
