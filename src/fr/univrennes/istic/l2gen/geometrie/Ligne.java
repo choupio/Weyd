@@ -76,7 +76,7 @@ public class Ligne implements IForme {
         for (int i = 1; i < ligne.length; i++) {
             result = result + ligne[i].y() + ' ' + ligne[i].y() + ' ';
         }
-        result = result + "\" fill=\"white\" stroke=\"" + couleur + "\"";
+        result = result + "\" fill=\"white\" stroke=\"" + couleur + "\"/>";
         return result;
     }
 
