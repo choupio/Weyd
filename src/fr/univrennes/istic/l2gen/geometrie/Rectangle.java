@@ -88,9 +88,8 @@ public class Rectangle implements IForme {
      * @param h la hauteur
      * @param l la largeur
      */
-    public void redimmensioner(double h, double l) {
-        setHauteur(h);
-        setLargeur(l);
+    public IForme redimmensioner(double h, double l) {
+        return new Rectangle(this.centre(), l, h);
     }
 
     public String enSVG() {
