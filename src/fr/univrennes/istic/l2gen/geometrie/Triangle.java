@@ -84,6 +84,7 @@ public class Triangle implements IForme {
 
     @Override
     public void redimmensioner(double h, double l) {
+        Point leCentre = centre();
         double halfHeight = h / 2;
         double halfWidth = l / 2;
         double newPoint1X = leCentre.x() - halfWidth;
