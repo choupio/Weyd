@@ -37,7 +37,7 @@ public class Rectangle implements IForme {
     }
 
     public Rectangle(double x, double y, double largeur, double hauteur) {
-        this.centre = new Point(x-(largeur/2), y-(hauteur/2));
+        this.centre = new Point(x - (largeur / 2), y - (hauteur / 2));
         this.hauteur = hauteur;
         this.largeur = largeur;
     }
@@ -71,9 +71,8 @@ public class Rectangle implements IForme {
      * @param dy
      * @return rien
      */
-    public void deplacer(double dx, double dy) {
-        this.centre().setX(dx);
-        this.centre().setY(dy);
+    public IForme deplacer(double dx, double dy) {
+        return new Rectangle(dx, dy, this.largeur(), this.hauteur());
     }
 
     /**
