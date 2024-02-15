@@ -41,11 +41,13 @@ public class RectangleTest {
 
     @Test
     public void testDupliquer() {
-
+        Rectangle r2=(Rectangle) r.dupliquer();
+        assertEquals(r, r2);
     }
 
     @Test
     public void testEnSVG() {
+        
 
     }
 
