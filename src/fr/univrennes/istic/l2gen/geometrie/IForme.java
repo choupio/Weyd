@@ -20,5 +20,5 @@ public interface IForme {
 
     public void colorier(String... couleurs);
 
-    
+    public void createSvgFile();
 }
