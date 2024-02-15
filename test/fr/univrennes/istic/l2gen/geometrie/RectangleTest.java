@@ -32,12 +32,11 @@ public class RectangleTest {
         Point c=new Point(r.centre().x()+8, r.centre().y()+5);
         r.deplacer(8, 5);
         assertEquals(c, r.centre());
-
     }
 
     @Test
     public void testDescription() {
-
+        assertEquals("  Rectangle Centre=" + r.centre().x()+","+r.centre().y()+" L="+r.largeur()+" h="+r.hauteur(), r.description(1));
     }
 
     @Test
