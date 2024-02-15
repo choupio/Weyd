@@ -47,18 +47,19 @@ public class RectangleTest {
 
     @Test
     public void testEnSVG() {
-        
+
 
     }
 
     @Test
     public void testHauteur() {
+        assertEquals(8, r.hauteur(),0.0001);
 
     }
 
     @Test
     public void testLargeur() {
-
+        assertEquals(5, r.largeur(),0.0001);
     }
 
     @Test
