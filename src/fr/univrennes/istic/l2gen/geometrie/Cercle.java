@@ -75,6 +75,7 @@ public class Cercle implements IForme {
     }
 
     public void colorier(String... couleurs) {
+        couleur = couleurs[0];
     }
     public void createSvgFile() {
     String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";

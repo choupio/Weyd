@@ -9,6 +9,12 @@ public class Rectangle implements IForme {
     private double largeur;
     private double hauteur;
     private Point centre;
+    private String couleur;
+
+    // Bloc d'initialisation
+    {
+        couleur = "black";
+    }
 
     public Point centre() {
         return centre;
@@ -91,11 +97,11 @@ public class Rectangle implements IForme {
     public String enSVG() {
         return "<rect x=\"" + centre().x() + "\" y=\"" + centre().y() + "\" width=\"" + largeur() + "\" height=\""
                 + hauteur()
-                + "\"\n" + "\t" + "fill=\"white\"" + " stroke=\"black\"/>";
+                + "\"\n" + "\t" + "fill=\"white\"" + " stroke=\"" + couleur + "\"/>";
     }
 
     public void colorier(String... couleurs) {
-
+        couleur = couleurs[0];
     }
         public void createSvgFile() {
     String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";

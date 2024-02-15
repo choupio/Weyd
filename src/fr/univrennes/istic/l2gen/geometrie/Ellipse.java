@@ -9,6 +9,12 @@ public class Ellipse implements IForme {
     private Point centre;
     private double hauteur;
     private double largeur;
+    private String couleur;
+
+    // Bloc d'initialisation
+    {
+        couleur = "black";
+    }
 
     public Ellipse(double centre1, double centre2, double hauteur, double largeur) {
         this.centre = new Point(centre1, centre2);
@@ -55,6 +61,7 @@ public class Ellipse implements IForme {
     }
 
     public void colorier(String... couleurs) {
+        couleur = couleurs[0];
     }
         public void createSvgFile() {
     String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
