@@ -75,7 +75,7 @@ public class Ellipse implements IForme {
 
     public String enSVG() {
         return "<ellipse cx= " + centre.x() + " cy= " + centre.y() + " rx= " + hauteur + " ry= " + largeur
-                + "fill=\"white\"" + " stroke=\"black\"/>";
+                + "fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
     }
 
     public void colorier(String... couleurs) {
