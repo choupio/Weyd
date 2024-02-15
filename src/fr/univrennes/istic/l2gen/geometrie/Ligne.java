@@ -101,10 +101,11 @@ public class Ligne implements IForme {
     }
 
     @Override
-    public void redimmensioner(double h, double l) {
+    public IForme redimmensioner(double h, double l) {
         for (int i = 1; i < ligne.length; i++) {
             ligne[i] = new Point(ligne[i].x() + h, ligne[i].y() + l);
         }
+        return this;
     }
     @Override
     public void colorier(String... couleurs) {
