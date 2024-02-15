@@ -1,5 +1,8 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.Math;
 
 public class Triangle implements IForme {
@@ -7,6 +10,12 @@ public class Triangle implements IForme {
     private Point point1;
     private Point point2;
     private Point point3;
+    private String couleur;
+
+    // Bloc d'initialisation
+    {
+        couleur = "white";
+    }
 
     public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
         point1 = new Point(x1, y1);
@@ -84,6 +93,20 @@ public class Triangle implements IForme {
     }
 
     public void colorier(String... couleurs) {
+        couleur = couleurs[0];
+    }
+    public void createSvgFile() {
+    String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+    
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Triangle.svg"))) {
+            writer.write(svgContent);
+            writer.write(enSVG());
+            writer.write("</svg>");
+            System.out.println("Fichier créé avec succès !");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        }
     }
 
 }

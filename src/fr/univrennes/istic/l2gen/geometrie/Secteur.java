@@ -1,5 +1,9 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * Cette classe représente un secteur de cercle.
  */
@@ -9,6 +13,12 @@ public class Secteur implements IForme {
     private double angle;
     private Point centre;
     private double rayon;
+    private String couleur;
+
+    // Bloc d'initialisation
+    {
+        couleur = "white";
+    }
 
     /**
      * Calcule la hauteur du secteur.
@@ -190,11 +200,24 @@ public class Secteur implements IForme {
 
         return "<path d=\"M " + startX + " " + startY + " A " + getRayon() + " " + getRayon()
                 + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.x() + " " + centre.y() + " Z\"\n"
-                + "\t" + "fill=\"white\"" + " stroke=\"black\"/>";
+                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
     }
 
     public void colorier(String... couleurs) {
+        couleur = couleurs[0];
+    }
+        public void createSvgFile() {
+    String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+    
 
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Secteur.svg"))) {
+            writer.write(svgContent);
+            writer.write(enSVG());
+            writer.write("</svg>");
+            System.out.println("Fichier créé avec succès !");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        }
     }
 
 }

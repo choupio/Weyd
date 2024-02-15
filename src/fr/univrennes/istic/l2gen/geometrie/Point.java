@@ -1,37 +1,65 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
+/**
+ * La classe Point représente un point dans un espace bidimensionnel.
+ */
 public class Point {
 
-    private double x;
-    private double y;
+    private double x; // Coordonnée x du point
+    private double y; // Coordonnée y du point
 
+    /**
+     * Retourne la coordonnée x du point.
+     *
+     * @return La coordonnée x du point.
+     */
     public double x() {
         return x;
     }
 
+    /**
+     * Retourne la coordonnée y du point.
+     *
+     * @return La coordonnée y du point.
+     */
     public double y() {
         return y;
     }
 
+    /**
+     * Définit la coordonnée x du point.
+     *
+     * @param x La nouvelle coordonnée x du point.
+     */
     public void setX(double x) {
         this.x = x;
     }
 
+    /**
+     * Définit la coordonnée y du point.
+     *
+     * @param y La nouvelle coordonnée y du point.
+     */
     public void setY(double y) {
         this.y = y;
     }
 
+    /**
+     * Initialise un nouveau point avec les coordonnées spécifiées.
+     *
+     * @param x La coordonnée x du point.
+     * @param y La coordonnée y du point.
+     */
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
     /**
-     * Prend un objet et le compare avec le point.
-     * 
-     * @return false si l'objet n'est pas un point ou si ses x et y ne sont pas
-     *         égaux à celui du point, et true si ses x et y sont égaux à celui du
-     *         point.
+     * Compare l'objet spécifié avec ce point pour l'égalité.
+     *
+     * @param o L'objet à comparer à ce point.
+     * @return true si l'objet est un point et a les mêmes coordonnées x et y, false sinon.
      */
     public boolean equals(Object o) {
         if (o instanceof Point) {
@@ -44,22 +72,21 @@ public class Point {
     }
 
     /**
-     * Prend un point p et l'additionne au point actuel, créeant un nouveau point.
-     * 
-     * @param p
-     * @return
+     * Ajoute les coordonnées du point spécifié à ce point pour créer un nouveau point.
+     *
+     * @param p Le point à ajouter à ce point.
+     * @return Un nouveau point dont les coordonnées sont la somme des coordonnées de ce point et du point spécifié.
      */
     public Point plus(Point p) {
         return new Point(this.x() + p.x(), this.y() + p.y());
     }
 
     /**
-     * Prend des coordonnées x1 et y1, et les additionne au point pour en créer un
-     * nouveau.
-     * 
-     * @param x1
-     * @param y1
-     * @return
+     * Ajoute les coordonnées spécifiées à ce point pour créer un nouveau point.
+     *
+     * @param x1 La coordonnée x à ajouter à ce point.
+     * @param y1 La coordonnée y à ajouter à ce point.
+     * @return Un nouveau point dont les coordonnées sont la somme des coordonnées de ce point et des coordonnées spécifiées.
      */
     public Point plus(double x1, double y1) {
         return new Point(this.x() + x1, this.y() + y1);

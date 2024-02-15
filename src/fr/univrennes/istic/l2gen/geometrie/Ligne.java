@@ -1,10 +1,19 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ligne implements IForme {
     private Point[] ligne;
+    private String couleur;
+
+    // Bloc d'initialisation
+    {
+        couleur = "black";
+    }
 
     public Ligne(double... l) {
         ligne = new Point[l.length / 2];
@@ -67,7 +76,7 @@ public class Ligne implements IForme {
         for (int i = 1; i < ligne.length; i++) {
             result = result + ligne[i].y() + ' ' + ligne[i].y() + ' ';
         }
-        result = result + "\" fill=\"white\" stroke=\"black\"";
+        result = result + "\" fill=\"white\" stroke=\"" + couleur + "\"";
         return result;
     }
 
@@ -80,7 +89,13 @@ public class Ligne implements IForme {
 
     @Override
     public IForme dupliquer() {
-        return new Ligne(this.getSommets());
+        List <Double> li = this.getSommets();
+        Ligne l2=new Ligne(li.get(0),li.get(1));
+        while(!li.isEmpty()){
+            
+        }
+
+        return l2;
     }
 
     @Override
@@ -89,8 +104,21 @@ public class Ligne implements IForme {
             ligne[i] = new Point(ligne[i].x() * h, ligne[i].y() * l);
         }
     }
-
+    @Override
     public void colorier(String... couleurs) {
 
+    }
+    public void createSvgFile() {
+    String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+    
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Ligne.svg"))) {
+            writer.write(svgContent);
+            writer.write(enSVG());
+            writer.write("</svg>");
+            System.out.println("Fichier créé avec succès !");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        }
     }
 }
