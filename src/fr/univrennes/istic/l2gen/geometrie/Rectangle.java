@@ -89,4 +89,8 @@ public class Rectangle implements IForme {
                 + hauteur()
                 + "\"\n" + "\t" + "fill=\"white\"" + " stroke=\"black\"/>";
     }
+
+    public void colorier(String... couleurs) {
+
+    }
 }
