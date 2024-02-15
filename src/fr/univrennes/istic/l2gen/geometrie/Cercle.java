@@ -3,6 +3,11 @@ package fr.univrennes.istic.l2gen.geometrie;
 public class Cercle implements IForme {
     private Point point;
     private double rayon;
+    private String couleur;
+
+    {
+        couleur = "black";
+    }
 
     public Cercle(double x, double y, double rayon) {
         this.point = new Point(x, y);
@@ -45,7 +50,7 @@ public class Cercle implements IForme {
     @Override
     public String enSVG() {
         return "<circle cx=\"" + centre().x() + "\" cy=\"" + centre().y() + "\" r=\"" + hauteur() / 2 + "\"" + '\n'
-                + " fill=\"white\" stroke\"black\"/>";
+                + " fill=\"white\" stroke\"" + couleur + "\"/>";
     }
 
     @Override
