@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+<g>
+<circle cx="256.0" cy="256.0" r="128.0"
+ fill="black" stroke="black"/>
+<ellipse cx="256.0" cy="256.0" rx="128.0" ry="64.0" fill="white" stroke="black"/>
+<polyline points="128.0 128.0 256.0 256.0 128.0 128.0 256.0 256.0 " fill="white" stroke="black"/>
+<polygon points="128.0 128.0 256.0 128.0 128.0 256.0 256.0 256.0 " fill="white" stroke="black"/>
+<rect x="128.0" y="192.0" height="128.0" width="256.0"
+	fill="white" stroke="black"/>
+<path d="M 384.0 256.0 A 128.0 128.0 0 0 0 320.0 145.14874831559186 L 256.0 256.0 Z"
+	fill="white" stroke="black"/>
+
+</g></svg>

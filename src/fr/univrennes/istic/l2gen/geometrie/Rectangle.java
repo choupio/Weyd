@@ -36,13 +36,13 @@ public class Rectangle implements IForme {
         this.hauteur = hauteur;
     }
 
-    public Rectangle(double x, double y, double hauteur, double largeur) {
-        this.centre = new Point(x, y);
+    public Rectangle(double x, double y, double largeur, double hauteur) {
+        this.centre = new Point(x-(largeur/2), y-(hauteur/2));
         this.hauteur = hauteur;
         this.largeur = largeur;
     }
 
-    public Rectangle(Point p, double hauteur, double largeur) {
+    public Rectangle(Point p, double largeur, double hauteur) {
         this.centre = p;
         this.hauteur = hauteur;
         this.largeur = largeur;
@@ -108,7 +108,7 @@ public class Rectangle implements IForme {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 
         try (BufferedWriter writer = new BufferedWriter(
-                new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Rectangle.svg"))) {
+                new FileWriter("Rectangle.svg"))) {
             writer.write(svgContent);
             writer.write(enSVG());
             writer.write("</svg>");
