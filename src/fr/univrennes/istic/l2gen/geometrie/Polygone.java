@@ -1,11 +1,19 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Polygone implements IForme {
 
     private List<Point> points;
+    private String couleur;
+
+    {
+        couleur = "white";
+    }
 
     public Polygone(double... d) {
         this.points = new ArrayList<>();
@@ -110,13 +118,26 @@ public class Polygone implements IForme {
         for (Point point : points) {
             s += point.x() + " " + point.y() + " ";
         }
-        s.substring(0, s.length() - 1);
-        s += " fille=\"white\" stroke=\"black\"/>";
+
+        s += "\" fill=\"" + couleur + "\" stroke=\"black\"/>";
         return s;
     }
 
     public void colorier(String... couleurs) {
+        couleur = couleurs[0];
+    }
+        public void createSvgFile() {
+    String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+    
 
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Polygone.svg"))) {
+            writer.write(svgContent);
+            writer.write(enSVG());
+            writer.write("</svg>");
+            System.out.println("Fichier Cercle.svg créé avec succès !");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        }
     }
 
 }

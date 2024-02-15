@@ -5,6 +5,12 @@ import java.util.List;
 
 public class Ligne implements IForme {
     private Point[] ligne;
+    private String couleur;
+
+    // Bloc d'initialisation
+    {
+        couleur = "black";
+    }
 
     public Ligne(double... l) {
         ligne = new Point[l.length / 2];
@@ -67,7 +73,7 @@ public class Ligne implements IForme {
         for (int i = 1; i < ligne.length; i++) {
             result = result + ligne[i].y() + ' ' + ligne[i].y() + ' ';
         }
-        result = result + "\" fill=\"white\" stroke=\"black\"";
+        result = result + "\" fill=\"white\" stroke=\"" + couleur + "\"";
         return result;
     }
 
@@ -80,7 +86,13 @@ public class Ligne implements IForme {
 
     @Override
     public IForme dupliquer() {
-        return new Ligne(this.getSommets());
+        List <Double> li = this.getSommets();
+        Ligne l2=new Ligne(li.getFirst(),li.get(1));
+        while(!li.isEmpty()){
+            
+        }
+
+        return l2;
     }
 
     @Override
@@ -89,7 +101,7 @@ public class Ligne implements IForme {
             ligne[i] = new Point(ligne[i].x() * h, ligne[i].y() * l);
         }
     }
-
+    @Override
     public void colorier(String... couleurs) {
 
     }

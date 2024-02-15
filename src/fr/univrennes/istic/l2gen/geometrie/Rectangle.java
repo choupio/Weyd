@@ -1,10 +1,20 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Rectangle implements IForme {
 
     private double largeur;
     private double hauteur;
     private Point centre;
+    private String couleur;
+
+    // Bloc d'initialisation
+    {
+        couleur = "white";
+    }
 
     public Point centre() {
         return centre;
@@ -87,10 +97,23 @@ public class Rectangle implements IForme {
     public String enSVG() {
         return "<rect x=\"" + centre().x() + "\" y=\"" + centre().y() + "\" width=\"" + largeur() + "\" height=\""
                 + hauteur()
-                + "\"\n" + "\t" + "fill=\"white\"" + " stroke=\"black\"/>";
+                + "\"\n" + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
     }
 
     public void colorier(String... couleurs) {
+        couleur = couleurs[0];
+    }
+        public void createSvgFile() {
+    String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+    
 
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Rectangle.svg"))) {
+            writer.write(svgContent);
+            writer.write(enSVG());
+            writer.write("</svg>");
+            System.out.println("Fichier Cercle.svg créé avec succès !");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        }
     }
 }
