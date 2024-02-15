@@ -115,4 +115,8 @@ public class Polygone implements IForme {
         return s;
     }
 
+    public void colorier(String... couleurs) {
+
+    }
+
 }
