@@ -54,7 +54,6 @@ public class RectangleTest {
     @Test
     public void testHauteur() {
         assertEquals(8, r.hauteur(),0.0001);
-
     }
 
     @Test
@@ -69,11 +68,13 @@ public class RectangleTest {
 
     @Test
     public void testSetHauteur() {
-
+        r.setHauteur(3);
+        assertEquals(3,r.hauteur(),0.0001);
     }
 
     @Test
     public void testSetLargeur() {
-
+        r.setLargeur(3);
+        assertEquals(3,r.largeur(),0.0001);
     }
 }
