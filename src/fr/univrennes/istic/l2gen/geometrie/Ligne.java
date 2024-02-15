@@ -106,7 +106,7 @@ public class Ligne implements IForme {
     }
     @Override
     public void colorier(String... couleurs) {
-
+        this.couleur=couleurs[0];
     }
     public void createSvgFile() {
     String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
