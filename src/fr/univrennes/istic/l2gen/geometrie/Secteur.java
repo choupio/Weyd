@@ -46,8 +46,8 @@ public class Secteur implements IForme {
      * @param largeur La nouvelle largeur.
      * @param hauteur La nouvelle hauteur.
      */
-    public void redimmensioner(double largeur, double hauteur) {
-        this.rayon = rayon * largeur;
+    public IForme redimmensioner(double largeur, double hauteur) {
+        return new Secteur(this.getPoint(), (hauteur * largeur), this.getAngle(), this.getArc());
     }
 
     /**
