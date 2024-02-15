@@ -6,6 +6,11 @@ import java.util.List;
 public class Polygone implements IForme {
 
     private List<Point> points;
+    private String couleur;
+
+    {
+        couleur = "black";
+    }
 
     public Polygone(double... d) {
         this.points = new ArrayList<>();
@@ -110,8 +115,8 @@ public class Polygone implements IForme {
         for (Point point : points) {
             s += point.x() + " " + point.y() + " ";
         }
-        s.substring(0, s.length() - 1);
-        s += " fille=\"white\" stroke=\"black\"/>";
+
+        s += "\" fille=\"white\" stroke=\"" + couleur + "\"/>";
         return s;
     }
 
