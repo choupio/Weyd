@@ -71,7 +71,7 @@ public class Ellipse implements IForme {
             writer.write(svgContent);
             writer.write(enSVG());
             writer.write("</svg>");
-            System.out.println("Fichier Cercle.svg créé avec succès !");
+            System.out.println("Fichier créé avec succès !");
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }

@@ -88,7 +88,7 @@ public class Triangle implements IForme {
 
     public void colorier(String... couleurs) {
     }
-        public void createSvgFile() {
+    public void createSvgFile() {
     String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
     
 
@@ -96,7 +96,7 @@ public class Triangle implements IForme {
             writer.write(svgContent);
             writer.write(enSVG());
             writer.write("</svg>");
-            System.out.println("Fichier Cercle.svg créé avec succès !");
+            System.out.println("Fichier créé avec succès !");
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }

@@ -115,6 +115,19 @@ public class Groupe implements IForme {
 
     public void colorier(String... couleurs) {
     }
+    public void createSvgFile() {
+        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+        
+    
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Groupe.svg"))) {
+                writer.write(svgContent);
+                writer.write(enSVG());
+                writer.write("</svg>");
+                System.out.println("Fichier créé avec succès !");
+            } catch (IOException e) {
+                System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+            }
+        }
 
 
 }
