@@ -50,7 +50,7 @@ public class Polygone implements IForme {
 
         String s = "Polygone";
         for (Point point : points) {
-            s += cran + point.x() + "," + point.y();
+            s += point.x() + "," + point.y();
         }
         return s;
     }
