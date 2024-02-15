@@ -35,7 +35,7 @@ public class Hexagone implements IForme {
     }
 
     @Override
-    public void deplacer(double dx, double dy) {
+    public IForme deplacer(double dx, double dy) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
     }
@@ -61,11 +61,12 @@ public class Hexagone implements IForme {
     public void colorier(String... couleurs) {
         throw new UnsupportedOperationException("Unimplemented method 'colorier'");
     }
-        public void createSvgFile() {
-    String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-    
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Hexagone.svg"))) {
+    public void createSvgFile() {
+        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+
+        try (BufferedWriter writer = new BufferedWriter(
+                new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Hexagone.svg"))) {
             writer.write(svgContent);
             writer.write(enSVG());
             writer.write("</svg>");
