@@ -5,6 +5,12 @@ public class Ellipse implements IForme {
     private Point centre;
     private double hauteur;
     private double largeur;
+    private String couleur;
+
+    // Bloc d'initialisation
+    {
+        couleur = "black";
+    }
 
     public Ellipse(double centre1, double centre2, double hauteur, double largeur) {
         this.centre = new Point(centre1, centre2);
