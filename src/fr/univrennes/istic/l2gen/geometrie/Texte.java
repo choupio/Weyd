@@ -32,7 +32,7 @@ public class Texte implements IForme{
     }
 
     @Override
-    public void deplacer(double dx, double dy) {
+    public IForme deplacer(double dx, double dy) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
     }
@@ -44,7 +44,7 @@ public class Texte implements IForme{
     }
 
     @Override
-    public void redimmensioner(double h, double l) {
+    public IForme redimmensioner(double h, double l) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
     }
