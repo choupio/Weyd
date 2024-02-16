@@ -47,7 +47,8 @@ public class Secteur implements IForme {
      * @param hauteur La nouvelle hauteur.
      */
     public IForme redimmensioner(double largeur, double hauteur) {
-        return new Secteur(this.getPoint(), (hauteur * largeur), this.getAngle(), this.getArc());
+        this.rayon = hauteur * largeur;
+        return this;
     }
 
     /**
@@ -169,7 +170,8 @@ public class Secteur implements IForme {
      * @param dy Le déplacement vertical.
      */
     public IForme deplacer(double dx, double dy) {
-        return new Secteur(this.centre.plus(dx, dy), this.getRayon(), this.getAngle(), this.getArc());
+        this.centre.plus(dx, dy);
+        return this;
     }
 
     /**
