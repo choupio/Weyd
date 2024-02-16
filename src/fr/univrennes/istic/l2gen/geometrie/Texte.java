@@ -5,7 +5,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Texte implements IForme{
+    private String couleur;
 
+    // Bloc d'initialisation
+    {
+        couleur = "white";
+    }
 
     @Override
     public Point centre() {
@@ -56,10 +61,8 @@ public class Texte implements IForme{
     }    
 
     public IForme colorier(String... couleurs) {
-        // Gestion des couleurs pour un rectangle simple
-        if (couleurs.length > 0) {
-            this.couleur = couleurs[0];
-        }
+        couleur = couleurs[0];
+        return this;
     }
         public void createSvgFile() {
             throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
