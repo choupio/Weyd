@@ -5,7 +5,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Texte implements IForme{
+    private String couleur;
 
+    // Bloc d'initialisation
+    {
+        couleur = "white";
+    }
 
     @Override
     public Point centre() {
@@ -32,7 +37,7 @@ public class Texte implements IForme{
     }
 
     @Override
-    public void deplacer(double dx, double dy) {
+    public IForme deplacer(double dx, double dy) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
     }
@@ -44,7 +49,7 @@ public class Texte implements IForme{
     }
 
     @Override
-    public void redimmensioner(double h, double l) {
+    public IForme redimmensioner(double h, double l) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
     }
@@ -55,11 +60,9 @@ public class Texte implements IForme{
         return "<text x=\"" + hauteur() + "\" y=\"" + largeur() + "\" font-size=\"64\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\">Istic L2GEN</text>";
     }    
 
-    public void colorier(String... couleurs) {
-        // Gestion des couleurs pour un rectangle simple
-        if (couleurs.length > 0) {
-            this.couleur = couleurs[0];
-        }
+    public IForme colorier(String... couleurs) {
+        couleur = couleurs[0];
+        return this;
     }
         public void createSvgFile() {
             throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");

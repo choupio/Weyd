@@ -48,7 +48,8 @@ public class Cercle implements IForme {
     }
 
     public IForme deplacer(double x, double y) {
-        return new Cercle(point.plus(x, y), this.rayon);
+        point.plus(x,y);
+        return this;
     }
 
     @Override
@@ -62,20 +63,22 @@ public class Cercle implements IForme {
         return new Cercle(point, rayon);
     }
 
-    public void redimmensioner(double i, double j) {
+    public IForme redimmensioner(double i, double j) {
         if (i == j) {
             rayon *= i;
         } else if (i == 0) {
             rayon *= j;
         } else if (j == 0) {
             rayon *= i;
-        } else
-            rayon *= i * j;
+        } else {
+            rayon *= i * j;}
+        return this;
 
     }
 
-    public void colorier(String... couleurs) {
+    public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
+        return this;
     }
 
     public void createSvgFile() {

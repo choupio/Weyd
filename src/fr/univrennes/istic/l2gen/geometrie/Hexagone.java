@@ -47,7 +47,7 @@ public class Hexagone implements IForme {
     }
 
     @Override
-    public void redimmensioner(double h, double l) {
+    public IForme redimmensioner(double h, double l) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
     }
@@ -58,7 +58,7 @@ public class Hexagone implements IForme {
         throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
     }
 
-    public void colorier(String... couleurs) {
+    public IForme colorier(String... couleurs) {
         throw new UnsupportedOperationException("Unimplemented method 'colorier'");
     }
 

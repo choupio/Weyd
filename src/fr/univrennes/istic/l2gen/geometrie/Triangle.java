@@ -70,10 +70,11 @@ public class Triangle implements IForme {
     }
 
     @Override
-    public void deplacer(double dx, double dy) {
+    public IForme deplacer(double dx, double dy) {
         point1 = new Point(dx + point1.x(), dy + point1.y());
         point2 = new Point(dx + point2.x(), dy + point2.y());
         point3 = new Point(dx + point3.x(), dy + point3.y());
+        return this;
     }
 
     @Override
@@ -83,7 +84,7 @@ public class Triangle implements IForme {
     }
 
     @Override
-    public void redimmensioner(double h, double l) {
+    public IForme redimmensioner(double h, double l) {
         Point leCentre = centre();
         double halfHeight = h / 2;
         double halfWidth = l / 2;
@@ -96,6 +97,7 @@ public class Triangle implements IForme {
         point1 = new Point(newPoint1X, newPoint1Y);
         point2 = new Point(newPoint2X, newPoint2Y);
         point3 = new Point(newPoint3X, newPoint3Y);
+        return this;
     }
 
     @Override
@@ -105,8 +107,9 @@ public class Triangle implements IForme {
         "fill=\"" + couleur + "\" stroke=\"black\"/>";
     }
 
-    public void colorier(String... couleurs) {
+    public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
+        return this;
     }
     public void createSvgFile() {
     String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
