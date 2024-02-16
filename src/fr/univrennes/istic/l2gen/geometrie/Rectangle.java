@@ -72,7 +72,8 @@ public class Rectangle implements IForme {
      * @return rien
      */
     public IForme deplacer(double dx, double dy) {
-        return new Rectangle(dx, dy, this.largeur(), this.hauteur());
+        this.centre = new Point(dx, dy);
+        return this;
     }
 
     /**
@@ -89,7 +90,9 @@ public class Rectangle implements IForme {
      * @param l la largeur
      */
     public IForme redimmensioner(double h, double l) {
-        return new Rectangle(this.centre(), l, h);
+        this.setHauteur(h);
+        this.setLargeur(l);
+        return this;
     }
 
     public String enSVG() {
