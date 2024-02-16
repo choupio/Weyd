@@ -63,7 +63,9 @@ public class RectangleTest {
 
     @Test
     public void testRedimmensioner() {
-
+        Rectangle r2=new Rectangle(r.centre(), 8, 9);
+        Rectangle r3=(Rectangle) r.redimmensioner(8, 9);
+        assertEquals(r2, r3);
     }
 
     @Test
