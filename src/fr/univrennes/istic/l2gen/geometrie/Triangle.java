@@ -50,7 +50,7 @@ public class Triangle implements IForme {
             cran += " ";
         }
         return cran + "Triangle " + point1.x() + ", " + point1.y() + " " + point2.x() + ", " + point2.y() + " "
-                + point3.x() + ", " + point3.y();
+                + point3.x() + ", " + point3.y() + " de couleur" + colorier(couleur);
     }
 
     @Override
@@ -76,11 +76,12 @@ public class Triangle implements IForme {
         point3 = new Point(dx + point3.x(), dy + point3.y());
         return this;
     }
-
     @Override
     public IForme dupliquer() {
-        Triangle triangle = new Triangle(point1.x(), point1.y(), point2.x(), point2.y(), point3.x(), point3.y());
-        return triangle;
+        // Crée une nouvelle instance de la classe avec les mêmes propriétés
+        Triangle nouvelleForme = new Triangle(point1.x(), point1.y(), point2.x(), point2.y(), point3.x(), point3.y());
+        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        return nouvelleForme;
     }
 
     @Override

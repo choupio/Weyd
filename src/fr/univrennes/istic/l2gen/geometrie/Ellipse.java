@@ -70,9 +70,11 @@ public class Ellipse implements IForme {
         this.centre = new Point(dx, dy);
         return this;
     }
-
     public IForme dupliquer() {
-        return new Ellipse(centre, hauteur, largeur);
+        // Crée une nouvelle instance de la classe avec les mêmes propriétés
+        Ellipse nouvelleForme = new Ellipse(centre, hauteur, largeur);
+        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        return nouvelleForme;
     }
 
     public String enSVG() {

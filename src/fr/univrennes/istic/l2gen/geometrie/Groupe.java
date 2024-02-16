@@ -91,7 +91,7 @@ public class Groupe implements IForme {
         }
         String description = "Groupe : \n";
         for (IForme forme : listFormes) {
-            description += forme.description(entier) + "\n";
+            description += forme.description(entier) + "\n" ;
         }
         return description;
     }

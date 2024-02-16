@@ -34,7 +34,7 @@ public class Cercle implements IForme {
         for (int i = 0; i < x; i++) {
             indentation += " ";
         }
-        return (indentation + "Cercle centre= " + point.x() + ", " + point.y() + " r= " + rayon);
+        return (indentation + "Cercle centre= " + point.x() + ", " + point.y() + " r= " + rayon + " de couleur" + colorier(couleur));
     }
 
     @Override
@@ -60,7 +60,10 @@ public class Cercle implements IForme {
 
     @Override
     public IForme dupliquer() {
-        return new Cercle(point, rayon);
+        // Crée une nouvelle instance de la classe avec les mêmes propriétés
+        Cercle nouvelleForme = new Cercle(point, rayon);
+        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        return nouvelleForme;
     }
 
     public IForme redimmensioner(double i, double j) {

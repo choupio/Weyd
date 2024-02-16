@@ -18,11 +18,7 @@ public class Texte implements IForme{
         throw new UnsupportedOperationException("Unimplemented method 'centre'");
     }
 
-    @Override
-    public String description(int indentation) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'description'");
-    }
+    
 
     @Override
     public double hauteur() {
@@ -44,8 +40,21 @@ public class Texte implements IForme{
 
     @Override
     public IForme dupliquer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dupliquer'");
+        // Crée une nouvelle instance de la classe avec les mêmes propriétés
+        Texte nouvelleForme = new Texte();
+        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        return nouvelleForme;
+    }
+
+    @Override
+    public String description(int indentation) {
+        // Génère une description avec un certain niveau d'indentation
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < indentation; i++) {
+            sb.append("  ");  // Deux espaces par niveau d'indentation, ajustez selon vos préférences
+        }
+        sb.append("Forme de couleur ").append(couleur);  // Ajoutez d'autres détails au besoin
+        return sb.toString();
     }
 
     @Override
@@ -64,9 +73,8 @@ public class Texte implements IForme{
         couleur = couleurs[0];
         return this;
     }
-        public void createSvgFile() {
-            throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
 
-
+    public void createSvgFile() {
+        throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
     }
 }

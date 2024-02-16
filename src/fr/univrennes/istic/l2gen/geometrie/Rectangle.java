@@ -61,7 +61,7 @@ public class Rectangle implements IForme {
         for (int i = 0; i < indentation; i++) {
             ind += "  ";
         }
-        return ind + "Rectangle Centre=" + centre().x() + "," + centre().y() + " L=" + largeur() + " H=" + hauteur();
+        return ind + "Rectangle Centre=" + centre().x() + "," + centre().y() + " L=" + largeur() + " H=" + hauteur() + " de couleur" + colorier(couleur);
     }
 
     /**
@@ -80,7 +80,10 @@ public class Rectangle implements IForme {
      * duplique le rectangle.
      */
     public IForme dupliquer() {
-        return new Rectangle(this.centre(), this.hauteur(), this.largeur());
+        // Crée une nouvelle instance de la classe avec les mêmes propriétés
+        Rectangle nouvelleForme = new Rectangle(this.centre(), this.hauteur(), this.largeur());
+        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        return nouvelleForme;
     }
 
     /**
