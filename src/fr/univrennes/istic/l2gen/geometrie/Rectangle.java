@@ -28,12 +28,14 @@ public class Rectangle implements IForme {
         return hauteur;
     }
 
-    public void setLargeur(double largeur) {
+    public IForme setLargeur(double largeur) {
         this.largeur = largeur;
+        return this;
     }
 
-    public void setHauteur(double hauteur) {
+    public IForme setHauteur(double hauteur) {
         this.hauteur = hauteur;
+        return this;
     }
 
     public Rectangle(double x, double y, double largeur, double hauteur) {

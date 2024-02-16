@@ -24,17 +24,19 @@ public class Ligne implements IForme {
         }
     }
 
-    public void ajouterSommet(Point p) {
+    public IForme ajouterSommet(Point p) {
         Point[] temp = ligne;
         ligne = new Point[temp.length + 1];
         for (int i = 0; i < temp.length; i++) {
             ligne[i] = temp[i];
         }
         ligne[ligne.length - 1] = p;
+        return this;
     }
 
-    public void ajouterSommet(double x, double y) {
+    public IForme ajouterSommet(double x, double y) {
         ajouterSommet(new Point(x, y));
+        return this;
     }
 
     public Point centre() {

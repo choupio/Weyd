@@ -74,8 +74,9 @@ public class Secteur implements IForme {
      * 
      * @param arc Le nouvel arc.
      */
-    public void setArc(double arc) {
+    public IForme setArc(double arc) {
         this.arc = arc;
+        return this;
     }
 
     /**
@@ -101,8 +102,9 @@ public class Secteur implements IForme {
      * 
      * @param angle Le nouvel angle.
      */
-    public void setAngle(double angle) {
+    public IForme setAngle(double angle) {
         this.angle = angle;
+        return this;
     }
 
     /**

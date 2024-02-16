@@ -22,12 +22,14 @@ public class Polygone implements IForme {
         }
     }
 
-    public void ajouterSommet(Point point) {
+    public IForme ajouterSommet(Point point) {
         points.add(new Point(point.x(), point.y()));
+        return this;
     }
 
-    public void ajouterSommet(double d1, double d2) {
+    public IForme ajouterSommet(double d1, double d2) {
         points.add(new Point(d1, d2));
+        return this;
     }
 
     @Override
