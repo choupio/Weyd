@@ -97,10 +97,11 @@ public class Groupe implements IForme {
     }
 
     @Override
-    public void deplacer(double dx, double dy) {
+    public IForme deplacer(double dx, double dy) {
         for (IForme iForme : listFormes) {
             iForme.deplacer(dx, dy);
         }
+        return this;
     }
 
     @Override
@@ -113,8 +114,9 @@ public class Groupe implements IForme {
     }
 
     @Override
-    public void redimmensioner(double h, double l) {
+    public IForme redimmensioner(double h, double l) {
         listFormes.forEach(x -> x.redimmensioner(h, l));
+        return this;
     }
 
     @Override
