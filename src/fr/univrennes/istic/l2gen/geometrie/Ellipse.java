@@ -61,12 +61,14 @@ public class Ellipse implements IForme {
         return description;
     }
 
-    public void redimmensioner(double largeur, double hauteur) {
+    public IForme redimmensioner(double largeur, double hauteur) {
         this.rayon = rayon * largeur;
+        return this;
     }
 
     public IForme deplacer(double dx, double dy) {
-        return new Ellipse(dx, dy, this.hauteur(), this.largeur());
+        this.centre = new Point(dx, dy);
+        return this;
     }
 
     public IForme dupliquer() {
