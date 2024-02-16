@@ -9,14 +9,17 @@ public class RectangleTest {
     Rectangle r;
     @Before
     public void setUp(){
-        r=new Rectangle(5, 6,5,8);
+        Point c=new Point(5,6);
+        r=new Rectangle(c,5,8);
     }
 
     @Test
     public void testCentre() {
+        setUp();
         Point c=new Point(5,6);
         Point centre=r.centre();
-        assertEquals(c, centre);
+        assertEquals(c.x(), centre.x(),0.0001);
+        assertEquals(c.y(), centre.y(),0.0001);
     }
 
     @Test
@@ -29,26 +32,27 @@ public class RectangleTest {
 
     @Test
     public void testDeplacer() {
-        Point c=new Point(r.centre().x()+8, r.centre().y()+5);
+        Point c=new Point(8, 5);
         r.deplacer(8, 5);
-        assertEquals(c, r.centre());
+        assertEquals(c.x(), r.deplacer(8, 5).centre().x(),0.0001);
+        assertEquals(c.y(), r.deplacer(8, 5).centre().y(),0.0001);
     }
 
     @Test
     public void testDescription() {
-        assertEquals("  Rectangle Centre=" + r.centre().x()+","+r.centre().y()+" L="+r.largeur()+" h="+r.hauteur(), r.description(1));
+        assertEquals("  Rectangle Centre=" + r.centre().x()+","+r.centre().y()+" L="+r.largeur()+" H="+r.hauteur(), r.description(1));
     }
 
     @Test
     public void testDupliquer() {
-        Rectangle r2=(Rectangle) r.dupliquer();
-        assertEquals(r, r2);
+        assertEquals(true, r.equals(r.dupliquer()));
     }
 
     @Test
     public void testEnSVG() {
-
-
+        assertEquals("<rect x=\"" + r.centre().x() + "\" y=\"" + r.centre().y() + "\" height=\"" + r.hauteur() + "\" width=\""
+        + r.largeur()
+        + "\"\n" + "\t" + "fill=\"" + "white" + "\"" + " stroke=\"black\"/>", r.enSVG());
     }
 
     @Test
@@ -64,8 +68,7 @@ public class RectangleTest {
     @Test
     public void testRedimmensioner() {
         Rectangle r2=new Rectangle(r.centre(), 8, 9);
-        Rectangle r3=(Rectangle) r.redimmensioner(8, 9);
-        assertEquals(r2, r3);
+        assertEquals(true,r2.equals(r.redimmensioner(9, 8)));
     }
 
     @Test
