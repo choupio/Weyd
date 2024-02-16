@@ -18,7 +18,7 @@ public interface IForme {
 
     public String enSVG();
 
-    public void colorier(String... couleurs);
+    public IForme colorier(String... couleurs);
 
     public void createSvgFile();
 }

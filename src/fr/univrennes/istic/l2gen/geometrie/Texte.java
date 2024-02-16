@@ -55,7 +55,7 @@ public class Texte implements IForme{
         return "<text x=\"" + hauteur() + "\" y=\"" + largeur() + "\" font-size=\"64\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\">Istic L2GEN</text>";
     }    
 
-    public void colorier(String... couleurs) {
+    public IForme colorier(String... couleurs) {
         // Gestion des couleurs pour un rectangle simple
         if (couleurs.length > 0) {
             this.couleur = couleurs[0];

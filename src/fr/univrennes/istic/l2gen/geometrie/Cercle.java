@@ -76,8 +76,9 @@ public class Cercle implements IForme {
 
     }
 
-    public void colorier(String... couleurs) {
+    public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
+        return this;
     }
 
     public void createSvgFile() {

@@ -134,7 +134,7 @@ public class Groupe implements IForme {
      *
      * @param couleurs Un tableau de couleurs à appliquer aux formes du groupe.
      */
-    public void colorier(String... couleurs) {
+    public IForme colorier(String... couleurs) {
         int i = 0;
         for (IForme forme : listFormes) {
             forme.colorier(couleurs[i]);
@@ -142,6 +142,7 @@ public class Groupe implements IForme {
 
             if(i>= listFormes.size()) {i=0;}
         }
+        return this;
     }
 
 

@@ -58,7 +58,7 @@ public class Hexagone implements IForme {
         throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
     }
 
-    public void colorier(String... couleurs) {
+    public IForme colorier(String... couleurs) {
         throw new UnsupportedOperationException("Unimplemented method 'colorier'");
     }
 

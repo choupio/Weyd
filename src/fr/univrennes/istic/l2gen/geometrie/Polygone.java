@@ -125,8 +125,9 @@ public class Polygone implements IForme {
         return s;
     }
 
-    public void colorier(String... couleurs) {
+    public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
+        return this;
     }
         public void createSvgFile() {
     String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
