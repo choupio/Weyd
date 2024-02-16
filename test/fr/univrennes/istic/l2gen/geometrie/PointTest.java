@@ -23,16 +23,17 @@ public class PointTest {
     public void testPlus() {
         Point p2=new Point(4,3);
         Point p3=p.plus(p2);
-        Point p4=new Point(p.x()+4, p.y()+3);
-        assertEquals(true, p3.equals(p4));
+        assertEquals(9, p3.x(),0.0001);
+        assertEquals(9, p3.y(),0.0001);
 
     }
 
     @Test
     public void testPlus2() {
+        setUp();
         Point p2=p.plus(4,3);
-        Point p3=new Point(p.x()+4, p.y()+3);
-        assertEquals(true, p2.equals(p3));
+        assertEquals(9, p2.x(),0.0001);
+        assertEquals(9, p2.x(),0.0001);
     }
 
     @Test
