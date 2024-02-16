@@ -49,7 +49,7 @@ public class Ligne implements IForme {
         }
         result= identa+"Ligne";
         for (int i = 0; i < ligne.length; i++) {
-            result = result +" "+ ligne[i].x() + ',' + ligne[i].y();
+            result = result +" "+ ligne[i].x() + ',' + ligne[i].y() + " de couleur" + colorier(couleur);
         }
         return result;
     }
@@ -89,9 +89,11 @@ public class Ligne implements IForme {
         return this;
     }
 
-    @Override
     public IForme dupliquer() {
-       return this;
+        // Crée une nouvelle instance de la classe avec les mêmes propriétés
+        Ligne nouvelleForme = new Ligne();
+        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        return nouvelleForme;
     }
 
     @Override

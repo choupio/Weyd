@@ -160,7 +160,7 @@ public class Secteur implements IForme {
             indent.append("  ");
         }
         return "Secteur " + indent.toString() + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
-                + " Arc=" + getArc();
+                + " Arc=" + getArc() + " de couleur" + colorier(couleur);
     }
 
     /**
@@ -179,8 +179,12 @@ public class Secteur implements IForme {
      * 
      * @return Une copie du secteur.
      */
+    
     public IForme dupliquer() {
-        return new Secteur(centre, rayon, angle, arc);
+        // Crée une nouvelle instance de la classe avec les mêmes propriétés
+        Secteur nouvelleForme = new Secteur(centre, rayon, angle, arc);
+        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        return nouvelleForme;
     }
 
     /**

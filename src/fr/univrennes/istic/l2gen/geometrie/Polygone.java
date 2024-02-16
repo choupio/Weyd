@@ -52,7 +52,7 @@ public class Polygone implements IForme {
         for (Point point : points) {
             s += point.x() + "," + point.y();
         }
-        return s;
+        return s + colorier(couleur);
     }
 
     @Override
@@ -97,11 +97,13 @@ public class Polygone implements IForme {
 
     @Override
     public IForme dupliquer() {
-        Polygone polygone = new Polygone();
+        // Crée une nouvelle instance de la classe avec les mêmes propriétés
+        Polygone nouvelleForme = new  Polygone();
         for (Point point : points) {
-            polygone.ajouterSommet(point);
+            nouvelleForme.ajouterSommet(point);
         }
-        return polygone;
+        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        return nouvelleForme;
     }
 
     @Override
