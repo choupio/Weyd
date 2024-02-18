@@ -14,6 +14,8 @@ public class Secteur implements IForme {
     private Point centre;
     private double rayon;
     private String couleur;
+    private double larg;
+    private double haut;
 
     // Bloc d'initialisation
     {
@@ -27,7 +29,7 @@ public class Secteur implements IForme {
      */
     @Override
     public double hauteur() {
-        return hauteur();
+        return haut;
     }
 
     /**
@@ -37,7 +39,7 @@ public class Secteur implements IForme {
      */
     @Override
     public double largeur() {
-        return largeur();
+        return larg;
     }
 
     /**
