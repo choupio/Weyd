@@ -31,6 +31,7 @@ public class SecteurTest {
         assertEquals(261, secteurDeplace.centre().x(), 0.001);
         assertEquals(266, secteurDeplace.centre().y(), 0.001);
     }
+    
 
     @Test
     public void testDescription() {
@@ -46,6 +47,11 @@ public class SecteurTest {
         assertEquals(s.getRayon(), ((Secteur) secteurDuplique).getRayon(), 0.001);
         assertEquals(60, ((Secteur) secteurDuplique).getAngle(), 0.001);
         assertEquals(s.getArc(), ((Secteur) secteurDuplique).getArc(), 0.001);
+    }
+
+    @Test
+    public void testDupliquer2() {
+        assertEquals(false, s.equals(s.dupliquer()));
     }
 
     @Test
@@ -89,6 +95,12 @@ public class SecteurTest {
     public void testRedimmensioner() {
         IForme secteurRedimensionne = s.redimmensioner(0, 0);
         assertEquals(0*0, secteurRedimensionne.hauteur() * secteurRedimensionne.largeur(), 0.001);
+    }
+
+    @Test 
+    public void testRedimmensioner2(){
+        Secteur s2 = new Secteur(s.centre(), 128, 0, 60);
+        assertEquals(false,s2.equals(s.redimmensioner(0, 8)));
     }
 
     @Test
