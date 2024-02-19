@@ -10,7 +10,7 @@ public class Ellipse implements IForme {
     private double hauteur;
     private double largeur;
     private double rayon;
-    private String couleur;
+    String couleur;
 
     // Bloc d'initialisation
     {
@@ -67,9 +67,10 @@ public class Ellipse implements IForme {
     }
 
     public IForme deplacer(double dx, double dy) {
-        this.centre = new Point(dx, dy);
+        this.centre = centre.plus(dx,dy);
         return this;
     }
+
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
         Ellipse nouvelleForme = new Ellipse(centre, hauteur, largeur);
