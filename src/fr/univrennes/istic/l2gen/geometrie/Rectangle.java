@@ -74,7 +74,7 @@ public class Rectangle implements IForme {
      * @return rien
      */
     public IForme deplacer(double dx, double dy) {
-        this.centre = new Point(dx, dy);
+        this.centre.plus(dx,dy);
         return this;
     }
 
