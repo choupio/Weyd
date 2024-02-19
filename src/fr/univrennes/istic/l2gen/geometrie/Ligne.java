@@ -44,14 +44,14 @@ public class Ligne implements IForme {
     }
 
     public String description(int identation) {
-        String result ;
+        String result;
         String identa = "";
         for (int i = 0; i < identation; i++) {
             identa += "  ";
         }
-        result= identa+"Ligne";
+        result = identa + "Ligne";
         for (int i = 0; i < ligne.length; i++) {
-            result = result +" "+ ligne[i].x() + ',' + ligne[i].y();
+            result = result + " " + ligne[i].x() + ',' + ligne[i].y();
         }
         result += " de couleur " + couleur;
         return result;
@@ -98,22 +98,26 @@ public class Ligne implements IForme {
     }
 
     @Override
+    /**
+     */
     public IForme redimmensioner(double h, double l) {
         for (int i = 1; i < ligne.length; i++) {
             ligne[i] = new Point(ligne[i].x() + h, ligne[i].y() + l);
         }
         return this;
     }
+
     @Override
     public IForme colorier(String... couleurs) {
-        this.couleur=couleurs[0];
+        this.couleur = couleurs[0];
         return this;
     }
-    public void createSvgFile() {
-    String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-    
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Ligne.svg"))) {
+    public void createSvgFile() {
+        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+
+        try (BufferedWriter writer = new BufferedWriter(
+                new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Ligne.svg"))) {
             writer.write(svgContent);
             writer.write(enSVG());
             writer.write("</svg>");
