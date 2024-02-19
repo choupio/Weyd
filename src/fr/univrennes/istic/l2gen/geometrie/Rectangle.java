@@ -83,7 +83,7 @@ public class Rectangle implements IForme {
      */
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
-        Rectangle nouvelleForme = new Rectangle(this.centre(), this.hauteur(), this.largeur());
+        Rectangle nouvelleForme = new Rectangle(this.centre(), this.largeur(), this.hauteur());
         nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
         return nouvelleForme;
     }

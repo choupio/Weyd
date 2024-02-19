@@ -45,7 +45,11 @@ public class RectangleTest {
 
     @Test
     public void testDupliquer() {
-        assertEquals(true, r.equals(r.dupliquer()));
+        setUp();
+        Rectangle r2=(Rectangle) r.dupliquer();
+        assertEquals(r.centre(), r2.centre());
+        assertEquals(r.hauteur(),r2.hauteur(),0.0001);
+        assertEquals(r.largeur(), r2.largeur(),0.0001);
     }
 
     @Test
