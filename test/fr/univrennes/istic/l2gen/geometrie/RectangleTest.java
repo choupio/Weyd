@@ -34,8 +34,8 @@ public class RectangleTest {
 
     @Test
     public void testDeplacer() {
-        IForme rectangleDeplace = r.deplacer(8,5);
-        assertEquals(13, rectangleDeplace.deplacer(8, 5).centre().x(), 0.0001);
+        IForme rectangleDeplace = r.deplacer(8, 5);
+        assertEquals(13, rectangleDeplace.centre().x(), 0.0001);
         assertEquals(11, rectangleDeplace.centre().y(), 0.0001);
     }
 
