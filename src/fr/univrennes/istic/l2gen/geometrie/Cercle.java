@@ -10,7 +10,7 @@ public class Cercle implements IForme {
     private String couleur;
 
     {
-        couleur = "black";
+        couleur = "white";
     }
 
     public Cercle(double x, double y, double rayon) {
