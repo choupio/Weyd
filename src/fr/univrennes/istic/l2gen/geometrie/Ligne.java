@@ -51,8 +51,9 @@ public class Ligne implements IForme {
         }
         result= identa+"Ligne";
         for (int i = 0; i < ligne.length; i++) {
-            result = result +" "+ ligne[i].x() + ',' + ligne[i].y() + " de couleur" + colorier(couleur);
+            result = result +" "+ ligne[i].x() + ',' + ligne[i].y();
         }
+        result += " de couleur " + couleur;
         return result;
     }
 
