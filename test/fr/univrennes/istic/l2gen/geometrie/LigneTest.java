@@ -66,6 +66,7 @@ public class LigneTest {
 
     @Test
     public void testEnSVG() {
+        assertEquals("<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"black\"/>",ligne.enSVG());
     }
 
 
