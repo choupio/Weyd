@@ -60,6 +60,8 @@ public class LigneTest {
 
     @Test
     public void testDupliquer() {
+        Ligne l2=(Ligne) ligne.dupliquer();
+        assertEquals(true, ligne.equals(l2));
     }
 
     @Test
