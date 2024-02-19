@@ -43,7 +43,7 @@ public class LigneTest {
     @Test
     public void testColorier() {
         ligne.colorier("red");
-        assertEquals("red", ligne.couleur);
+        assertEquals("red", ligne.enSVG());
     }
 
     @Test

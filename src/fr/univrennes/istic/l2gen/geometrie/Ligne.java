@@ -93,9 +93,7 @@ public class Ligne implements IForme {
 
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
-        Ligne nouvelleForme = new Ligne();
-        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
-        return nouvelleForme;
+        return this;
     }
 
     @Override
