@@ -35,7 +35,7 @@ public class SecteurTest {
 
     @Test
     public void testDescription() {
-        String descriptionAttendue = "Secteur centre=256.0,256.0 Angle=30.0 Arc=60.0";
+        String descriptionAttendue = "Secteurcentre=256.0,256.0 Angle=30.0 Arc=60.0 de couleur white";
         assertEquals(descriptionAttendue, s.description(0));
     }
 
