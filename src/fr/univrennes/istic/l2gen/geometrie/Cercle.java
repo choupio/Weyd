@@ -15,12 +15,12 @@ public class Cercle implements IForme {
 
     public Cercle(double x, double y, double rayon) {
         this.point = new Point(x, y);
-        this.rayon = rayon;
+        this.rayon = rayon; // TODO gestion du cas rayon négatif
     }
 
     public Cercle(Point point, double rayon) {
         this.point = point;
-        this.rayon = rayon;
+        this.rayon = rayon; // TODO gestion du cas rayon négatif
     }
 
     @Override
@@ -34,7 +34,10 @@ public class Cercle implements IForme {
         for (int i = 0; i < x; i++) {
             indentation += " ";
         }
-        return (indentation + "Cercle centre= " + point.x() + ", " + point.y() + " r= " + rayon + " de couleur" + colorier(couleur));
+        // Au lieu d'appeler la fonction colorier j'ai juste mis couleur pcq la fonction
+        // renvoyait une place en mémoire (celle de l'objet je suppose)
+        return (indentation + "Cercle centre= " + point.x() + ", " + point.y() + " r= " + rayon + " de couleur "
+                + couleur);
     }
 
     @Override
@@ -48,7 +51,7 @@ public class Cercle implements IForme {
     }
 
     public IForme deplacer(double x, double y) {
-        point.plus(x,y);
+        point.plus(x, y);
         return this;
     }
 
@@ -62,7 +65,7 @@ public class Cercle implements IForme {
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
         Cercle nouvelleForme = new Cercle(point, rayon);
-        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        nouvelleForme.couleur = this.couleur; // Copie de la couleur, ajustez selon vos besoins
         return nouvelleForme;
     }
 
@@ -74,7 +77,8 @@ public class Cercle implements IForme {
         } else if (j == 0) {
             rayon *= i;
         } else {
-            rayon *= i * j;}
+            rayon *= i * j;
+        } // TODO gestion du cas rayon négatif
         return this;
 
     }
