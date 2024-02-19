@@ -63,7 +63,7 @@ public class Rectangle implements IForme {
         for (int i = 0; i < indentation; i++) {
             ind += "  ";
         }
-        return ind + "Rectangle Centre=" + centre().x() + "," + centre().y() + " L=" + largeur() + " H=" + hauteur() + " de couleur" + colorier(couleur);
+        return ind + "Rectangle Centre=" + centre().x() + "," + centre().y() + " L=" + largeur() + " H=" + hauteur() + " de couleur " + couleur;
     }
 
     /**
