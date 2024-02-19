@@ -44,18 +44,20 @@ public class EllipseTest {
     public void testLargeur() {
         assertEquals(64, e.largeur(), 0.001);
     }
-
-    @Test
-    public void testRedimmensioner() {
-        IForme formeRedimensionnee = e.redimmensioner(e.largeur(),e.hauteur());
-        assertEquals(e.largeur() * e.hauteur(), formeRedimensionnee.hauteur() * formeRedimensionnee.largeur(), 0.001);
-    }
     
     @Test
     public void testDeplacer() {
         IForme formeDeplacee = e.deplacer(5, 10);
-        assertEquals(5, formeDeplacee.centre().x(), 0.001);
-        assertEquals(10, formeDeplacee.centre().y(), 0.001);
+        assertEquals(261, formeDeplacee.centre().x(), 0.001);
+        assertEquals(266, formeDeplacee.centre().y(), 0.001);
     }
 
+    @Test
+    public void testRedimmensioner() {
+        double largeur = 2.0;
+        double hauteur = 4.0;
+        IForme formeRedimensionnee = e.redimmensioner(largeur, hauteur);
+        assertEquals(32 * largeur, formeRedimensionnee.largeur(), 0.001);
+        assertEquals(32 * hauteur, formeRedimensionnee.hauteur(), 0.001);
+    }
 }
