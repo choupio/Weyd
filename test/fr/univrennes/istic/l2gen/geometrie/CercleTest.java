@@ -56,8 +56,8 @@ public class CercleTest {
         // Pour des valeurs en double (donc bon);
         assertEquals("<circle cx=\"50.0\" cy=\"40.0\" r=\"25.0\"\n fill=\"black\" stroke=\"black\"/>",
                 cercleTest.enSVG());
-        // Pour des valeurs en int (donc faux);
-        assertNotEquals("<circle cx=\"50\" cy=\"40\" r=\"25\"\n fill=\"black\" stroke=\"black\"/>", cercleTest.enSVG());
+        // Pour des valeurs en int + mauvaise couleur (exemple de faux);
+        assertNotEquals("<circle cx=\"50\" cy=\"40\" r=\"25\"\n fill=\"pink\" stroke=\"black\"/>", cercleTest.enSVG());
     }
 
     @Test
