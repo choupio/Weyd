@@ -163,8 +163,8 @@ public class Secteur implements IForme {
         for (int i = 0; i < indentation; i++) {
             indent.append("  ");
         }
-        return "Secteur " + indent.toString() + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
-                + " Arc=" + getArc() + " de couleur" + colorier(couleur);
+        return "Secteur" + indent + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
+                + " Arc=" + getArc() + " de couleur " + couleur;
     }
 
     /**
