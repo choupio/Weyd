@@ -4,46 +4,81 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Cette classe représente une ellipse dans un espace bidimensionnel.
+ */
 public class Ellipse implements IForme {
 
-    private Point centre;
-    private double hauteur;
-    private double largeur;
-    private double rayon;
-    String couleur;
+    private Point centre; // Le centre de l'ellipse
+    private double hauteur; // La hauteur de l'ellipse
+    private double largeur; // La largeur de l'ellipse
+    private double rayon; // Le rayon de l'ellipse
+    private String couleur = "white"; // La couleur de l'ellipse en "white"
 
-    // Bloc d'initialisation
-    {
-        couleur = "white";
-    }
 
+    /**
+     * Constructeur pour initialiser une ellipse avec les coordonnées du centre, la hauteur et la largeur.
+     *
+     * @param x       La coordonnée x du centre de l'ellipse.
+     * @param y       La coordonnée y du centre de l'ellipse.
+     * @param hauteur La hauteur de l'ellipse.
+     * @param largeur La largeur de l'ellipse.
+     */
     public Ellipse(double x, double y, double hauteur, double largeur) {
         this.centre = new Point(x, y);
         this.largeur = largeur;
         this.hauteur = hauteur;
     }
 
+    /**
+     * Constructeur pour initialiser une ellipse avec un point central, la hauteur et la largeur.
+     *
+     * @param p       Le point central de l'ellipse.
+     * @param hauteur La hauteur de l'ellipse.
+     * @param largeur La largeur de l'ellipse.
+     */
     public Ellipse(Point p, double hauteur, double largeur) {
         this.centre = p;
         this.hauteur = hauteur;
         this.largeur = largeur;
     }
 
+    /**
+     * Retourne le centre de l'ellipse.
+     *
+     * @return Le centre de l'ellipse.
+     */
     @Override
     public Point centre() {
         return centre;
     }
 
+    /**
+     * Retourne la hauteur de l'ellipse.
+     *
+     * @return La hauteur de l'ellipse.
+     */
     @Override
     public double hauteur() {
         return hauteur;
     }
 
+    /**
+     * Retourne la largeur de l'ellipse.
+     *
+     * @return La largeur de l'ellipse.
+     */
     @Override
     public double largeur() {
         return largeur;
     }
 
+    /**
+     * Retourne une description de l'ellipse.
+     *
+     * @param entier Le niveau d'indentation.
+     * @return Une chaîne de caractères décrivant l'ellipse.
+     */
     @Override
     public String description(int entier) {
         String description = "";
@@ -61,16 +96,35 @@ public class Ellipse implements IForme {
         return description;
     }
 
+    /**
+     * Redimensionne l'ellipse en modifiant sa largeur et sa hauteur.
+     *
+     * @param largeur La nouvelle largeur de l'ellipse.
+     * @param hauteur La nouvelle hauteur de l'ellipse.
+     * @return Une référence à l'instance actuelle de l'ellipse, pour permettre les opérations en chaîne.
+     */
     public IForme redimmensioner(double largeur, double hauteur) {
         this.rayon = rayon * largeur;
         return this;
     }
 
+    /**
+     * Déplace l'ellipse selon les déplacements spécifiés.
+     *
+     * @param dx Le déplacement en abscisse.
+     * @param dy Le déplacement en ordonnée.
+     * @return Une référence à l'instance actuelle de l'ellipse, pour permettre les opérations en chaîne.
+     */
     public IForme deplacer(double dx, double dy) {
-        this.centre = centre.plus(dx,dy);
+        this.centre = centre.plus(dx, dy);
         return this;
     }
 
+    /**
+     * Duplique l'ellipse avec les mêmes propriétés.
+     *
+     * @return Une nouvelle instance de la classe Ellipse avec les mêmes propriétés.
+     */
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
         Ellipse nouvelleForme = new Ellipse(centre, hauteur, largeur);
@@ -78,17 +132,31 @@ public class Ellipse implements IForme {
         return nouvelleForme;
     }
 
+    /**
+     * Retourne une représentation SVG de l'ellipse.
+     *
+     * @return Une chaîne de caractères représentant l'ellipse en format SVG.
+     */
     public String enSVG() {
         return "<ellipse cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" rx=\"" + hauteur + "\" ry=\""
                 + largeur
                 + "\" fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
     }
 
+    /**
+     * Change la couleur de l'ellipse.
+     *
+     * @param couleurs Un tableau de chaînes de caractères représentant les couleurs possibles.
+     * @return Une référence à l'instance actuelle de l'ellipse, pour permettre les opérations en chaîne.
+     */
     public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
         return this;
     }
 
+    /**
+     * Crée un fichier SVG représentant l'ellipse.
+     */
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 

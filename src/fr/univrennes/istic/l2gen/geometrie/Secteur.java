@@ -9,18 +9,13 @@ import java.io.IOException;
  */
 public class Secteur implements IForme {
 
-    private double arc;
-    private double angle;
-    private Point centre;
-    private double rayon;
-    private String couleur;
-    private double larg;
-    private double haut;
-
-    // Bloc d'initialisation
-    {
-        couleur = "white";
-    }
+    private double arc; // L'angle d'ouverture du secteur en degrés
+    private double angle; // L'angle du secteur en degrés par rapport à l'axe horizontal
+    private Point centre; // Le centre du secteur
+    private double rayon; // Le rayon du secteur
+    private String couleur = "white"; // La couleur du secteur en "white"
+    private double larg; // La largeur du secteur
+    private double haut; // La hauteur du secteur
 
     /**
      * Calcule la hauteur du secteur.

@@ -6,15 +6,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La classe Polygone représente un polygone défini par une série de sommets.
+ */
 public class Polygone implements IForme {
 
-    private List<Point> points;
-    private String couleur;
+    private List<Point> points; // Liste des sommets du polygone
+    private String couleur = "white"; // Couleur du polygone en "white"
 
-    {
-        couleur = "white";
-    }
-
+    /**
+     * Constructeur de la classe Polygone prenant en paramètre les coordonnées des sommets du polygone.
+     *
+     * @param d Les coordonnées des sommets du polygone. Chaque paire de valeurs consécutives représente les coordonnées x et y d'un sommet.
+     */
     public Polygone(double... d) {
         this.points = new ArrayList<>();
         for (int i = 1; i < d.length; i += 2) {
@@ -22,19 +26,36 @@ public class Polygone implements IForme {
         }
     }
 
+    /**
+     * Ajoute un sommet au polygone.
+     *
+     * @param point Le sommet à ajouter au polygone.
+     * @return Une référence à l'instance actuelle du polygone, pour permettre les opérations en chaîne.
+     */
     public IForme ajouterSommet(Point point) {
         points.add(new Point(point.x(), point.y()));
         return this;
     }
 
+    /**
+     * Ajoute un sommet au polygone en spécifiant ses coordonnées.
+     *
+     * @param d1 La coordonnée x du sommet à ajouter.
+     * @param d2 La coordonnée y du sommet à ajouter.
+     * @return Une référence à l'instance actuelle du polygone, pour permettre les opérations en chaîne.
+     */
     public IForme ajouterSommet(double d1, double d2) {
         points.add(new Point(d1, d2));
         return this;
     }
 
+    /**
+     * Retourne le centre du polygone, calculé comme la moyenne des coordonnées de ses sommets.
+     *
+     * @return Le centre du polygone.
+     */
     @Override
     public Point centre() {
-        // TODO revoir ça
         double x = 0, y = 0;
         for (Point point : points) {
             x += point.x();
@@ -43,6 +64,12 @@ public class Polygone implements IForme {
         return new Point(x / points.size(), y / points.size());
     }
 
+    /**
+     * Retourne une description du polygone avec une indentation spécifiée.
+     *
+     * @param entier Le niveau d'indentation pour la description.
+     * @return Une chaîne de caractères décrivant le polygone.
+     */
     @Override
     public String description(int entier) {
         String cran = "";
@@ -58,6 +85,11 @@ public class Polygone implements IForme {
         return s;
     }
 
+    /**
+     * Retourne la hauteur du polygone, calculée comme la différence entre la coordonnée y maximale et la coordonnée y minimale parmi tous les sommets.
+     *
+     * @return La hauteur du polygone.
+     */
     @Override
     public double hauteur() {
         Point mini = points.get(0), max = points.get(0);
@@ -72,10 +104,11 @@ public class Polygone implements IForme {
         return max.y() - mini.y();
     }
 
-    public List<Point> getSommets() {
-        return points;
-    }
-
+    /**
+     * Retourne la largeur du polygone, calculée comme la différence entre la coordonnée x maximale et la coordonnée x minimale parmi tous les sommets.
+     *
+     * @return La largeur du polygone.
+     */
     @Override
     public double largeur() {
         Point mini = points.get(0), max = points.get(0);
@@ -90,6 +123,13 @@ public class Polygone implements IForme {
         return max.x() - mini.x();
     }
 
+    /**
+     * Déplace le polygone selon les déplacements spécifiés.
+     *
+     * @param dx Le déplacement en abscisse.
+     * @param dy Le déplacement en ordonnée.
+     * @return Une référence à l'instance du polygone, pour permettre les opérations en chaîne.
+     */
     @Override
     public IForme deplacer(double dx, double dy) {
         for (int i = 0; i < points.size(); i++) {
@@ -99,6 +139,11 @@ public class Polygone implements IForme {
         return this;
     }
 
+    /**
+     * Duplique le polygone.
+     *
+     * @return Une nouvelle instance du polygone avec les mêmes propriétés.
+     */
     @Override
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
@@ -110,13 +155,18 @@ public class Polygone implements IForme {
         return nouvelleForme;
     }
 
+    /**
+     * Redimensionne le polygone selon les dimensions spécifiées.
+     *
+     * @param h La hauteur de redimensionnement.
+     * @param l La largeur de redimensionnement.
+     * @return Une référence à l'instance du polygone, pour permettre les opérations en chaîne.
+     */
     @Override
     public IForme redimmensioner(double h, double l) {
         Point centre = this.centre();
         for (int i = 0; i < points.size(); i++) {
             Point point = points.remove(i);
-            // double distance = Math.sqrt(Math.pow(centre.x() - point.x(), 2) +
-            // Math.pow(centre.y() - point.y(), 2));
             double distanceX = centre.x() - point.x();
             double distanceY = centre.y() - point.y();
             points.add(i, new Point(centre.x() - distanceX * h, centre.y() - distanceY * l));
@@ -124,6 +174,11 @@ public class Polygone implements IForme {
         return this;
     }
 
+    /**
+     * Génère une représentation SVG du polygone.
+     *
+     * @return Une chaîne de caractères représentant le polygone en format SVG.
+     */
     @Override
     public String enSVG() {
         String s = "<polygon points=\"";
@@ -135,11 +190,21 @@ public class Polygone implements IForme {
         return s;
     }
 
+    /**
+     * Change la couleur du polygone.
+     *
+     * @param couleurs Un tableau de couleurs à appliquer au polygone.
+     * @return Une référence à l'instance du polygone, pour permettre les opérations en chaîne.
+     */
+    @Override
     public IForme colorier(String... couleurs) {
-        couleur = couleurs[0];
+        this.couleur = couleurs[0];
         return this;
     }
 
+    /**
+     * Crée un fichier SVG représentant le polygone.
+     */
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 

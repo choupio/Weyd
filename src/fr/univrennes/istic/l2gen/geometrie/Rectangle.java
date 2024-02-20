@@ -4,46 +4,86 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * La classe Rectangle représente un rectangle défini par sa largeur, sa hauteur et son centre.
+ */
 public class Rectangle implements IForme {
 
-    private double largeur;
-    private double hauteur;
-    private Point centre;
-    private String couleur;
+    private double largeur; // Largeur du rectangle
+    private double hauteur; // Hauteur du rectangle
+    private Point centre; // Centre du rectangle
+    private String couleur = "white"; // Couleur du rectangle en "white"
 
-    // Bloc d'initialisation
-    {
-        couleur = "white";
-    }
-
+    /**
+     * Retourne le centre du rectangle.
+     *
+     * @return Le centre du rectangle.
+     */
     public Point centre() {
         return centre;
     }
 
+    /**
+     * Retourne la largeur du rectangle.
+     *
+     * @return La largeur du rectangle.
+     */
     public double largeur() {
         return largeur;
     }
 
+    /**
+     * Retourne la hauteur du rectangle.
+     *
+     * @return La hauteur du rectangle.
+     */
     public double hauteur() {
         return hauteur;
     }
 
+    /**
+     * Définit la largeur du rectangle.
+     *
+     * @param largeur La largeur du rectangle.
+     * @return Une référence à l'instance du rectangle, pour permettre les opérations en chaîne.
+     */
     public IForme setLargeur(double largeur) {
         this.largeur = largeur;
         return this;
     }
 
+    /**
+     * Définit la hauteur du rectangle.
+     *
+     * @param hauteur La hauteur du rectangle.
+     * @return Une référence à l'instance du rectangle, pour permettre les opérations en chaîne.
+     */
     public IForme setHauteur(double hauteur) {
         this.hauteur = hauteur;
         return this;
     }
 
+    /**
+     * Constructeur de la classe Rectangle.
+     *
+     * @param x       La coordonnée x du centre du rectangle.
+     * @param y       La coordonnée y du centre du rectangle.
+     * @param largeur La largeur du rectangle.
+     * @param hauteur La hauteur du rectangle.
+     */
     public Rectangle(double x, double y, double largeur, double hauteur) {
         this.centre = new Point(x - (largeur / 2), y - (hauteur / 2));
         this.hauteur = hauteur;
         this.largeur = largeur;
     }
 
+    /**
+     * Constructeur de la classe Rectangle.
+     *
+     * @param p       Le centre du rectangle.
+     * @param largeur La largeur du rectangle.
+     * @param hauteur La hauteur du rectangle.
+     */
     public Rectangle(Point p, double largeur, double hauteur) {
         this.centre = p;
         this.hauteur = hauteur;
@@ -51,12 +91,10 @@ public class Rectangle implements IForme {
     }
 
     /**
-     * On prend en paramètre un entier indentation, et on doit retourner une
-     * description de Rectangle préfixée de cette indentation (un cran vaut 2
-     * caractères blanc)
-     * 
-     * @param indentation
-     * @return
+     * Retourne une description du rectangle avec une indentation spécifiée.
+     *
+     * @param indentation Le niveau d'indentation pour la description.
+     * @return Une chaîne de caractères décrivant le rectangle.
      */
     @Override
     public String description(int indentation) {
@@ -67,22 +105,22 @@ public class Rectangle implements IForme {
         return indent + "Rectangle" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H=" + hauteur() + " de couleur " + couleur;
     }
 
-
-
     /**
-     * Déplace le centre en fonction de dx et dy
-     * 
-     * @param dx
-     * @param dy
-     * @return rien
+     * Déplace le centre du rectangle selon les déplacements spécifiés.
+     *
+     * @param dx Le déplacement en abscisse.
+     * @param dy Le déplacement en ordonnée.
+     * @return Une référence à l'instance du rectangle, pour permettre les opérations en chaîne.
      */
     public IForme deplacer(double dx, double dy) {
-        this.centre.plus(dx,dy);
+        this.centre.plus(dx, dy);
         return this;
     }
 
     /**
-     * duplique le rectangle.
+     * Duplique le rectangle.
+     *
+     * @return Une nouvelle instance du rectangle avec les mêmes propriétés.
      */
     @Override
     public IForme dupliquer() {
@@ -92,12 +130,12 @@ public class Rectangle implements IForme {
         return nouvelleForme;
     }
 
-
     /**
-     * On ré-ajuste la hauteur et la largeur du Rectangle.
-     * 
-     * @param h la hauteur
-     * @param l la largeur
+     * Ré-ajuste la hauteur et la largeur du rectangle.
+     *
+     * @param hauteur La nouvelle hauteur du rectangle.
+     * @param largeur La nouvelle largeur du rectangle.
+     * @return Une référence à l'instance du rectangle, pour permettre les opérations en chaîne.
      */
     public IForme redimmensioner(double hauteur, double largeur) {
         this.setHauteur(hauteur);
@@ -105,22 +143,36 @@ public class Rectangle implements IForme {
         return this;
     }
 
+    /**
+     * Génère une représentation SVG du rectangle.
+     *
+     * @return Une chaîne de caractères représentant le rectangle en format SVG.
+     */
     public String enSVG() {
         return "<rect x=\"" + centre().x() + "\" y=\"" + centre().y() + "\" height=\"" + hauteur() + "\" width=\""
                 + largeur()
                 + "\"\n" + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
     }
 
+    /**
+     * Change la couleur du rectangle.
+     *
+     * @param couleurs Un tableau de couleurs à appliquer au rectangle.
+     * @return Une référence à l'instance du rectangle, pour permettre les opérations en chaîne.
+     */
     public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
         return this;
     }
 
+    /**
+     * Crée un fichier SVG représentant le rectangle.
+     */
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-    
+
         BufferedWriter writer = null;
-    
+
         try {
             writer = new BufferedWriter(new FileWriter("Rectangle.svg"));
             writer.write(svgContent);

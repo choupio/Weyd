@@ -36,6 +36,11 @@ public class Groupe implements IForme {
         return this;
     }
 
+    /**
+     * Retourne le centre du groupe, calculé comme le centre moyen de toutes les formes dans le groupe.
+     *
+     * @return Le centre du groupe.
+     */
     @Override
     public Point centre() {
         if (listFormes.isEmpty()) {
@@ -54,6 +59,11 @@ public class Groupe implements IForme {
         return centre;
     }
 
+    /**
+     * Retourne la hauteur maximale parmi toutes les formes du groupe.
+     *
+     * @return La hauteur maximale parmi toutes les formes du groupe.
+     */
     @Override
     public double hauteur() {
         if (listFormes.size() == 0) {
@@ -69,12 +79,17 @@ public class Groupe implements IForme {
         return hauteurMax;
     }
 
+    /**
+     * Retourne la largeur maximale parmi toutes les formes du groupe.
+     *
+     * @return La largeur maximale parmi toutes les formes du groupe.
+     */
     @Override
     public double largeur() {
         if (listFormes.isEmpty()) {
             return 0;
         }
-        double largeurMax = listFormes.get(0).hauteur();
+        double largeurMax = listFormes.get(0).largeur();
         for (IForme forme : listFormes) {
             double largeurForme = forme.largeur();
             if (largeurForme > largeurMax) {
@@ -84,6 +99,12 @@ public class Groupe implements IForme {
         return largeurMax;
     }
 
+    /**
+     * Retourne une description du groupe.
+     *
+     * @param entier Le niveau d'indentation.
+     * @return Une chaîne de caractères décrivant le groupe et ses formes.
+     */
     @Override
     public String description(int entier) {
         if (listFormes.size() == 0) {
@@ -91,11 +112,18 @@ public class Groupe implements IForme {
         }
         String description = "Groupe : \n";
         for (IForme forme : listFormes) {
-            description += forme.description(entier) + "\n" ;
+            description += forme.description(entier) + "\n";
         }
         return description;
     }
 
+    /**
+     * Déplace toutes les formes du groupe selon les déplacements spécifiés.
+     *
+     * @param dx Le déplacement en abscisse.
+     * @param dy Le déplacement en ordonnée.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les opérations en chaîne.
+     */
     @Override
     public IForme deplacer(double dx, double dy) {
         for (IForme iForme : listFormes) {
@@ -104,6 +132,11 @@ public class Groupe implements IForme {
         return this;
     }
 
+    /**
+     * Duplique toutes les formes du groupe.
+     *
+     * @return Un nouveau groupe contenant des copies de toutes les formes du groupe actuel.
+     */
     @Override
     public IForme dupliquer() {
         Groupe groupe = new Groupe();
@@ -113,12 +146,24 @@ public class Groupe implements IForme {
         return groupe;
     }
 
+    /**
+     * Redimensionne toutes les formes du groupe.
+     *
+     * @param h La hauteur de redimensionnement.
+     * @param l La largeur de redimensionnement.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les opérations en chaîne.
+     */
     @Override
     public IForme redimmensioner(double h, double l) {
         listFormes.forEach(x -> x.redimmensioner(h, l));
         return this;
     }
 
+    /**
+     * Retourne une représentation SVG de toutes les formes du groupe.
+     *
+     * @return Une chaîne de caractères représentant toutes les formes du groupe en format SVG.
+     */
     @Override
     public String enSVG() {
         String s = "<g>\n";
@@ -133,21 +178,22 @@ public class Groupe implements IForme {
      * Colorie chaque forme dans le groupe avec les couleurs spécifiées.
      *
      * @param couleurs Un tableau de couleurs à appliquer aux formes du groupe.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les opérations en chaîne.
      */
     public IForme colorier(String... couleurs) {
         int i = 0;
         for (IForme forme : listFormes) {
             forme.colorier(couleurs[i]);
             i++;
-
-            if(i>= listFormes.size()) {i=0;}
+            if (i >= listFormes.size()) {
+                i = 0;
+            }
         }
         return this;
     }
 
-
     /**
-     * Crée un fichier SVG représentant le groupe.
+     * Crée un fichier SVG représentant toutes les formes du groupe.
      */
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
