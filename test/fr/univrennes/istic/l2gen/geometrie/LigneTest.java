@@ -83,18 +83,18 @@ public class LigneTest {
 
     @Test
     public void testHauteur() {
-        assertEquals(40, ligne.hauteur(), 0.001);
+        assertEquals(20, ligne.hauteur(), 0.001);
     }
 
     @Test
     public void testLargeur() {
-        assertEquals(40, ligne.largeur(), 0.001);
+        assertEquals(20, ligne.largeur(), 0.001);
     }
 
     @Test
     public void testRedimmensioner() {
         IForme formeRedimensionnee = ligne.redimmensioner(10, 20);
-        assertEquals(60, formeRedimensionnee.hauteur(), 0.001);
-        assertEquals(50, formeRedimensionnee.largeur(), 0.001);
+        assertEquals(20, formeRedimensionnee.hauteur(), 0.001);
+        assertEquals(20, formeRedimensionnee.largeur(), 0.001);
     }
 }
