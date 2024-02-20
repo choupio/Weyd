@@ -68,19 +68,16 @@ public class Cercle implements IForme {
         nouvelleForme.couleur = this.couleur; // Copie de la couleur, ajustez selon vos besoins
         return nouvelleForme;
     }
-
     public IForme redimmensioner(double i, double j) {
-        if (i == j) {
-            rayon *= i;
-        } else if (i == 0) {
-            rayon *= j;
-        } else if (j == 0) {
-            rayon *= i;
+        double nouveauRayon = rayon * i * j;
+        
+        if (nouveauRayon >= 0) {
+            rayon = nouveauRayon;
         } else {
-            rayon *= i * j;
-        } // TODO gestion du cas rayon négatif
+            System.err.println("Erreur : Le rayon ne peut pas être négatif.");
+        }
+        
         return this;
-
     }
 
     public IForme colorier(String... couleurs) {
