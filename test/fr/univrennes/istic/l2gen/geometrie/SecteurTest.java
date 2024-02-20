@@ -22,9 +22,10 @@ public class SecteurTest {
     @Test
     public void testColorier() {
         s.colorier("red");
-        assertEquals("red", s);
+        assertEquals("red", s.getCouleur());
     }
 
+    
     @Test
     public void testDeplacer() {
         IForme secteurDeplace = s.deplacer(5, 10);

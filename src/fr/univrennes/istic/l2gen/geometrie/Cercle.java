@@ -10,7 +10,7 @@ public class Cercle implements IForme {
     private String couleur;
 
     {
-        couleur = "white";
+        couleur = "black";
     }
 
     public Cercle(double x, double y, double rayon) {
@@ -32,7 +32,7 @@ public class Cercle implements IForme {
     public String description(int x) {
         String indentation = "";
         for (int i = 0; i < x; i++) {
-            indentation += " ";
+            indentation += "";
         }
         // Au lieu d'appeler la fonction colorier j'ai juste mis couleur pcq la fonction
         // renvoyait une place en mémoire (celle de l'objet je suppose)

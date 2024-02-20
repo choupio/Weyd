@@ -58,13 +58,16 @@ public class Rectangle implements IForme {
      * @param indentation
      * @return
      */
+    @Override
     public String description(int indentation) {
-        String ind = "";
+        StringBuilder indent = new StringBuilder();
         for (int i = 0; i < indentation; i++) {
-            ind += "  ";
+            indent.append(" ");
         }
-        return ind + "Rectangle Centre=" + centre().x() + "," + centre().y() + " L=" + largeur() + " H=" + hauteur() + " de couleur " + couleur;
+        return indent + "Rectangle" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H=" + hauteur() + " de couleur " + couleur;
     }
+
+
 
     /**
      * Déplace le centre en fonction de dx et dy
@@ -81,6 +84,7 @@ public class Rectangle implements IForme {
     /**
      * duplique le rectangle.
      */
+    @Override
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
         Rectangle nouvelleForme = new Rectangle(this.centre(), this.largeur(), this.hauteur());
@@ -88,15 +92,16 @@ public class Rectangle implements IForme {
         return nouvelleForme;
     }
 
+
     /**
      * On ré-ajuste la hauteur et la largeur du Rectangle.
      * 
      * @param h la hauteur
      * @param l la largeur
      */
-    public IForme redimmensioner(double h, double l) {
-        this.setHauteur(h);
-        this.setLargeur(l);
+    public IForme redimmensioner(double hauteur, double largeur) {
+        this.setHauteur(hauteur);
+        this.setLargeur(largeur);
         return this;
     }
 
@@ -113,15 +118,24 @@ public class Rectangle implements IForme {
 
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-
-        try (BufferedWriter writer = new BufferedWriter(
-                new FileWriter("Rectangle.svg"))) {
+    
+        BufferedWriter writer = null;
+    
+        try {
+            writer = new BufferedWriter(new FileWriter("Rectangle.svg"));
             writer.write(svgContent);
             writer.write(enSVG());
             writer.write("</svg>");
-            System.out.println("Fichier créé avec succès !");
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                System.err.println("Erreur lors de la fermeture du fichier : " + e.getMessage());
+            }
         }
     }
 }

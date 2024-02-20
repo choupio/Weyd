@@ -214,8 +214,13 @@ public class Secteur implements IForme {
     }
 
     public IForme colorier(String... couleurs) {
-        couleur = couleurs[0];
+        // Utilisez la première couleur si disponible, sinon, conservez la couleur par défaut
+        couleur = (couleurs.length > 0) ? couleurs[0] : couleur;
         return this;
+    }
+
+    public String getCouleur() {
+        return couleur;
     }
 
     public void createSvgFile() {

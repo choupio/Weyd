@@ -41,7 +41,7 @@ public class RectangleTest {
 
     @Test
     public void testDescription() {
-        assertEquals("  Rectangle Centre=" + r.centre().x() + "," + r.centre().y() + " L=" + r.largeur() + " H="
+        assertEquals(" Rectangle Centre=" + r.centre().x() + "," + r.centre().y() + " L=" + r.largeur() + " H="
                 + r.hauteur() + " de couleur white", r.description(1));
     }
 
