@@ -67,12 +67,41 @@ public class Ligne implements IForme {
     }
 
     public double hauteur() {
-        return ligne[ligne.length - 1].y() - ligne[0].y();
+        List<Double> dy =new ArrayList();
+        for(int i=0;i<ligne.length;i++){
+            dy.add(ligne[i].y());
+        }
+        Double max=dy.get(0);
+        Double min=dy.get(0);
+        for(int i=1;i<dy.size();i++){
+            if(dy.get(i)>max){
+                min=max;
+                max=dy.get(i);
+            }else if (min > dy.get(i)){
+                min=dy.get(i);
+            }
+        }
+        return max-min;
     }
 
     public double largeur() {
-        return ligne[ligne.length - 1].x() - ligne[0].x();
+        List<Double> dx =new ArrayList();
+        for(int i=0;i<ligne.length;i++){
+            dx.add(ligne[i].x());
+        }
+        Double max=dx.get(0);
+        Double min=dx.get(0);
+        for(int i=1;i<dx.size();i++){
+            if(dx.get(i)>max){
+                min=max;
+                max=dx.get(i);
+            }else if (min > dx.get(i)){
+                min=dx.get(i);
+            }
+        }
+        return max-min;
     }
+
 
     public String enSVG() {
         String result = "<polyline points=\"";
