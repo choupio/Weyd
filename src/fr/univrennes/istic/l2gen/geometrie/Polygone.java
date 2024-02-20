@@ -54,7 +54,7 @@ public class Polygone implements IForme {
         for (Point point : points) {
             s += point.x() + "," + point.y() + " ";
         }
-        s = s.substring(0, s.length() - 1);
+        s = s.substring(0, s.length() - 1); // supprime le dernier caractere
         return s;
     }
 
@@ -130,7 +130,7 @@ public class Polygone implements IForme {
         for (Point point : points) {
             s += point.x() + " " + point.y() + " ";
         }
-
+        s = s.substring(0, s.length() - 1); // supprime le dernier caractere
         s += "\" fill=\"" + couleur + "\" stroke=\"black\"/>";
         return s;
     }
