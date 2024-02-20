@@ -10,11 +10,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PolygoneTest {
-    private Polygone polygone;
+    private Polygone polygone, polygone2;
 
     @Before
     public void setUp() {
         polygone = new Polygone();
+
+        polygone2 = new Polygone();
+        polygone2.ajouterSommet(128, 128);
+        polygone2.ajouterSommet(128, 256);
+        polygone2.ajouterSommet(256, 128);
+        polygone2.ajouterSommet(256, 256);
     }
 
     @Test
@@ -47,27 +53,37 @@ public class PolygoneTest {
 
     @Test
     public void testCentre() {
-
+        assertTrue(polygone2.centre().equals(new Point(192, 192)));
     }
 
     @Test
     public void testDeplacer() {
+        Polygone polygoneTest = new Polygone(138, 138, 138, 266, 266, 138, 266, 266);
+        polygone2.deplacer(10, 10);
 
+        for (int i = 0; i < polygoneTest.getSommets().size(); i++) {
+            assertTrue(polygoneTest.getSommets().get(i).equals(polygone2.getSommets().get(i)));
+        }
     }
 
     @Test
     public void testDescription() {
-
+        assertEquals("  Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0", polygone2.description(1));
     }
 
     @Test
     public void testDupliquer() {
-
+        Polygone polygoneTest = (Polygone) polygone2.dupliquer();
+        for (int i = 0; i < polygoneTest.getSommets().size(); i++) {
+            assertTrue(polygoneTest.getSommets().get(i).equals(polygone2.getSommets().get(i)));
+        }
     }
 
     @Test
     public void testEnSVG() {
-
+        assertEquals(
+                "<polygon points=\"128.0 128.0 128.0 256.0 256.0 128.0 256.0 256.0\" fill=\"white\" stroke=\"black\"/>",
+                polygone2.enSVG());
     }
 
     @Test
@@ -118,6 +134,30 @@ public class PolygoneTest {
 
     @Test
     public void testRedimmensioner() {
-        
+        Polygone polygoneRef = new Polygone(160, 160, 160, 224, 224, 160, 224, 224);
+
+        Point centreDebut = polygone2.centre();
+        polygone2.redimmensioner(0.5, 0.5);
+        assertTrue(centreDebut.equals(polygone2.centre()));
+        for (int i = 0; i < polygoneRef.getSommets().size(); i++) {
+            assertEquals(polygoneRef.getSommets().get(i).x(), polygone2.getSommets().get(i).x(), 0.00001);
+            assertEquals(polygoneRef.getSommets().get(i).y(), polygone2.getSommets().get(i).y(), 0.00001);
+        }
+
+    }
+
+    @Test
+    public void testRedimmensioner2() {
+        Polygone polygoneRef = new Polygone(184, 184, 184, 200, 200, 184, 200, 200);
+
+        Point centreDebut = polygone2.centre();
+        polygone2.redimmensioner(0.5, 0.5);
+        polygone2.redimmensioner(0.25, 0.25);
+        assertTrue(centreDebut.equals(polygone2.centre()));
+        for (int i = 0; i < polygoneRef.getSommets().size(); i++) {
+            assertEquals(polygoneRef.getSommets().get(i).x(), polygone2.getSommets().get(i).x(), 0.00001);
+            assertEquals(polygoneRef.getSommets().get(i).y(), polygone2.getSommets().get(i).y(), 0.00001);
+        }
+
     }
 }
