@@ -1,7 +1,6 @@
 import fr.univrennes.istic.l2gen.geometrie.Cercle;
 import fr.univrennes.istic.l2gen.geometrie.Ellipse;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
-//import fr.univrennes.istic.l2gen.geometrie.Hexagone;
 import fr.univrennes.istic.l2gen.geometrie.Ligne;
 import fr.univrennes.istic.l2gen.geometrie.Polygone;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
