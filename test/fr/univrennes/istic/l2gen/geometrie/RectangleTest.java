@@ -92,4 +92,10 @@ public class RectangleTest {
         r.setLargeur(3);
         assertEquals(3, r.largeur(), 0.0001);
     }
+
+    @Test
+    public void testAlignement(){
+        Rectangle r2 = new Rectangle(8,7,12,9);
+        Rectangle r3 = r.aligner(HAUT, r2.centre().y()); //je comprends pas comment faire le test, mais il faut le faire avant la fonction
+    }
 }
