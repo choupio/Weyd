@@ -7,10 +7,10 @@ import java.lang.Math;
 
 public class Triangle implements IForme {
 
-    private Point point1;
-    private Point point2;
-    private Point point3;
-    private String couleur;
+    Point point1;
+    Point point2;
+    Point point3;
+    String couleur;
 
     // Bloc d'initialisation
     {
@@ -50,7 +50,7 @@ public class Triangle implements IForme {
             cran += " ";
         }
         return cran + "Triangle " + point1.x() + ", " + point1.y() + " " + point2.x() + ", " + point2.y() + " "
-                + point3.x() + ", " + point3.y() + " de couleur" + colorier(couleur);
+                + point3.x() + ", " + point3.y() + " de couleur " + couleur;
     }
 
     @Override
