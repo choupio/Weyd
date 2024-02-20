@@ -67,7 +67,7 @@ public class Ligne implements IForme {
     }
 
     public double hauteur() {
-        List<Double> dy =new ArrayList();
+        List<Double> dy = new ArrayList<Double>();
         for(int i=0;i<ligne.length;i++){
             dy.add(ligne[i].y());
         }
@@ -85,7 +85,7 @@ public class Ligne implements IForme {
     }
 
     public double largeur() {
-        List<Double> dx =new ArrayList();
+        List<Double> dx =new ArrayList<Double>();
         for(int i=0;i<ligne.length;i++){
             dx.add(ligne[i].x());
         }
