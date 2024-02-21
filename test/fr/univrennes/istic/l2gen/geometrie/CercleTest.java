@@ -40,7 +40,7 @@ public class CercleTest {
 
     @Test
     public void testDescription() {
-        assertEquals("Cercle centre= 50.0, 40.0 r= 25.0 de couleur black", cercleTest.description(3));
+        assertEquals("   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black", cercleTest.description(3));
     }
 
     @Test
