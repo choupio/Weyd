@@ -11,6 +11,10 @@ import java.util.List;
  */
 public class Polygone implements IForme {
 
+    public List<Point> getSommets() {
+        return points;
+    }
+
     private List<Point> points; // Liste des sommets du polygone
     private String couleur = "white"; // Couleur du polygone en "white"
 
