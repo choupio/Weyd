@@ -102,9 +102,8 @@ public class CercleTest {
 
     @Test
     public void testRedimmensioner6() {
-        // TODO un rayon peut pas être négatif non? pcq là il peut
         // Pour else avec une valeur négative (rayon négatif pas possible)
-        assertNotEquals((cercleTest.largeur() / 2) * -8 * 14, cercRedim.redimmensioner(8, 14).largeur() / 2, 0.00001);
+        assertNotEquals((cercleTest.largeur() / 2) * -8 * 14, cercRedim.redimmensioner(-8, 14).largeur() / 2, 0.00001);
     }
 
 }

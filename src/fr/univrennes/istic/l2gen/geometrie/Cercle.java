@@ -13,7 +13,8 @@ public class Cercle implements IForme {
     private String couleur = "black"; // La couleur du cercle en "black"
 
     /**
-     * Constructeur pour initialiser un cercle avec les coordonnées du centre et le rayon.
+     * Constructeur pour initialiser un cercle avec les coordonnées du centre et le
+     * rayon.
      *
      * @param x     La coordonnée x du centre du cercle.
      * @param y     La coordonnée y du centre du cercle.
@@ -21,7 +22,7 @@ public class Cercle implements IForme {
      */
     public Cercle(double x, double y, double rayon) {
         this.point = new Point(x, y);
-        this.rayon = rayon; // TODO gestion du cas rayon négatif
+        this.rayon = rayonAuPositif(rayon);
     }
 
     /**
@@ -32,7 +33,7 @@ public class Cercle implements IForme {
      */
     public Cercle(Point point, double rayon) {
         this.point = point;
-        this.rayon = rayon; // TODO gestion du cas rayon négatif
+        this.rayon = rayonAuPositif(rayon);
     }
 
     /**
@@ -86,7 +87,8 @@ public class Cercle implements IForme {
      *
      * @param x Le déplacement en abscisse.
      * @param y Le déplacement en ordonnée.
-     * @return Une référence à l'instance actuelle du cercle, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance actuelle du cercle, pour permettre les
+     *         opérations en chaîne.
      */
     public IForme deplacer(double x, double y) {
         point.plus(x, y);
@@ -122,7 +124,8 @@ public class Cercle implements IForme {
      *
      * @param i Le facteur de redimensionnement pour la hauteur.
      * @param j Le facteur de redimensionnement pour la largeur.
-     * @return Une référence à l'instance actuelle du cercle, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance actuelle du cercle, pour permettre les
+     *         opérations en chaîne.
      */
     public IForme redimmensioner(double i, double j) {
         if (i == j) {
@@ -133,7 +136,8 @@ public class Cercle implements IForme {
             rayon *= i;
         } else {
             rayon *= i * j;
-        } // TODO gestion du cas rayon négatif
+        } 
+        rayon = rayonAuPositif(rayon);
         return this;
 
     }
@@ -141,15 +145,18 @@ public class Cercle implements IForme {
     /**
      * Change la couleur du cercle.
      *
-     * @param couleurs Un tableau de chaînes de caractères représentant les couleurs possibles.
-     * @return Une référence à l'instance actuelle du cercle, pour permettre les opérations en chaîne.
+     * @param couleurs Un tableau de chaînes de caractères représentant les couleurs
+     *                 possibles.
+     * @return Une référence à l'instance actuelle du cercle, pour permettre les
+     *         opérations en chaîne.
      */
     public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
         return this;
     }
 
-    // Les autres méthodes sont également documentées selon leur but et leur fonctionnement, mais je ne vais pas toutes les répéter ici.
+    // Les autres méthodes sont également documentées selon leur but et leur
+    // fonctionnement, mais je ne vais pas toutes les répéter ici.
 
     /**
      * Crée un fichier SVG représentant le cercle.
@@ -165,6 +172,20 @@ public class Cercle implements IForme {
             System.out.println("Fichier créé avec succès !");
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        }
+    }
+
+    /**
+     * Le rayon passé en paramètre est remis au positif
+     * 
+     * @param ray un double représentant le rayon
+     * @return Le rayon positif
+     */
+    public double rayonAuPositif(double ray) {
+        if (ray < 0) {
+            return -ray;
+        } else {
+            return ray;
         }
     }
 }
