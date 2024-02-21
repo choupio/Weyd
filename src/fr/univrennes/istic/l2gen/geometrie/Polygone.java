@@ -252,8 +252,8 @@ public class Polygone implements IForme {
 
 	@Override
 	public IForme aligner(Alignement alignement, double cible) {
-		switch (alignement) {
-		case HAUT:
+		if (alignement == Alignement.HAUT) {
+
 			// recherche du y minimum
 			double minY = points.get(0).y();
 			for (Point point : points) {
@@ -261,23 +261,56 @@ public class Polygone implements IForme {
 					minY = point.y();
 				}
 			}
+
 			double distanceY = cible - minY;
 			for (int i = 0; i < points.size(); i++) {
-				Point point = points.get(i);
+				Point point = points.remove(i);
 				points.add(i, new Point(point.x(), point.y() + distanceY));
 			}
-			break;
+		} else if (alignement == Alignement.BAS) {
+			// recherche du y maximum
+			double maxY = points.get(0).y();
+			for (Point point : points) {
+				if (maxY < point.y()) {
+					maxY = point.y();
+				}
+			}
 
-		case BAS:
+			double distanceY = cible - maxY;
+			for (int i = 0; i < points.size(); i++) {
+				Point point = points.remove(i);
+				points.add(i, new Point(point.x(), point.y() + distanceY));
+			}
+		} else if (alignement == Alignement.GAUCHE) {
+			// recherche du x minimum
+			double minX = points.get(0).x();
+			for (Point point : points) {
+				if (minX > point.x()) {
+					minX = point.x();
+				}
+			}
 
-			break;
-		case GAUCHE:
+			double distanceX = cible - minX;
+			for (int i = 0; i < points.size(); i++) {
+				Point point = points.remove(i);
+				points.add(i, new Point(point.x() + distanceX, point.y()));
+			}
+		} else if (alignement == Alignement.DROITE) {
+			// recherche du x minimum
+			double maxX = points.get(0).x();
+			for (Point point : points) {
+				if (maxX < point.x()) {
+					maxX = point.x();
+				}
+			}
 
-			break;
-		case DROITE:
-
-			break;
+			double distanceX = cible - maxX;
+			for (int i = 0; i < points.size(); i++) {
+				Point point = points.remove(i);
+				points.add(i, new Point(point.x() + distanceX, point.y()));
+			}
 		}
+
 		return this;
 	}
 
