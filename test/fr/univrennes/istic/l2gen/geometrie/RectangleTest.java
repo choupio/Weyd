@@ -102,6 +102,5 @@ public class RectangleTest {
     @Test
     public void testTournerPasModif(){
         assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=0", r.description(1));
-
     }
 }
