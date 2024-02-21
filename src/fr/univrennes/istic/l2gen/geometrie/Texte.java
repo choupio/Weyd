@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Represents a text shape that implements the {@link IForme} interface.
+ */
 public class Texte implements IForme {
 	private String couleur, texte;
 	private double x;
@@ -11,6 +14,9 @@ public class Texte implements IForme {
 	private double hauteur;
 	private double largeur;
 	private int taille;
+	private int angle;
+
+	
 
 	// Bloc d'initialisation
 	{
@@ -19,6 +25,50 @@ public class Texte implements IForme {
 		largeur = 0.0;
 	}
 
+	 /**
+     * Rotates the shape by the specified angle.
+     * 
+     * @param agle the angle (in degrees) by which the shape should be rotated
+     * @return the rotated shape
+     */
+    @Override
+	public IForme tourner(int angle) {
+		this.angle = angle;
+		return this;
+	}
+
+	/**
+	 * Aligns the shape based on the specified alignment and target position.
+	 * 
+	 * @param alignement the alignment to apply
+	 * @param cible the target position
+	 * @return the aligned shape
+	 */
+	@Override
+	public IForme aligner(Alignement alignement, double cible) {
+		switch (alignement) {
+		case HAUT:
+			y = cible + hauteur / 2;
+			break;
+		case BAS:
+			y = cible - hauteur / 2;
+			break;
+		case DROITE:
+			x = cible + largeur / 2;
+			break;
+		case GAUCHE:
+			x = cible - largeur / 2;
+			break;
+		}
+		return this;
+	}
+
+	/**
+	 * @param x
+	 * @param y
+	 * @param taille
+	 * @param texte
+	 */
 	public Texte(double x, double y, int taille, String texte) {
 		this.x = x;
 		this.y = y;
@@ -74,7 +124,7 @@ public class Texte implements IForme {
 		for (int i = 0; i < indentation; i++) {
 			sb += "  ";
 		}
-		sb += "Texte centre=" + x + "," + y + " taille=" + taille + " texte=" + texte + " couleur=" + couleur;
+		sb += "Texte centre=" + x + "," + y + " taille=" + taille + " texte=" + texte + " couleur=" + couleur + " et de rotation " + angle;
 		return sb.toString();
 	}
 
@@ -82,7 +132,7 @@ public class Texte implements IForme {
 	public String enSVG() {
 		// Génère la représentation SVG du texte avec les dimensions mises à jour
 		return "<text x=\"" + x + "\" y=\"" + y + "\" font-size=\"" + taille + "\" text-anchor=\"middle\" fill=\""
-				+ couleur + "\" stroke=\"black\">" + texte + "</text>";
+				+ couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\">" + texte + "</text>";
 	}
 
 	public IForme colorier(String... couleurs) {
@@ -95,7 +145,6 @@ public class Texte implements IForme {
 		hauteur = h;
 		largeur = l;
 		return this;
-
 	}
 
 	@Override
@@ -108,4 +157,4 @@ public class Texte implements IForme {
 			e.printStackTrace();
 		}
 	}
-}
+	}
