@@ -36,7 +36,7 @@ public class SecteurTest {
 
     @Test
     public void testDescription() {
-        String descriptionAttendue = "Secteurcentre=256.0,256.0 Angle=30.0 Arc=60.0 de couleur white";
+        String descriptionAttendue = "Secteurcentre=256.0,256.0 Angle=30.0 Arc=60.0 de couleur white et de rotation 0";
         assertEquals(descriptionAttendue, s.description(0));
     }
 
@@ -58,7 +58,7 @@ public class SecteurTest {
     @Test
     public void testEnSVG() {
         String svgAttendu = "<path d=\"M 366.85125168440817 192.0 A 128.0 128.0 0 0 0 256.0 128.0 L 256.0 256.0 Z\"\n" +
-        "\t" + "fill=\"white\"" + " stroke=\"black\"/>";
+        "\t" + "fill=\"white\"" + " stroke=\"black\" transform=\"rotate(\"0\")\"/>";
         assertEquals(svgAttendu, s.enSVG());
     }
 
@@ -114,5 +114,33 @@ public class SecteurTest {
     public void testSetArc() {
         s.setArc(120);
         assertEquals(120, s.getArc(), 0.001);
+    }
+
+    @Test
+    public void testalignergauche() {
+        IForme secteurAligne = s.aligner(Alignement.GAUCHE, 0.0);
+        assertEquals(128, secteurAligne.centre().x(), 0.001);
+        assertEquals(256, secteurAligne.centre().y(), 0.001);
+    }
+
+    @Test
+    public void testalignerhaut() {
+        IForme secteurAligne = s.aligner(Alignement.HAUT, 3.0);
+        assertEquals(256, secteurAligne.centre().x(), 0.001);
+        assertEquals(-125, secteurAligne.centre().y(), 0.001);
+    }
+
+    @Test
+    public void testalignerdroite() {
+        IForme secteurAligne = s.aligner(Alignement.DROITE, 5.8);
+        assertEquals(-122.2, secteurAligne.centre().x(), 0.001);
+        assertEquals(256, secteurAligne.centre().y(), 0.001);
+    }
+
+    @Test
+    public void testalignerbas() {
+        IForme secteurAligne = s.aligner(Alignement.BAS, 17.2);
+        assertEquals(256, secteurAligne.centre().x(), 0.001);
+        assertEquals(145.2, secteurAligne.centre().y(), 0.001);
     }
 }
