@@ -83,7 +83,7 @@ public class Ligne implements IForme {
         for (int i = 0; i < ligne.length; i++) {
             result = result + " " + ligne[i].x() + ',' + ligne[i].y();
         }
-        result += " de couleur " + couleur;
+        result += " de couleur " + couleur + "d'angle :"+angle;
         return result;
     }
 
@@ -188,6 +188,8 @@ public class Ligne implements IForme {
         for (int i = 0; i < ligne.length; i++) {
             ligne2.ajouterSommet(ligne[i]);
         }
+        ligne2.colorier(this.couleur);
+        ligne2.tourner(this.angle);
         return ligne2;
     }
 
