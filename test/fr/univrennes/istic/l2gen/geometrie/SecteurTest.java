@@ -119,7 +119,7 @@ public class SecteurTest {
     @Test
     public void testalignergauche() {
         IForme secteurAligne = s.aligner(Alignement.GAUCHE, 0.0);
-        assertEquals(128, secteurAligne.centre().x(), 0.001);
+        assertEquals(-128, secteurAligne.centre().x(), 0.001);
         assertEquals(256, secteurAligne.centre().y(), 0.001);
     }
 
@@ -127,13 +127,13 @@ public class SecteurTest {
     public void testalignerhaut() {
         IForme secteurAligne = s.aligner(Alignement.HAUT, 3.0);
         assertEquals(256, secteurAligne.centre().x(), 0.001);
-        assertEquals(-125, secteurAligne.centre().y(), 0.001);
+        assertEquals(131, secteurAligne.centre().y(), 0.001);
     }
 
     @Test
     public void testalignerdroite() {
         IForme secteurAligne = s.aligner(Alignement.DROITE, 5.8);
-        assertEquals(-122.2, secteurAligne.centre().x(), 0.001);
+        assertEquals(133.8, secteurAligne.centre().x(), 0.001);
         assertEquals(256, secteurAligne.centre().y(), 0.001);
     }
 
@@ -141,6 +141,23 @@ public class SecteurTest {
     public void testalignerbas() {
         IForme secteurAligne = s.aligner(Alignement.BAS, 17.2);
         assertEquals(256, secteurAligne.centre().x(), 0.001);
-        assertEquals(145.2, secteurAligne.centre().y(), 0.001);
+        assertEquals(-110.8, secteurAligne.centre().y(), 0.001);
+    }   
+
+    @Test
+    public void testaligner2() {
+        assertEquals(true, s.equals(s.aligner(Alignement.BAS, 17.2)));
+    }
+
+    @Test
+    public void testtourner() {
+        IForme secteurTourne = s.tourner(50);
+        assertEquals(256, secteurTourne.centre().x(), 0.001);
+        assertEquals(256, secteurTourne.centre().y(), 0.001);
+    }
+
+    @Test
+    public void testtourner2() {
+        assertEquals(true, s.equals(s.tourner(40)));
     }
 }
