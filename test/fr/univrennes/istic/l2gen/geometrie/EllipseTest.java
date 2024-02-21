@@ -62,14 +62,47 @@ public class EllipseTest {
     }
 
     @Test
-    public void testAligner() {
-        e.aligner(Alignement.HAUT, 10.0); // Alignement du HAUT à l'axe y=10.0
-        assertEquals("Ellipse alignée en haut à l'axe y=10.0", e.description(0));
+    public void testAlignerHaut() {
+        Ellipse e = new Ellipse(0, 0, 10, 20);
+        e.aligner(Alignement.HAUT, 5.0);
+        Point centreApresAlignement = e.centre();
+        Point centreAttendu = new Point(0, 5.0);
+        assertEquals(centreAttendu, centreApresAlignement);
     }
 
     @Test
+    public void testAlignerBas() {
+        Ellipse e = new Ellipse(0, 0, 10, 20);
+        e.aligner(Alignement.BAS, 15.0);
+        Point centreApresAlignement = e.centre();
+        Point centreAttendu = new Point(0, 15.0);
+        assertEquals(centreAttendu, centreApresAlignement);
+    }
+
+    @Test
+    public void testAlignerGauche() {
+        Ellipse e = new Ellipse(0, 0, 10, 20);
+        e.aligner(Alignement.GAUCHE, 5.0);
+        Point centreApresAlignement = e.centre();
+        Point centreAttendu = new Point(5.0, 0);
+        assertEquals(centreAttendu, centreApresAlignement);
+    }
+
+    @Test
+    public void testAlignerDroite() {
+        Ellipse e = new Ellipse(0, 0, 10, 20);
+        e.aligner(Alignement.DROITE, 15.0);
+        Point centreApresAlignement = e.centre();
+        Point centreAttendu = new Point(15.0, 0);
+        assertEquals(centreAttendu, centreApresAlignement);
+    }
+
+
+
+    @Test
     public void testTourner() {
-        e.tourner(90); // Rotation de 90 degrés
-        assertEquals("Ellipse tourne de 90 degrés", e.description(0));
+        IForme formeTourner = e.tourner(90);
+        int angleApresRotation = ((Ellipse) formeTourner).getAngle();
+        assertEquals(90, angleApresRotation);
     }
 }
