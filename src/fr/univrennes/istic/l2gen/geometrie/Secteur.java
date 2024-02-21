@@ -40,20 +40,27 @@ public class Secteur implements IForme {
 		return this;
 	}
 
+    /**
+     * Aligns the shape based on the specified alignment and target value.
+     *
+     * @param alignement The alignment to apply.
+     * @param cible      The target value for alignment.
+     * @return The aligned shape.
+     */
     @Override
     public IForme aligner(Alignement alignement, double cible) {
         switch (alignement) {
             case HAUT:
-                centre = new Point(centre.x(), cible - rayon);
-                break;
-            case BAS:
                 centre = new Point(centre.x(), cible + rayon);
                 break;
+            case BAS:
+                centre = new Point(centre.x(), cible - rayon);
+                break;
             case DROITE:
-                centre = new Point(cible - rayon, centre.y());
+                centre = new Point(cible + rayon, centre.y());
                 break;
             case GAUCHE:
-                centre = new Point(cible + rayon, centre.y());
+                centre = new Point(cible - rayon, centre.y());
                 break;
         }
         return this;
