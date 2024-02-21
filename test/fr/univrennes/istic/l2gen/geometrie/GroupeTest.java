@@ -20,7 +20,7 @@ public class GroupeTest {
 		polygone.ajouterSommet(128, 256);
 		polygone.ajouterSommet(256, 128);
 		polygone.ajouterSommet(256, 256);
-        Groupe groupe = new Groupe(cercleTest,polygone);
+        this.groupe = new Groupe(cercleTest,polygone);
     }
 
     @Test

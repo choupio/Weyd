@@ -134,7 +134,9 @@ public class Groupe implements IForme {
 
     @Override
     public IForme tourner(int angle) {
-
+        for (IForme iForme : listFormes) {
+            iForme.tourner(angle);
+        }
         return this;
     }
 
