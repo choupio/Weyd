@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Cercle implements IForme {
     private Point point; // Le centre du cercle
     private double rayon; // Le rayon du cercle
-    private String couleur; // La couleur du cercle en "black"
+    private String couleur = "black"; // La couleur du cercle en "black"
 
     /**
      * Constructeur pour initialiser un cercle avec les coordonnées du centre et le rayon.
