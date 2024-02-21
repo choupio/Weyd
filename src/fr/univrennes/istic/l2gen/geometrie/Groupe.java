@@ -132,6 +132,12 @@ public class Groupe implements IForme {
         return this;
     }
 
+    @Override
+    public IForme tourner(int angle) {
+
+        return this;
+    }
+
     /**
      * Duplique toutes les formes du groupe.
      *
