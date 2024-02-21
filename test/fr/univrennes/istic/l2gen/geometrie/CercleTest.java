@@ -106,4 +106,15 @@ public class CercleTest {
         assertNotEquals((cercleTest.largeur() / 2) * -8 * 14, cercRedim.redimmensioner(-8, 14).largeur() / 2, 0.00001);
     }
 
+    @Test
+    public void testTourner() {
+        cercleTest.tourner(180); // Rotation de 180 degrés
+        assertEquals("   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black angle=180", cercleTest.description(3));
+    }
+    @Test
+    public void testTourner2() {
+        cercleTest.tourner(0); // Rotation de 180 degrés
+        assertEquals("   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black", cercleTest.description(3));
+    }
+
 }

@@ -94,8 +94,13 @@ public class RectangleTest {
     }
 
     @Test
-    public void testAlignement(){
-        Rectangle r2 = new Rectangle(8,7,12,9);
-        Rectangle r3 = r.aligner(Alignement.HAUT, r2.centre().y()); //je comprends pas comment faire le test, mais il faut le faire avant la fonction
+    public void testTourner(){
+        r.tourner(38);
+        assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=38", r.description(1));
+    }
+
+    @Test
+    public void testTournerPasModif(){
+        assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=0", r.description(1));
     }
 }

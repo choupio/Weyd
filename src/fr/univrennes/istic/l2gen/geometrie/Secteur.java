@@ -16,6 +16,7 @@ public class Secteur implements IForme {
     private String couleur = "white"; // La couleur du secteur en "white"
     private double larg; // La largeur du secteur
     private double haut; // La hauteur du secteur
+    private int agle; // l'angle de rotation du secteur
 
     /**
      * Calcule la hauteur du secteur.
@@ -26,6 +27,24 @@ public class Secteur implements IForme {
     public double hauteur() {
         return haut;
     }
+
+    /**
+     * Rotates the shape by the specified angle.
+     * 
+     * @param agle the angle (in degrees) by which the shape should be rotated
+     * @return the rotated shape
+     */
+    @Override
+	public IForme tourner(int agle) {
+		this.agle = agle;
+		return this;
+	}
+
+    @Override
+	public IForme aligner(Alignement alignement, double cible) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'aligner'");
+	}
 
     /**
      * Calcule la largeur du secteur.
@@ -159,7 +178,7 @@ public class Secteur implements IForme {
             indent.append("  ");
         }
         return "Secteur" + indent + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
-                + " Arc=" + getArc() + " de couleur " + couleur;
+                + " Arc=" + getArc() + " de couleur " + couleur + "et de rotation " + agle;
     }
 
     /**
@@ -178,7 +197,6 @@ public class Secteur implements IForme {
      * 
      * @return Une copie du secteur.
      */
-    
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
         Secteur nouvelleForme = new Secteur(centre, rayon, angle, arc);
@@ -205,18 +223,29 @@ public class Secteur implements IForme {
 
         return "<path d=\"M " + startX + " " + startY + " A " + getRayon() + " " + getRayon()
                 + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.x() + " " + centre.y() + " Z\"\n"
-                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
+                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(\""+ agle +"\")\"/>";
     }
-
+    
+    /**
+     * Colors the shape with the specified colors.
+     * 
+     * @param couleurs the colors to be applied to the shape
+     * @return the updated shape
+     */
     public IForme colorier(String... couleurs) {
-        // Utilisez la première couleur si disponible, sinon, conservez la couleur par défaut
         couleur = (couleurs.length > 0) ? couleurs[0] : couleur;
         return this;
     }
 
+    /**
+     * Returns the color of the sector.
+     *
+     * @return the color of the sector
+     */
     public String getCouleur() {
         return couleur;
     }
+
 
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
