@@ -17,6 +17,7 @@ public class Polygone implements IForme {
 
 	private List<Point> points; // Liste des sommets du polygone
 	private String couleur = "white"; // Couleur du polygone en "white"
+	private int angle = 0;
 
 	/**
 	 * Constructeur de la classe Polygone prenant en paramètre les coordonnées des
@@ -91,6 +92,7 @@ public class Polygone implements IForme {
 			s += point.x() + "," + point.y() + " ";
 		}
 		s = s.substring(0, s.length() - 1); // supprime le dernier caractere
+		s += " couleur=" + couleur + " angle=" + angle;
 		return s;
 	}
 
@@ -163,6 +165,7 @@ public class Polygone implements IForme {
 		for (Point point : points) {
 			nouvelleForme.ajouterSommet(point);
 		}
+		nouvelleForme.angle = this.angle;
 		nouvelleForme.couleur = this.couleur; // Copie de la couleur, ajustez selon vos besoins
 		return nouvelleForme;
 	}
@@ -199,7 +202,7 @@ public class Polygone implements IForme {
 			s += point.x() + " " + point.y() + " ";
 		}
 		s = s.substring(0, s.length() - 1); // supprime le dernier caractere
-		s += "\" fill=\"" + couleur + "\" stroke=\"black\"/>";
+		s += "\" fill=\"" + couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\"/>";
 		return s;
 	}
 
@@ -233,9 +236,16 @@ public class Polygone implements IForme {
 		}
 	}
 
+	@Override
 	public IForme tourner(int angle) {
-
+		this.angle = angle;
 		return this;
+	}
+
+	@Override
+	public IForme aligner(Alignement alignement, double cible) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'aligner'");
 	}
 
 }
