@@ -13,6 +13,7 @@ public class Rectangle implements IForme {
     private double hauteur; // Hauteur du rectangle
     private Point centre; // Centre du rectangle
     private String couleur = "white"; // Couleur du rectangle en "white"
+    private int angle = 0; //angle du rectangle, à 0 de base
 
     /**
      * Retourne le centre du rectangle.
@@ -102,7 +103,7 @@ public class Rectangle implements IForme {
         for (int i = 0; i < indentation; i++) {
             indent.append(" ");
         }
-        return indent + "Rectangle" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H=" + hauteur() + " de couleur " + couleur;
+        return indent + "Rectangle" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H=" + hauteur() + " de couleur " + couleur + " angle=" + angle;
     }
 
     /**
@@ -151,7 +152,7 @@ public class Rectangle implements IForme {
     public String enSVG() {
         return "<rect x=\"" + centre().x() + "\" y=\"" + centre().y() + "\" height=\"" + hauteur() + "\" width=\""
                 + largeur()
-                + "\"\n" + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
+                + "\"\n" + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(" + angle +")\"/>";
     }
 
     /**
@@ -189,5 +190,15 @@ public class Rectangle implements IForme {
                 System.err.println("Erreur lors de la fermeture du fichier : " + e.getMessage());
             }
         }
+    }
+
+    public IForme tourner(int angle){
+        this.angle = angle;
+        return this;
+    }
+
+    public IForme aligner(Alignement alignement, double cible){
+        throw new UnsupportedOperationException("Unimplemented method 'aligner'");
+
     }
 }

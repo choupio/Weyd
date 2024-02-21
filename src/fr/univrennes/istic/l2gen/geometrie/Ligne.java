@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import fr.univrennes.istic.l2gen.geometrie.Alignement;
 
 /**
  * La classe Ligne représente une ligne polygonale définie par une série de sommets.
@@ -13,6 +14,7 @@ public class Ligne implements IForme {
 
     private Point[] ligne; // Tableau des sommets de la ligne
     private String couleur = "black"; // Couleur de la ligne en "black"
+    private int angle = 0;
 
     /**
      * Constructeur de la classe Ligne prenant en paramètre les coordonnées des sommets de la ligne.
@@ -81,7 +83,7 @@ public class Ligne implements IForme {
         for (int i = 0; i < ligne.length; i++) {
             result = result + " " + ligne[i].x() + ',' + ligne[i].y();
         }
-        result += " de couleur " + couleur;
+        result += " de couleur " + couleur + " angle="+ angle;
         return result;
     }
 
@@ -157,7 +159,7 @@ public class Ligne implements IForme {
         for (int i = 1; i < ligne.length; i++) {
             result = result + ligne[i].y() + ' ' + ligne[i].y() + ' ';
         }
-        result = result + "\" fill=\"white\" stroke=\"" + couleur + "\"/>";
+        result = result + "\" fill=\"white\" stroke=\"" + couleur + "\" transform=\"rotate(" + angle +")\"/>";
         return result;
     }
 
@@ -186,6 +188,8 @@ public class Ligne implements IForme {
         for (int i = 0; i < ligne.length; i++) {
             ligne2.ajouterSommet(ligne[i]);
         }
+        ligne2.colorier(this.couleur);
+        ligne2.tourner(this.angle);
         return ligne2;
     }
 
@@ -216,6 +220,11 @@ public class Ligne implements IForme {
         return this;
     }
 
+    public IForme tourner(int angle){
+        this.angle=angle;
+        return this;
+    }
+
     /**
      * Crée un fichier SVG représentant la ligne.
      */
@@ -230,6 +239,15 @@ public class Ligne implements IForme {
             System.out.println("Fichier créé avec succès !");
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        }
+    }
+
+    @Override
+    public IForme aligner(fr.univrennes.istic.l2gen.geometrie.Alignement alignement, double cible) {
+        if(alignement==HAUT || alignement== BAS){
+
+        }else if(alignement==DROITE || alignement ==GAUCHE){
+
         }
     }
 }
