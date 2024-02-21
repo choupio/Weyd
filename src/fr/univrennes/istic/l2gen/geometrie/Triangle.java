@@ -14,6 +14,7 @@ public class Triangle implements IForme {
     Point point2; // Deuxième point du triangle
     Point point3; // Troisième point du triangle
     String couleur = "white"; // Couleur du triangle en "white"
+    private int angle = 0; // Angle du triangle
 
 
 
@@ -78,7 +79,7 @@ public class Triangle implements IForme {
             cran += " ";
         }
         return cran + "Triangle " + point1.x() + ", " + point1.y() + " " + point2.x() + ", " + point2.y() + " "
-                + point3.x() + ", " + point3.y() + " de couleur " + couleur;
+                + point3.x() + ", " + point3.y() + " de couleur " + couleur + " angle=" + angle;
     }
 
     /**
@@ -175,7 +176,7 @@ public class Triangle implements IForme {
     public String enSVG() {
         // Génère la représentation SVG du triangle
         return "<polygon points=\"" + point1.x() + "," + point1.y() + " " + point2.x() + "," + point2.y() + " " + point3.x() + "," + point3.y() + "\" " +
-                "fill=\"" + couleur + "\" stroke=\"black\"/>";
+                "fill=\"" + couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\"/>";
     }
 
     /**
@@ -205,5 +206,14 @@ public class Triangle implements IForme {
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
+    }
+
+    public IForme tourner(int angle){
+        this.angle = angle;
+        return this;
+    }
+
+    public IForme aligner(Alignement alignement, double cible){
+        throw new UnsupportedOperationException("Unimplemented method 'aligner'");
     }
 }

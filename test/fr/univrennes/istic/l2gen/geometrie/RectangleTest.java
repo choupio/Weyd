@@ -94,13 +94,13 @@ public class RectangleTest {
     }
 
     @Test
-    public void testTourner(){
+    public void testTourner(){ // en modifiant l'angle 
         r.tourner(38);
         assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=38", r.description(1));
     }
 
     @Test
-    public void testTournerPasModif(){
+    public void testTournerPasModif(){ //sans modifier l'angle
         assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=0", r.description(1));
     }
 }

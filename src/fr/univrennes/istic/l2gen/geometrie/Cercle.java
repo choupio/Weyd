@@ -95,6 +95,7 @@ public class Cercle implements IForme {
      * @return Une référence à l'instance actuelle du cercle, pour permettre les
      *         opérations en chaîne.
      */
+    @Override
     public IForme deplacer(double x, double y) {
         point.plus(x, y);
         return this;
@@ -137,6 +138,7 @@ public class Cercle implements IForme {
      * @return Une référence à l'instance actuelle du cercle, pour permettre les
      *         opérations en chaîne.
      */
+    @Override
     public IForme redimmensioner(double i, double j) {
         if (i == j) {
             rayon *= i;
@@ -160,6 +162,7 @@ public class Cercle implements IForme {
      * @return Une référence à l'instance actuelle du cercle, pour permettre les
      *         opérations en chaîne.
      */
+    @Override
     public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
         return this;
@@ -198,9 +201,13 @@ public class Cercle implements IForme {
             return ray;
         }
     }
-
+    @Override
     public IForme tourner(int angle){
         this.angle = angle;
+        return this;
+    }
+    @Override
+    public IForme aligner(Alignement alignement, double cible){
         return this;
     }
 
