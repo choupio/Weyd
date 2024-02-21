@@ -13,7 +13,7 @@ public class Ellipse implements IForme {
     private double hauteur; // La hauteur de l'ellipse
     private double largeur; // La largeur de l'ellipse
     private double rayon; // Le rayon de l'ellipse
-    private String couleur = "white"; // La couleur de l'ellipse en "white"
+    String couleur = "white"; // La couleur de l'ellipse en "white"
 
 
     /**

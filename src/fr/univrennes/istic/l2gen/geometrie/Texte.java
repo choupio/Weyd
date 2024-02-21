@@ -4,77 +4,98 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Texte implements IForme{
+public class Texte implements IForme {
     private String couleur;
+    private double x;
+    private double y;
+    private double hauteur;
+    private double largeur;
 
     // Bloc d'initialisation
     {
         couleur = "white";
+        x = 0.0;
+        y = 0.0;
+        hauteur = 20.0;
+        largeur = 0.0;
     }
 
     @Override
     public Point centre() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'centre'");
+        return new Point(0, 0);
     }
-
-    
 
     @Override
     public double hauteur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hauteur'");
+        return hauteur;
     }
 
     @Override
     public double largeur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'largeur'");
+        return largeur;
     }
 
     @Override
     public IForme deplacer(double dx, double dy) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
+        // Logique pour déplacer le texte
+        x += dx;
+        y += dy;
+        return new Texte().colorier(couleur); // Retourne la référence à la forme modifiée
     }
 
     @Override
-    public IForme dupliquer() {
-        // Crée une nouvelle instance de la classe avec les mêmes propriétés
-        Texte nouvelleForme = new Texte();
-        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
-        return nouvelleForme;
-    }
-
+    public IForme dupliquer(){
+            // Crée une nouvelle instance de la classe avec les mêmes propriétés
+            Texte nouvelleForme = new Texte();
+            nouvelleForme.couleur = this.couleur;
+            nouvelleForme.x = this.x;
+            nouvelleForme.y = this.y;
+            nouvelleForme.hauteur = this.hauteur;
+            nouvelleForme.largeur = this.largeur;
+            return nouvelleForme;
+        }// Crée une nouvelle instance de la classe avec les mêmes propriétés
+        
     @Override
     public String description(int indentation) {
         // Génère une description avec un certain niveau d'indentation
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < indentation; i++) {
-            sb.append("  ");  // Deux espaces par niveau d'indentation, ajustez selon vos préférences
+            sb.append("  ");
         }
-        sb.append("Forme de couleur ").append(couleur);  // Ajoutez d'autres détails au besoin
+        sb.append("Forme de couleur ").append(couleur);
         return sb.toString();
     }
 
     @Override
-    public IForme redimmensioner(double h, double l) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
-    }
-
-    @Override
     public String enSVG() {
-        // Génère la représentation SVG du texte
-        return "<text x=\"" + hauteur() + "\" y=\"" + largeur() + "\" font-size=\"64\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\">Istic L2GEN</text>";
-    }    
+        // Génère la représentation SVG du texte avec les dimensions mises à jour
+        return "<text x=\"" + x + "\" y=\"" + y +
+               "\" font-size=\"64\" text-anchor=\"middle\" fill=\"" + couleur + "\" stroke=\"" + couleur +
+               "\" height=\"" + hauteur + "\" width=\"" + largeur + "\">Istic L2GEN</text>";
+    }
 
     public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
         return this;
     }
 
+    @Override
+    public IForme redimmensioner(double h, double l) {
+        hauteur = h;
+        largeur = l;
+        return this;
+    
+    }
+
+    @Override
     public void createSvgFile() {
-        throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.svg"))) {
+            writer.write("<svg width=\"" + largeur + "\" height=\"" + hauteur + "\">\n");
+            writer.write(enSVG() + "\n");
+            writer.write("</svg>");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
+
