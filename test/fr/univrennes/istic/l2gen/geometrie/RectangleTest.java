@@ -96,6 +96,6 @@ public class RectangleTest {
     @Test
     public void testAlignement(){
         Rectangle r2 = new Rectangle(8,7,12,9);
-        Rectangle r3 = r.aligner(HAUT, r2.centre().y()); //je comprends pas comment faire le test, mais il faut le faire avant la fonction
+        Rectangle r3 = r.aligner(Alignement.HAUT, r2.centre().y()); //je comprends pas comment faire le test, mais il faut le faire avant la fonction
     }
 }
