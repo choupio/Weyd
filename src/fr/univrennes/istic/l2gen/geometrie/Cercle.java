@@ -206,10 +206,25 @@ public class Cercle implements IForme {
         this.angle = angle;
         return this;
     }
+        
     @Override
-    public IForme aligner(Alignement alignement, double cible){
+    public IForme aligner(Alignement alignement, double cible) {
+        switch (alignement) {
+            case HAUT:
+                point = new Point(point.x(), cible - rayon);
+                break;
+            case BAS:
+                point = new Point(point.x(), cible + rayon);
+                break;
+            case DROITE:
+                point = new Point(cible - rayon, point.y());
+                break;
+            case GAUCHE:
+                point = new Point(cible + rayon, point.y());
+                break;
+        }
         return this;
-    }
+    } 
     
 
 
