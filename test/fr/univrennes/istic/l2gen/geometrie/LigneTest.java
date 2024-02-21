@@ -55,7 +55,7 @@ public class LigneTest {
     @Test
     public void testDescription() {
         setUp();
-        assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black", ligne.description(1));
+        assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black d'angle 0", ligne.description(1));
     }
 
     @Test
