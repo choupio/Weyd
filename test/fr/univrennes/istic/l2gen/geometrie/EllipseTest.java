@@ -64,9 +64,9 @@ public class EllipseTest {
     @Test
     public void testAlignerHaut() {
         Ellipse e = new Ellipse(0, 0, 10, 20);
-        e.aligner(Alignement.HAUT, 5.0);
+        e.aligner(Alignement.HAUT, 15.0);
         Point centreApresAlignement = e.centre();
-        Point centreAttendu = new Point(0, 5.0);
+        Point centreAttendu = new Point(0, 15.0);
         assertEquals(centreAttendu, centreApresAlignement);
     }
 
@@ -82,7 +82,7 @@ public class EllipseTest {
     @Test
     public void testAlignerGauche() {
         Ellipse e = new Ellipse(0, 0, 10, 20);
-        e.aligner(Alignement.GAUCHE, 5.0);
+        e.aligner(Alignement.GAUCHE, 15.0);
         Point centreApresAlignement = e.centre();
         Point centreAttendu = new Point(5.0, 0);
         assertEquals(centreAttendu, centreApresAlignement);
@@ -93,7 +93,7 @@ public class EllipseTest {
         Ellipse e = new Ellipse(0, 0, 10, 20);
         e.aligner(Alignement.DROITE, 15.0);
         Point centreApresAlignement = e.centre();
-        Point centreAttendu = new Point(15.0, 0);
+        Point centreAttendu = new Point(5.0, 0);
         assertEquals(centreAttendu, centreApresAlignement);
     }
 
