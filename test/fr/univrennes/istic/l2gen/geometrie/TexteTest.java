@@ -102,16 +102,16 @@ public class TexteTest {
 
     @Test
     public void testHauteur() {
-
+        //TODO
     }
 
     @Test
     public void testLargeur() {
-
+        //TODO
     }
 
     @Test
     public void testRedimmensioner() {
-
+        //TODO
     }
 }
