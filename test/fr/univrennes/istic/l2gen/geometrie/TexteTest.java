@@ -58,19 +58,19 @@ public class TexteTest {
 
     @Test
     public void testDescription() {
-        assertEquals("Texte centre=192,128 taille=64 couleur=white", texte.description(0));
+        assertEquals("Texte centre=192,128 taille=64 texte=Isic L2GEN couleur=white", texte.description(0));
     }
 
     @Test
     public void testDescription2() {
-        assertEquals("  Texte centre=0,0 taille=0 couleur=white", texteVide.description(1));
+        assertEquals("  Texte centre=0,0 taille=0 texte= couleur=white", texteVide.description(1));
     }
 
     @Test
     public void testDescription3() {
         // test quand changement de couleur
         texte.colorier("red");
-        assertEquals("Texte centre=192,128 taille=64 couleur=red", texte.description(0));
+        assertEquals("Texte centre=192,128 taille=64 texte=Isic L2GEN couleur=red", texte.description(0));
     }
     
 
