@@ -10,16 +10,16 @@ public class Texte implements IForme {
     private double y;
     private double hauteur;
     private double largeur;
-    private double taille;
+    private int taille;
 
     // Bloc d'initialisation
     {
-        couleur = "white";
+        couleur = "black";
         hauteur = 20.0;
         largeur = 0.0;
     }
 
-    public Texte(double x, double y, double taille, String texte) {
+    public Texte(double x, double y, int taille, String texte) {
         this.x = x;
         this.y = y;
         this.taille = taille;
