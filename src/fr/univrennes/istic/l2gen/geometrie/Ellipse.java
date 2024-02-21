@@ -183,7 +183,31 @@ public String description(int entier) {
         }
     }
 
-    public IForme aligner(Alignement alignement, double cible){
+    public int getAngle() {
+        return angle;
+    }
+
+    @Override
+    public IForme aligner(Alignement alignement, double cible) {
+        double nouveauX = centre.x();
+        double nouveauY = centre.y();
+        switch (alignement) {
+            case HAUT:
+                nouveauY = cible + hauteur / 2;
+                break;
+            case BAS:
+                nouveauY = cible - hauteur / 2;
+                break;
+            case DROITE:
+                nouveauX = cible - largeur / 2;
+                break;
+            case GAUCHE:
+                nouveauX = cible + largeur / 2;
+                break;
+            default:
+                break;
+        }   
+        centre = new Point(nouveauX, nouveauY);
         return this;
     }
 
