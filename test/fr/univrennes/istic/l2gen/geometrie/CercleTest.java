@@ -19,6 +19,7 @@ public class CercleTest {
         this.cercleTest = cercleTest;
         this.pointCerc = pointCerc;
         this.rayonCerc = rayonCerc;
+
         IForme cercRedim = cercleTest.dupliquer();
         this.cercRedim = cercRedim;
 
@@ -115,6 +116,37 @@ public class CercleTest {
     public void testTourner2() {
         cercleTest.tourner(0); // Rotation de 180 degrés
         assertEquals("   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black", cercleTest.description(3));
+    }
+    @Test
+    public void testalignergauche() {
+        IForme cercleA = cercleTest;
+        IForme cercleTest = cercleA.aligner(Alignement.GAUCHE, 5.0);
+        assertEquals(45, cercleTest.centre().x(), 0.001);
+        assertEquals(40, cercleTest.centre().y(), 0.001);
+    }
+
+    @Test
+    public void testalignerhaut() {        
+        IForme cercleA = cercleTest;
+        IForme cercleTest = cercleA.aligner(Alignement.HAUT, 5.0);
+        assertEquals(50, cercleTest.centre().x(), 0.001);
+        assertEquals(45, cercleTest.centre().y(), 0.001);
+    }
+
+    @Test
+    public void testalignerdroite() {        
+        IForme cercleA = cercleTest;
+        IForme cercleTest = cercleA.aligner(Alignement.DROITE, 5.0);
+        assertEquals(55, cercleTest.centre().x(), 0.001);
+        assertEquals(40, cercleTest.centre().y(), 0.001);
+    }
+
+    @Test
+    public void testalignerbas() {        
+        IForme cercleA = cercleTest;
+        IForme cercleTest = cercleA.aligner(Alignement.BAS, 5.0);
+        assertEquals(50, cercleTest.centre().x(), 0.001);
+        assertEquals(35, cercleTest.centre().y(), 0.001);
     }
 
 }

@@ -210,6 +210,7 @@ public class Cercle implements IForme {
     public IForme aligner(Alignement alignement, double cible){
         return this;
     }
+    
 
 
 }
