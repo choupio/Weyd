@@ -11,6 +11,7 @@ public class Cercle implements IForme {
     private Point point; // Le centre du cercle
     private double rayon; // Le rayon du cercle
     private String couleur = "black"; // La couleur du cercle en "black"
+    private int angle = 0;
 
     /**
      * Constructeur pour initialiser un cercle avec les coordonnées du centre et le
@@ -188,4 +189,10 @@ public class Cercle implements IForme {
             return ray;
         }
     }
+
+    public IForme tourner(int angle){
+        return this;
+    }
+
+
 }
