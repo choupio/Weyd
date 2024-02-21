@@ -97,4 +97,15 @@ public class LigneTest {
         assertEquals(20, formeRedimensionnee.hauteur(), 0.001);
         assertEquals(20, formeRedimensionnee.largeur(), 0.001);
     }
+
+    @Test
+    public void testTourner(){ // On modifie l'angle
+        ligne.tourner(38);
+        assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black angle=38", ligne.description(1));
+    }
+
+    @Test
+    public void testTournerPasModif(){ // On ne modifie pas l'angle
+        assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black angle=0", ligne.description(1));
+    }
 }
