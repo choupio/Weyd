@@ -62,6 +62,8 @@ public class Texte implements IForme {
 		nouvelleForme.y = this.y;
 		nouvelleForme.hauteur = this.hauteur;
 		nouvelleForme.largeur = this.largeur;
+		nouvelleForme.taille = this.taille;
+		nouvelleForme.texte = this.texte;
 		return nouvelleForme;
 	}// Crée une nouvelle instance de la classe avec les mêmes propriétés
 
