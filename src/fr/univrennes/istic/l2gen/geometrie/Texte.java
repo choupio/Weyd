@@ -81,7 +81,7 @@ public class Texte implements IForme {
         // Génère la représentation SVG du texte avec les dimensions mises à jour
         return "<text x=\"" + x + "\" y=\"" + y +
                 "\" font-size=\"" + taille + "\" text-anchor=\"middle\" fill=\"" + couleur
-                + "\" stroke=\"black\">" + texte + "";
+                + "\" stroke=\"black\">" + texte + "</text>";
     }
 
     public IForme colorier(String... couleurs) {
