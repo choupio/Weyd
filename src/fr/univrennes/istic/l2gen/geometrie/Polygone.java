@@ -92,7 +92,10 @@ public class Polygone implements IForme {
 			s += point.x() + "," + point.y() + " ";
 		}
 		s = s.substring(0, s.length() - 1); // supprime le dernier caractere
-		s += " couleur=" + couleur + " angle=" + angle;
+		s += " couleur=" + couleur;
+		if (angle != 0) {
+			s += " angle=" + angle;
+		}
 		return s;
 	}
 
@@ -202,7 +205,12 @@ public class Polygone implements IForme {
 			s += point.x() + " " + point.y() + " ";
 		}
 		s = s.substring(0, s.length() - 1); // supprime le dernier caractere
-		s += "\" fill=\"" + couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\"/>";
+		if (angle != 0) {
+			s += "\" fill=\"" + couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\"/>";
+		} else {
+			s += "\" fill=\"" + couleur + "\" stroke=\"black\"/>";
+		}
+
 		return s;
 	}
 
@@ -244,8 +252,33 @@ public class Polygone implements IForme {
 
 	@Override
 	public IForme aligner(Alignement alignement, double cible) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'aligner'");
+		switch (alignement) {
+		case HAUT:
+			// recherche du y minimum
+			double minY = points.get(0).y();
+			for (Point point : points) {
+				if (minY > point.y()) {
+					minY = point.y();
+				}
+			}
+			double distanceY = cible - minY;
+			for (int i = 0; i < points.size(); i++) {
+				Point point = points.get(i);
+				points.add(i, new Point(point.x(), point.y() + distanceY));
+			}
+			break;
+
+		case BAS:
+
+			break;
+		case GAUCHE:
+
+			break;
+		case DROITE:
+
+			break;
+		}
+		return this;
 	}
 
 }

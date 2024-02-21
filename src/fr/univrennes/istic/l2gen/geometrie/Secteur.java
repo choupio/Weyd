@@ -41,10 +41,23 @@ public class Secteur implements IForme {
 	}
 
     @Override
-	public IForme aligner(Alignement alignement, double cible) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'aligner'");
-	}
+    public IForme aligner(Alignement alignement, double cible) {
+        switch (alignement) {
+            case HAUT:
+                centre = new Point(centre.x(), cible - rayon);
+                break;
+            case BAS:
+                centre = new Point(centre.x(), cible + rayon);
+                break;
+            case DROITE:
+                centre = new Point(cible - rayon, centre.y());
+                break;
+            case GAUCHE:
+                centre = new Point(cible + rayon, centre.y());
+                break;
+        }
+        return this;
+    }
 
     /**
      * Calcule la largeur du secteur.
@@ -178,7 +191,7 @@ public class Secteur implements IForme {
             indent.append("  ");
         }
         return "Secteur" + indent + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
-                + " Arc=" + getArc() + " de couleur " + couleur + "et de rotation " + agle;
+                + " Arc=" + getArc() + " de couleur " + couleur + " et de rotation " + agle;
     }
 
     /**

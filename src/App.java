@@ -1,6 +1,9 @@
+import org.junit.Before;
+
 import fr.univrennes.istic.l2gen.geometrie.Cercle;
 import fr.univrennes.istic.l2gen.geometrie.Ellipse;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
+import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Ligne;
 import fr.univrennes.istic.l2gen.geometrie.Polygone;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
@@ -8,6 +11,9 @@ import fr.univrennes.istic.l2gen.geometrie.Secteur;
 import fr.univrennes.istic.l2gen.geometrie.Triangle;
 
 public class App {
+    private Cercle cercleTest;
+    private Polygone polygone;
+    private IForme groupe;
     public static void main(String[] args) throws Exception {
 
         Groupe tableau = new Groupe ();
@@ -20,5 +26,15 @@ public class App {
         tableau . ajouter ( new Triangle (192 , 128 , 256 , 128 , 256 , 256));
         tableau.createSvgFile();
 
+        Cercle cercleTest = new Cercle(50, 40, 25);
+        Cercle cercleTest2 = new Cercle(50, 40, 25);
+        Polygone polygone = new Polygone();
+		polygone.ajouterSommet(128, 128);
+		polygone.ajouterSommet(128, 256);
+		polygone.ajouterSommet(256, 128);
+		polygone.ajouterSommet(256, 256);
+        Groupe groupe = new Groupe(cercleTest,polygone,cercleTest2);
+        System.out.println(groupe.description(3));
+    
     }
 }
