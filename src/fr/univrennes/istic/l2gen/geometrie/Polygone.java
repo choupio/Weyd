@@ -244,8 +244,29 @@ public class Polygone implements IForme {
 
 	@Override
 	public IForme aligner(Alignement alignement, double cible) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'aligner'");
+		switch (alignement) {
+		case HAUT:
+			// recherche du y minimum
+			double minY = points.get(0).y();
+			for (Point point : points) {
+				if (minY > point.y()) {
+					minY = point.y();
+				}
+			}
+
+			break;
+
+		case BAS:
+
+			break;
+		case GAUCHE:
+
+			break;
+		case DROITE:
+
+			break;
+		}
+		return this;
 	}
 
 }
