@@ -182,7 +182,6 @@ public class Ligne implements IForme {
      * @return Une nouvelle instance de la ligne avec les mêmes propriétés.
      */
     public IForme dupliquer() {
-        // Crée une nouvelle instance de la classe avec les mêmes propriétés
         Ligne ligne2 = new Ligne();
         for (int i = 0; i < ligne.length; i++) {
             ligne2.ajouterSommet(ligne[i]);
