@@ -60,4 +60,16 @@ public class EllipseTest {
         assertEquals(32 * largeur, formeRedimensionnee.largeur(), 0.001);
         assertEquals(32 * hauteur, formeRedimensionnee.hauteur(), 0.001);
     }
+
+    @Test
+    public void testAligner() {
+        e.aligner(Alignement.HAUT, 10.0); // Alignement du HAUT à l'axe y=10.0
+        assertEquals("Ellipse alignée en haut à l'axe y=10.0", e.description());
+    }
+
+    @Test
+    public void testTourner() {
+        e.tourner(90); // Rotation de 90 degrés
+        assertEquals("Ellipse tourne de 90 degrés", e.description());
+    }
 }

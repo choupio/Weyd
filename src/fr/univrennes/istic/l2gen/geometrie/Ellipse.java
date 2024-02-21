@@ -170,4 +170,12 @@ public class Ellipse implements IForme {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
     }
+
+    public IForme aligner(Alignement alignement, double point){
+        return this;
+    }
+
+    public IForme tourner(int angle){
+        return this;
+    }
 }
