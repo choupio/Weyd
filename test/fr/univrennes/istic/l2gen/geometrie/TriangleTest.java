@@ -81,4 +81,15 @@ public class TriangleTest {
         assertEquals(2.0, triangle.hauteur(), 0.001);
         assertEquals(2.0, triangle.largeur(), 0.001);
     }
+
+    @Test
+    public void testTourner(){ //en modifiant l'angle
+        triangle.tourner(38);
+        assertEquals(" Triangle 0.0, 0.0 1.0, 0.0 0.0, 1.0 de couleur white angle=38",triangle.description(1));
+    }
+
+    @Test
+    public void testTournerPasModif(){ //sans modifier l'angle
+        assertEquals(" Triangle 0.0, 0.0 1.0, 0.0 0.0, 1.0 de couleur white angle=0",triangle.description(1));
+    }
 }
