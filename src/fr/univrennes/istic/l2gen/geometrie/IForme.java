@@ -93,7 +93,7 @@ public interface IForme {
 	 * @return Une référence à l'instance de la forme géométrique, pour permettre
 	 *         les opérations en chaîne.
 	 */
-	public IForme aligner();
+	public IForme aligner(Alignement alignement, double cible);
 
 	/**
 	 * Crée un fichier SVG représentant la forme géométrique.
