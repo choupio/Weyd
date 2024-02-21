@@ -68,7 +68,7 @@ public class PolygoneTest {
 
 	@Test
 	public void testDescription() {
-		assertEquals("  Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white angle=0",
+		assertEquals("  Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white",
 				polygone2.description(1));
 	}
 
@@ -83,7 +83,7 @@ public class PolygoneTest {
 	@Test
 	public void testEnSVG() {
 		assertEquals(
-				"<polygon points=\"128.0 128.0 128.0 256.0 256.0 128.0 256.0 256.0\" fill=\"white\" stroke=\"black\" transform=\"rotate(0)\"/>",
+				"<polygon points=\"128.0 128.0 128.0 256.0 256.0 128.0 256.0 256.0\" fill=\"white\" stroke=\"black\"/>",
 				polygone2.enSVG());
 	}
 
@@ -162,13 +162,7 @@ public class PolygoneTest {
 	}
 
 	@Test
-	public void testTourner() { // sans modifié l'angle
-		assertEquals("  Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white angle=0",
-				polygone2.description(1));
-	}
-
-	@Test
-	public void testTourner2() { // en modifiant l'angle
+	public void testTourner() { // en modifiant l'angle
 		polygone2.tourner(38);
 		assertEquals("  Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white angle=38",
 				polygone2.description(1));
