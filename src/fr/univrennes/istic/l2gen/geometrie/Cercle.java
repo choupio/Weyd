@@ -59,6 +59,10 @@ public class Cercle implements IForme {
         for (int i = 0; i < x; i++) {
             indentation += " ";
         }
+        if(angle!=0){
+            return (indentation + "Cercle centre= " + point.x() + ", " + point.y() + " r= " + rayon + " de couleur "
+                + couleur + " angle=" + angle); 
+        }
         return (indentation + "Cercle centre= " + point.x() + ", " + point.y() + " r= " + rayon + " de couleur "
                 + couleur);
     }
@@ -103,6 +107,10 @@ public class Cercle implements IForme {
      */
     @Override
     public String enSVG() {
+        if(angle!=0){
+            return "<circle cx=\"" + centre().x() + "\" cy=\"" + centre().y() + "\" r=\"" + hauteur() / 2 + "\"" + '\n'
+                + " fill=\"" + couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\"/>";
+        }
         return "<circle cx=\"" + centre().x() + "\" cy=\"" + centre().y() + "\" r=\"" + hauteur() / 2 + "\"" + '\n'
                 + " fill=\"" + couleur + "\" stroke=\"black\"/>";
     }
@@ -116,6 +124,7 @@ public class Cercle implements IForme {
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
         Cercle nouvelleForme = new Cercle(point, rayon);
+        nouvelleForme.angle = angle;
         nouvelleForme.couleur = this.couleur; // Copie de la couleur, ajustez selon vos besoins
         return nouvelleForme;
     }
@@ -191,6 +200,7 @@ public class Cercle implements IForme {
     }
 
     public IForme tourner(int angle){
+        this.angle = angle;
         return this;
     }
 
