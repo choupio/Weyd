@@ -173,4 +173,40 @@ public class PolygoneTest {
 		assertEquals("  Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white angle=38",
 				polygone2.description(1));
 	}
+
+	@Test
+	public void testAligner() { // test HAUT
+		polygone2.aligner(Alignement.HAUT, 100);
+		Polygone polygoneTest = new Polygone(128, 100, 128, 228, 256, 100, 256, 228);
+		for (int i = 0; i < polygone2.getSommets().size(); i++) {
+			assertTrue(polygone2.getSommets().get(i).equals(polygoneTest.getSommets().get(i)));
+		}
+	}
+
+	@Test
+	public void testAligner2() { // test BAS
+		polygone2.aligner(Alignement.BAS, 200);
+		Polygone polygoneTest = new Polygone(128, 72, 128, 200, 256, 72, 256, 200);
+		for (int i = 0; i < polygone2.getSommets().size(); i++) {
+			assertTrue(polygone2.getSommets().get(i).equals(polygoneTest.getSommets().get(i)));
+		}
+	}
+
+	@Test
+	public void testAligner3() { // test GAUCHE
+		polygone2.aligner(Alignement.GAUCHE, 100);
+		Polygone polygoneTest = new Polygone(100, 128, 100, 256, 228, 128, 228, 256);
+		for (int i = 0; i < polygone2.getSommets().size(); i++) {
+			assertTrue(polygone2.getSommets().get(i).equals(polygoneTest.getSommets().get(i)));
+		}
+	}
+
+	@Test
+	public void testAligner4() { // test DROITE
+		polygone2.aligner(Alignement.DROITE, 200);
+		Polygone polygoneTest = new Polygone(72, 128, 72, 256, 200, 128, 200, 256);
+		for (int i = 0; i < polygone2.getSommets().size(); i++) {
+			assertTrue(polygone2.getSommets().get(i).equals(polygoneTest.getSommets().get(i)));
+		}
+	}
 }
