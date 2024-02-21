@@ -5,19 +5,29 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Texte implements IForme {
-    private String couleur;
+    private String couleur, texte;
     private double x;
     private double y;
     private double hauteur;
     private double largeur;
+    private double taille;
 
     // Bloc d'initialisation
     {
         couleur = "white";
-        x = 0.0;
-        y = 0.0;
         hauteur = 20.0;
         largeur = 0.0;
+    }
+
+    public Texte(double x, double y, double taille, String texte) {
+        this.x = x;
+        this.y = y;
+        this.taille = taille;
+        this.texte = texte;
+    }
+
+    public Texte() {
+        this(0, 0, 0, "");
     }
 
     @Override
@@ -44,17 +54,17 @@ public class Texte implements IForme {
     }
 
     @Override
-    public IForme dupliquer(){
-            // Crée une nouvelle instance de la classe avec les mêmes propriétés
-            Texte nouvelleForme = new Texte();
-            nouvelleForme.couleur = this.couleur;
-            nouvelleForme.x = this.x;
-            nouvelleForme.y = this.y;
-            nouvelleForme.hauteur = this.hauteur;
-            nouvelleForme.largeur = this.largeur;
-            return nouvelleForme;
-        }// Crée une nouvelle instance de la classe avec les mêmes propriétés
-        
+    public IForme dupliquer() {
+        // Crée une nouvelle instance de la classe avec les mêmes propriétés
+        Texte nouvelleForme = new Texte();
+        nouvelleForme.couleur = this.couleur;
+        nouvelleForme.x = this.x;
+        nouvelleForme.y = this.y;
+        nouvelleForme.hauteur = this.hauteur;
+        nouvelleForme.largeur = this.largeur;
+        return nouvelleForme;
+    }// Crée une nouvelle instance de la classe avec les mêmes propriétés
+
     @Override
     public String description(int indentation) {
         // Génère une description avec un certain niveau d'indentation
@@ -70,8 +80,8 @@ public class Texte implements IForme {
     public String enSVG() {
         // Génère la représentation SVG du texte avec les dimensions mises à jour
         return "<text x=\"" + x + "\" y=\"" + y +
-               "\" font-size=\"64\" text-anchor=\"middle\" fill=\"" + couleur + "\" stroke=\"" + couleur +
-               "\" height=\"" + hauteur + "\" width=\"" + largeur + "\">Istic L2GEN</text>";
+                "\" font-size=\"" + taille + "\" text-anchor=\"middle\" fill=\"" + couleur
+                + "\" stroke=\"black\">" + texte + "";
     }
 
     public IForme colorier(String... couleurs) {
@@ -84,7 +94,7 @@ public class Texte implements IForme {
         hauteur = h;
         largeur = l;
         return this;
-    
+
     }
 
     @Override
@@ -98,4 +108,3 @@ public class Texte implements IForme {
         }
     }
 }
-
