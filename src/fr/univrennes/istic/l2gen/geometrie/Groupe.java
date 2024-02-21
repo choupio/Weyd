@@ -162,10 +162,12 @@ public class Groupe implements IForme {
      * @return Une référence à l'instance actuelle du groupe, pour permettre les opérations en chaîne.
      */
     @Override
-    public IForme redimmensioner(double h, double l) {
-        listFormes.forEach(x -> x.redimmensioner(h, l));
-        return this;
+public IForme redimmensioner(double h, double l) {
+    for (IForme iForme : listFormes) {
+        iForme.redimmensioner(h, l);
     }
+    return this;
+}
 
     /**
      * Retourne une représentation SVG de toutes les formes du groupe.
@@ -213,5 +215,10 @@ public class Groupe implements IForme {
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
+    }
+
+    public Object getListFormes() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getListFormes'");
     }
 }
