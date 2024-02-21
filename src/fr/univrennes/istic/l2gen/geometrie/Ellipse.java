@@ -196,7 +196,7 @@ public String description(int entier) {
                 nouveauY = cible + hauteur / 2;
                 break;
             case BAS:
-                nouveauY = cible + hauteur / 2;
+                nouveauY = cible - hauteur / 2;
                 break;
             case DROITE:
                 nouveauX = cible - largeur / 2;
