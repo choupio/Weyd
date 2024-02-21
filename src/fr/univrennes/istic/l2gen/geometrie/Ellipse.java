@@ -13,6 +13,7 @@ public class Ellipse implements IForme {
     private double hauteur; // La hauteur de l'ellipse
     private double largeur; // La largeur de l'ellipse
     private double rayon; // Le rayon de l'ellipse
+    private int angle =0;
     String couleur = "white"; // La couleur de l'ellipse en "white"
 
 
@@ -80,21 +81,27 @@ public class Ellipse implements IForme {
      * @return Une chaîne de caractères décrivant l'ellipse.
      */
     @Override
-    public String description(int entier) {
-        String description = "";
-        for (int i = 0; i < entier; i++) {
-            description += " ";
-        }
-        description += "Ellipse avec centre en " + centre +
-                ", hauteur " + hauteur +
-                ", largeur " + largeur + ". ";
-        if (entier > 0) {
-            description += "C'est une ellipse particuliere.";
-        } else {
-            description += "C'est une ellipse standard.";
-        }
-        return description;
+public String description(int entier) {
+    String description = "";
+    for (int i = 0; i < entier; i++) {
+        description += " ";
     }
+    description += "Ellipse avec centre en " + centre +
+            ", hauteur " + hauteur +
+            ", largeur " + largeur + ". ";
+    
+    if (angle != 0) {
+        description += "Ellipse tournée de " + angle + " degrés. ";
+    }
+
+    if (entier > 0) {
+        description += "C'est une ellipse particuliere.";
+    } else {
+        description += "C'est une ellipse standard.";
+    }
+
+    return description;
+}
 
     /**
      * Redimensionne l'ellipse en modifiant sa largeur et sa hauteur.
@@ -129,6 +136,7 @@ public class Ellipse implements IForme {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
         Ellipse nouvelleForme = new Ellipse(centre, hauteur, largeur);
         nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        nouvelleForme.angle = this.angle;      // Copie de l'angle de rotation
         return nouvelleForme;
     }
 
@@ -137,10 +145,14 @@ public class Ellipse implements IForme {
      *
      * @return Une chaîne de caractères représentant l'ellipse en format SVG.
      */
+    @Override
     public String enSVG() {
-        return "<ellipse cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" rx=\"" + hauteur + "\" ry=\""
-                + largeur
-                + "\" fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
+        StringBuilder svg = new StringBuilder("<ellipse cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" rx=\"" + hauteur + "\" ry=\"" + largeur + "\"");
+        if (angle != 0) {
+            svg.append(" transform=\"rotate(").append(angle).append(" ").append(centre.x()).append(" ").append(centre.y()).append(")\"");
+        }
+        svg.append(" fill=\"" + couleur + "\" stroke=\"black\"/>");
+        return svg.toString();
     }
 
     /**
@@ -171,11 +183,13 @@ public class Ellipse implements IForme {
         }
     }
 
-    public IForme aligner(Alignement alignement, double point){
+    public IForme aligner(Alignement alignement, double cible){
         return this;
     }
 
-    public IForme tourner(int angle){
-        return this;
-    }
+    @Override
+	public IForme tourner(int angle) {
+		this.angle = angle;
+		return this;
+	}
 }
