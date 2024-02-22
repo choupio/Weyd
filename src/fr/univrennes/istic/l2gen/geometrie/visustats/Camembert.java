@@ -35,7 +35,10 @@ public class Camembert implements IForme {
 
     @Override
     public String description(int indentation) {
-        String indent = " ".repeat(indentation);
+        StringBuilder indent = new StringBuilder();
+        for (int i = 0; i < indentation; i++) {
+            indent.append("  ");
+        }
         StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
         sb.append(indent + "  Centre: " + centre + "\n");
         sb.append(indent + "  Rayon: " + rayon + "\n");
