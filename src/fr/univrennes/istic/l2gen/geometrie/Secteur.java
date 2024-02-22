@@ -19,25 +19,6 @@ public class Secteur implements IForme {
     private double haut; // La hauteur du secteur
 
     
-<<<<<<< HEAD
-=======
-    /**
-     * Constructeur de la classe Secteur prenant les coordonnées x et y du centre,
-     * le rayon, l'angle et l'arc du secteur.
-     * 
-     * @param x     La coordonnée x du centre.
-     * @param y     La coordonnée y du centre.
-     * @param rayon Le rayon du secteur.
-     * @param angle L'angle du secteur.
-     * @param arc   L'arc du secteur.
-     */
-    public Secteur(double x, double y, double rayon, double angle, double arc) {
-        this.centre = new Point(x, y);
-        this.rayon = rayon;
-        this.angle = angle + 30;
-        this.arc = arc;
-    }
->>>>>>> 8e58211ff3b4f75b6548b1ae93e9e6c13a46542d
 
     /**
      * Constructeur de la classe Secteur prenant un Point comme centre, le rayon,
