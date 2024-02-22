@@ -8,15 +8,14 @@ import java.util.List;
 
 import org.junit.Before;
 
-
 public class LigneTest {
 
     Ligne ligne;
+
     @Before
     public void setUp() {
         ligne = new Ligne(10, 20, 30, 40, 50, 60);
     }
-
 
     @Test
     public void testAjouterSommet() {
@@ -43,7 +42,9 @@ public class LigneTest {
     @Test
     public void testColorier() {
         ligne.colorier("red");
-        assertEquals("<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"red\"/>", ligne.enSVG());
+        assertEquals(
+                "<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"red\" transform=\"rotate(0)\"/>",
+                ligne.enSVG());
     }
 
     @Test
@@ -55,20 +56,21 @@ public class LigneTest {
     @Test
     public void testDescription() {
         setUp();
-        assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black d'angle 0", ligne.description(1));
+        assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black angle=0", ligne.description(1));
     }
 
     @Test
     public void testDupliquer() {
-        Ligne l2=(Ligne) ligne.dupliquer();
+        Ligne l2 = (Ligne) ligne.dupliquer();
         assertEquals(ligne.getSommets(), l2.getSommets());
     }
 
     @Test
     public void testEnSVG() {
-        assertEquals("<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"black\"/>",ligne.enSVG());
+        assertEquals(
+                "<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"black\" transform=\"rotate(0)\"/>",
+                ligne.enSVG());
     }
-
 
     @Test
     public void testGetSommets() {
@@ -99,13 +101,40 @@ public class LigneTest {
     }
 
     @Test
-    public void testTourner(){ // On modifie l'angle
+    public void testTourner() { // On modifie l'angle
         ligne.tourner(38);
         assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black angle=38", ligne.description(1));
     }
 
     @Test
-    public void testTournerPasModif(){ // On ne modifie pas l'angle
+    public void testTournerPasModif() { // On ne modifie pas l'angle
         assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black angle=0", ligne.description(1));
+    }
+
+    @Test
+    public void testAlignerHaut() {
+        setUp();
+        assertEquals("  Ligne 10.0,25.0 30.0,45.0 50.0,65.0 de couleur black angle=0",
+                ligne.aligner(Alignement.HAUT, 5).description(1));
+    }
+
+    @Test
+    public void testAlignerBas() {
+        setUp();
+        assertEquals("  Ligne 10.0,15.0 30.0,35.0 50.0,55.0 de couleur black angle=0",
+                ligne.aligner(Alignement.BAS, 5).description(1));
+    }
+
+    @Test
+    public void testAlignerDroite() {
+        setUp();
+        assertEquals("  Ligne 15.0,20.0 35.0,40.0 55.0,60.0 de couleur black angle=0",
+                ligne.aligner(Alignement.DROITE, 5).description(1));
+    }
+
+    @Test
+    public void testAlignerGauche() {
+        assertEquals("  Ligne 5.0,20.0 25.0,40.0 45.0,60.0 de couleur black angle=0",
+                ligne.aligner(Alignement.GAUCHE, 5).description(1));
     }
 }

@@ -17,6 +17,16 @@ public class Secteur implements IForme {
     private double larg; // La largeur du secteur
     private double haut; // La hauteur du secteur
     private int agle; // l'angle de rotation du secteur
+    private String description;
+    public double proportion;
+    private double rotation; // Angle de rotation en degrés
+
+    public Secteur(String description, double proportion) {
+        this.description = description;
+        this.proportion = proportion;
+        this.couleur = "gray"; // Couleur par défaut
+        this.rotation = 0;
+    }
 
     /**
      * Calcule la hauteur du secteur.
@@ -230,8 +240,8 @@ public class Secteur implements IForme {
      * @return La représentation SVG du secteur.
      */
     public String enSVG() {
-        double startAngle = Math.toRadians(getAngle());
-        double endAngle = Math.toRadians(getAngle() + getArc());
+        double startAngle = Math.toRadians(getAngle()+ rotation);
+        double endAngle = Math.toRadians(getAngle() + getArc()+ rotation);
 
         double startX = centre.x() + getRayon() * Math.cos(startAngle);
         double startY = centre.y() - getRayon() * Math.sin(startAngle);
@@ -279,6 +289,18 @@ public class Secteur implements IForme {
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
+    }
+
+    public double getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(double rotation) {
+        this.rotation = rotation;
+    }
+
+    public void setCouleur(String string) {
+        this.couleur = couleur;
     }
 
 }

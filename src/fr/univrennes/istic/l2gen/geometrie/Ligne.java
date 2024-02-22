@@ -5,10 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import fr.univrennes.istic.l2gen.geometrie.Alignement;
 
 /**
- * La classe Ligne représente une ligne polygonale définie par une série de sommets.
+ * La classe Ligne représente une ligne polygonale définie par une série de
+ * sommets.
  */
 public class Ligne implements IForme {
 
@@ -17,9 +17,11 @@ public class Ligne implements IForme {
     private int angle = 0;
 
     /**
-     * Constructeur de la classe Ligne prenant en paramètre les coordonnées des sommets de la ligne.
+     * Constructeur de la classe Ligne prenant en paramètre les coordonnées des
+     * sommets de la ligne.
      *
-     * @param l Les coordonnées des sommets de la ligne. Chaque paire de valeurs consécutives représente les coordonnées x et y d'un sommet.
+     * @param l Les coordonnées des sommets de la ligne. Chaque paire de valeurs
+     *          consécutives représente les coordonnées x et y d'un sommet.
      */
     public Ligne(double... l) {
         ligne = new Point[l.length / 2];
@@ -34,7 +36,8 @@ public class Ligne implements IForme {
      * Ajoute un sommet à la ligne.
      *
      * @param p Le sommet à ajouter à la ligne.
-     * @return Une référence à l'instance actuelle de la ligne, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance actuelle de la ligne, pour permettre les
+     *         opérations en chaîne.
      */
     public IForme ajouterSommet(Point p) {
         Point[] temp = ligne;
@@ -51,7 +54,8 @@ public class Ligne implements IForme {
      *
      * @param x La coordonnée x du sommet à ajouter.
      * @param y La coordonnée y du sommet à ajouter.
-     * @return Une référence à l'instance actuelle de la ligne, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance actuelle de la ligne, pour permettre les
+     *         opérations en chaîne.
      */
     public IForme ajouterSommet(double x, double y) {
         ajouterSommet(new Point(x, y));
@@ -59,7 +63,8 @@ public class Ligne implements IForme {
     }
 
     /**
-     * Retourne le centre de la ligne, qui est défini comme étant le dernier sommet de la ligne.
+     * Retourne le centre de la ligne, qui est défini comme étant le dernier sommet
+     * de la ligne.
      *
      * @return Le centre de la ligne.
      */
@@ -83,7 +88,7 @@ public class Ligne implements IForme {
         for (int i = 0; i < ligne.length; i++) {
             result = result + " " + ligne[i].x() + ',' + ligne[i].y();
         }
-        result += " de couleur " + couleur + " angle="+ angle;
+        result += " de couleur " + couleur + " angle=" + angle;
         return result;
     }
 
@@ -102,22 +107,23 @@ public class Ligne implements IForme {
     }
 
     /**
-     * Retourne la hauteur de la ligne, calculée comme la différence entre la coordonnée y maximale et la coordonnée y minimale parmi tous les sommets.
+     * Retourne la hauteur de la ligne, calculée comme la différence entre la
+     * coordonnée y maximale et la coordonnée y minimale parmi tous les sommets.
      *
      * @return La hauteur de la ligne.
      */
     public double hauteur() {
         List<Double> dy = new ArrayList<Double>();
-        for(int i = 0; i < ligne.length; i++){
+        for (int i = 0; i < ligne.length; i++) {
             dy.add(ligne[i].y());
         }
         Double max = dy.get(0);
         Double min = dy.get(0);
-        for(int i = 1; i < dy.size(); i++){
-            if(dy.get(i) > max){
+        for (int i = 1; i < dy.size(); i++) {
+            if (dy.get(i) > max) {
                 min = max;
                 max = dy.get(i);
-            } else if (min > dy.get(i)){
+            } else if (min > dy.get(i)) {
                 min = dy.get(i);
             }
         }
@@ -125,28 +131,28 @@ public class Ligne implements IForme {
     }
 
     /**
-     * Retourne la largeur de la ligne, calculée comme la différence entre la coordonnée x maximale et la coordonnée x minimale parmi tous les sommets.
+     * Retourne la largeur de la ligne, calculée comme la différence entre la
+     * coordonnée x maximale et la coordonnée x minimale parmi tous les sommets.
      *
      * @return La largeur de la ligne.
      */
     public double largeur() {
         List<Double> dx = new ArrayList<Double>();
-        for(int i = 0; i < ligne.length; i++){
+        for (int i = 0; i < ligne.length; i++) {
             dx.add(ligne[i].x());
         }
         Double max = dx.get(0);
         Double min = dx.get(0);
-        for(int i = 1; i < dx.size(); i++){
-            if(dx.get(i) > max){
+        for (int i = 1; i < dx.size(); i++) {
+            if (dx.get(i) > max) {
                 min = max;
                 max = dx.get(i);
-            } else if (min > dx.get(i)){
+            } else if (min > dx.get(i)) {
                 min = dx.get(i);
             }
         }
         return max - min;
     }
-
 
     /**
      * Retourne une représentation SVG de la ligne.
@@ -159,7 +165,7 @@ public class Ligne implements IForme {
         for (int i = 1; i < ligne.length; i++) {
             result = result + ligne[i].y() + ' ' + ligne[i].y() + ' ';
         }
-        result = result + "\" fill=\"white\" stroke=\"" + couleur + "\" transform=\"rotate(" + angle +")\"/>";
+        result = result + "\" fill=\"white\" stroke=\"" + couleur + "\" transform=\"rotate(" + angle + ")\"/>";
         return result;
     }
 
@@ -168,7 +174,8 @@ public class Ligne implements IForme {
      *
      * @param dx Le déplacement en abscisse.
      * @param dy Le déplacement en ordonnée.
-     * @return Une référence à l'instance de la ligne, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance de la ligne, pour permettre les opérations
+     *         en chaîne.
      */
     @Override
     public IForme deplacer(double dx, double dy) {
@@ -198,7 +205,8 @@ public class Ligne implements IForme {
      *
      * @param h La hauteur de redimensionnement.
      * @param l La largeur de redimensionnement.
-     * @return Une référence à l'instance de la ligne, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance de la ligne, pour permettre les opérations
+     *         en chaîne.
      */
     @Override
     public IForme redimmensioner(double h, double l) {
@@ -212,7 +220,8 @@ public class Ligne implements IForme {
      * Change la couleur de la ligne.
      *
      * @param couleurs Un tableau de couleurs à appliquer à la ligne.
-     * @return Une référence à l'instance de la ligne, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance de la ligne, pour permettre les opérations
+     *         en chaîne.
      */
     @Override
     public IForme colorier(String... couleurs) {
@@ -220,8 +229,8 @@ public class Ligne implements IForme {
         return this;
     }
 
-    public IForme tourner(int angle){
-        this.angle=angle;
+    public IForme tourner(int angle) {
+        this.angle += angle;
         return this;
     }
 
@@ -243,11 +252,23 @@ public class Ligne implements IForme {
     }
 
     @Override
-    public IForme aligner(fr.univrennes.istic.l2gen.geometrie.Alignement alignement, double cible) {
-        if(alignement==HAUT || alignement== BAS){
-
-        }else if(alignement==DROITE || alignement ==GAUCHE){
-
+    public IForme aligner(Alignement alignement, double cible) {
+        switch (alignement) {
+            case HAUT:
+                deplacer(0, cible);
+                break;
+            case BAS:
+                deplacer(0, -cible);
+                break;
+            case DROITE:
+                deplacer(cible, 0);
+                break;
+            case GAUCHE:
+                deplacer(-cible, 0);
+                break;
+            default:
+                break;
         }
+        return this;
     }
 }
