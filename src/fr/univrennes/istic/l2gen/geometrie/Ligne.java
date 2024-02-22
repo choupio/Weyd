@@ -14,7 +14,6 @@ public class Ligne implements IForme {
     private Point[] ligne; // Tableau des sommets de la ligne
     private String couleur = "black"; // Couleur de la ligne en "black"
     private int angle = 0;
-    private Point centre;
 
     /**
      * Constructeur de la classe Ligne prenant en paramètre les coordonnées des sommets de la ligne.
@@ -28,7 +27,6 @@ public class Ligne implements IForme {
             ligne[j] = new Point(l[i], l[i + 1]);
             j++;
         }
-        centre=ligne[ligne.length - 1];
     }
 
     /**
@@ -65,7 +63,7 @@ public class Ligne implements IForme {
      * @return Le centre de la ligne.
      */
     public Point centre() {
-        return centre;
+        return ligne[ligne.length - 1];
     }
 
     /**

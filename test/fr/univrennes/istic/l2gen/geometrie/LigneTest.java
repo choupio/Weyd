@@ -108,4 +108,8 @@ public class LigneTest {
     public void testTournerPasModif(){ // On ne modifie pas l'angle
         assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black angle=0", ligne.description(1));
     }
+    @Test
+    public void testAligner(){
+        assertEquals("  Ligne 10.0,25.0 30.0,45.0 50.0,65.0 de couleur black angle=0", ligne.aligner(HAUT,5).description(1));
+    }
 }
