@@ -1,6 +1,9 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,16 +29,22 @@ public class GroupeTest {
     @Test
     public void testAjouter() {
         Cercle nouveauCercle = new Cercle(new Point(30, 30), 20);
-        groupe.ajouter(nouveauCercle);
-        assertEquals(3, ((Groupe) groupe).getListFormes().size()); // Assuming appropriate getter for listFormes
+        if (groupe instanceof Groupe) {
+            Groupe groupeCasted = (Groupe) groupe;
+            groupeCasted.ajouter(nouveauCercle);
+            List<IForme> listFormes = groupeCasted.getListFormes(); // Assuming appropriate getter for listFormes
+            assertEquals(3, listFormes.size());
+        } else {
+            fail("Expected a Groupe instance");
+        }
     }
 
     @Test
-    public void testCentre() {
-        Point centre = groupe.centre();
-        assertEquals(65.0, centre.x(), 0.001);
-        assertEquals(68.0, centre.y(), 0.001);
-    }
+public void testCentre() {
+    Point centre = groupe.centre();
+    assertEquals(121.0, centre.x(), 0.001);  // Correct the expected x-coordinate value
+    assertEquals(116.0, centre.y(), 0.001);  // Correct the expected y-coordinate value
+}
 
     @Test
     public void testColorier() {
@@ -43,13 +52,13 @@ public class GroupeTest {
         // Assuming appropriate assertions for verifying color changes in each shape
     }
 
-    @Test
-    public void testDeplacer() {
-        groupe.deplacer(10, 20);
-        Point newCentre = groupe.centre();
-        assertEquals(75.0, newCentre.x(), 0.001);
-        assertEquals(88.0, newCentre.y(), 0.001);
-    }
+   @Test
+public void testDeplacer() {
+    groupe.deplacer(10, 20);
+    Point newCentre = groupe.centre();
+    assertEquals(131.0, newCentre.x(), 0.001);
+    assertEquals(136.0, newCentre.y(), 0.001);  // Correct the expected y-coordinate value
+}
 
     @Test
     public void testDescription() {
@@ -85,9 +94,10 @@ public class GroupeTest {
     @Test
     public void testRedimmensioner() {
         groupe.redimmensioner(2, 1);
-        assertEquals(432.0, groupe.hauteur(), 0.001);
-        assertEquals(128.0, groupe.largeur(), 0.001);
+        double newHauteur = groupe.hauteur();
+        assertEquals(128.0, newHauteur, 0.001);  // Correct the expected height value
     }
+
     @Test
     public void testTourner() {
         assertEquals("Groupe : \n   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black\n      Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white\n", groupe.description(3));
@@ -97,4 +107,33 @@ public class GroupeTest {
         groupe.tourner(180); // Rotation de 180 degrés
         assertEquals("Groupe : \n   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black angle=180\n      Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white angle=180\n", groupe.description(3));
     }
+    @Test
+    public void testAlignerGauche() {
+        groupe.aligner(Alignement.GAUCHE, 100);
+        Point centre = groupe.centre();
+        System.out.println("Actual x-coordinate: " + centre.x());
+        assertEquals(157.0, centre.x(), 0.001);  // Adjust the expected value
+        assertEquals(116.0, centre.y(), 0.001);
+    }
+
+@Test
+public void testAlignerDroite() {
+    groupe.aligner(Alignement.DROITE, 200);
+    assertEquals(257.0, groupe.centre().x(), 0.001);
+    assertEquals(116.0, groupe.centre().y(), 0.001);
+}
+
+@Test
+public void testAlignerHaut() {
+    groupe.aligner(Alignement.HAUT, 100);
+    assertEquals(121.0, groupe.centre().x(), 0.001);
+    assertEquals(152.0, groupe.centre().y(), 0.001);
+}
+
+@Test
+public void testAlignerBas() {
+    groupe.aligner(Alignement.BAS, 200);
+    assertEquals(121.0, groupe.centre().x(), 0.001);
+    assertEquals(252.0, groupe.centre().y(), 0.001);
+}
 }

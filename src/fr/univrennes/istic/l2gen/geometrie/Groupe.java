@@ -58,6 +58,7 @@ public class Groupe implements IForme {
         Point centre = new Point(centreX, centreY);
         return centre;
     }
+    
 
     /**
      * Retourne la hauteur maximale parmi toutes les formes du groupe.
@@ -217,8 +218,35 @@ public IForme redimmensioner(double h, double l) {
         }
     }
 
-    public Object getListFormes() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getListFormes'");
+    @Override
+	public IForme aligner(Alignement alignement, double cible) {
+        if (listFormes.isEmpty()) {
+            return this;
+        }
+        double deviationX = 0;
+        double deviationY = 0;
+        switch (alignement) {
+            case GAUCHE:
+                deviationX = cible - largeur() / 2;  // Align to the left
+                break;
+            case DROITE:
+                deviationX = cible - largeur() / 2;  // Align to the right
+                break;
+            case HAUT:
+                deviationY = cible - hauteur() / 2;  // Align to the top
+                break;
+            case BAS:
+                deviationY = cible - hauteur() / 2;  // Align to the bottom
+                break;
+            // Add additional cases for other alignments if needed
+        }
+        for (IForme forme : listFormes) {
+            forme.deplacer(deviationX, deviationY);
+        }
+        return this;
+    }
+
+    public List<IForme> getListFormes() {
+        return listFormes;
     }
 }
