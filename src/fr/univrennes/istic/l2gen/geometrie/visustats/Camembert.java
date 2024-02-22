@@ -70,7 +70,7 @@ public class Camembert implements IForme {
     @Override
     public String enSVG() {
         StringBuilder svg = new StringBuilder();
-        svg.append(String.format("<circle cx=\"%f\" cy=\"%f\" r=\"%f\" />\n", centre.getX(), centre.getY(), rayon));
+        svg.append(String.format("<circle cx=\"%f\" cy=\"%f\" r=\"%f\" />\n", centre.x(), centre.y(), rayon));
 
         double angleDebut = 0;
         for (Secteur secteur : secteurs) {
