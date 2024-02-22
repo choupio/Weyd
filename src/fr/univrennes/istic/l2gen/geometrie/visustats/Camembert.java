@@ -17,12 +17,12 @@ public class Camembert implements IForme {
     public Point centre() {
         return centre;
     }
-    
-    public Camembert(Point point, double a){
+
+    public Camembert(Point point, double a) {
         this.centre = point;
         this.rayon = a;
         this.secteurs = new ArrayList<>();
-    }   
+    }
 
     public Camembert(double x, double y, double rayon) {
         this(new Point(x, y), rayon);
@@ -35,7 +35,10 @@ public class Camembert implements IForme {
 
     @Override
     public String description(int indentation) {
-        String indent = " ".repeat(indentation);
+        StringBuilder indent = new StringBuilder();
+        for (int i = 0; i < indentation; i++) {
+            indent.append("  ");
+        }
         StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
         sb.append(indent + "  Centre: " + centre + "\n");
         sb.append(indent + "  Rayon: " + rayon + "\n");
@@ -130,5 +133,4 @@ public class Camembert implements IForme {
         throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
     }
 
-    
 }
