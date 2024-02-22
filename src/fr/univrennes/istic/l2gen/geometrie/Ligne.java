@@ -220,7 +220,7 @@ public class Ligne implements IForme {
     }
 
     public IForme tourner(int angle){
-        this.angle=angle;
+        this.angle+=angle;
         return this;
     }
 
@@ -245,24 +245,16 @@ public class Ligne implements IForme {
     public IForme aligner(Alignement alignement, double cible) {
         switch (alignement) {
             case HAUT:
-                for(int i=0;i<ligne.length;i++){
-                    ligne[i].setY(ligne[i].y()+cible);
-                }
+                deplacer(0, cible);
                 break;
             case BAS:
-                for(int i=0;i<ligne.length;i++){
-                    ligne[i].setY(ligne[i].y()-cible);
-                }
+                deplacer(0, -cible);
                 break;
             case DROITE:
-                for(int i=0;i<ligne.length;i++){
-                    ligne[i].setX(ligne[i].x()+cible);
-                }
+                deplacer(cible,0);
                 break;
             case GAUCHE:
-                for(int i=0;i<ligne.length;i++){
-                    ligne[i].setX(ligne[i].x()-cible);
-                }
+            deplacer(-cible, 0);
                 break;
             default:
                 break;
