@@ -249,4 +249,36 @@ public IForme redimmensioner(double h, double l) {
     public List<IForme> getListFormes() {
         return listFormes;
     }
+
+    /* *
+    * Vide ce groupe de tous ses elements
+    *@return IForme : ce groupe qui ne contient plus aucun element
+    */
+    
+    public IForme vider() {
+        return this;
+    }
+    /* *
+    * @param alignement direction HAUT , BAS , DROITE , GAUCHE tc .
+    * @param cible ligne horizontale ou verticale sur laquelle
+    * doivent s ’ aligner chacun des elements du groupe
+    TP GEN 4
+    L2 informatique
+    TP5-6
+    Test avec JUnit et Test Driven Development
+    * @return IForme
+    */
+    public IForme alignerElements ( Alignement alignement , double cible ) {
+        return this;
+    }
+    /* *
+    * @param alignement direction HAUT , BAS , DROITE , GAUCHE tc .
+    * @param cible ligne horizontale ou verticale sur laquelle
+    * doivent s ’ empiler chacun des elements du groupe
+    * @param separation : distance entre chaque element empile
+    * @return IForme
+    */
+    public IForme empilerElements ( Alignement alignement , double cible , double separation ) {
+        return this;
+    }
 }

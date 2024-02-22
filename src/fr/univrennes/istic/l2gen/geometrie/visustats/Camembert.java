@@ -19,12 +19,12 @@ public class Camembert implements IForme {
     public Point centre() {
         return centre;
     }
-    
-    public Camembert(Point point, double a){
+
+    public Camembert(Point point, double a) {
         this.centre = point;
         this.rayon = a;
         this.secteurs = new ArrayList<>();
-    }   
+    }
 
     public Camembert(double x, double y, double rayon) {
         this(new Point(x, y), rayon);
@@ -38,11 +38,12 @@ public class Camembert implements IForme {
     @Override
     public String description(int indentation) {
         String indent = " ".repeat(indentation);
-        StringBuilder sb = new StringBuilder(indent + "Secteur: " + description + ", Proportion: " + proportion + "\n");
-        if (this.centre != null) {
-            sb.append(indent + "  Centre: " + centre.x() + ", " + centre.y() + "\n");
-        } else {
-            sb.append(indent + "  Centre: null\n");
+        StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
+        sb.append(indent + "  Centre: " + centre + "\n");
+        sb.append(indent + "  Rayon: " + rayon + "\n");
+        sb.append(indent + "  Secteurs:\n");
+        for (Secteur secteur : secteurs) {
+            sb.append(secteur.description(indentation + 2));
         }
         return sb.toString();
     }
@@ -66,8 +67,13 @@ public class Camembert implements IForme {
 
     @Override
     public IForme dupliquer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dupliquer'");
+        Camembert camembertNouveau = new Camembert(centre.x(), centre.y(), rayon);
+        ArrayList<Secteur> lstSecteurs = new ArrayList<>();
+        for (Secteur secteur : secteurs) {
+            lstSecteurs.add((Secteur) secteur.dupliquer());
+        }
+        camembertNouveau.secteurs = lstSecteurs;
+        return camembertNouveau;
     }
 
     @Override
@@ -134,23 +140,5 @@ public class Camembert implements IForme {
         throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
     }
 
-    public List<Secteur> getSecteurs() {
-        // Retourne la liste actuelle des secteurs
-        return secteurs;
-    }
-    public int getNombreSecteurs() {
-        // Retourne le nombre actuel de secteurs
-        return secteurs.size();
-    }
-    
-    public String getCouleurSecteur(int i) {
-        // Vérifie que l'index est valide
-        if (i >= 0 && i < secteurs.size()) {
-            // Retourne la couleur du secteur à l'index spécifié
-            return secteurs.get(i).getCouleur();
-        } else {
-            throw new IndexOutOfBoundsException("Index de secteur invalide : " + i);
-        }
-    }
     
 }

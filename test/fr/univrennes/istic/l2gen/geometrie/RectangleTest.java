@@ -74,11 +74,10 @@ public class RectangleTest {
 
     @Test
     public void testRedimmensioner() {
-        Rectangle r2 = new Rectangle(r.centre(), 8, 9);
-        Rectangle r3 =  (Rectangle) r.redimmensioner(9, 8);
-        assertEquals(r2.centre(), r3.centre());
-        assertEquals(r2.largeur(), r3.largeur(),0.0001);
-        assertEquals(r2.hauteur(),r3.hauteur(),0.0001);
+        Rectangle r3 = (Rectangle) r.redimmensioner(0.5, 2);
+        assertEquals(r.centre(), r3.centre());
+        assertEquals(r3.largeur(), 10, 0.0001);
+        assertEquals(r.hauteur(), 4, 0.0001);
     }
 
     @Test
@@ -94,13 +93,13 @@ public class RectangleTest {
     }
 
     @Test
-    public void testTourner(){ // en modifiant l'angle 
+    public void testTourner() { // en modifiant l'angle
         r.tourner(38);
         assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=38", r.description(1));
     }
 
     @Test
-    public void testTournerPasModif(){ //sans modifier l'angle
+    public void testTournerPasModif() { // sans modifier l'angle
         assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=0", r.description(1));
     }
 }
