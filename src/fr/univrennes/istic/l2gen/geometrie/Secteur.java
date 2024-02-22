@@ -299,7 +299,7 @@ public class Secteur implements IForme {
         this.rotation = rotation;
     }
 
-    public void setCouleur(String string) {
+    public void setCouleur(String couleur) {
         this.couleur = couleur;
     }
 
