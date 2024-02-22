@@ -67,8 +67,13 @@ public class Camembert implements IForme {
 
     @Override
     public IForme dupliquer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dupliquer'");
+        Camembert camembertNouveau = new Camembert(centre.x(), centre.y(), rayon);
+        ArrayList<Secteur> lstSecteurs = new ArrayList<>();
+        for (Secteur secteur : secteurs) {
+            lstSecteurs.add((Secteur) secteur.dupliquer());
+        }
+        camembertNouveau.secteurs = lstSecteurs;
+        return camembertNouveau;
     }
 
     @Override
