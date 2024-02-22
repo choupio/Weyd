@@ -44,7 +44,7 @@ public class LigneTest {
     @Test
     public void testColorier() {
         ligne.colorier("red");
-        assertEquals("<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"red\"/>", ligne.enSVG());
+        assertEquals("<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"red\" transform=\"rotate(0)\"/>", ligne.enSVG());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class LigneTest {
     @Test
     public void testDescription() {
         setUp();
-        assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black d'angle 0", ligne.description(1));
+        assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black angle=0", ligne.description(1));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class LigneTest {
 
     @Test
     public void testEnSVG() {
-        assertEquals("<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"black\"/>",ligne.enSVG());
+        assertEquals("<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"black\" transform=\"rotate(0)\"/>",ligne.enSVG());
     }
 
 
