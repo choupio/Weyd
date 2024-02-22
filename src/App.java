@@ -17,10 +17,6 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        // L'enlevez pas svp c'est pour debug
-        Triangle debug = new Triangle(0, 0, 1, 0, 0, 1);
-        debug.tourner(38);
-
         Groupe tableau = new Groupe();
         tableau.ajouter(new Cercle(256, 256, 128));
         tableau.ajouter(new Ellipse(256, 256, 128, 64));
