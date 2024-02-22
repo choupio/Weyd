@@ -1,6 +1,6 @@
 
 
-import fr.univrennes.istic.l2gen.geometrie.*;s
+import fr.univrennes.istic.l2gen.geometrie.*;
 
 public class App {
 
