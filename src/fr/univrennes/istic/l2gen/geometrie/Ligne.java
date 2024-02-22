@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import fr.univrennes.istic.l2gen.geometrie.Alignement;
 
 /**
  * La classe Ligne représente une ligne polygonale définie par une série de sommets.
@@ -15,6 +14,7 @@ public class Ligne implements IForme {
     private Point[] ligne; // Tableau des sommets de la ligne
     private String couleur = "black"; // Couleur de la ligne en "black"
     private int angle = 0;
+    private Point centre=centre();
 
     /**
      * Constructeur de la classe Ligne prenant en paramètre les coordonnées des sommets de la ligne.
@@ -244,10 +244,25 @@ public class Ligne implements IForme {
 
     @Override
     public IForme aligner(fr.univrennes.istic.l2gen.geometrie.Alignement alignement, double cible) {
-        if(alignement==HAUT || alignement== BAS){
-
-        }else if(alignement==DROITE || alignement ==GAUCHE){
-
-        }
+        double nouveauX = centre.x();
+        double nouveauY = centre.y();
+        switch (alignement) {
+            case HAUT:
+                nouveauY = cible + hauteur() / 2;
+                break;
+            case BAS:
+                nouveauY = cible - hauteur() / 2;
+                break;
+            case DROITE:
+                nouveauX = cible - largeur() / 2;
+                break;
+            case GAUCHE:
+                nouveauX = cible - largeur() / 2;
+                break;
+            default:
+                break;
+        }   
+        centre = new Point(nouveauX, nouveauY);
+        return this;
     }
 }
