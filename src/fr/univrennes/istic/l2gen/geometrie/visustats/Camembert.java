@@ -12,6 +12,8 @@ public class Camembert implements IForme {
     private Point centre;
     private double rayon;
     private List<Secteur> secteurs;
+    private String description;
+    public double proportion;
 
     @Override
     public Point centre() {
@@ -36,15 +38,15 @@ public class Camembert implements IForme {
     @Override
     public String description(int indentation) {
         String indent = " ".repeat(indentation);
-        StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
-        sb.append(indent + "  Centre: " + centre + "\n");
-        sb.append(indent + "  Rayon: " + rayon + "\n");
-        sb.append(indent + "  Secteurs:\n");
-        for (Secteur secteur : secteurs) {
-            sb.append(secteur.description(indentation + 2));
+        StringBuilder sb = new StringBuilder(indent + "Secteur: " + description + ", Proportion: " + proportion + "\n");
+        if (this.centre != null) {
+            sb.append(indent + "  Centre: " + centre.x() + ", " + centre.y() + "\n");
+        } else {
+            sb.append(indent + "  Centre: null\n");
         }
         return sb.toString();
     }
+
 
     @Override
     public double hauteur() {
@@ -98,6 +100,8 @@ public class Camembert implements IForme {
         return this;
     }
 
+
+    @Override
     public IForme tourner(int angle) {
         for (Secteur secteur : secteurs) {
             secteur.setRotation(secteur.getRotation() + angle);
@@ -130,5 +134,23 @@ public class Camembert implements IForme {
         throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
     }
 
+    public List<Secteur> getSecteurs() {
+        // Retourne la liste actuelle des secteurs
+        return secteurs;
+    }
+    public int getNombreSecteurs() {
+        // Retourne le nombre actuel de secteurs
+        return secteurs.size();
+    }
+    
+    public String getCouleurSecteur(int i) {
+        // Vérifie que l'index est valide
+        if (i >= 0 && i < secteurs.size()) {
+            // Retourne la couleur du secteur à l'index spécifié
+            return secteurs.get(i).getCouleur();
+        } else {
+            throw new IndexOutOfBoundsException("Index de secteur invalide : " + i);
+        }
+    }
     
 }

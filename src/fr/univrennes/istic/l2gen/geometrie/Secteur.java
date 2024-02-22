@@ -3,6 +3,7 @@ package fr.univrennes.istic.l2gen.geometrie;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Cette classe représente un secteur de cercle.
@@ -21,12 +22,7 @@ public class Secteur implements IForme {
     public double proportion;
     private double rotation; // Angle de rotation en degrés
 
-    public Secteur(String description, double proportion) {
-        this.description = description;
-        this.proportion = proportion;
-        this.couleur = "gray"; // Couleur par défaut
-        this.rotation = 0;
-    }
+    
 
     /**
      * Calcule la hauteur du secteur.
