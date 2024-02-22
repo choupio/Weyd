@@ -7,18 +7,12 @@ import org.junit.Test;
 
 public class TriangleTest {
     private Triangle triangle;
-    private Point point1;
-    private Point point2;
-    private Point point3;
 
     @Before
     public void setUp() {
         Point point1 = new Point(0, 0);
-        this.point1 = point1;
         Point point2 = new Point(1, 0);
-        this.point2 = point2;
         Point point3 = new Point(0, 1);
-        this.point3 = point3;
         Triangle triangle = new Triangle(point1, point2, point3);
         this.triangle = triangle;
     }
@@ -33,7 +27,7 @@ public class TriangleTest {
     @Test
     public void testDescription() {
         String description = triangle.description(2);
-        assertEquals("  Triangle 0.0, 0.0 1.0, 0.0 0.0, 1.0 de couleur white angle=0", description);
+        assertEquals("  Triangle 0.0,0.0 1.0,0.0 0.0,1.0 de couleur white angle=0", description);
     }
 
     @Test
@@ -107,17 +101,64 @@ public class TriangleTest {
     @Test
     public void testTourner() { // en modifiant l'angle
         triangle.tourner(38);
-        assertEquals(" Triangle 0.0, 0.0 1.0, 0.0 0.0, 1.0 de couleur white angle=38", triangle.description(1));
+        assertEquals(" Triangle 0.0,0.0 1.0,0.0 0.0,1.0 de couleur white angle=38", triangle.description(1));
     }
 
     @Test
     public void testTournerPasModif() { // sans modifier l'angle
         triangle.tourner(0);
-        assertEquals(" Triangle 0.0, 0.0 1.0, 0.0 0.0, 1.0 de couleur white angle=0", triangle.description(1));
+        assertEquals(" Triangle 0.0,0.0 1.0,0.0 0.0,1.0 de couleur white angle=0", triangle.description(1));
     }
 
+    // Pour le cas HAUT
     @Test
-    public void testAligner(){
-        
+    public void testAlignerH() {
+        triangle.aligner(Alignement.HAUT, 150);
+        Triangle triangleRésultats = new Triangle(0, 150, 1, 150, 0, 151);
+        assertEquals(triangleRésultats.point1.x(), triangle.point1.x(), 0.00001);
+        assertEquals(triangleRésultats.point1.y(), triangle.point1.y(), 0.00001);
+        assertEquals(triangleRésultats.point2.x(), triangle.point2.x(), 0.00001);
+        assertEquals(triangleRésultats.point2.y(), triangle.point2.y(), 0.00001);
+        assertEquals(triangleRésultats.point3.x(), triangle.point3.x(), 0.00001);
+        assertEquals(triangleRésultats.point3.y(), triangle.point3.y(), 0.00001);
+    }
+
+    // Pour le cas BAS
+    @Test
+    public void testAlignerB() {
+        triangle.aligner(Alignement.BAS, 250);
+        Triangle triangleRésultats = new Triangle(0, 249, 1, 249, 0, 250);
+        assertEquals(triangleRésultats.point1.x(), triangle.point1.x(), 0.00001);
+        assertEquals(triangleRésultats.point1.y(), triangle.point1.y(), 0.00001);
+        assertEquals(triangleRésultats.point2.x(), triangle.point2.x(), 0.00001);
+        assertEquals(triangleRésultats.point2.y(), triangle.point2.y(), 0.00001);
+        assertEquals(triangleRésultats.point3.x(), triangle.point3.x(), 0.00001);
+        assertEquals(triangleRésultats.point3.y(), triangle.point3.y(), 0.00001);
+    }
+
+    // Pour le cas GAUCHE
+    @Test
+    public void testAlignerG() {
+        triangle.aligner(Alignement.GAUCHE, 100);
+        Triangle triangleRésultats = new Triangle(100, 0, 101, 0, 100, 1);
+        assertEquals(triangleRésultats.point1.x(), triangle.point1.x(), 0.00001);
+        assertEquals(triangleRésultats.point1.y(), triangle.point1.y(), 0.00001);
+        assertEquals(triangleRésultats.point2.x(), triangle.point2.x(), 0.00001);
+        assertEquals(triangleRésultats.point2.y(), triangle.point2.y(), 0.00001);
+        assertEquals(triangleRésultats.point3.x(), triangle.point3.x(), 0.00001);
+        assertEquals(triangleRésultats.point3.y(), triangle.point3.y(), 0.00001);
+    }
+
+    // Pour le cas DROITE
+    @Test
+    public void testAlignerD() {
+        triangle.aligner(Alignement.DROITE, 175);
+        Triangle triangleRésultats = new Triangle(174, 0, 175, 0, 174, 1);
+        assertEquals(triangleRésultats.point1.x(), triangle.point1.x(), 0.00001);
+        assertEquals(triangleRésultats.point1.y(), triangle.point1.y(), 0.00001);
+        assertEquals(triangleRésultats.point2.x(), triangle.point2.x(), 0.00001);
+        assertEquals(triangleRésultats.point2.y(), triangle.point2.y(), 0.00001);
+        assertEquals(triangleRésultats.point3.x(), triangle.point3.x(), 0.00001);
+        assertEquals(triangleRésultats.point3.y(), triangle.point3.y(), 0.00001);
     }
 }
