@@ -35,8 +35,15 @@ public class Camembert implements IForme {
 
     @Override
     public String description(int indentation) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'description'");
+        String indent = " ".repeat(indentation);
+        StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
+        sb.append(indent + "  Centre: " + centre + "\n");
+        sb.append(indent + "  Rayon: " + rayon + "\n");
+        sb.append(indent + "  Secteurs:\n");
+        for (Secteur secteur : secteurs) {
+            sb.append(secteur.description(indentation + 2));
+        }
+        return sb.toString();
     }
 
     @Override
