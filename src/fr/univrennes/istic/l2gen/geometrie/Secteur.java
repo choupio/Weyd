@@ -18,7 +18,7 @@ public class Secteur implements IForme {
     private double haut; // La hauteur du secteur
     private int agle; // l'angle de rotation du secteur
     private String description;
-    private double proportion;
+    public double proportion;
     private double rotation; // Angle de rotation en degrés
 
     public Secteur(String description, double proportion) {
@@ -289,6 +289,18 @@ public class Secteur implements IForme {
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
+    }
+
+    public double getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(double rotation) {
+        this.rotation = rotation;
+    }
+
+    public void setCouleur(String string) {
+        this.couleur = couleur;
     }
 
 }

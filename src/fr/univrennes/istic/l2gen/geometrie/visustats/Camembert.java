@@ -41,20 +41,18 @@ public class Camembert implements IForme {
 
     @Override
     public double hauteur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hauteur'");
+        return rayon * 2;
     }
 
     @Override
     public double largeur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'largeur'");
+        return rayon * 2;
     }
 
     @Override
     public IForme deplacer(double dx, double dy) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
+        this.centre.plus(dx, dy);
+        return this;
     }
 
     @Override
@@ -71,26 +69,52 @@ public class Camembert implements IForme {
 
     @Override
     public String enSVG() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        StringBuilder svg = new StringBuilder();
+        svg.append(String.format("<circle cx=\"%f\" cy=\"%f\" r=\"%f\" />\n", centre.getX(), centre.getY(), rayon));
+
+        double angleDebut = 0;
+        for (Secteur secteur : secteurs) {
+            double angleFin = angleDebut + (secteur.proportion * 360);
+            svg.append(String.format("<path d=\"%s\" />\n", secteur.enSVG()));
+            angleDebut = angleFin;
+        }
+
+        return svg.toString();
     }
 
     @Override
     public IForme colorier(String... couleurs) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'colorier'");
+        // Supposons que chaque secteur doit être colorié avec une couleur différente
+        for (int i = 0; i < secteurs.size() && i < couleurs.length; i++) {
+            secteurs.get(i).setCouleur(couleurs[i]);
+        }
+        return this;
     }
 
-    @Override
     public IForme tourner(int angle) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tourner'");
+        for (Secteur secteur : secteurs) {
+            secteur.setRotation(secteur.getRotation() + angle);
+        }
+        return this;
     }
 
     @Override
     public IForme aligner(Alignement alignement, double cible) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'aligner'");
+        switch (alignement) {
+            case HAUT:
+                centre = new Point(centre.x(), cible + rayon);
+                break;
+            case BAS:
+                centre = new Point(centre.x(), cible - rayon);
+                break;
+            case DROITE:
+                centre = new Point(cible + rayon, centre.y());
+                break;
+            case GAUCHE:
+                centre = new Point(cible - rayon, centre.y());
+                break;
+        }
+        return this;
     }
 
     @Override
