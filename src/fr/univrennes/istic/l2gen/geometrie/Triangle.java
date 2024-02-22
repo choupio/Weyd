@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.Math;
+import java.util.ArrayList;
 
 /**
  * La classe Triangle représente un triangle défini par trois points.
@@ -28,8 +29,8 @@ public class Triangle implements IForme {
      * @param y3 Coordonnée y du troisième sommet.
      */
     public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
-        point1 = new Point(x1 - y1 / 2, y1 * 2);
-        point2 = new Point(x2 - y2 / 2, y2);
+        point1 = new Point(x1, y1);
+        point2 = new Point(x2, y2);
         point3 = new Point(x3, y3);
     }
 
@@ -78,8 +79,8 @@ public class Triangle implements IForme {
         for (int i = 0; i < entier; i += 1) {
             cran += " ";
         }
-        return cran + "Triangle " + point1.x() + ", " + point1.y() + " " + point2.x() + ", " + point2.y() + " "
-                + point3.x() + ", " + point3.y() + " de couleur " + couleur + " angle=" + angle;
+        return cran + "Triangle " + point1.x() + "," + point1.y() + " " + point2.x() + "," + point2.y() + " "
+                + point3.x() + "," + point3.y() + " de couleur " + couleur + " angle=" + angle;
     }
 
     /**
@@ -220,28 +221,92 @@ public class Triangle implements IForme {
         }
     }
 
+    /**
+     * Effectue une rotation de triangle d’une valeur d’angle exprimée en degrés
+     * 
+     * @param angle un entier représentant le degré
+     * @return l'objet triangle
+     */
     public IForme tourner(int angle) {
         this.angle = angle;
-        Point centre = this.centre();
-        // Pour le point1
-        point1.setX((point1.x() - centre.x()) * Math.cos(Math.toRadians(angle))
-                - (point1.y() - centre.y()) * Math.sin(Math.toRadians(angle)) + centre.x());
-        point1.setY((point1.x() - centre.x()) * Math.sin(Math.toRadians(angle))
-                + (point1.y() - centre.y()) * Math.cos(Math.toRadians(angle)) + centre.y());
-        // Pour le point2
-        point2.setX((point2.x() - centre.x()) * Math.cos(Math.toRadians(angle))
-                - (point2.y() - centre.y()) * Math.sin(Math.toRadians(angle)) + centre.x());
-        point2.setY((point2.x() - centre.x()) * Math.sin(Math.toRadians(angle))
-                + (point2.y() - centre.y()) * Math.cos(Math.toRadians(angle)) + centre.y());
-        // Pour le point3
-        point3.setX((point3.x() - centre.x()) * Math.cos(Math.toRadians(angle))
-                - (point3.y() - centre.y()) * Math.sin(Math.toRadians(angle)) + centre.x());
-        point3.setY((point3.x() - centre.x()) * Math.sin(Math.toRadians(angle))
-                + (point3.y() - centre.y()) * Math.cos(Math.toRadians(angle)) + centre.y());
         return this;
     }
 
+    /**
+     * Aligne le HAUT, BAS, DROITE ou GAUCHE de triangle sur l’axe cible
+     * 
+     * @param alignement un Alignement représentant par rapport à où on s'aligne
+     * @param cible      un double qui représente l'axe cible
+     * @return l'objet triangle
+     */
     public IForme aligner(Alignement alignement, double cible) {
-        throw new UnsupportedOperationException("Unimplemented method 'aligner'");
+        ArrayList<Point> lstPoints = new ArrayList<Point>();
+        lstPoints.add(0, point1);
+        lstPoints.add(1, point2);
+        lstPoints.add(2, point3);
+
+        if (alignement == Alignement.HAUT) {
+
+            // recherche du y minimum
+            double minY = lstPoints.get(0).y();
+            for (Point point : lstPoints) {
+                if (minY > point.y()) {
+                    minY = point.y();
+                }
+            }
+
+            double distanceY = cible - minY;
+            for (int i = 0; i < lstPoints.size(); i++) {
+                Point point = lstPoints.remove(i);
+                lstPoints.add(i, new Point(point.x(), point.y() + distanceY));
+            }
+        } else if (alignement == Alignement.BAS) {
+            // recherche du y maximum
+            double maxY = lstPoints.get(0).y();
+            for (Point point : lstPoints) {
+                if (maxY < point.y()) {
+                    maxY = point.y();
+                }
+            }
+
+            double distanceY = cible - maxY;
+            for (int i = 0; i < lstPoints.size(); i++) {
+                Point point = lstPoints.remove(i);
+                lstPoints.add(i, new Point(point.x(), point.y() + distanceY));
+            }
+        } else if (alignement == Alignement.GAUCHE) {
+            // recherche du x minimum
+            double minX = lstPoints.get(0).x();
+            for (Point point : lstPoints) {
+                if (minX > point.x()) {
+                    minX = point.x();
+                }
+            }
+
+            double distanceX = cible - minX;
+            for (int i = 0; i < lstPoints.size(); i++) {
+                Point point = lstPoints.remove(i);
+                lstPoints.add(i, new Point(point.x() + distanceX, point.y()));
+            }
+        } else if (alignement == Alignement.DROITE) {
+            // recherche du x minimum
+            double maxX = lstPoints.get(0).x();
+            for (Point point : lstPoints) {
+                if (maxX < point.x()) {
+                    maxX = point.x();
+                }
+            }
+
+            double distanceX = cible - maxX;
+            for (int i = 0; i < lstPoints.size(); i++) {
+                Point point = lstPoints.remove(i);
+                lstPoints.add(i, new Point(point.x() + distanceX, point.y()));
+            }
+        }
+        this.point1 = lstPoints.get(0);
+        this.point2 = lstPoints.get(1);
+        this.point3 = lstPoints.get(2);
+
+        return this;
     }
 }
