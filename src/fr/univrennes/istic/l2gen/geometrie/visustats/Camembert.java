@@ -1,5 +1,8 @@
 package fr.univrennes.istic.l2gen.geometrie.visustats;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,8 @@ public class Camembert implements IForme {
     private Point centre;
     private double rayon;
     private List<Secteur> secteurs;
+    private String description;
+    public double proportion;
 
     @Override
     public Point centre() {
@@ -35,10 +40,7 @@ public class Camembert implements IForme {
 
     @Override
     public String description(int indentation) {
-        StringBuilder indent = new StringBuilder();
-        for (int i = 0; i < indentation; i++) {
-            indent.append("  ");
-        }
+        String indent = " ".repeat(indentation);
         StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
         sb.append(indent + "  Centre: " + centre + "\n");
         sb.append(indent + "  Rayon: " + rayon + "\n");
@@ -48,6 +50,7 @@ public class Camembert implements IForme {
         }
         return sb.toString();
     }
+
 
     @Override
     public double hauteur() {
@@ -106,6 +109,8 @@ public class Camembert implements IForme {
         return this;
     }
 
+
+    @Override
     public IForme tourner(int angle) {
         for (Secteur secteur : secteurs) {
             secteur.setRotation(secteur.getRotation() + angle);
@@ -134,8 +139,19 @@ public class Camembert implements IForme {
 
     @Override
     public void createSvgFile() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
+        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+
+        try (BufferedWriter writer = new BufferedWriter(
+                new FileWriter(
+                        "Camembert.svg"))) {
+            writer.write(svgContent);
+            writer.write(enSVG());
+            writer.write("</svg>");
+            System.out.println("Fichier créé avec succès !");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        }
     }
 
+    
 }
