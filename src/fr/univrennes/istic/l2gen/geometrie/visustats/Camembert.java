@@ -1,5 +1,8 @@
 package fr.univrennes.istic.l2gen.geometrie.visustats;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,8 +137,18 @@ public class Camembert implements IForme {
 
     @Override
     public void createSvgFile() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
+        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+
+        try (BufferedWriter writer = new BufferedWriter(
+                new FileWriter(
+                        "Camembert.svg"))) {
+            writer.write(svgContent);
+            writer.write(enSVG());
+            writer.write("</svg>");
+            System.out.println("Fichier créé avec succès !");
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
+        }
     }
 
 }
