@@ -156,7 +156,7 @@ public class Ligne implements IForme {
      * @return Une chaîne de caractères représentant la ligne en format SVG.
      */
     public String enSVG() {
-        String result = "<polyline points=\"";
+        String result = "<polyline ligne=\"";
         result = result + ligne.get(0).x() + ' ' + ligne.get(0).y() + ' ';
         for (int i = 1; i < ligne.size(); i++) {
             result = result + ligne.get(i).y() + ' ' + ligne.get(i).y() + ' ';
@@ -249,18 +249,64 @@ public class Ligne implements IForme {
 
     @Override
     public IForme aligner(Alignement alignement, double cible) {
+        double distanceY;
+        double distanceX;
         switch (alignement) {
             case HAUT:
-                deplacer(0, cible);
+                double minY = ligne.get(0).y();
+			    for (Point point : ligne) {
+				    if (minY > point.y()) {
+					    minY = point.y();
+				    }
+			    }
+
+			    distanceY = cible - minY;
+			    for (int i = 0; i < ligne.size(); i++) {
+				    Point point = ligne.remove(i);
+				    ligne.add(i, new Point(point.x(), point.y() + distanceY));
+			    }
                 break;
             case BAS:
-                deplacer(0, -cible);
+                double maxY = ligne.get(0).y();
+                for (Point point : ligne) {
+                    if (maxY < point.y()) {
+                        maxY = point.y();
+                    }
+                }
+
+                distanceY = cible - maxY;
+                for (int i = 0; i < ligne.size(); i++) {
+                    Point point = ligne.remove(i);
+                    ligne.add(i, new Point(point.x(), point.y() + distanceY));
+                }
                 break;
             case DROITE:
-                deplacer(cible, 0);
+            double maxX = ligne.get(0).x();
+			for (Point point : ligne) {
+				if (maxX < point.x()) {
+					maxX = point.x();
+				}
+			}
+
+			distanceX = cible - maxX;
+			for (int i = 0; i < ligne.size(); i++) {
+				Point point = ligne.remove(i);
+				ligne.add(i, new Point(point.x() + distanceX, point.y()));
+			}
                 break;
             case GAUCHE:
-                deplacer(-cible, 0);
+            double minX = ligne.get(0).x();
+			for (Point point : ligne) {
+				if (minX > point.x()) {
+					minX = point.x();
+				}
+			}
+
+			distanceX = cible - minX;
+			for (int i = 0; i < ligne.size(); i++) {
+				Point point = ligne.remove(i);
+				ligne.add(i, new Point(point.x() + distanceX, point.y()));
+			}
                 break;
             default:
                 break;
