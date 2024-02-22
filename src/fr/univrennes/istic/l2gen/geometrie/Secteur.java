@@ -16,17 +16,41 @@ public class Secteur implements IForme {
     private String couleur = "white"; // La couleur du secteur en "white"
     private double larg; // La largeur du secteur
     private double haut; // La hauteur du secteur
-    private int agle; // l'angle de rotation du secteur
-    private String description;
-    public double proportion;
-    private double rotation; // Angle de rotation en degrés
 
-    public Secteur(String description, double proportion) {
-        this.description = description;
-        this.proportion = proportion;
-        this.couleur = "gray"; // Couleur par défaut
-        this.rotation = 0;
+    
+    /**
+     * Constructeur de la classe Secteur prenant les coordonnées x et y du centre,
+     * le rayon, l'angle et l'arc du secteur.
+     * 
+     * @param x     La coordonnée x du centre.
+     * @param y     La coordonnée y du centre.
+     * @param rayon Le rayon du secteur.
+     * @param angle L'angle du secteur.
+     * @param arc   L'arc du secteur.
+     */
+    public Secteur(double x, double y, double rayon, double angle, double arc) {
+        this.centre = new Point(x, y);
+        this.rayon = rayon;
+        this.angle = angle + 30;
+        this.arc = arc;
     }
+
+    /**
+     * Constructeur de la classe Secteur prenant un Point comme centre, le rayon,
+     * l'angle et l'arc du secteur.
+     * 
+     * @param f     Le point central du secteur.
+     * @param rayon Le rayon du secteur.
+     * @param angle L'angle du secteur.
+     * @param arc   L'arc du secteur.
+     */
+    public Secteur(Point f, double rayon, double angle, double arc) {
+        this.centre = f;
+        this.rayon = rayon;
+        this.angle = angle + 30;
+        this.arc = arc;
+    }
+
 
     /**
      * Calcule la hauteur du secteur.
@@ -45,8 +69,8 @@ public class Secteur implements IForme {
      * @return the rotated shape
      */
     @Override
-	public IForme tourner(int agle) {
-		this.agle = agle;
+	public IForme tourner(int angle) {
+		this.angle = (double) angle;
 		return this;
 	}
 
@@ -163,39 +187,6 @@ public class Secteur implements IForme {
     }
 
     /**
-     * Constructeur de la classe Secteur prenant les coordonnées x et y du centre,
-     * le rayon, l'angle et l'arc du secteur.
-     * 
-     * @param x     La coordonnée x du centre.
-     * @param y     La coordonnée y du centre.
-     * @param rayon Le rayon du secteur.
-     * @param angle L'angle du secteur.
-     * @param arc   L'arc du secteur.
-     */
-    public Secteur(double x, double y, double rayon, double angle, double arc) {
-        this.centre = new Point(x, y);
-        this.rayon = rayon;
-        this.angle = angle + 30;
-        this.arc = arc;
-    }
-
-    /**
-     * Constructeur de la classe Secteur prenant un Point comme centre, le rayon,
-     * l'angle et l'arc du secteur.
-     * 
-     * @param f     Le point central du secteur.
-     * @param rayon Le rayon du secteur.
-     * @param angle L'angle du secteur.
-     * @param arc   L'arc du secteur.
-     */
-    public Secteur(Point f, double rayon, double angle, double arc) {
-        this.centre = f;
-        this.rayon = rayon;
-        this.angle = angle + 30;
-        this.arc = arc;
-    }
-
-    /**
      * Génère une description du secteur.
      * 
      * @param indentation L'indentation pour la description.
@@ -208,7 +199,7 @@ public class Secteur implements IForme {
             indent.append("  ");
         }
         return "Secteur" + indent + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
-                + " Arc=" + getArc() + " de couleur " + couleur + " et de rotation " + agle;
+                + " Arc=" + getArc() + " de couleur " + couleur + " et de rotation " + angle;
     }
 
     /**
@@ -240,8 +231,8 @@ public class Secteur implements IForme {
      * @return La représentation SVG du secteur.
      */
     public String enSVG() {
-        double startAngle = Math.toRadians(getAngle()+ rotation);
-        double endAngle = Math.toRadians(getAngle() + getArc()+ rotation);
+        double startAngle = Math.toRadians(getAngle());
+        double endAngle = Math.toRadians(getAngle() + getArc());
 
         double startX = centre.x() + getRayon() * Math.cos(startAngle);
         double startY = centre.y() - getRayon() * Math.sin(startAngle);
@@ -253,7 +244,7 @@ public class Secteur implements IForme {
 
         return "<path d=\"M " + startX + " " + startY + " A " + getRayon() + " " + getRayon()
                 + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.x() + " " + centre.y() + " Z\"\n"
-                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(\""+ agle +"\")\"/>";
+                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(\""+ angle +"\")\"/>";
     }
     
     /**
@@ -289,14 +280,6 @@ public class Secteur implements IForme {
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
-    }
-
-    public double getRotation() {
-        return rotation;
-    }
-
-    public void setRotation(double rotation) {
-        this.rotation = rotation;
     }
 
     public void setCouleur(String couleur) {
