@@ -11,7 +11,7 @@ import org.junit.Test;
 public class GroupeTest {
     private Cercle cercleTest;
     private Polygone polygone;
-    private IForme groupe;
+    private Groupe groupe;
 
     @Before
     public void initCerc() {
@@ -136,4 +136,20 @@ public void testAlignerBas() {
     assertEquals(121.0, groupe.centre().x(), 0.001);
     assertEquals(252.0, groupe.centre().y(), 0.001);
 }
+
+    @Test
+    public void testVide(){
+        assertEquals( null, groupe.vider());
+    }
+
+    @Test
+    public void testAlignerElements(){
+        groupe.alignerElements(Alignement.HAUT, 10);
+        assertEquals(10.0, groupe.centre().y(),0.0001);
+    }
+    
+    @Test
+    public void testEmpilerElements(){
+        
+    } 
 }
