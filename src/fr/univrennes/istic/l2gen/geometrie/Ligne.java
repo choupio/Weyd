@@ -14,7 +14,7 @@ public class Ligne implements IForme {
     private Point[] ligne; // Tableau des sommets de la ligne
     private String couleur = "black"; // Couleur de la ligne en "black"
     private int angle = 0;
-    private Point centre=centre();
+    private Point centre;
 
     /**
      * Constructeur de la classe Ligne prenant en paramètre les coordonnées des sommets de la ligne.
@@ -28,6 +28,7 @@ public class Ligne implements IForme {
             ligne[j] = new Point(l[i], l[i + 1]);
             j++;
         }
+        centre=ligne[ligne.length - 1];
     }
 
     /**
@@ -64,7 +65,7 @@ public class Ligne implements IForme {
      * @return Le centre de la ligne.
      */
     public Point centre() {
-        return ligne[ligne.length - 1];
+        return centre;
     }
 
     /**
@@ -243,26 +244,31 @@ public class Ligne implements IForme {
     }
 
     @Override
-    public IForme aligner(fr.univrennes.istic.l2gen.geometrie.Alignement alignement, double cible) {
-        double nouveauX = centre.x();
-        double nouveauY = centre.y();
+    public IForme aligner(Alignement alignement, double cible) {
         switch (alignement) {
             case HAUT:
-                nouveauY = cible + hauteur() / 2;
+                for(int i=0;i<ligne.length;i++){
+                    ligne[i].setY(ligne[i].y()+cible);
+                }
                 break;
             case BAS:
-                nouveauY = cible - hauteur() / 2;
+                for(int i=0;i<ligne.length;i++){
+                    ligne[i].setY(ligne[i].y()-cible);
+                }
                 break;
             case DROITE:
-                nouveauX = cible - largeur() / 2;
+                for(int i=0;i<ligne.length;i++){
+                    ligne[i].setX(ligne[i].x()+cible);
+                }
                 break;
             case GAUCHE:
-                nouveauX = cible - largeur() / 2;
+                for(int i=0;i<ligne.length;i++){
+                    ligne[i].setX(ligne[i].x()-cible);
+                }
                 break;
             default:
                 break;
-        }   
-        centre = new Point(nouveauX, nouveauY);
+        }
         return this;
     }
 }
