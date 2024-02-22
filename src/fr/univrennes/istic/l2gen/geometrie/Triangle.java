@@ -16,10 +16,9 @@ public class Triangle implements IForme {
     String couleur = "white"; // Couleur du triangle en "white"
     private int angle = 0; // Angle du triangle
 
-
-
     /**
-     * Constructeur de la classe Triangle prenant les coordonnées des sommets du triangle.
+     * Constructeur de la classe Triangle prenant les coordonnées des sommets du
+     * triangle.
      *
      * @param x1 Coordonnée x du premier sommet.
      * @param y1 Coordonnée y du premier sommet.
@@ -35,7 +34,8 @@ public class Triangle implements IForme {
     }
 
     /**
-     * Constructeur de la classe Triangle prenant les objets Point comme sommets du triangle.
+     * Constructeur de la classe Triangle prenant les objets Point comme sommets du
+     * triangle.
      *
      * @param point1 Premier sommet du triangle.
      * @param point2 Deuxième sommet du triangle.
@@ -120,7 +120,8 @@ public class Triangle implements IForme {
      *
      * @param dx Le déplacement en abscisse.
      * @param dy Le déplacement en ordonnée.
-     * @return Une référence à l'instance du triangle, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance du triangle, pour permettre les opérations
+     *         en chaîne.
      */
     @Override
     public IForme deplacer(double dx, double dy) {
@@ -139,7 +140,8 @@ public class Triangle implements IForme {
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
         Triangle nouvelleForme = new Triangle(point1.x(), point1.y(), point2.x(), point2.y(), point3.x(), point3.y());
-        nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
+        nouvelleForme.couleur = this.couleur; // Copie de la couleur, ajustez selon vos besoins
+        nouvelleForme.angle = this.angle;
         return nouvelleForme;
     }
 
@@ -148,7 +150,8 @@ public class Triangle implements IForme {
      *
      * @param h La nouvelle hauteur du triangle.
      * @param l La nouvelle largeur du triangle.
-     * @return Une référence à l'instance du triangle, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance du triangle, pour permettre les opérations
+     *         en chaîne.
      */
     @Override
     public IForme redimmensioner(double h, double l) {
@@ -175,15 +178,23 @@ public class Triangle implements IForme {
     @Override
     public String enSVG() {
         // Génère la représentation SVG du triangle
-        return "<polygon points=\"" + point1.x() + "," + point1.y() + " " + point2.x() + "," + point2.y() + " " + point3.x() + "," + point3.y() + "\" " +
-                "fill=\"" + couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\"/>";
+        String aRetourner = "<polygon points=\"" + point1.x() + "," + point1.y() + " " + point2.x() + "," + point2.y()
+                + " "
+                + point3.x() + "," + point3.y() + "\" " +
+                "fill=\"" + couleur + "\" stroke=\"black\"";
+        if (angle != 0) {
+            return aRetourner += " transform=\"rotate(" + angle + ")\"/>";
+        } else {
+            return aRetourner += "/>";
+        }
     }
 
     /**
      * Change la couleur du triangle.
      *
      * @param couleurs Un tableau de couleurs à appliquer au triangle.
-     * @return Une référence à l'instance du triangle, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance du triangle, pour permettre les opérations
+     *         en chaîne.
      */
     @Override
     public IForme colorier(String... couleurs) {
@@ -192,13 +203,14 @@ public class Triangle implements IForme {
     }
 
     /**
-     * Crée un fichier SVG représentant le triangle.
+     * Créer un fichier SVG représentant le triangle.
      */
     @Override
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Triangle.svg"))) {
+        try (BufferedWriter writer = new BufferedWriter(
+                new FileWriter("/l2gen_5_coupdumarteau/src/fr/univrennes/istic/l2gen/geometrie/Triangle.svg"))) {
             writer.write(svgContent);
             writer.write(enSVG());
             writer.write("</svg>");
@@ -208,12 +220,28 @@ public class Triangle implements IForme {
         }
     }
 
-    public IForme tourner(int angle){
+    public IForme tourner(int angle) {
         this.angle = angle;
+        Point centre = this.centre();
+        // Pour le point1
+        point1.setX((point1.x() - centre.x()) * Math.cos(Math.toRadians(angle))
+                - (point1.y() - centre.y()) * Math.sin(Math.toRadians(angle)) + centre.x());
+        point1.setY((point1.x() - centre.x()) * Math.sin(Math.toRadians(angle))
+                + (point1.y() - centre.y()) * Math.cos(Math.toRadians(angle)) + centre.y());
+        // Pour le point2
+        point2.setX((point2.x() - centre.x()) * Math.cos(Math.toRadians(angle))
+                - (point2.y() - centre.y()) * Math.sin(Math.toRadians(angle)) + centre.x());
+        point2.setY((point2.x() - centre.x()) * Math.sin(Math.toRadians(angle))
+                + (point2.y() - centre.y()) * Math.cos(Math.toRadians(angle)) + centre.y());
+        // Pour le point3
+        point3.setX((point3.x() - centre.x()) * Math.cos(Math.toRadians(angle))
+                - (point3.y() - centre.y()) * Math.sin(Math.toRadians(angle)) + centre.x());
+        point3.setY((point3.x() - centre.x()) * Math.sin(Math.toRadians(angle))
+                + (point3.y() - centre.y()) * Math.cos(Math.toRadians(angle)) + centre.y());
         return this;
     }
 
-    public IForme aligner(Alignement alignement, double cible){
+    public IForme aligner(Alignement alignement, double cible) {
         throw new UnsupportedOperationException("Unimplemented method 'aligner'");
     }
 }
