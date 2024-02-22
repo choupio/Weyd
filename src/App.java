@@ -1,19 +1,8 @@
-import org.junit.Before;
 
-import fr.univrennes.istic.l2gen.geometrie.Cercle;
-import fr.univrennes.istic.l2gen.geometrie.Ellipse;
-import fr.univrennes.istic.l2gen.geometrie.Groupe;
-import fr.univrennes.istic.l2gen.geometrie.IForme;
-import fr.univrennes.istic.l2gen.geometrie.Ligne;
-import fr.univrennes.istic.l2gen.geometrie.Polygone;
-import fr.univrennes.istic.l2gen.geometrie.Rectangle;
-import fr.univrennes.istic.l2gen.geometrie.Secteur;
-import fr.univrennes.istic.l2gen.geometrie.Triangle;
+
+import fr.univrennes.istic.l2gen.geometrie.*;s
 
 public class App {
-    private Cercle cercleTest;
-    private Polygone polygone;
-    private IForme groupe;
 
     public static void main(String[] args) throws Exception {
 
