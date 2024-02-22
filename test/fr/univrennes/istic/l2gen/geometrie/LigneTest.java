@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Before;
 
 
+
 public class LigneTest {
 
     Ligne ligne;
@@ -109,7 +110,24 @@ public class LigneTest {
         assertEquals("  Ligne 10.0,20.0 30.0,40.0 50.0,60.0 de couleur black angle=0", ligne.description(1));
     }
     @Test
-    public void testAligner(){
-        assertEquals("  Ligne 10.0,25.0 30.0,45.0 50.0,65.0 de couleur black angle=0", ligne.aligner(HAUT,5).description(1));
+    public void testAlignerHaut(){
+        setUp();
+        assertEquals("  Ligne 10.0,25.0 30.0,45.0 50.0,65.0 de couleur black angle=0", ligne.aligner(Alignement.HAUT,5).description(1));
+    }
+
+    @Test
+    public void testAlignerBas(){
+        setUp();
+        assertEquals("  Ligne 10.0,15.0 30.0,35.0 50.0,55.0 de couleur black angle=0", ligne.aligner(Alignement.BAS,5).description(1));
+    }
+
+    @Test
+    public void testAlignerDroite(){
+        setUp();
+        assertEquals("  Ligne 15.0,20.0 35.0,40.0 55.0,60.0 de couleur black angle=0", ligne.aligner(Alignement.DROITE,5).description(1));
+    }
+    @Test
+    public void testAlignerGauche(){
+        assertEquals("  Ligne 5.0,20.0 25.0,40.0 45.0,60.0 de couleur black angle=0", ligne.aligner(Alignement.GAUCHE,5).description(1));
     }
 }
