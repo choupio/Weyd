@@ -1,5 +1,4 @@
 
-
 import fr.univrennes.istic.l2gen.geometrie.*;
 
 public class App {
@@ -12,7 +11,7 @@ public class App {
         tableau.ajouter(new Ligne(128, 128, 128, 256, 256, 128, 256, 256));
         tableau.ajouter(new Polygone(128, 128, 128, 256, 256, 128, 256, 256));
         tableau.ajouter(new Rectangle(256, 256, 256, 128));
-        tableau.ajouter(new Secteur(256, 256, 128, 0, 60));
+        tableau.ajouter(new Secteur(new Point(256, 256), 128, 0, 60));
         tableau.ajouter(new Triangle(192, 128, 256, 128, 256, 256));
         tableau.createSvgFile();
 
