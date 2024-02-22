@@ -11,6 +11,7 @@ import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 public class Faisceau implements IForme {
     private String nom;
     private List<Rectangle> barres;
+    private String couleur = "white";
 
     public Faisceau(String nom, double... h) {
         this.nom = nom;
@@ -26,7 +27,8 @@ public class Faisceau implements IForme {
     }
 
     public IForme colorier(String... couleurs) {
-
+        couleur = couleurs[0];
+        return this;
     }
 
     public IForme dupliquer() {
@@ -49,11 +51,7 @@ public class Faisceau implements IForme {
         throw new UnsupportedOperationException("Unimplemented method 'largeur'");
     }
 
-    public IForme deplacer() {
-        throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
-    }
-
-    public IForme redimensionner() {
+    public IForme redimmensionner() {
         throw new UnsupportedOperationException("Unimplemented method 'redimensionner'");
     }
 
@@ -71,6 +69,11 @@ public class Faisceau implements IForme {
 
     public void createSvgFile() {
         throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
+    }
+
+    @Override
+    public IForme deplacer(double dx, double dy) {
+        throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
     }
 
 }
