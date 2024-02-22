@@ -15,6 +15,8 @@ public class Camembert implements IForme {
     private Point centre;
     private double rayon;
     private List<Secteur> secteurs;
+    private String description;
+    public double proportion;
 
     @Override
     public Point centre() {
@@ -38,10 +40,7 @@ public class Camembert implements IForme {
 
     @Override
     public String description(int indentation) {
-        StringBuilder indent = new StringBuilder();
-        for (int i = 0; i < indentation; i++) {
-            indent.append("  ");
-        }
+        String indent = " ".repeat(indentation);
         StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
         sb.append(indent + "  Centre: " + centre + "\n");
         sb.append(indent + "  Rayon: " + rayon + "\n");
@@ -51,6 +50,7 @@ public class Camembert implements IForme {
         }
         return sb.toString();
     }
+
 
     @Override
     public double hauteur() {
@@ -109,6 +109,8 @@ public class Camembert implements IForme {
         return this;
     }
 
+
+    @Override
     public IForme tourner(int angle) {
         for (Secteur secteur : secteurs) {
             secteur.setRotation(secteur.getRotation() + angle);
@@ -151,4 +153,5 @@ public class Camembert implements IForme {
         }
     }
 
+    
 }
