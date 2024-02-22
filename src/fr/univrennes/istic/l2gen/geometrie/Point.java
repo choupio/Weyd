@@ -95,4 +95,21 @@ public class Point {
         setY(this.y+y1);
         return new Point(this.x, this.y);
     }
+
+    /**
+     * @param p
+     * @return le maximum des coordonnées x et y de ce point et du point spécifié.
+     */
+    public double max(Point p) {
+        return Math.max(this.x, p.x()) + Math.max(this.y, p.y());
+    }
+
+    /**
+     * @param p
+     * @return le minimum des coordonnées x et y de ce point et du point spécifié.
+     */
+    public double min(Point p) {
+        return Math.min(this.x, p.x()) + Math.min(this.y, p.y());
+    }
+    
 }
