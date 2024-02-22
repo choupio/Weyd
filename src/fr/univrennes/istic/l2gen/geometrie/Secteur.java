@@ -3,6 +3,7 @@ package fr.univrennes.istic.l2gen.geometrie;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Cette classe représente un secteur de cercle.
@@ -18,22 +19,6 @@ public class Secteur implements IForme {
     private double haut; // La hauteur du secteur
 
     
-    /**
-     * Constructeur de la classe Secteur prenant les coordonnées x et y du centre,
-     * le rayon, l'angle et l'arc du secteur.
-     * 
-     * @param x     La coordonnée x du centre.
-     * @param y     La coordonnée y du centre.
-     * @param rayon Le rayon du secteur.
-     * @param angle L'angle du secteur.
-     * @param arc   L'arc du secteur.
-     */
-    public Secteur(double x, double y, double rayon, double angle, double arc) {
-        this.centre = new Point(x, y);
-        this.rayon = rayon;
-        this.angle = angle + 30;
-        this.arc = arc;
-    }
 
     /**
      * Constructeur de la classe Secteur prenant un Point comme centre, le rayon,
