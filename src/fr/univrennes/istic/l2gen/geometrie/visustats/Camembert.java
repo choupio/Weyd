@@ -19,8 +19,8 @@ public class Camembert implements IForme {
     }
     
     public Camembert(Point point, double a){
-        this.centre = centre;
-        this.rayon = rayon;
+        this.centre = point;
+        this.rayon = a;
         this.secteurs = new ArrayList<>();
     }   
 
