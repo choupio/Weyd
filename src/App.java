@@ -5,7 +5,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        Groupe tableau = new Groupe();
+        /*Groupe tableau = new Groupe();
         tableau.ajouter(new Cercle(256, 256, 128));
         tableau.ajouter(new Ellipse(256, 256, 128, 64));
         tableau.ajouter(new Ligne(128, 128, 128, 256, 256, 128, 256, 256));
@@ -23,7 +23,11 @@ public class App {
         polygone.ajouterSommet(256, 128);
         polygone.ajouterSommet(256, 256);
         Groupe groupe = new Groupe(cercleTest, polygone, cercleTest2);
-        System.out.println(groupe.description(3));
+        System.out.println(groupe.description(3));*/
+
+        Groupe tableau = new Groupe();
+        tableau.ajouter(new Secteur(new Point(256, 256), 128, 0, 60));
+        tableau.createSvgFile();
 
     }
 }

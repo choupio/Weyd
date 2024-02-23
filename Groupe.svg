@@ -1,13 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <g>
-<circle cx="256.0" cy="256.0" r="128.0"
- fill="black" stroke="black"/>
-<ellipse cx="256.0" cy="256.0" rx="128.0" ry="64.0" fill="white" stroke="black"/>
-<polyline points="128.0 128.0 256.0 256.0 128.0 128.0 256.0 256.0 " fill="white" stroke="black"/>
-<polygon points="128.0 128.0 128.0 256.0 256.0 128.0 256.0 256.0" fill="white" stroke="black" transform="rotate(0)"/>
-<rect x="128.0" y="192.0" height="128.0" width="256.0"
-	fill="white" stroke="black" transform="rotate(0)"/>
-<path d="M 366.85125168440817 192.0 A 128.0 128.0 0 0 0 256.0 128.0 L 256.0 256.0 Z"
-	fill="white" stroke="black"/>
-<polygon points="128.0,256.0 192.0,128.0 256.0,256.0" fill="white" stroke="black"/>
+<path d="M 510.85125168440817 192.0 A 128.0 128.0 0 0 0 400.0 128.0 L 400.0 256.0 Z"
+	fill="white" stroke="black" transform="rotate(30.0)"/>
 </g></svg>
