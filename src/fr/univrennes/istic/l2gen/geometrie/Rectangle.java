@@ -155,15 +155,25 @@ public class Rectangle implements IForme {
     /**
      * Ré-ajuste la hauteur et la largeur du rectangle.
      *
-     * @param hauteur La nouvelle hauteur du rectangle.
-     * @param largeur La nouvelle largeur du rectangle.
+     * @param hauteur La hauteur de redimmensionement 
+     * @param largeur La largeur de redimmensionement
+     * @throws IllegalArgumentException si la hauteur ou largeur de red. est égale à 0 ou moins.
      * @return Une référence à l'instance du rectangle, pour permettre les
-     *         opérations en chaîne.
+     *         opérations en chaîne. La hauteur du rectangle va être multipliée par celle de redimmensionnement,
+     *         pareil pour la largeur.
      */
     public IForme redimmensioner(double hauteur, double largeur) {
-        this.setHauteur(this.hauteur * hauteur);
-        this.setLargeur(this.largeur * largeur);
-        return this;
+        if(hauteur<=0){
+            throw new IllegalArgumentException("La hauteur de redimmensionement ne doit pas être inférieure à 0.");
+        }
+        if(largeur<=0){
+            throw new IllegalArgumentException("La largeur de redimmensionement ne doit pas être inférieure à 0.");
+        }
+        else{
+            this.setHauteur(this.hauteur * hauteur);
+            this.setLargeur(this.largeur * largeur);
+            return this;
+        }
     }
 
     /**

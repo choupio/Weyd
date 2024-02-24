@@ -60,6 +60,7 @@ public interface IForme {
 	 *
 	 * @param h La hauteur de redimensionnement.
 	 * @param l La largeur de redimensionnement.
+	 * @throws IllegalArgumentException si la hauteur ou la largeur de red. est égale à 0 ou moins.
 	 * @return Une référence à l'instance de la forme géométrique, pour permettre
 	 *         les opérations en chaîne.
 	 */
