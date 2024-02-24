@@ -272,6 +272,7 @@ public class Groupe implements IForme {
      * @return IForme
      */
     public IForme alignerElements(Alignement alignement, double cible) {
+        listFormes.stream().forEach(x -> x.aligner(alignement, cible));
         return this;
     }
 

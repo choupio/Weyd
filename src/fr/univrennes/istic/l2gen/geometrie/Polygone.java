@@ -296,7 +296,7 @@ public class Polygone implements IForme {
 				points.add(i, new Point(point.x() + distanceX, point.y()));
 			}
 		} else if (alignement == Alignement.DROITE) {
-			// recherche du x minimum
+			// recherche du x maximum
 			double maxX = points.get(0).x();
 			for (Point point : points) {
 				if (maxX < point.x()) {
