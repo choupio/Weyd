@@ -92,10 +92,9 @@ public class SecteurTest {
         assertEquals(0, s.largeur(), 0.001);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class) // dans le cas où les valeurs ne sont pas supérieures à 0.
     public void testRedimmensioner() {
-        IForme secteurRedimensionne = s.redimmensioner(0, 0);
-        assertEquals(0*0, secteurRedimensionne.hauteur() * secteurRedimensionne.largeur(), 0.001);
+        s.redimmensioner(0, 0);
     }
 
     @Test 
