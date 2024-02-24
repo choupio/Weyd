@@ -84,6 +84,7 @@ public interface IForme {
 	 * Tourne la forme
 	 * 
 	 * @param angle l'angle de rotation
+	 * @throws IllegalArgumentException si l'angle est négatif.
 	 * @return Une référence à l'instance de la forme géométrique, pour permettre
 	 *         les opérations en chaîne.
 	 */
