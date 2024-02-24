@@ -48,7 +48,7 @@ public class Camembert implements IForme {
         double angleDebut = angle;
         double angleFin = 360 * proportion;
         Secteur secteur = new Secteur(centre, rayon, angleDebut, angleFin);
-        secteur.colorier("rouge");
+        secteur.colorier();
         secteurs.add(secteur);
         angle = angleFin;
         return this;
@@ -101,21 +101,24 @@ public String description(int indentation) {
         return camembertNouveau;
     }
 
-       @Override
+    @Override
     public IForme redimmensioner(double h, double l) {
-        throw new IllegalArgumentException("Les dimensions doivent être positives");
-    }
-         /*
-        double facteur = Math.min(h / hauteur(), l / largeur());
-        rayon *= facteur;
-        for (Secteur secteur : secteurs) {
-            secteur.redimmensioner(facteur);
+        if (h <= 0 || l <= 0) {
+            throw new IllegalArgumentException("Les dimensions doivent être positives");
         }
-        return this;
-    }*/ 
-
     
-
+        double facteur = Math.min(h / (2 * rayon), l / (2 * rayon));
+    
+        // Redimensionner le rayon du camembert
+        rayon *= facteur;
+    
+        // Redimensionner les secteurs
+        for (Secteur secteur : secteurs) {
+            secteur.redimmensioner(facteur,l);
+        }
+    
+        return this;
+    } 
     @Override
     public IForme colorier(String... couleurs) {
         // Supposons que chaque secteur doit être colorié avec une couleur différente
@@ -150,11 +153,11 @@ public String description(int indentation) {
         }
         return this;
     }
+
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-        try (BufferedWriter writer = new BufferedWriter(
-                new FileWriter(
-                        "Camembert.svg"))) {
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Camembert.svg"))) {
             writer.write(svgContent);
             writer.write(enSVG()); // Ajout de titres, légendes et styles
             writer.write("</svg>");
@@ -165,8 +168,13 @@ public String description(int indentation) {
     }
     
     public String enSVG() {
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        StringBuilder svg = new StringBuilder();
+        svg.append("<svg width=\"500\" height=\"500\" xmlns=\"http://www.w3.org/2000/svg\">\n");
+        svg.append("  <circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon + "\" fill=\"lightblue\" />\n");
+        svg.append("</svg>");
+        return "<circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon + "\" fill=\"lightblue\" />\n";
     }
+
     public int getNombreSecteurs() {
         // Return the number of sectors in the Camembert object
         return secteurs.size();
