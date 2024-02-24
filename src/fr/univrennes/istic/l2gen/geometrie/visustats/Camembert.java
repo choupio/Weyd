@@ -172,8 +172,7 @@ public class Camembert implements IForme {
         svg.append("  <circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon
                 + "\" fill=\"lightblue\" />\n");
         svg.append("</svg>");
-        return "<circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon
-                + "\" fill=\"lightblue\" />\n";
+        return svg.toString();
     }
 
     public int getNombreSecteurs() {
