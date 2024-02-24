@@ -124,7 +124,6 @@ public class Secteur implements IForme {
         return this;
     }
 
-
     /**
      * Retourne le point central du secteur.
      * 
@@ -202,7 +201,7 @@ public class Secteur implements IForme {
         for (int i = 0; i < indentation; i++) {
             indent.append("  ");
         }
-        return "Secteur" + indent + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
+        return indent + "Secteur " + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
                 + " Arc=" + getArc() + " de couleur " + couleur + " et de rotation " + angle;
     }
 

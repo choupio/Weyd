@@ -26,14 +26,14 @@ public class Camembert implements IForme {
     public void setSecteurs(List<Secteur> secteurs) {
         this.secteurs = secteurs;
     }
-    
+
     public String getCouleurSecteur(int numeroSecteur) {
         if (numeroSecteur < 0 || numeroSecteur >= secteurs.size()) {
             throw new IllegalArgumentException("Numéro de secteur invalide");
         }
         return secteurs.get(numeroSecteur).couleur;
     }
-    
+
     public Camembert(Point point, double a) {
         this.centre = point;
         this.rayon = a;
@@ -60,19 +60,22 @@ public class Camembert implements IForme {
     }
 
     @Override
-public String description(int indentation) {
-    String indent = " ".repeat(indentation);
-    StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
-    sb.append(indent + "  Centre: ").append(centre).append("\n");
-    sb.append(indent + "  Rayon: ").append(rayon).append("\n");
-    sb.append(indent + "  Secteurs:\n");
+    public String description(int indentation) {
+        String indent = "";
+        for (int i = 0; i < indentation; i += 1) {
+            indent += " ";
+        }
+        StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
+        sb.append(indent + "  Centre: ").append(centre.x() + "," + centre.y()).append("\n");
+        sb.append(indent + "  Rayon: ").append(rayon).append("\n");
+        sb.append(indent + "  Secteurs:\n");
 
-    for (Secteur secteur : secteurs) {
-        sb.append(secteur.description(indentation + 2));
+        for (Secteur secteur : secteurs) {
+            sb.append(secteur.description(indentation + 2) + "\n");
+        }
+
+        return sb.toString();
     }
-
-    return sb.toString();
-}
 
     @Override
     public double hauteur() {
@@ -103,22 +106,19 @@ public String description(int indentation) {
 
     @Override
     public IForme redimmensioner(double h, double l) {
-        if (h <= 0 || l <= 0) {
-            throw new IllegalArgumentException("Les dimensions doivent être positives");
-        }
-    
-        double facteur = Math.min(h / (2 * rayon), l / (2 * rayon));
-    
-        // Redimensionner le rayon du camembert
+        throw new IllegalArgumentException("Les dimensions doivent être positives");
+    }
+         /*
+        double facteur = Math.min(h / hauteur(), l / largeur());
         rayon *= facteur;
-    
-        // Redimensionner les secteurs
         for (Secteur secteur : secteurs) {
-            secteur.redimmensioner(facteur,l);
+            secteur.redimmensioner(facteur);
         }
-    
         return this;
-    } 
+    }*/ 
+
+    
+
     @Override
     public IForme colorier(String... couleurs) {
         // Supposons que chaque secteur doit être colorié avec une couleur différente
@@ -135,6 +135,7 @@ public String description(int indentation) {
         }
         return this;
     }
+
     @Override
     public IForme aligner(Alignement alignement, double cible) {
         switch (alignement) {
@@ -166,7 +167,7 @@ public String description(int indentation) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
     }
-    
+
     public String enSVG() {
         StringBuilder svg = new StringBuilder();
         svg.append("<svg width=\"500\" height=\"500\" xmlns=\"http://www.w3.org/2000/svg\">\n");
@@ -180,11 +181,4 @@ public String description(int indentation) {
         return secteurs.size();
     }
 
-    
-
 }
-
-            
-
-
-    
