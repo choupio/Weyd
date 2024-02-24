@@ -75,6 +75,9 @@ public class Triangle implements IForme {
      */
     @Override
     public String description(int entier) {
+        if(entier<0){
+            throw new IllegalArgumentException("L'indentation ne doit pas être négative.");
+        }
         String cran = "";
         for (int i = 0; i < entier; i += 1) {
             cran += " ";

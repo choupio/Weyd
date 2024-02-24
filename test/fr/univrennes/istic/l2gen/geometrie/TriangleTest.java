@@ -30,6 +30,11 @@ public class TriangleTest {
         assertEquals("  Triangle 0.0,0.0 1.0,0.0 0.0,1.0 de couleur white angle=0", description);
     }
 
+    @Test(expected = IllegalArgumentException.class) // Dans le cas où l'indentation est négative.
+    public void testDescriptionIndentationNeg(){
+        triangle.description(-1);
+    }
+
     @Test
     public void testCote() {
         double cote = triangle.cote(new Point(0, 0), new Point(1, 1));
