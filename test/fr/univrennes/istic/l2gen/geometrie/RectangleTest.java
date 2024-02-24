@@ -29,7 +29,7 @@ public class RectangleTest {
         assertEquals("<rect x=\"" + r.centre().x() + "\" y=\"" + r.centre().y() + "\" height=\"" + r.hauteur()
                 + "\" width=\""
                 + r.largeur()
-                + "\"\n" + "\t" + "fill=\"" + "rouge" + "\"" + " stroke=\"black\"/>", r.enSVG());
+                + "\"\n" + "\t" + "fill=\"" + "rouge" + "\"" + " stroke=\"black\"" + " transform=\"rotate(0)\"/>", r.enSVG());
     }
 
     @Test
@@ -42,7 +42,12 @@ public class RectangleTest {
     @Test
     public void testDescription() {
         assertEquals(" Rectangle Centre=" + r.centre().x() + "," + r.centre().y() + " L=" + r.largeur() + " H="
-                + r.hauteur() + " de couleur white", r.description(1));
+                + r.hauteur() + " de couleur white" + " angle=0", r.description(1));
+    }
+
+    @Test(expected = IllegalArgumentException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si l'indentation est négative.
+    public void testDescriptionIndentationNeg(){
+        r.description(-1);
     }
 
     @Test
@@ -59,7 +64,7 @@ public class RectangleTest {
         assertEquals("<rect x=\"" + r.centre().x() + "\" y=\"" + r.centre().y() + "\" height=\"" + r.hauteur()
                 + "\" width=\""
                 + r.largeur()
-                + "\"\n" + "\t" + "fill=\"" + "white" + "\"" + " stroke=\"black\"/>", r.enSVG());
+                + "\"\n" + "\t" + "fill=\"" + "white" + "\"" + " stroke=\"black\"" + " transform=\"rotate(0)\"/>", r.enSVG());
     }
 
     @Test

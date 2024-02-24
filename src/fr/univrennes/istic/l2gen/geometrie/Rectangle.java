@@ -102,12 +102,18 @@ public class Rectangle implements IForme {
      */
     @Override
     public String description(int indentation) {
-        StringBuilder indent = new StringBuilder();
-        for (int i = 0; i < indentation; i++) {
-            indent.append(" ");
+        if(indentation<0){
+            throw new IllegalArgumentException("L'indentation ne doit pas être inférieure à 0.");
         }
-        return indent + "Rectangle" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H="
+        else{
+            StringBuilder indent = new StringBuilder();
+            for (int i = 0; i < indentation; i++) {
+                indent.append(" ");
+            }
+            return indent + "Rectangle" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H="
                 + hauteur() + " de couleur " + couleur + " angle=" + angle;
+        }
+        
     }
 
     /**
