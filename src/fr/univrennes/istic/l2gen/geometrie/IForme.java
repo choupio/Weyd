@@ -17,6 +17,7 @@ public interface IForme {
 	 * spécifiée.
 	 *
 	 * @param indentation Le niveau d'indentation pour la description.
+	 * @throws IllegalArgumentException si indentation est plus petit que 0.
 	 * @return Une chaîne de caractères décrivant la forme géométrique.
 	 */
 	public String description(int indentation);
