@@ -92,9 +92,14 @@ public class SecteurTest {
         assertEquals(0, s.largeur(), 0.001);
     }
 
-    @Test(expected = IllegalArgumentException.class) // dans le cas où les valeurs ne sont pas supérieures à 0.
-    public void testRedimmensioner() {
+    @Test(expected = IllegalArgumentException.class) // dans le cas où les valeurs valent 0.
+    public void testRedimmensioner0() {
         s.redimmensioner(0, 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRedimmensionerNeg(){
+        s.redimmensioner(-2,-3);
     }
 
     @Test 
