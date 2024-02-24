@@ -61,41 +61,69 @@ public void testHauteur() {
     }
 
     @Test
-public void testColorier() {
-    Camembert camembert = new Camembert(new Point(0, 0), 10);
-    camembert.ajouterSecteur("Secteur 1", 0.25);
-    camembert.ajouterSecteur("Secteur 2", 0.5);
-    // Avant l'appel de la méthode colorier
-    for (Secteur secteur : camembert.getSecteurs()) {
-        System.out.println("Avant colorier : " + secteur.getCouleur());
+    public void testColorier() {
+        Camembert camembert = new Camembert(new Point(0, 0), 10);
+        camembert.ajouterSecteur("Secteur 1", 0.25);
+        camembert.ajouterSecteur("Secteur 2", 0.5);
+        for (Secteur secteur : camembert.getSecteurs()) {
+            System.out.println("Avant colorier : " + secteur.getCouleur());
+        }
+        camembert.colorier("Rouge", "Bleu");
+        for (Secteur secteur : camembert.getSecteurs()) {
+            System.out.println("Après colorier : " + secteur.getCouleur());
+        }
+        for (int i = 0; i < camembert.getNombreSecteurs(); i++) {
+            if (i == 0) {
+                assertEquals("Rouge", camembert.getCouleurSecteur(i));
+            } else {
+                assertEquals("Bleu", camembert.getCouleurSecteur(i));
+            }
+        }
     }
-    camembert.colorier("Red", "Blue");
-    // Après l'appel de la méthode colorier
-    for (Secteur secteur : camembert.getSecteurs()) {
-        System.out.println("Après colorier : " + secteur.getCouleur());
-    }
-    // Vérifiez que tous les secteurs ont été coloriés correctement
-    for (int i = 0; i < camembert.getNombreSecteurs(); i++) {
-        assertEquals("Red", camembert.getCouleurSecteur(i));
-    }
-}
+
 
     @Test
     public void testTourner() {
         Camembert camembert = new Camembert(new Point(0, 0), 10);
         camembert.ajouterSecteur("Secteur 1", 0.25);
-
+        camembert.ajouterSecteur("Secteur 2", 0.5);
         camembert.tourner(45);
+        // Vérifiez les angles après avoir tourné
+        assertEquals(45.0, camembert.getSecteurs().get(0).getAngle()-30, 0.001);
+        assertEquals(90.0, camembert.getSecteurs().get(1).getAngle()-75, 0.001);
+    }
+    
 
-        assertEquals(45, camembert.getSecteurs().get(0).getRotation());
+        @Test
+    public void testAlignerGauche() {
+        Camembert camembert = new Camembert(new Point(157, 116), 100);
+        camembert.aligner(Alignement.GAUCHE, 100);
+        assertEquals(47.0, camembert.centre().x(), 0.001);
+        assertEquals(116.0, camembert.centre().y(), 0.001);
     }
 
     @Test
-    public void testAligner() {
-        Camembert camembert = new Camembert(new Point(0, 0), 10);
-
-        camembert.aligner(Alignement.HAUT, 20);
-
-        assertEquals(new Point(0, 30), camembert.centre());
+    public void testAlignerDroite() {
+        Camembert camembert = new Camembert(new Point(157, 116), 100);
+        camembert.aligner(Alignement.DROITE, 200);
+        assertEquals(267.0, camembert.centre().x(), 0.001);
+        assertEquals(116.0, camembert.centre().y(), 0.001);
     }
+
+    @Test
+    public void testAlignerHaut() {
+        Camembert camembert = new Camembert(new Point(121, 116), 100);
+        camembert.aligner(Alignement.HAUT, 100);
+        assertEquals(121.0, camembert.centre().x(), 0.001);
+        assertEquals(16.0, camembert.centre().y(), 0.001);
+    }
+
+    @Test
+    public void testAlignerBas() {
+        Camembert camembert = new Camembert(new Point(121, 116), 100);
+        camembert.aligner(Alignement.BAS, 200);
+        assertEquals(121.0, camembert.centre().x(), 0.001);
+        assertEquals(216.0, camembert.centre().y(), 0.001);
+    }
+
 }

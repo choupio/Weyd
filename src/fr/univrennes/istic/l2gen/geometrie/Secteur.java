@@ -13,7 +13,7 @@ public class Secteur implements IForme {
     private double angle; // L'angle du secteur en degrés par rapport à l'axe horizontal
     private Point centre; // Le centre du secteur
     private double rayon; // Le rayon du secteur
-    private String couleur = "white"; // La couleur du secteur en "white"
+    public String couleur = "white"; // La couleur du secteur en "white"
     private double larg; // La largeur du secteur
     private double haut; // La hauteur du secteur
 
@@ -114,10 +114,16 @@ public class Secteur implements IForme {
      * @param largeur La nouvelle largeur.
      * @param hauteur La nouvelle hauteur.
      */
-    public IForme redimmensioner(double largeur, double hauteur) {
-        this.rayon = hauteur * largeur;
+    @Override
+    public IForme redimmensioner(double h, double l) {
+        if (h <= 0 || l <= 0) {
+            throw new IllegalArgumentException("Les dimensions doivent être positives");
+        }
+        larg *= l;
+        haut *= h;
         return this;
     }
+
 
     /**
      * Retourne le point central du secteur.

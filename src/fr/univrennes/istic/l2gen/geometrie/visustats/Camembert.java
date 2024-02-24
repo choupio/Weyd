@@ -12,17 +12,28 @@ import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Secteur;
 
 public class Camembert implements IForme {
+
     private Point centre;
     private double rayon;
     private List<Secteur> secteurs;
-    private String description;
-    public double proportion;
+    private double angle;
+    private String couleur = "white";
 
-    @Override
-    public Point centre() {
-        return centre;
+    public List<Secteur> getSecteurs() {
+        return secteurs;
     }
 
+    public void setSecteurs(List<Secteur> secteurs) {
+        this.secteurs = secteurs;
+    }
+    
+    public String getCouleurSecteur(int numeroSecteur) {
+        if (numeroSecteur < 0 || numeroSecteur >= secteurs.size()) {
+            throw new IllegalArgumentException("Numéro de secteur invalide");
+        }
+        return secteurs.get(numeroSecteur).couleur;
+    }
+    
     public Camembert(Point point, double a) {
         this.centre = point;
         this.rayon = a;
@@ -34,8 +45,18 @@ public class Camembert implements IForme {
     }
 
     public Camembert ajouterSecteur(String description, double proportion) {
-        secteurs.add(new Secteur(description, proportion));
+        double angleDebut = angle;
+        double angleFin = 360 * proportion;
+        Secteur secteur = new Secteur(centre, rayon, angleDebut, angleFin);
+        secteur.colorier("rouge");
+        secteurs.add(secteur);
+        angle = angleFin;
         return this;
+    }
+
+    @Override
+    public Point centre() {
+        return centre;
     }
 
     @Override
@@ -50,7 +71,6 @@ public class Camembert implements IForme {
         }
         return sb.toString();
     }
-
 
     @Override
     public double hauteur() {
@@ -79,26 +99,20 @@ public class Camembert implements IForme {
         return camembertNouveau;
     }
 
-    @Override
+       @Override
     public IForme redimmensioner(double h, double l) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
+        throw new IllegalArgumentException("Les dimensions doivent être positives");
     }
-
-    @Override
-    public String enSVG() {
-        StringBuilder svg = new StringBuilder();
-        svg.append(String.format("<circle cx=\"%f\" cy=\"%f\" r=\"%f\" />\n", centre.x(), centre.y(), rayon));
-
-        double angleDebut = 0;
+         /*
+        double facteur = Math.min(h / hauteur(), l / largeur());
+        rayon *= facteur;
         for (Secteur secteur : secteurs) {
-            double angleFin = angleDebut + (secteur.proportion * 360);
-            svg.append(String.format("<path d=\"%s\" />\n", secteur.enSVG()));
-            angleDebut = angleFin;
+            secteur.redimmensioner(facteur);
         }
+        return this;
+    }*/ 
 
-        return svg.toString();
-    }
+    
 
     @Override
     public IForme colorier(String... couleurs) {
@@ -109,49 +123,58 @@ public class Camembert implements IForme {
         return this;
     }
 
-
     @Override
     public IForme tourner(int angle) {
         for (Secteur secteur : secteurs) {
-            secteur.setRotation(secteur.getRotation() + angle);
+            secteur.setAngle(secteur.getAngle() + angle);
         }
         return this;
     }
-
     @Override
     public IForme aligner(Alignement alignement, double cible) {
         switch (alignement) {
             case HAUT:
-                centre = new Point(centre.x(), cible + rayon);
+                centre.plus(0, cible - centre.y() - rayon);
                 break;
             case BAS:
-                centre = new Point(centre.x(), cible - rayon);
+                centre.plus(0, cible - centre.y() + rayon);
                 break;
             case DROITE:
-                centre = new Point(cible + rayon, centre.y());
+                centre.plus(cible - centre.x() + rayon, 0);
                 break;
             case GAUCHE:
-                centre = new Point(cible - rayon, centre.y());
+                centre.plus(cible - centre.x() - rayon, 0);
                 break;
         }
         return this;
     }
-
-    @Override
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-
         try (BufferedWriter writer = new BufferedWriter(
                 new FileWriter(
                         "Camembert.svg"))) {
             writer.write(svgContent);
-            writer.write(enSVG());
+            writer.write(enSVG()); // Ajout de titres, légendes et styles
             writer.write("</svg>");
             System.out.println("Fichier créé avec succès !");
         } catch (IOException e) {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
     }
+    
+    public String enSVG() {
+        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+    }
+    public int getNombreSecteurs() {
+        // Return the number of sectors in the Camembert object
+        return secteurs.size();
+    }
 
     
+
 }
+
+            
+
+
+    
