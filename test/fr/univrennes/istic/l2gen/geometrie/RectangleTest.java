@@ -39,6 +39,28 @@ public class RectangleTest {
         assertEquals(11, rectangleDeplace.centre().y(), 0.0001);
     }
 
+    @Test(expected = IllegalArgumentException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si x devient négatif
+    public void testDeplacerXNeg(){
+        r.deplacer(-15,2);
+    }
+
+    @Test
+    public void testDeplacerX(){ // dans le cas où dx est négatif, mais que x ne descend pas en dessous de 0.
+        IForme r2 = r.deplacer(-2,2);
+        assertEquals(3,r2.centre().x(), 0.0001);
+    }
+
+    @Test
+    public void testDeplacerY(){ // dans le cas où dy est négatif, mais que y ne descend pas en dessous de 0.
+        IForme r2 = r.deplacer(2,-2);
+        assertEquals(4,r2.centre().y(), 0.0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si y devient négatif
+    public void testDeplacerYNeg(){
+        r.deplacer(2,-15);
+    }
+
     @Test
     public void testDescription() {
         assertEquals(" Rectangle Centre=" + r.centre().x() + "," + r.centre().y() + " L=" + r.largeur() + " H="
