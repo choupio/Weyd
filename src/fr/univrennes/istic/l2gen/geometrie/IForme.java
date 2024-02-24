@@ -41,6 +41,7 @@ public interface IForme {
 	 *
 	 * @param dx Le déplacement en abscisse.
 	 * @param dy Le déplacement en ordonnée.
+	 * @throws IllegalArgumentException si x ou y devient plus petit que 0.
 	 * @return Une référence à l'instance de la forme géométrique, pour permettre
 	 *         les opérations en chaîne.
 	 */
