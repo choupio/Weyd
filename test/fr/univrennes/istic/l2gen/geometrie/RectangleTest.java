@@ -107,6 +107,26 @@ public class RectangleTest {
         assertEquals(r.hauteur(), 4, 0.0001);
     }
 
+    @Test(expected = IllegalArgumentException.class) // Dans le cas où la hauteur de red. est à 0.
+    public void testRedimmensionerHauteur0(){
+        r.redimmensioner(0,2);
+    }
+
+    @Test(expected = IllegalArgumentException.class) // Dans le cas où la hauteur de red. est négative.
+    public void testRedimmensionerHauteurNeg(){
+        r.redimmensioner(-2,2);
+    }
+
+    @Test(expected = IllegalArgumentException.class) // Dans le cas où la largeur de red. est à 0.
+    public void testRedimmensionerLargeur0(){
+        r.redimmensioner(2,0);
+    }
+
+    @Test(expected = IllegalArgumentException.class) // Dans le cas où la largeur de red. est négative.
+    public void testRedimmensionerLargeurNeg(){
+        r.redimmensioner(2,-2);
+    }
+
     @Test
     public void testSetHauteur() {
         r.setHauteur(3);
