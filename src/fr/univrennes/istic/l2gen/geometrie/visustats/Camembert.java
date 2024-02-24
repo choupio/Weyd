@@ -26,14 +26,14 @@ public class Camembert implements IForme {
     public void setSecteurs(List<Secteur> secteurs) {
         this.secteurs = secteurs;
     }
-
+    
     public String getCouleurSecteur(int numeroSecteur) {
         if (numeroSecteur < 0 || numeroSecteur >= secteurs.size()) {
             throw new IllegalArgumentException("Numéro de secteur invalide");
         }
         return secteurs.get(numeroSecteur).couleur;
     }
-
+    
     public Camembert(Point point, double a) {
         this.centre = point;
         this.rayon = a;
@@ -48,7 +48,7 @@ public class Camembert implements IForme {
         double angleDebut = angle;
         double angleFin = 360 * proportion;
         Secteur secteur = new Secteur(centre, rayon, angleDebut, angleFin);
-        secteur.colorier("rouge");
+        secteur.colorier();
         secteurs.add(secteur);
         angle = angleFin;
         return this;
@@ -60,22 +60,19 @@ public class Camembert implements IForme {
     }
 
     @Override
-    public String description(int indentation) {
-        String indent = "";
-        for (int i = 0; i < indentation; i += 1) {
-            indent += " ";
-        }
-        StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
-        sb.append(indent + "  Centre: ").append(centre.x() + "," + centre.y()).append("\n");
-        sb.append(indent + "  Rayon: ").append(rayon).append("\n");
-        sb.append(indent + "  Secteurs:\n");
+public String description(int indentation) {
+    String indent = " ".repeat(indentation);
+    StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
+    sb.append(indent + "  Centre: ").append(centre).append("\n");
+    sb.append(indent + "  Rayon: ").append(rayon).append("\n");
+    sb.append(indent + "  Secteurs:\n");
 
-        for (Secteur secteur : secteurs) {
-            sb.append(secteur.description(indentation + 2) + "\n");
-        }
-
-        return sb.toString();
+    for (Secteur secteur : secteurs) {
+        sb.append(secteur.description(indentation + 2));
     }
+
+    return sb.toString();
+}
 
     @Override
     public double hauteur() {
@@ -106,18 +103,17 @@ public class Camembert implements IForme {
 
     @Override
     public IForme redimmensioner(double h, double l) {
-        throw new IllegalArgumentException("Les dimensions doivent être positives");
-    }
-    /*
-     * double facteur = Math.min(h / hauteur(), l / largeur());
-     * rayon *= facteur;
-     * for (Secteur secteur : secteurs) {
-     * secteur.redimmensioner(facteur);
-     * }
-     * return this;
-     * }
-     */
-
+        if (h <= 0 || l <= 0) {
+            throw new IllegalArgumentException("Les dimensions doivent être positives");
+        }
+        double facteur = Math.min(h / (2 * rayon), l / (2 * rayon));
+        rayon *= facteur;
+        for (Secteur secteur : secteurs) {
+            secteur.redimmensioner(facteur,l);
+        }
+        return this;
+    } 
+    
     @Override
     public IForme colorier(String... couleurs) {
         // Supposons que chaque secteur doit être colorié avec une couleur différente
@@ -134,7 +130,6 @@ public class Camembert implements IForme {
         }
         return this;
     }
-
     @Override
     public IForme aligner(Alignement alignement, double cible) {
         switch (alignement) {
@@ -156,9 +151,8 @@ public class Camembert implements IForme {
 
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-        try (BufferedWriter writer = new BufferedWriter(
-                new FileWriter(
-                        "Camembert.svg"))) {
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Camembert.svg"))) {
             writer.write(svgContent);
             writer.write(enSVG()); // Ajout de titres, légendes et styles
             writer.write("</svg>");
@@ -167,9 +161,13 @@ public class Camembert implements IForme {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
     }
-
+    
     public String enSVG() {
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        StringBuilder svg = new StringBuilder();
+        svg.append("<svg width=\"500\" height=\"500\" xmlns=\"http://www.w3.org/2000/svg\">\n");
+        svg.append("  <circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon + "\" fill=\"lightblue\" />\n");
+        svg.append("</svg>");
+        return "<circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon + "\" fill=\"lightblue\" />\n";
     }
 
     public int getNombreSecteurs() {
@@ -177,4 +175,11 @@ public class Camembert implements IForme {
         return secteurs.size();
     }
 
+    
+
 }
+
+            
+
+
+    
