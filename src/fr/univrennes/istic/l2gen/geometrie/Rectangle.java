@@ -200,9 +200,20 @@ public class Rectangle implements IForme {
         }
     }
 
+    /**
+     * @param angle un entier qui représente l'angle.
+     * @throws IllegalArgumentException si l'angle est négatif.
+     * @return le nouveau rectangle tourné avec l'angle.
+     */
     public IForme tourner(int angle) {
-        this.angle = angle;
-        return this;
+        if(angle<0){
+            throw new IllegalArgumentException("L'angle ne peut pas être négatif");
+        }
+        else{
+            this.angle = angle;
+            return this;
+        }
+        
     }
 
     public IForme aligner(Alignement alignement, double cible) {

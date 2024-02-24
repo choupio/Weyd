@@ -98,6 +98,11 @@ public class RectangleTest {
         assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=38", r.description(1));
     }
 
+    @Test(expected = IllegalArgumentException.class) // pareil que le précédent mais quand l'angle est négatif
+    public void testTournerNegatif(){
+        r.tourner(-10);
+    }
+
     @Test
     public void testTournerPasModif() { // sans modifier l'angle
         assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=0", r.description(1));

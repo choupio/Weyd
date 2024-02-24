@@ -66,10 +66,9 @@ public class Camembert implements IForme {
             indent += " ";
         }
         StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
-        sb.append(indent + "  Centre: ").append(centre.x() + "," + centre.y()).append("\n");
+        sb.append(indent + "  Centre: ").append("(" + centre.x() + ", " + centre.y()+ ")" ).append("\n");
         sb.append(indent + "  Rayon: ").append(rayon).append("\n");
         sb.append(indent + "  Secteurs:\n");
-
         for (Secteur secteur : secteurs) {
             sb.append(secteur.description(indentation + 2) + "\n");
         }
@@ -172,8 +171,7 @@ public class Camembert implements IForme {
         svg.append("  <circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon
                 + "\" fill=\"lightblue\" />\n");
         svg.append("</svg>");
-        return "<circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon
-                + "\" fill=\"lightblue\" />\n";
+        return svg.toString();
     }
 
     public int getNombreSecteurs() {
