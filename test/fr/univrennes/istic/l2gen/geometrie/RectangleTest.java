@@ -154,4 +154,9 @@ public class RectangleTest {
     public void testTournerPasModif() { // sans modifier l'angle
         assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=0", r.description(1));
     }
+
+    @Test
+    public void testAligner(){ // Il faut faire la fonction aligner pour que le test marche
+        r.aligner(Alignement.HAUT, 2.0);
+    }
 }
