@@ -66,10 +66,9 @@ public class Camembert implements IForme {
             indent += " ";
         }
         StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
-        sb.append(indent + "  Centre: ").append(centre.x() + "," + centre.y()).append("\n");
+        sb.append(indent + "  Centre: ").append("(" + centre.x() + ", " + centre.y()+ ")" ).append("\n");
         sb.append(indent + "  Rayon: ").append(rayon).append("\n");
         sb.append(indent + "  Secteurs:\n");
-
         for (Secteur secteur : secteurs) {
             sb.append(secteur.description(indentation + 2) + "\n");
         }
