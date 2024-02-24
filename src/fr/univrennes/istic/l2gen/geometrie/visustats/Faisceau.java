@@ -76,4 +76,10 @@ public class Faisceau implements IForme {
         throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
     }
 
+    @Override
+    public IForme redimmensioner(double h, double l) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
+    }
+
 }

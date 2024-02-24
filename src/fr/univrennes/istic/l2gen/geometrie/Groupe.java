@@ -37,7 +37,8 @@ public class Groupe implements IForme {
     }
 
     /**
-     * Retourne le centre du groupe, calculé comme le centre moyen de toutes les formes dans le groupe.
+     * Retourne le centre du groupe, calculé comme le centre moyen de toutes les
+     * formes dans le groupe.
      *
      * @return Le centre du groupe.
      */
@@ -58,7 +59,6 @@ public class Groupe implements IForme {
         Point centre = new Point(centreX, centreY);
         return centre;
     }
-    
 
     /**
      * Retourne la hauteur maximale parmi toutes les formes du groupe.
@@ -123,7 +123,8 @@ public class Groupe implements IForme {
      *
      * @param dx Le déplacement en abscisse.
      * @param dy Le déplacement en ordonnée.
-     * @return Une référence à l'instance actuelle du groupe, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
      */
     @Override
     public IForme deplacer(double dx, double dy) {
@@ -144,7 +145,8 @@ public class Groupe implements IForme {
     /**
      * Duplique toutes les formes du groupe.
      *
-     * @return Un nouveau groupe contenant des copies de toutes les formes du groupe actuel.
+     * @return Un nouveau groupe contenant des copies de toutes les formes du groupe
+     *         actuel.
      */
     @Override
     public IForme dupliquer() {
@@ -160,20 +162,22 @@ public class Groupe implements IForme {
      *
      * @param h La hauteur de redimensionnement.
      * @param l La largeur de redimensionnement.
-     * @return Une référence à l'instance actuelle du groupe, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
      */
     @Override
-public IForme redimmensioner(double h, double l) {
-    for (IForme iForme : listFormes) {
-        iForme.redimmensioner(h, l);
+    public IForme redimmensioner(double h, double l) {
+        for (IForme iForme : listFormes) {
+            iForme.redimmensioner(h, l);
+        }
+        return this;
     }
-    return this;
-}
 
     /**
      * Retourne une représentation SVG de toutes les formes du groupe.
      *
-     * @return Une chaîne de caractères représentant toutes les formes du groupe en format SVG.
+     * @return Une chaîne de caractères représentant toutes les formes du groupe en
+     *         format SVG.
      */
     @Override
     public String enSVG() {
@@ -189,7 +193,8 @@ public IForme redimmensioner(double h, double l) {
      * Colorie chaque forme dans le groupe avec les couleurs spécifiées.
      *
      * @param couleurs Un tableau de couleurs à appliquer aux formes du groupe.
-     * @return Une référence à l'instance actuelle du groupe, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
      */
     public IForme colorier(String... couleurs) {
         int i = 0;
@@ -219,7 +224,7 @@ public IForme redimmensioner(double h, double l) {
     }
 
     @Override
-	public IForme aligner(Alignement alignement, double cible) {
+    public IForme aligner(Alignement alignement, double cible) {
         if (listFormes.isEmpty()) {
             return this;
         }
@@ -227,16 +232,16 @@ public IForme redimmensioner(double h, double l) {
         double deviationY = 0;
         switch (alignement) {
             case GAUCHE:
-                deviationX = cible - largeur() / 2;  // Align to the left
+                deviationX = cible - largeur() / 2; // Align to the left
                 break;
             case DROITE:
-                deviationX = cible - largeur() / 2;  // Align to the right
+                deviationX = cible - largeur() / 2; // Align to the right
                 break;
             case HAUT:
-                deviationY = cible - hauteur() / 2;  // Align to the top
+                deviationY = cible - hauteur() / 2; // Align to the top
                 break;
             case BAS:
-                deviationY = cible - hauteur() / 2;  // Align to the bottom
+                deviationY = cible - hauteur() / 2; // Align to the bottom
                 break;
             // Add additional cases for other alignments if needed
         }
@@ -250,35 +255,34 @@ public IForme redimmensioner(double h, double l) {
         return listFormes;
     }
 
-    /* *
-    * Vide ce groupe de tous ses elements
-    *@return IForme : ce groupe qui ne contient plus aucun element
-    */
-    
+    /**
+     * Vide ce groupe de tous ses elements
+     * 
+     * @return IForme : ce groupe qui ne contient plus aucun element
+     */
     public IForme vider() {
+        listFormes.clear();
         return this;
     }
-    /* *
-    * @param alignement direction HAUT , BAS , DROITE , GAUCHE tc .
-    * @param cible ligne horizontale ou verticale sur laquelle
-    * doivent s ’ aligner chacun des elements du groupe
-    TP GEN 4
-    L2 informatique
-    TP5-6
-    Test avec JUnit et Test Driven Development
-    * @return IForme
-    */
-    public IForme alignerElements ( Alignement alignement , double cible ) {
+
+    /**
+     * @param alignement direction HAUT, BAS, DROITE, GAUCHE etc.
+     * @param cible      ligne horizontale ou verticale sur laquelle
+     *                   doivent s’aligner chacun des elements du groupe
+     * @return IForme
+     */
+    public IForme alignerElements(Alignement alignement, double cible) {
         return this;
     }
-    /* *
-    * @param alignement direction HAUT , BAS , DROITE , GAUCHE tc .
-    * @param cible ligne horizontale ou verticale sur laquelle
-    * doivent s ’ empiler chacun des elements du groupe
-    * @param separation : distance entre chaque element empile
-    * @return IForme
-    */
-    public IForme empilerElements ( Alignement alignement , double cible , double separation ) {
+
+    /**
+     * @param alignement direction HAUT, BAS, DROITE, GAUCHE etc.
+     * @param cible      ligne horizontale ou verticale sur laquelle
+     *                   doivent s’empiler chacun des elements du groupe
+     * @param separation : distance entre chaque element empile
+     * @return IForme
+     */
+    public IForme empilerElements(Alignement alignement, double cible, double separation) {
         return this;
     }
 }
