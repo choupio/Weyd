@@ -98,6 +98,7 @@ public class Rectangle implements IForme {
      * Retourne une description du rectangle avec une indentation spécifiée.
      *
      * @param indentation Le niveau d'indentation pour la description.
+     * @throws IllegalArgumentException si l'indentation est inférieure à 0.
      * @return Une chaîne de caractères décrivant le rectangle.
      */
     @Override
@@ -121,12 +122,21 @@ public class Rectangle implements IForme {
      *
      * @param dx Le déplacement en abscisse.
      * @param dy Le déplacement en ordonnée.
+     * @throws IllegalArgumentException si x ou y devient négatif
      * @return Une référence à l'instance du rectangle, pour permettre les
      *         opérations en chaîne.
      */
     public IForme deplacer(double dx, double dy) {
-        this.centre.plus(dx, dy);
-        return this;
+        if(dx<0&&(this.centre().x()+dx)<0){
+            throw new IllegalArgumentException("Le point x du rectangle ne peut pas être négatif.");
+        }
+        else if(dy<0&&(this.centre().y()+dy)<0){
+            throw new IllegalArgumentException("Le point y du rectangle ne peut pas être négatif.");
+        }
+        else{
+            this.centre.plus(dx, dy);
+            return this;
+        }
     }
 
     /**
