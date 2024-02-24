@@ -284,6 +284,8 @@ public class Groupe implements IForme {
      * @return IForme
      */
     public IForme empilerElements(Alignement alignement, double cible, double separation) {
+        listFormes.stream().forEach(x -> x.aligner(alignement, cible));
+        listFormes.stream().forEach(x -> x.deplacer(separation, 0));
         return this;
     }
 }
