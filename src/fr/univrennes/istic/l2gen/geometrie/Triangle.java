@@ -228,8 +228,13 @@ public class Triangle implements IForme {
      * @return l'objet triangle
      */
     public IForme tourner(int angle) {
-        this.angle = angle;
-        return this;
+        if(angle<0){
+            throw new IllegalArgumentException("L'angle ne doit pas être négatif.");
+        }
+        else{
+            this.angle = angle;
+            return this;
+        }
     }
 
     /**

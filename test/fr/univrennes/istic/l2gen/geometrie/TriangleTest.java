@@ -110,6 +110,11 @@ public class TriangleTest {
         assertEquals(" Triangle 0.0,0.0 1.0,0.0 0.0,1.0 de couleur white angle=0", triangle.description(1));
     }
 
+    @Test(expected = IllegalArgumentException.class) // Dans le cas où l'angle est négatif
+    public void testTournerNegatif(){
+        triangle.tourner(-10);
+    }
+
     // Pour le cas HAUT
     @Test
     public void testAlignerH() {
