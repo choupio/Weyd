@@ -60,17 +60,19 @@ public class Camembert implements IForme {
     }
 
     @Override
-    public String description(int indentation) {
-        String indent = " ".repeat(indentation);
-        StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
-        sb.append(indent + "  Centre: " + centre + "\n");
-        sb.append(indent + "  Rayon: " + rayon + "\n");
-        sb.append(indent + "  Secteurs:\n");
-        for (Secteur secteur : secteurs) {
-            sb.append(secteur.description(indentation + 2));
-        }
-        return sb.toString();
+public String description(int indentation) {
+    String indent = " ".repeat(indentation);
+    StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
+    sb.append(indent + "  Centre: ").append(centre).append("\n");
+    sb.append(indent + "  Rayon: ").append(rayon).append("\n");
+    sb.append(indent + "  Secteurs:\n");
+
+    for (Secteur secteur : secteurs) {
+        sb.append(secteur.description(indentation + 2));
     }
+
+    return sb.toString();
+}
 
     @Override
     public double hauteur() {
@@ -134,16 +136,16 @@ public class Camembert implements IForme {
     public IForme aligner(Alignement alignement, double cible) {
         switch (alignement) {
             case HAUT:
-                centre.plus(0, cible - centre.y() - rayon);
-                break;
-            case BAS:
                 centre.plus(0, cible - centre.y() + rayon);
                 break;
+            case BAS:
+                centre.plus(0, cible - centre.y() - rayon);
+                break;
             case DROITE:
-                centre.plus(cible - centre.x() + rayon, 0);
+                centre.plus(cible - centre.x() - rayon, 0);
                 break;
             case GAUCHE:
-                centre.plus(cible - centre.x() - rayon, 0);
+                centre.plus(cible - centre.x() + rayon, 0);
                 break;
         }
         return this;
