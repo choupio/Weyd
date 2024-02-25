@@ -174,10 +174,6 @@ public class RectangleTest {
         assertEquals(7, rectangleTest.centre().y(),0.0001);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testAlignerBASNegatif(){ // Dans le cas où on aligne par le bas, mais que X devient négatif.
-        r.aligner(Alignement.BAS,-8.0);
-    }
 
     @Test
     public void testAlignerDROITE(){ // Dans le cas où on aligne par la droite.
@@ -199,7 +195,8 @@ public class RectangleTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testAlignerGAUCHENegatif(){ // Dans le cas où on aligne par la gauche, mais que Y devient négatif.
-        r.aligner(Alignement.GAUCHE,-8.0);
+    public void testAlignerNegatif(){ // Dans le cas où on aligne, mais que la cible est négative.
+        r.aligner(Alignement.BAS,-8.0);
     }
+
 }

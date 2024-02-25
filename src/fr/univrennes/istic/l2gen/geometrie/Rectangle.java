@@ -247,7 +247,9 @@ public class Rectangle implements IForme {
     }
 
     public IForme aligner(Alignement alignement, double cible) {
-        
+        if(cible<0){
+            throw new IllegalArgumentException("La cible ne peut pas être négative.");
+        }
         switch (alignement) {
             case HAUT:
                 if((cible - (hauteur/2))<0){
