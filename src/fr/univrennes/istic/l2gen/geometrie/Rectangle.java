@@ -243,7 +243,26 @@ public class Rectangle implements IForme {
     }
 
     public IForme aligner(Alignement alignement, double cible) {
-        throw new UnsupportedOperationException("Unimplemented method 'aligner'");
-
+        if((cible - (hauteur/2))<0){
+            throw new IllegalArgumentException("La coordonnée Y ne peut pas être négative.");
+        }
+        else if((cible + (hauteur/2))<0){
+            throw new IllegalArgumentException("La coordonnée Y ne peut pas être négative.");
+        }
+        switch (alignement) {
+            case HAUT:
+                centre = new Point(centre.x(), cible - (hauteur/2) );
+                break;
+            case BAS:
+                centre = new Point(centre.x(), cible + (hauteur/2) );
+                break;
+            case DROITE:
+                centre = new Point(cible - (largeur/2) , centre.y());
+                break;
+            case GAUCHE:
+                centre = new Point(cible + (largeur/2) , centre.y());
+                break;
+        }
+        return this;
     }
 }

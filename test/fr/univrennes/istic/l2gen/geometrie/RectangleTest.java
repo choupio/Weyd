@@ -156,7 +156,50 @@ public class RectangleTest {
     }
 
     @Test
-    public void testAligner(){ // Il faut faire la fonction aligner pour que le test marche
-        r.aligner(Alignement.HAUT, 2.0);
+    public void testAlignerHAUT(){ // Dans le cas où on aligne par le haut.
+        IForme rectangleTest = r.aligner(Alignement.HAUT,4.0);
+        assertEquals(5, rectangleTest.centre().x(),0.0001);
+        assertEquals(0, rectangleTest.centre().y(),0.0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAlignerHAUTNegatif(){ // Dans le cas où on aligne par le haut, mais que X devient négatif.
+        r.aligner(Alignement.HAUT,2.0);
+    }
+
+    @Test
+    public void testAlignerBAS(){ // Dans le cas où on aligne par le bas.
+        IForme rectangleTest = r.aligner(Alignement.BAS,3.0);
+        assertEquals(5, rectangleTest.centre().x(),0.0001);
+        assertEquals(7, rectangleTest.centre().y(),0.0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAlignerBASNegatif(){ // Dans le cas où on aligne par le bas, mais que X devient négatif.
+        r.aligner(Alignement.BAS,-8.0);
+    }
+
+    @Test
+    public void testAlignerDROITE(){ // Dans le cas où on aligne par la droite.
+        IForme rectangleTest = r.aligner(Alignement.DROITE,3.0);
+        assertEquals(0.5, rectangleTest.centre().x(),0.0001);
+        assertEquals(6, rectangleTest.centre().y(),0.0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAlignerDROITENegatif(){ // Dans le cas où on aligne par la droite, mais que Y devient négatif.
+        r.aligner(Alignement.DROITE,2.0);
+    }
+
+    @Test
+    public void testAlignerGAUCHE(){ // Dans le cas où on aligne par la gauche.
+        IForme rectangleTest = r.aligner(Alignement.GAUCHE,3.0);
+        assertEquals(5.5, rectangleTest.centre().x(),0.0001);
+        assertEquals(6, rectangleTest.centre().y(),0.0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAlignerGAUCHENegatif(){ // Dans le cas où on aligne par la gauche, mais que Y devient négatif.
+        r.aligner(Alignement.GAUCHE,-8.0);
     }
 }

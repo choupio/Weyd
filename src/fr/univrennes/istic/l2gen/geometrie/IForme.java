@@ -94,6 +94,7 @@ public interface IForme {
 	public IForme tourner(int angle);
 
 	/***
+	 * @throws IllegalArgumentException si X ou Y deviennent négatif.
 	 * @return Une référence à l'instance de la forme géométrique, pour permettre
 	 *         les opérations en chaîne.
 	 */
