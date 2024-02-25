@@ -210,8 +210,7 @@ public class Secteur implements IForme {
             indent.append("  ");
         }
         return indent + "Secteur " + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
-                + " Arc=" + getArc() + " de couleur " + couleur ;
-                //+ " et de rotation " + angle
+                + " Arc=" + getArc() + " de couleur " + couleur + " et de rotation " + angle;
     }
 
     /**
@@ -256,8 +255,7 @@ public class Secteur implements IForme {
 
         return "<path d=\"M " + startX + " " + startY + " A " + getRayon() + " " + getRayon()
                 + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.x() + " " + centre.y() + " Z\"\n"
-                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
-                // transform=\"rotate(" + getAngle() + ")\"
+                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(" + getAngle() + ")\"/>";
     }
 
     /**
