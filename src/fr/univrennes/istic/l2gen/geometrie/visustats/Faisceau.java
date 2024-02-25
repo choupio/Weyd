@@ -14,18 +14,37 @@ public class Faisceau extends Groupe {
     private List<Rectangle> barres;
     private String couleur = "red";
 
+    /**
+     * Retourne la couleur du faisceau.
+     *
+     * @return La couleur du faisceau.
+     */
     public String getCouleur() {
         return couleur;
     }
+    /**
+     * Retourne le nom du faisceau.
+     *
+     * @return Le nom du faisceau.
+     */
     public String getNom() {
         return nom;
     }
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+     /**
+     * Retourne la liste des rectangles du faisceau.
+     *
+     * @return La liste des rectangles du faisceau.
+     */
     public List<Rectangle> getBarres() {
             return barres;
-        }
+    }
+
+    /**
+     * Constructeur de la classe Faisceau.
+     *
+     * @param nom Le nom du faisceau.
+     * @param h   Un tableau de hauteurs pour créer les rectangles du faisceau.
+     */
     public Faisceau(String nom, double... h) {
         this.nom = nom;
         this.barres = new ArrayList<Rectangle>();
@@ -34,7 +53,11 @@ public class Faisceau extends Groupe {
             this.barres.add(r);
         }
     }
-
+    /**
+     * Constructeur de copie de la classe Faisceau.
+     *
+     * @param faisceau Le faisceau à copier.
+     */
     public Faisceau(Faisceau faisceau) {
         this.nom = faisceau.nom;
         this.barres = new ArrayList<>();
@@ -42,6 +65,15 @@ public class Faisceau extends Groupe {
             this.barres.add(rect); // Réutilise le même objet Rectangle sans créer une nouvelle copie
         }
     }
+    /**
+     * Agence les rectangles du faisceau en fonction des paramètres spécifiés.
+     *
+     * @param x        La coordonnée x du point de départ.
+     * @param y        La coordonnée y du point de départ.
+     * @param largeur  La largeur des rectangles.
+     * @param hauteur  La hauteur des rectangles.
+     * @param vertical Indique si les rectangles doivent être alignés verticalement (true) ou horizontalement (false).
+     */
     public void agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
         // Vérification des paramètres
         if (largeur <= 0 || hauteur <= 0) {
@@ -67,7 +99,12 @@ public class Faisceau extends Groupe {
         }
     }
     
-
+    /**
+     * Colore chaque rectangle du faisceau avec les couleurs spécifiées.
+     *
+     * @param couleurs Un tableau de couleurs à appliquer aux rectangles du faisceau.
+     * @return Une référence à l'instance actuelle du faisceau, pour permettre les opérations en chaîne.
+     */
     @Override
     public IForme colorier(String... couleurs) {
         int i = 0;
@@ -80,7 +117,11 @@ public class Faisceau extends Groupe {
         }
         return this;
     }
-
+    /**
+     * Duplique le faisceau.
+     *
+     * @return Un nouveau faisceau contenant des copies des rectangles du faisceau actuel.
+     */
     @Override
     public IForme dupliquer() {
         Faisceau faisceau = new Faisceau(this);
