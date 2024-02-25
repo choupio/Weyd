@@ -21,11 +21,19 @@ public class App {
          */
 
         Groupe secteurs = new Groupe();
-        secteurs.ajouter(new Secteur(new Point(256, 256), 128, 30, 60).colorier("red").deplacer(800, 0.0));
-        secteurs.ajouter(new Secteur(new Point(256, 256), 128, 90, 230).colorier("green").deplacer(800, 0.0));
-        secteurs.ajouter(new Secteur(new Point(256, 256), 128, 320, 70).colorier("blue").deplacer(800, 0.0));
+        secteurs.ajouter(new Secteur(new Point(256, 256), 128, 0, 60).colorier("red").deplacer(800, 0.0));
+        secteurs.ajouter(new Secteur(new Point(256, 256), 128, 60, 120).colorier("green").deplacer(800, 0.0));
+        secteurs.ajouter(new Secteur(new Point(256, 256), 128, 120, 240).colorier("blue").deplacer(800, 0.0));
         secteurs.createSvgFile();
         System.out.println(secteurs.description(3));
+        /*
+        Groupe g = new Groupe();
+        g.ajouter(new Rectangle(256,256, 100, 200));
+        g.ajouter(new Rectangle(400,400, 100, 200));
+        g.ajouter(new Rectangle(600,600, 100, 200));
+        g.ajouter(new Rectangle(800,800, 100, 200));
+        g.createSvgFile();
+        
 
         /*
          * Cercle cercleTest = new Cercle(50, 40, 25);
@@ -40,10 +48,11 @@ public class App {
          */
 
         Camembert c = new Camembert(110, 110, 100);
-        c.ajouterSecteur("red", 0.15);
+        c.ajouterSecteur("red", 0.4);
         c.ajouterSecteur("blue", 0.2);
-        c.ajouterSecteur("green", 0.65);
+        c.ajouterSecteur("green", 0.4);
         System.out.println(c.description(2));
+        c.createSvgFile();
 
     }
 }

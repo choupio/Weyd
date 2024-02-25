@@ -12,6 +12,9 @@ public class Faisceau extends Groupe {
     private String nom;
     private List<Rectangle> barres;
     private String couleur = "red";
+    private Point axes = new Point(0, 0);
+    private double largeur = 1;
+    private int nbBarres = 0;
 
     /**
      * Retourne la couleur du faisceau.
@@ -47,8 +50,9 @@ public class Faisceau extends Groupe {
     public Faisceau(String nom, double... h) {
         this.nom = nom;
         this.barres = new ArrayList<Rectangle>();
+        nbBarres = h.length;
         for (int i = 0; i < h.length; i++) {
-            Rectangle r = new Rectangle(0, 0, 1, h[i]);
+            Rectangle r = new Rectangle(axes.x(),axes.y(), largeur, h[i]);
             this.barres.add(r);
         }
     }
@@ -73,22 +77,34 @@ public class Faisceau extends Groupe {
      * @param hauteur  La hauteur des rectangles.
      * @param vertical Indique si les rectangles doivent être alignés verticalement (true) ou horizontalement (false).
      */
+<<<<<<< HEAD
+    public void agencer(double axeX, double axeY, double largeur, double echelle, boolean verticalement) {
+        axes.setX(axeX);
+        axes.setY(axeY);
+        this.largeur = largeur;
+=======
     public IForme agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
+>>>>>>> 168ba2618ba59b96052bed0e662ed79df392c429
         Alignement alignement;
         double cible;
         double separation;
-        if (largeur <0 || hauteur <0 || x <0 || y <0){
-            throw new IllegalArgumentException("Les coordonée, la hauteur et la largeur ne peuvent pas être négatif.");
-        } else if (vertical) {
+        if (largeur <=0 || echelle <=0 || axeX <0 || axeY <0){
+            throw new IllegalArgumentException("Les coordonée, l'echelle et la largeur ne peuvent pas être négatif.");
+        } else if (verticalement) {
             alignement = Alignement.HAUT;
             cible = y;
             separation = hauteur;
             alignerElements(alignement, cible);
         } else {
+            empilerElements(Alignement.GAUCHE, axeX, separation);
             alignement = Alignement.GAUCHE;
             cible = x;
             separation = largeur;
+<<<<<<< HEAD
+            
+=======
             empilerElements(alignement, cible, separation);
+>>>>>>> 168ba2618ba59b96052bed0e662ed79df392c429
         }
         
         return this;
