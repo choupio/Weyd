@@ -72,8 +72,6 @@ public interface IForme {
 	 * @param l La largeur de redimensionnement.
 	 * @throws IllegalArgumentException si la hauteur ou la largeur valent 0 ou
 	 *                                  moins.
-	 * @throws IllegalStateException    si aussi si le résultat de
-	 *                                  redimensionner donne une coordonnée < 0.
 	 * @return Une référence à l'instance de la forme géométrique, pour permettre
 	 *         les opérations en chaîne.
 	 * @ensure une figure de taille différente.
