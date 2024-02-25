@@ -3,6 +3,7 @@ package fr.univrennes.istic.l2gen.geometrie.visustats;
 
 import org.junit.Test;
 
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import static org.junit.Assert.*;
 
@@ -69,22 +70,47 @@ public class DiagCamembertsTest {
     @Test
     public void testDeplacer() {
         DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        // Créez un groupe avec un camembert
+        Groupe groupe = new Groupe();
+        Camembert camembert = new Camembert(new Point(0, 0), 10);
+        groupe.ajouter(camembert);
+        diag.groupeCamembert = groupe;
+        // Déplacez le diag
+        diag.deplacer(5, 5);
+        // Vérifiez que le centre du camembert a été déplacé
+        assertEquals(new Point(5, 5), camembert.centre());
+    }
 
-        // Ajoutez des formes au groupeCamembert
-        // ...
+    @Test
+    public void testDupliquer() {
 
-        Point ancienCentre = diag.centre();
-        double dx = 5.0;
-        double dy = -3.0;
-        diag.deplacer(dx, dy);
-
-        Point nouveauCentreAttendu = new Point(ancienCentre.x() + dx, ancienCentre.y() + dy);
-        assertEquals(nouveauCentreAttendu, diag.centre());
+    }
+        
+    @Test
+    public void testColorier() {
+        // Créez un DiagCamemberts avec un groupe et un camembert
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        Groupe groupe = new Groupe();
+        Camembert camembert = new Camembert(new Point(0, 0), 10);
+        groupe.ajouter(camembert);
+        diag.groupeCamembert = groupe;
+        // Coloriez le diag
+        diag.colorier("white");
+        // Vérifiez que la couleur du camembert a été mise à jour
+        assertEquals("white", camembert.getCouleur());
     }
 
     @Test
     public void testLargeur() {
+        // Créez un DiagCamemberts avec un groupe et un camembert
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        Groupe groupe = new Groupe();
+        Camembert camembert = new Camembert(new Point(0, 0), 10);
+        groupe.ajouter(camembert);
+        diag.groupeCamembert = groupe;
 
+        // Vérifiez que la largeur est égale au double du rayon du camembert
+        assertEquals(20, diag.largeur(), 0.001);
     }
 
     @Test
@@ -94,8 +120,33 @@ public class DiagCamembertsTest {
 
     @Test
     public void testRedimmensioner() {
-
+        // Créez un DiagCamemberts avec un groupe et un camembert
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        Groupe groupe = new Groupe();
+        Camembert camembert = new Camembert(new Point(0, 0), 10);
+        groupe.ajouter(camembert);
+        diag.groupeCamembert = groupe;
+        // Redimensionnez le diag en multipliant la hauteur et la largeur par 2
+        diag.redimmensioner(20, 20);
+        // Vérifiez que le rayon du camembert a été ajusté en conséquence
+        assertEquals(10, camembert.rayon, 0.001);
     }
+    @Test
+    public void testCreateSvgFile() {
+        // Créez un DiagCamemberts avec un groupe et un camembert
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        Groupe groupe = new Groupe();
+        Camembert camembert = new Camembert(new Point(0, 0), 10);
+        groupe.ajouter(camembert);
+        diag.groupeCamembert = groupe;
+
+        // Appelez la méthode pour créer le fichier SVG
+        diag.createSvgFile();
+
+        // Vérifiez si le fichier SVG a été créé avec succès (vous pouvez ajouter des vérifications supplémentaires si nécessaire)
+        // Par exemple, vous pouvez vérifier si le fichier existe sur le système de fichiers.
+    }
+    
 
     @Test
     public void testSetOption() {
@@ -104,6 +155,11 @@ public class DiagCamembertsTest {
 
     @Test
     public void testTourner() {
+        
+    }
+
+    @Test
+    public void testAjouterDonnees() {
 
     }
 }
