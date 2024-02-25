@@ -284,8 +284,41 @@ public class Groupe implements IForme {
      * @return IForme
      */
     public IForme empilerElements(Alignement alignement, double cible, double separation) {
-        listFormes.stream().forEach(x -> x.aligner(alignement, cible));
-        listFormes.stream().forEach(x -> x.deplacer(separation, 0));
+        double xEmpilement = 0.0;
+        // recherche du centre au x minimum
+        if (alignement == Alignement.GAUCHE) {
+            double minX = listFormes.get(0).centre().x();
+            for (IForme formes : listFormes) {
+                if (minX > formes.centre().x()) {
+                    minX = formes.centre().x();
+                }
+            }
+            xEmpilement = minX;
+        } else if (alignement == Alignement.DROITE) {
+            // recherche du centre au x minimum
+            double maxX = listFormes.get(0).centre().x();
+            for (IForme formes : listFormes) {
+                if (maxX < formes.centre().x()) {
+                    maxX = formes.centre().x();
+                }
+            }
+            xEmpilement = maxX;
+        } else {
+            // X de tous le monde = moyenne des centres X
+            double moyCentreX = 0.0;
+            for (int i = 0; i < listFormes.size(); i += 1) {
+                moyCentreX += listFormes.get(i).centre().x();
+            }
+            moyCentreX /= listFormes.size();
+            xEmpilement = moyCentreX;
+        }
+        listFormes.stream().forEach(x -> {
+            x.aligner(alignement, cible);
+            x.deplacer(0, separation);
+        });
+        for (int i = 0; i < listFormes.size(); i += 1) {
+            listFormes.get(i).centre().setX(xEmpilement);
+        }
         return this;
     }
 }
