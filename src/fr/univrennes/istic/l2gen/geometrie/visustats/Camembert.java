@@ -20,7 +20,7 @@ public class Camembert implements IForme {
     private Point centre;
     private double rayon;
     private List<Secteur> secteurs;
-    private double angle;
+    private double cmptAngle = 0;
     private String couleur = "white";
 
     /**
@@ -94,15 +94,14 @@ public class Camembert implements IForme {
      *         les opérations en chaîne.
      */
     public Camembert ajouterSecteur(String description, double proportion) {
-        if (proportion <= 0) {
-            throw new IllegalArgumentException("La proportion doit être strictement supérieure à 0.");
+        if (proportion <= 0 || proportion >1) {
+            throw new IllegalArgumentException("La proportion doit être strictement supérieure à 0 et inférieur ou égale à 1.");
         } else {
-            double angleDebut = angle;
-            double angleFin = 360 * proportion;
-            Secteur secteur = new Secteur(centre, rayon, angleDebut, angleFin);
-            secteur.colorier();
+            double angleSecteur = 360 * proportion;
+            Secteur secteur = new Secteur(centre, rayon, cmptAngle, angleSecteur);
+            secteur.colorier(description);
             secteurs.add(secteur);
-            angle = angleFin;
+            cmptAngle += angleSecteur;
         }
         return this;
     }
@@ -110,7 +109,7 @@ public class Camembert implements IForme {
     @Override
     public Point centre() {
         if (centre.x() < 0 || centre.y() < 0) {
-            throw new IllegalStateException("Centre ne peut pas avoir de coordonnées négatives.");
+            throw new IllegalArgumentException("Centre ne peut pas avoir de coordonnées négatives.");
         } else {
             return centre;
         }
@@ -118,27 +117,19 @@ public class Camembert implements IForme {
 
     @Override
     public String description(int indentation) {
-        if (indentation < 0) {
-            throw new IllegalArgumentException("L'indentation doit être strictement supérieur à 0.");
-        } else {
-            String indent = "";
-            for (int i = 0; i < indentation; i += 1) {
-                indent += " ";
-            }
-            StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
-            sb.append(indent + "  Centre: ").append("(" + centre.x() + ", " + centre.y() + ")").append("\n");
-            sb.append(indent + "  Rayon: ").append(rayon).append("\n");
-            sb.append(indent + "  Secteurs:\n");
-            int i = 1;
-            for (Secteur secteur : secteurs) {
-                String nomSecteur = "Secteur " + i;
-                // Format the proportion to a specific precision, e.g., 2 decimal places
-                String formattedProportion = String.format("%.2f", secteur.getAngle()/360);
-                sb.append(indent + "    Secteur: ").append(nomSecteur).append(", Proportion: " + formattedProportion + "\n");
-                i++;
-            }
-            return sb.toString();
+        String indent = "";
+        for (int i = 0; i < indentation; i += 1) {
+            indent += " ";
         }
+        StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
+        sb.append(indent + "  Centre: ").append("(" + centre.x() + ", " + centre.y() + ")").append("\n");
+        sb.append(indent + "  Rayon: ").append(rayon).append("\n");
+        sb.append(indent + "  Secteurs:\n");
+        for (Secteur secteur : secteurs) {
+            sb.append(secteur.description(indentation + 2) + "\n");
+        }
+
+        return sb.toString();
     }
 
     @Override
@@ -154,11 +145,7 @@ public class Camembert implements IForme {
     @Override
     public IForme deplacer(double dx, double dy) {
         this.centre.plus(dx, dy);
-        if (this.centre.x() < 0 || this.centre.y() < 0) {
-            throw new IllegalStateException("Le déplacement choisi ne doit pas donner de coordonnées négatives.");
-        } else {
-            return this;
-        }
+        return this;
     }
 
     @Override
@@ -169,7 +156,6 @@ public class Camembert implements IForme {
             lstSecteurs.add((Secteur) secteur.dupliquer());
         }
         camembertNouveau.secteurs = lstSecteurs;
-        camembertNouveau.couleur = this.couleur;
         return camembertNouveau;
     }
 
@@ -197,51 +183,31 @@ public class Camembert implements IForme {
 
     @Override
     public IForme tourner(int angle) {
-        if (angle < 0) {
-            throw new IllegalArgumentException("L'angle doit être positif.");
-        } else {
-            for (Secteur secteur : secteurs) {
-                secteur.setAngle(secteur.getAngle() + 30 + angle);
-            }
-            return this;
+        for (Secteur secteur : secteurs) {
+            secteur.setAngle(secteur.getAngle() + angle);
         }
+        return this;
     }
 
     @Override
     public IForme aligner(Alignement alignement, double cible) {
-        if (cible < 0) {
-            throw new IllegalArgumentException("La cible doit être positive.");
-        } else {
-            switch (alignement) {
-                case HAUT:
-                    centre.plus(0, cible - centre.y() + rayon);
-                    break;
-                case BAS:
-                    centre.plus(0, cible - centre.y() - rayon);
-                    break;
-                case DROITE:
-                    centre.plus(cible - centre.x() - rayon, 0);
-                    break;
-                case GAUCHE:
-                    centre.plus(cible - centre.x() + rayon, 0);
-                    break;
-            }
-            Boolean erreur = false;
-            for (Secteur secteur : secteurs) {
-                if (secteur.centre().x() < 0 || secteur.centre().y() < 0) {
-                    erreur = true;
-                    throw new IllegalStateException("Les paramètres choisis donnent des coordonnées négatives.");
-                }
-            }
-            if (!erreur) {
-                return this;
-            } else {
-                return null;
-            }
+        switch (alignement) {
+            case HAUT:
+                centre.plus(0, cible - centre.y() + rayon);
+                break;
+            case BAS:
+                centre.plus(0, cible - centre.y() - rayon);
+                break;
+            case DROITE:
+                centre.plus(cible - centre.x() - rayon, 0);
+                break;
+            case GAUCHE:
+                centre.plus(cible - centre.x() + rayon, 0);
+                break;
         }
+        return this;
     }
 
-    @Override
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 
@@ -257,20 +223,16 @@ public class Camembert implements IForme {
 
     @Override
     public String enSVG() {
-        StringBuilder svg = new StringBuilder();
-        svg.append("<svg width=\"500\" height=\"500\" xmlns=\"http://www.w3.org/2000/svg\">\n");
-        svg.append("  <circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon
-                + "\" fill=\"lightblue\" />\n");
-        svg.append("</svg>");
-        return svg.toString();
+        String s = "<g>\n";
+        for (Secteur secteur : secteurs) {
+            s += secteur.enSVG() + "\n";
+        }
+        s += "</g>";
+        return s;
     }
 
-    /**
-     * Retourne le nombre de secteurs dans le Camembert
-     * 
-     * @return le nombre de secteurs dans le Camembert
-     */
     public int getNombreSecteurs() {
+        // Return the number of sectors in the Camembert object
         return secteurs.size();
     }
 

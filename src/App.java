@@ -47,12 +47,11 @@ public class App {
          * System.out.println(groupe.description(3));
          */
 
-        Camembert c = new Camembert(110, 110, 100);
-        c.ajouterSecteur("red", 0.4);
-        c.ajouterSecteur("blue", 0.2);
-        c.ajouterSecteur("green", 0.4);
-        System.out.println(c.description(2));
-        c.createSvgFile();
+         Camembert c = new Camembert (110 ,110 , 100);
+         c . ajouterSecteur ( " red " , 0.15);
+         c . ajouterSecteur ( " blue " , 0.2);
+         c . ajouterSecteur ( " green " , 0.65);
+         c.createSvgFile();
 
     }
 }
