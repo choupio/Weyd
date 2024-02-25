@@ -40,38 +40,34 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public double hauteur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hauteur'");
+        return groupeCamembert.hauteur();
     }
 
     @Override
     public double largeur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'largeur'");
+        return groupeCamembert.largeur();
     }
 
     @Override
     public IForme deplacer(double dx, double dy) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
+        groupeCamembert.deplacer(dx, dy);
+        return this;
     }
 
     @Override
     public IForme dupliquer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dupliquer'");
+        return groupeCamembert.dupliquer();
     }
 
     @Override
     public IForme redimmensioner(double h, double l) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
+        groupeCamembert.redimmensioner(h, l);
+        return this;
     }
 
     @Override
     public String enSVG() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        return groupeCamembert.enSVG();
     }
 
     @Override
