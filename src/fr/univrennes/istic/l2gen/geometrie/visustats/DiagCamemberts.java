@@ -1,15 +1,49 @@
 package fr.univrennes.istic.l2gen.geometrie.visustats;
 
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 
 public class DiagCamemberts implements IDataVisualiseur {
+    private String nom;
+    private int entier;
+    private Groupe groupeCamembert;
 
+    /**
+     * Constructeur de DiagCamemberts
+     * 
+     * @param nom    une String représentant le nom du diagramme
+     * @param entier
+     */
+    public DiagCamemberts(String nom, int entier) {
+        this.nom = nom;
+        this.entier = entier;
+        this.groupeCamembert = new Groupe();
+    }
+
+    /**
+     * Retourne le centre du groupe, calculé comme le centre moyen de toutes les
+     * formes dans le groupe.
+     *
+     * @return Le centre du groupe.
+     */
     @Override
     public Point centre() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'centre'");
+        if (groupeCamembert.getListFormes().isEmpty()) {
+            return null;
+        }
+        double centreX = 0.0;
+        double centreY = 0.0;
+        for (IForme forme : groupeCamembert.getListFormes()) {
+            Point centreForme = forme.centre();
+            centreX += centreForme.x();
+            centreY += centreForme.y();
+        }
+        centreX /= groupeCamembert.getListFormes().size();
+        centreY /= groupeCamembert.getListFormes().size();
+        Point centre = new Point(centreX, centreY);
+        return centre;
     }
 
     @Override
