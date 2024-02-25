@@ -24,13 +24,13 @@ public class Ligne implements IForme {
      *          consécutives représente les coordonnées x et y d'un sommet.
      */
     public Ligne(double... l) {
-        if(l.length % 2 ==0){
+        if (l.length % 2 == 0) {
             ligne = new ArrayList<>();
             for (int i = 0; i < l.length; i = i + 2) {
                 ligne.add(new Point(l[i], l[i + 1]));
             }
         }
-        
+
     }
 
     /**
@@ -65,7 +65,7 @@ public class Ligne implements IForme {
      * @return Le centre de la ligne.
      */
     public Point centre() {
-        return ligne.getLast();
+        return ligne.get(ligne.size() - 1);
     }
 
     /**
@@ -207,7 +207,7 @@ public class Ligne implements IForme {
     @Override
     public IForme redimmensioner(double h, double l) {
         for (int i = 1; i < ligne.size(); i++) {
-            ligne.set(i,new Point(ligne.get(i).x() + h, ligne.get(i).y() + l));
+            ligne.set(i, new Point(ligne.get(i).x() + h, ligne.get(i).y() + l));
         }
         return this;
     }
@@ -254,17 +254,17 @@ public class Ligne implements IForme {
         switch (alignement) {
             case HAUT:
                 double minY = ligne.get(0).y();
-			    for (Point point : ligne) {
-				    if (minY > point.y()) {
-					    minY = point.y();
-				    }
-			    }
+                for (Point point : ligne) {
+                    if (minY > point.y()) {
+                        minY = point.y();
+                    }
+                }
 
-			    distanceY = cible - minY;
-			    for (int i = 0; i < ligne.size(); i++) {
-				    Point point = ligne.remove(i);
-				    ligne.add(i, new Point(point.x(), point.y() + distanceY));
-			    }
+                distanceY = cible - minY;
+                for (int i = 0; i < ligne.size(); i++) {
+                    Point point = ligne.remove(i);
+                    ligne.add(i, new Point(point.x(), point.y() + distanceY));
+                }
                 break;
             case BAS:
                 double maxY = ligne.get(0).y();
@@ -281,32 +281,32 @@ public class Ligne implements IForme {
                 }
                 break;
             case DROITE:
-            double maxX = ligne.get(0).x();
-			for (Point point : ligne) {
-				if (maxX < point.x()) {
-					maxX = point.x();
-				}
-			}
+                double maxX = ligne.get(0).x();
+                for (Point point : ligne) {
+                    if (maxX < point.x()) {
+                        maxX = point.x();
+                    }
+                }
 
-			distanceX = cible - maxX;
-			for (int i = 0; i < ligne.size(); i++) {
-				Point point = ligne.remove(i);
-				ligne.add(i, new Point(point.x() + distanceX, point.y()));
-			}
+                distanceX = cible - maxX;
+                for (int i = 0; i < ligne.size(); i++) {
+                    Point point = ligne.remove(i);
+                    ligne.add(i, new Point(point.x() + distanceX, point.y()));
+                }
                 break;
             case GAUCHE:
-            double minX = ligne.get(0).x();
-			for (Point point : ligne) {
-				if (minX > point.x()) {
-					minX = point.x();
-				}
-			}
+                double minX = ligne.get(0).x();
+                for (Point point : ligne) {
+                    if (minX > point.x()) {
+                        minX = point.x();
+                    }
+                }
 
-			distanceX = cible - minX;
-			for (int i = 0; i < ligne.size(); i++) {
-				Point point = ligne.remove(i);
-				ligne.add(i, new Point(point.x() + distanceX, point.y()));
-			}
+                distanceX = cible - minX;
+                for (int i = 0; i < ligne.size(); i++) {
+                    Point point = ligne.remove(i);
+                    ligne.add(i, new Point(point.x() + distanceX, point.y()));
+                }
                 break;
             default:
                 break;
