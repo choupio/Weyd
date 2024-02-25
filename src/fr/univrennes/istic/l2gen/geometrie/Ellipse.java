@@ -147,6 +147,9 @@ public class Ellipse implements IForme {
      * @post L'ellipse est déplacée selon les déplacements spécifiés.
      */
     public IForme deplacer(double dx, double dy) {
+        if (hauteur < 0 || largeur < 0) {
+            throw new IllegalArgumentException("Les dimensions ne peuvent pas être négatives.");
+        }
         this.centre = centre.plus(dx, dy);
         return this;
     }
@@ -159,6 +162,9 @@ public class Ellipse implements IForme {
      */
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
+        if (angle < 0) {
+            throw new IllegalArgumentException("L'angle ne peut pas être négatif.");
+        }
         Ellipse nouvelleForme = new Ellipse(centre, hauteur, largeur);
         nouvelleForme.couleur = this.couleur;  // Copie de la couleur, ajustez selon vos besoins
         nouvelleForme.angle = this.angle;      // Copie de l'angle de rotation
@@ -265,6 +271,9 @@ public class Ellipse implements IForme {
      */
     @Override
 	public IForme tourner(int angle) {
+        if (angle < 0) {
+            throw new IllegalArgumentException("L'angle ne peut pas être négatif.");
+        }
 		this.angle = angle;
 		return this;
 	}
