@@ -20,27 +20,6 @@ public class App {
          * tableau.createSvgFile();
          */
 
-<<<<<<< HEAD
-          Groupe secteurs = new Groupe();
-          secteurs.ajouter(new Secteur(new Point(256, 256), 128, 0, 360).colorier("red").deplacer(800,0.0));
-          //secteurs.ajouter(new Secteur(new Point(256, 256), 128, 60, 240).colorier("green").deplacer(800,0.0));  
-          //secteurs.ajouter(new Secteur(new Point(256, 256), 128, 300, 60).colorier("blue").deplacer(800,0.0));
-          secteurs.createSvgFile();
-          System.out.println(secteurs.description(3));
-          
-          
-          /*Cercle cercleTest = new Cercle(50, 40, 25);
-          Cercle cercleTest2 = new Cercle(50, 40, 25);
-          Polygone polygone = new Polygone();
-          polygone.ajouterSommet(128, 128);
-          polygone.ajouterSommet(128, 256);
-          polygone.ajouterSommet(256, 128);
-          polygone.ajouterSommet(256, 256);
-          Groupe groupe = new Groupe(cercleTest, polygone, cercleTest2);
-          System.out.println(groupe.description(3));*/
-         
-
-=======
         Groupe secteurs = new Groupe();
         secteurs.ajouter(new Secteur(new Point(256, 256), 128, 30, 60).colorier("red").deplacer(800, 0.0));
         secteurs.ajouter(new Secteur(new Point(256, 256), 128, 90, 230).colorier("green").deplacer(800, 0.0));
@@ -60,19 +39,11 @@ public class App {
          * System.out.println(groupe.description(3));
          */
 
->>>>>>> d5a9d1b543c5b2a27b9a75002d23af9a0e2ce4e1
         Camembert c = new Camembert(110, 110, 100);
         c.ajouterSecteur("red", 0.15);
         c.ajouterSecteur("blue", 0.2);
         c.ajouterSecteur("green", 0.65);
         System.out.println(c.description(2));
-<<<<<<< HEAD
-        c.createSvgFile();
-
-      
-        
-=======
->>>>>>> d5a9d1b543c5b2a27b9a75002d23af9a0e2ce4e1
 
     }
 }
