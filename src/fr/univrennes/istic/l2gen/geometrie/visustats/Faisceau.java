@@ -3,6 +3,7 @@ package fr.univrennes.istic.l2gen.geometrie.visustats;
 import java.util.List;
 import java.util.ArrayList;
 
+import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
@@ -77,25 +78,24 @@ public class Faisceau extends Groupe {
      * @param vertical Indique si les rectangles doivent être alignés verticalement
      *                 (true) ou horizontalement (false).
      */
-    public void agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
-        // Création du rectangle
-        Rectangle rectangle = new Rectangle(x + largeur / 2, y + hauteur / 2, largeur, hauteur);
-        // Ajout du rectangle à la liste des barres
-        barres.add(rectangle);
-        // Agencement vertical ou horizontal
-        if (vertical) {
-            for (int i = 1; i < barres.size(); i++) {
-                double newX = barres.get(i+1).centre().x();
-                double newY = barres.get(i+1).centre().y() + barres.get(i+1).hauteur() / 2 + hauteur / 2;
-                barres.get(i).deplacer(newX, newY);
-            }
+    public IForme agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
+        Alignement alignement;
+        double cible;
+        double separation;
+        if (largeur <0 || hauteur <0 || x <0 || y <0){
+            throw new IllegalArgumentException("Les coordonée, la hauteur et la largeur ne peuvent pas être négatif.");
+        } else if (vertical) {
+            alignement = Alignement.HAUT;
+            cible = y;
+            separation = hauteur;
+            alignerElements(alignement, cible);
         } else {
-            for (int i = 1; i < barres.size(); i++) {
-                double newX = barres.get(i+1).centre().x() + barres.get(i+1).largeur() / 2 + largeur / 2;
-                double newY = barres.get(i+1).centre().y();
-                barres.get(i).deplacer(newX, newY);
-            }
+            alignement = Alignement.GAUCHE;
+            cible = x;
+            separation = largeur;
+            empilerElements(alignement, cible, separation);
         }
+        return this;
     }
 
     /**
