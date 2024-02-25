@@ -21,9 +21,9 @@ public class FaisceauTest {
         // Ajouter des formes au groupe
         faisceau.ajouter(new Rectangle(10.0, 25.0, 18.0, 120.0));
         // Appeler la méthode agencer avec orientation verticale
-        faisceau.agencer(25.0, 10.0, 20.0, 30.0, true);
+        faisceau.agencer(25.0, 130.0, 20.0, 30.0, true);
         // Vérifier que les éléments ont été alignés correctement
-        assertEquals(1.0, faisceau.centre().x(), 0.0001);
+        assertEquals(130.0, faisceau.centre().x(), 0.0001);
         assertEquals(10.0, faisceau.centre().y(), 0.0001);
     }
 
