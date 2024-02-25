@@ -51,10 +51,14 @@ public class Cercle implements IForme {
      * Retourne une description du cercle.
      *
      * @param x Le niveau d'indentation.
+     * @throws IllegalArgumentException si l'indentation est négative
      * @return Une chaîne de caractères décrivant le cercle.
      */
     @Override
     public String description(int x) {
+        if(x<0){
+            throw new IllegalArgumentException("L'identation ne doit pas être négative.");
+        }
         String indentation = "";
         for (int i = 0; i < x; i++) {
             indentation += " ";
@@ -97,6 +101,12 @@ public class Cercle implements IForme {
      */
     @Override
     public IForme deplacer(double x, double y) {
+        if(x<0&&(this.centre().x()+x)<0){
+            throw new IllegalArgumentException("Le point x du cercle ne peut pas être négatif.");
+        }
+        else if(y<0&&(this.centre().y()+y)<0){
+            throw new IllegalArgumentException("Le point y du cercle ne peut pas être négatif.");
+        }
         point.plus(x, y);
         return this;
     }
@@ -201,8 +211,12 @@ public class Cercle implements IForme {
             return ray;
         }
     }
+
     @Override
     public IForme tourner(int angle){
+        if(angle<0){
+            throw new IllegalArgumentException("L'angle ne peut pas être négatif.");
+        }
         this.angle = angle;
         return this;
     }

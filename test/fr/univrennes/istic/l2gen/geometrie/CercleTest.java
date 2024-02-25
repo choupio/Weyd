@@ -39,9 +39,24 @@ public class CercleTest {
         assertEquals(50, pointCerc.y(), 0.0001);
     }
 
+    @Test(expected = IllegalArgumentException.class) // quand le X du cercle devient négatif
+    public void testDeplacerXNeg(){
+        cercleTest.deplacer(-51,3);
+    }
+
+    @Test(expected = IllegalArgumentException.class) //quand le Y du cercle devient négatif
+    public void testDeplacerYNeg(){
+        cercleTest.deplacer(10,-41);
+    }
+
     @Test
     public void testDescription() {
         assertEquals("   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black", cercleTest.description(3));
+    }
+
+    @Test(expected = IllegalArgumentException.class) // dans le cas où l'indentation est négative
+    public void testDescriptionIndentationNeg(){
+        cercleTest.description(-1);
     }
 
     @Test
@@ -114,9 +129,15 @@ public class CercleTest {
     }
     @Test
     public void testTourner2() {
-        cercleTest.tourner(0); // Rotation de 180 degrés
+        cercleTest.tourner(0); // Rotation de 0 degrés
         assertEquals("   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black", cercleTest.description(3));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTournerNegatif(){
+        cercleTest.tourner(-2);
+    }
+
     @Test
     public void testalignergauche() {
         IForme cercleA = cercleTest;
