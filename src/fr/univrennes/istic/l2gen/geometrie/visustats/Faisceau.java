@@ -11,7 +11,7 @@ import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 
 public class Faisceau extends Groupe {
     private String nom;
-    private List<Rectangle> barres;
+    private List<IForme> barres;
     private String couleur = "red";
     private Point axes = new Point(0, 0);
     private double largeur = 1;
@@ -38,7 +38,7 @@ public class Faisceau extends Groupe {
      *
      * @return La liste des rectangles du faisceau.
      */
-    public List<Rectangle> getBarres() {
+    public List<IForme> getBarres() {
             return barres;
     }
 
@@ -50,7 +50,7 @@ public class Faisceau extends Groupe {
      */
     public Faisceau(String nom, double... h) {
         this.nom = nom;
-        this.barres = new ArrayList<Rectangle>();
+        this.barres = new ArrayList<>();
         for (int i = 0; i < h.length; i++) {
             Rectangle r = new Rectangle(axes.x(),axes.y(), largeur, h[i]);
             this.barres.add(r);
@@ -65,7 +65,7 @@ public class Faisceau extends Groupe {
     public Faisceau(Faisceau faisceau) {
         this.nom = faisceau.nom;
         this.barres = new ArrayList<>();
-        for (Rectangle rect : faisceau.barres) {
+        for (IForme rect : faisceau.barres) {
             this.barres.add(rect); // Réutilise le même objet Rectangle sans créer une nouvelle copie
         }
     }
@@ -86,12 +86,19 @@ public class Faisceau extends Groupe {
         if (largeur <=0 || echelle <=0 || axeX <0 || axeY <0){
             throw new IllegalArgumentException("Les coordonée, l'echelle et la largeur ne peuvent pas être négatif.");
         } else if (verticalement) {
-            this.empilerElements(Alignement.BAS, axeY,0);
-            this.alignerElements(Alignement.GAUCHE, axeY);
+            for (IForme rect : barres) {
+                rect.redimmensioner(echelle, largeur);
+            }
+            listFormes = barres;
+            this.empilerElements(Alignement.BAS, axeY, 0);
+            this.alignerElements(Alignement.GAUCHE, axeX);
         } else {
-            this.alignerElements(Alignement.BAS, 500);
-            this.empilerElements(Alignement.GAUCHE, 500,10);
-            
+            for (IForme rect : barres) {
+                rect.redimmensioner(echelle, (largeur-10*barres.size())/barres.size());
+            }
+            listFormes = barres;
+            this.empilerElements(Alignement.GAUCHE, axeX, 10); // pas sur de si il faut 10
+            this.alignerElements(Alignement.BAS, axeY);
         }
     }
 
@@ -106,7 +113,7 @@ public class Faisceau extends Groupe {
     @Override
     public IForme colorier(String... couleurs) {
         int i = 0;
-        for (Rectangle rect : barres) {
+        for (IForme rect : barres) {
             rect.colorier(couleurs[i]);
             i++;
             if (i >= barres.size()) {

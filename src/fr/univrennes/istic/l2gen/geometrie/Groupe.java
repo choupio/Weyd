@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Groupe implements IForme {
 
-    private List<IForme> listFormes; // Liste des formes dans le groupe
+    protected List<IForme> listFormes; // Liste des formes dans le groupe
 
     /**
      * Constructeur de la classe Groupe prenant en paramètre un tableau de formes.
