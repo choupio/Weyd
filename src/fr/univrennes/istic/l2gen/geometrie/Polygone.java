@@ -59,30 +59,21 @@ public class Polygone implements IForme {
 		return this;
 	}
 
-	/**
-	 * Retourne le centre du polygone, calculé comme la moyenne des coordonnées de
-	 * ses sommets.
-	 *
-	 * @return Le centre du polygone.
-	 */
+
 	@Override
 	public Point centre() {
-		// TODO Il faut refaire car le calcul est mauvais
-		double x = 0, y = 0;
+		double xMin=points.get(0).x(), yMin = points.get(0).y(),x,y;
 		for (Point point : points) {
-			x += point.x();
-			y += point.y();
+			if(xMin > point.x()){xMin = point.x();}
+			if(yMin > point.y()){yMin = point.y();}
 		}
+		x = xMin + largeur()/2;
+		y = yMin + hauteur()/2;
 		if(x<0 || y<0){throw new IllegalArgumentException("Le centre a un x ou y inférieur à 0");}
-		return new Point(x / points.size(), y / points.size());
+		return new Point(x, y);
 	}
 
-	/**
-	 * Retourne une description du polygone avec une indentation spécifiée.
-	 *
-	 * @param indentation Le niveau d'indentation pour la description.
-	 * @return Une chaîne de caractères décrivant le polygone.
-	 */
+
 	@Override
 	public String description(int indentation) {
 		if(indentation < 0){throw new IllegalArgumentException("L'indentation doit être supérieur ou égal à 0");}
@@ -148,11 +139,7 @@ public class Polygone implements IForme {
 		return this;
 	}
 
-	/**
-	 * Duplique le polygone.
-	 *
-	 * @return Une nouvelle instance du polygone avec les mêmes propriétés.
-	 */
+
 	@Override
 	public IForme dupliquer() {
 		// Crée une nouvelle instance de la classe avec les mêmes propriétés
@@ -165,31 +152,21 @@ public class Polygone implements IForme {
 		return nouvelleForme;
 	}
 
-	/**
-	 * Redimensionne le polygone selon les dimensions spécifiées.
-	 *
-	 * @param h La hauteur de redimensionnement.
-	 * @param l La largeur de redimensionnement.
-	 * @return Une référence à l'instance du polygone, pour permettre les opérations
-	 *         en chaîne.
-	 */
 	@Override
 	public IForme redimmensioner(double h, double l) {
 		Point centre = this.centre();
+		ArrayList<Point> nouveauxPoints = new ArrayList<>();
 		for (int i = 0; i < points.size(); i++) {
-			Point point = points.remove(i);
+			Point point = points.get(i);
 			double distanceX = centre.x() - point.x();
 			double distanceY = centre.y() - point.y();
-			points.add(i, new Point(centre.x() - distanceX * h, centre.y() - distanceY * l));
+			nouveauxPoints.add(i, new Point(centre.x() - distanceX * h, centre.y() - distanceY * l));
 		}
+		points = nouveauxPoints;
 		return this;
 	}
 
-	/**
-	 * Génère une représentation SVG du polygone.
-	 *
-	 * @return Une chaîne de caractères représentant le polygone en format SVG.
-	 */
+
 	@Override
 	public String enSVG() {
 		String s = "<polygon points=\"";
@@ -206,22 +183,14 @@ public class Polygone implements IForme {
 		return s;
 	}
 
-	/**
-	 * Change la couleur du polygone.
-	 *
-	 * @param couleurs Un tableau de couleurs à appliquer au polygone.
-	 * @return Une référence à l'instance du polygone, pour permettre les opérations
-	 *         en chaîne.
-	 */
+
 	@Override
 	public IForme colorier(String... couleurs) {
 		this.couleur = couleurs[0];
 		return this;
 	}
 
-	/**
-	 * Crée un fichier SVG représentant le polygone.
-	 */
+
 	public void createSvgFile() {
 		String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 
@@ -235,27 +204,18 @@ public class Polygone implements IForme {
 			System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
 		}
 	}
-	/**
-	 * Tourne la forme (ensemble de points) autour de son centre selon l'angle spécifié.
-	 *
-	 * @param angle L'angle de rotation en degrés.
-	 * @return Une référence à l'instance actuelle de la forme, pour permettre les opérations en chaîne.
-	 */
+
 	@Override
 	public IForme tourner(int angle) {
+		if(angle<0){throw new IllegalArgumentException("L'angle ne peut pas être négatif");}
 		this.angle = angle;
 		return this;
 	}
 
-	/**
-	 * Aligne les points de la forme (ensemble de points) selon l'alignement spécifié et la cible.
-	 *
-	 * @param alignement L'alignement à appliquer (HAUT, BAS, DROITE, GAUCHE, etc.).
-	 * @param cible      La cible sur laquelle les points de la forme doivent être alignés.
-	 * @return Une référence à l'instance actuelle de la forme, pour permettre les opérations en chaîne.
-	 */
+
 	@Override
 	public IForme aligner(Alignement alignement, double cible) {
+		if(cible<0){throw new IllegalArgumentException("La cible ne peut pas être inférieur à 0");}
 		if (alignement == Alignement.HAUT) {
 
 			// recherche du y minimum
@@ -272,6 +232,7 @@ public class Polygone implements IForme {
 				points.add(i, new Point(point.x(), point.y() + distanceY));
 			}
 		} else if (alignement == Alignement.BAS) {
+			if(cible-hauteur() <0){throw new IllegalStateException("Une coordonnées x ou y devient négative.");}
 			// recherche du y maximum
 			double maxY = points.get(0).y();
 			for (Point point : points) {
@@ -300,6 +261,7 @@ public class Polygone implements IForme {
 				points.add(i, new Point(point.x() + distanceX, point.y()));
 			}
 		} else if (alignement == Alignement.DROITE) {
+			if(cible-largeur() <0){throw new IllegalStateException("Une coordonnées x ou y devient négative.");}
 			// recherche du x maximum
 			double maxX = points.get(0).x();
 			for (Point point : points) {
