@@ -3,10 +3,8 @@ package fr.univrennes.istic.l2gen.geometrie.visustats;
 import java.util.List;
 import java.util.ArrayList;
 
-import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
-import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 
 public class Faisceau extends Groupe {
@@ -22,6 +20,7 @@ public class Faisceau extends Groupe {
     public String getCouleur() {
         return couleur;
     }
+
     /**
      * Retourne le nom du faisceau.
      *
@@ -30,13 +29,14 @@ public class Faisceau extends Groupe {
     public String getNom() {
         return nom;
     }
-     /**
+
+    /**
      * Retourne la liste des rectangles du faisceau.
      *
      * @return La liste des rectangles du faisceau.
      */
     public List<Rectangle> getBarres() {
-            return barres;
+        return barres;
     }
 
     /**
@@ -53,6 +53,7 @@ public class Faisceau extends Groupe {
             this.barres.add(r);
         }
     }
+
     /**
      * Constructeur de copie de la classe Faisceau.
      *
@@ -65,6 +66,7 @@ public class Faisceau extends Groupe {
             this.barres.add(rect); // Réutilise le même objet Rectangle sans créer une nouvelle copie
         }
     }
+
     /**
      * Agence les rectangles du faisceau en fonction des paramètres spécifiés.
      *
@@ -72,7 +74,8 @@ public class Faisceau extends Groupe {
      * @param y        La coordonnée y du point de départ.
      * @param largeur  La largeur des rectangles.
      * @param hauteur  La hauteur des rectangles.
-     * @param vertical Indique si les rectangles doivent être alignés verticalement (true) ou horizontalement (false).
+     * @param vertical Indique si les rectangles doivent être alignés verticalement
+     *                 (true) ou horizontalement (false).
      */
     public void agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
         // Vérification des paramètres
@@ -98,12 +101,14 @@ public class Faisceau extends Groupe {
             }
         }
     }
-    
+
     /**
      * Colore chaque rectangle du faisceau avec les couleurs spécifiées.
      *
-     * @param couleurs Un tableau de couleurs à appliquer aux rectangles du faisceau.
-     * @return Une référence à l'instance actuelle du faisceau, pour permettre les opérations en chaîne.
+     * @param couleurs Un tableau de couleurs à appliquer aux rectangles du
+     *                 faisceau.
+     * @return Une référence à l'instance actuelle du faisceau, pour permettre les
+     *         opérations en chaîne.
      */
     @Override
     public IForme colorier(String... couleurs) {
@@ -117,10 +122,12 @@ public class Faisceau extends Groupe {
         }
         return this;
     }
+
     /**
      * Duplique le faisceau.
      *
-     * @return Un nouveau faisceau contenant des copies des rectangles du faisceau actuel.
+     * @return Un nouveau faisceau contenant des copies des rectangles du faisceau
+     *         actuel.
      */
     @Override
     public IForme dupliquer() {
