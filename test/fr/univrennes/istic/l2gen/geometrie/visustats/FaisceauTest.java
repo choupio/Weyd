@@ -4,6 +4,7 @@ import java.util.List;
 import org.junit.Test;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
 
 public class FaisceauTest {
 
@@ -18,33 +19,29 @@ public class FaisceauTest {
     public void testAgencementVertical() {
         Faisceau faisceau = new Faisceau("VerticalFaisceau", 10, 20, 30);
         faisceau.agencer(0, 0, 1, 1, true);
-        List<Rectangle> barres = faisceau.getBarres();
-        for (int i = 0; i < barres.size(); i++) {
-            System.out.println("Rectangle " + i + ": " + barres.get(i).centre().y());
-        }
-
-        // Assurez-vous de vérifier les valeurs imprimées pour comprendre le problème.
-        // Ensuite, ajustez les valeurs attendues en conséquence.
-        assertEquals(10.0, barres.get(0).centre().y(), 0.001);
-        assertEquals(35.0, barres.get(1).centre().y(), 0.001);
-        assertEquals(70.0, barres.get(2).centre().y(), 0.001);
+        assertEquals(10.0, faisceau.getBarres().get(0).centre().y(), 0.001);
+        assertEquals(35.0, faisceau.getBarres().get(1).centre().y(), 0.001);
+        assertEquals(70.0, faisceau.getBarres().get(2).centre().y(), 0.001);
     }
 
     @Test
     public void testAgencementHorizontal() {
         Faisceau faisceau = new Faisceau("HorizontalFaisceau", 10, 20, 30);
         faisceau.agencer(0, 0, 1, 1, false);
-
-        List<Rectangle> barres = faisceau.getBarres();
-        for (int i = 0; i < barres.size(); i++) {
-            System.out.println("Rectangle " + i + ": " + barres.get(i).centre().x());
-        }
-        // Assurez-vous de vérifier les valeurs imprimées pour comprendre le problème.
-        // Ensuite, ajustez les valeurs attendues en conséquence.
-        assertEquals(10.0, barres.get(0).centre().x(), 0.001);
-        assertEquals(15.0, barres.get(1).centre().x(), 0.001);
-        assertEquals(25.0, barres.get(2).centre().x(), 0.001);
+        assertEquals(10.0, faisceau.getBarres().get(0).centre().x(), 0.001);
+        assertEquals(15.0, faisceau.getBarres().get(1).centre().x(), 0.001);
+        assertEquals(25.0, faisceau.getBarres().get(2).centre().x(), 0.001);
     }
+
+    @Test
+    public void testAgencementAvecTaillesDifferents() {
+        Faisceau faisceau = new Faisceau("FaisceauTaillesDifferentes", 10, 20, 30);
+        faisceau.agencer(0, 0, 2, 2, true);
+        assertEquals(10.0, faisceau.getBarres().get(0).centre().y(), 0.001);
+        assertEquals(35.0, faisceau.getBarres().get(1).centre().y(), 0.001);
+        assertEquals(80.0, faisceau.getBarres().get(2).centre().y(), 0.001);
+    }
+
 
     @Test
     public void testColorier() {
@@ -60,8 +57,12 @@ public class FaisceauTest {
     public void testDupliquer() {
         Faisceau original = new Faisceau("OriginalFaisceau", 10, 20, 30);
         Faisceau copie = (Faisceau) original.dupliquer();
+
         assertEquals(original.getNom(), copie.getNom());
         assertEquals(original.getBarres().size(), copie.getBarres().size());
+
+        // Assurez-vous que les rectangles ne sont pas les mêmes objets dans la mémoire
+        assertNotSame(original.getBarres().get(0), copie.getBarres().get(0));
     }
 }
 
