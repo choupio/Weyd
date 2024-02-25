@@ -22,8 +22,11 @@ public class Cercle implements IForme {
      * @param rayon Le rayon du cercle.
      */
     public Cercle(double x, double y, double rayon) {
+        if (rayon < 0 || x < 0 || y < 0) {
+            throw new IllegalArgumentException("Le rayon et coordonnées du centre doivent être positifs.");
+        }
         this.point = new Point(x, y);
-        this.rayon = rayonAuPositif(rayon);
+        this.rayon = rayon;
     }
 
     /**
@@ -33,104 +36,65 @@ public class Cercle implements IForme {
      * @param rayon Le rayon du cercle.
      */
     public Cercle(Point point, double rayon) {
-        this.point = point;
-        this.rayon = rayonAuPositif(rayon);
+        this(point.x(), point.y(), rayon);
     }
 
-    /**
-     * Retourne le centre du cercle.
-     *
-     * @return Le centre du cercle.
-     */
     @Override
     public Point centre() {
+        if (point.x() < 0 || point.y() < 0) {
+            throw new IllegalStateException("Le centre ne peut pas avoir de coordonnée inférieur à 0.");
+        }
         return point;
     }
 
-    /**
-     * Retourne une description du cercle.
-     *
-     * @param x Le niveau d'indentation.
-     * @throws IllegalArgumentException si l'indentation est négative
-     * @return Une chaîne de caractères décrivant le cercle.
-     */
     @Override
     public String description(int x) {
-        if(x<0){
+        if (x < 0) {
             throw new IllegalArgumentException("L'identation ne doit pas être négative.");
         }
         String indentation = "";
         for (int i = 0; i < x; i++) {
             indentation += " ";
         }
-        if(angle!=0){
+        if (angle != 0) {
             return (indentation + "Cercle centre= " + point.x() + ", " + point.y() + " r= " + rayon + " de couleur "
-                + couleur + " angle=" + angle); 
+                    + couleur + " angle=" + angle);
         }
         return (indentation + "Cercle centre= " + point.x() + ", " + point.y() + " r= " + rayon + " de couleur "
                 + couleur);
     }
 
-    /**
-     * Retourne la hauteur du cercle, qui est égale à son diamètre.
-     *
-     * @return La hauteur du cercle.
-     */
     @Override
     public double hauteur() {
         return rayon * 2;
     }
 
-    /**
-     * Retourne la largeur du cercle, qui est égale à son diamètre.
-     *
-     * @return La largeur du cercle.
-     */
     @Override
     public double largeur() {
         return rayon * 2;
     }
 
-    /**
-     * Déplace le cercle selon les déplacements spécifiés.
-     *
-     * @param x Le déplacement en abscisse.
-     * @param y Le déplacement en ordonnée.
-     * @return Une référence à l'instance actuelle du cercle, pour permettre les
-     *         opérations en chaîne.
-     */
     @Override
     public IForme deplacer(double x, double y) {
-        if(x<0&&(this.centre().x()+x)<0){
+        if (x < 0 && (this.centre().x() + x) < 0) {
             throw new IllegalArgumentException("Le point x du cercle ne peut pas être négatif.");
-        }
-        else if(y<0&&(this.centre().y()+y)<0){
+        } else if (y < 0 && (this.centre().y() + y) < 0) {
             throw new IllegalArgumentException("Le point y du cercle ne peut pas être négatif.");
         }
         point.plus(x, y);
         return this;
     }
 
-    /**
-     * Retourne une représentation SVG du cercle.
-     *
-     * @return Une chaîne de caractères représentant le cercle en format SVG.
-     */
     @Override
     public String enSVG() {
-        if(angle!=0){
+        if (angle != 0) {
             return "<circle cx=\"" + centre().x() + "\" cy=\"" + centre().y() + "\" r=\"" + hauteur() / 2 + "\"" + '\n'
-                + " fill=\"" + couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\"/>";
+                    + " fill=\"" + couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\"/>";
         }
         return "<circle cx=\"" + centre().x() + "\" cy=\"" + centre().y() + "\" r=\"" + hauteur() / 2 + "\"" + '\n'
                 + " fill=\"" + couleur + "\" stroke=\"black\"/>";
     }
 
-    /**
-     * Duplique le cercle avec les mêmes propriétés.
-     *
-     * @return Une nouvelle instance de la classe Cercle avec les mêmes propriétés.
-     */
     @Override
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
@@ -140,17 +104,9 @@ public class Cercle implements IForme {
         return nouvelleForme;
     }
 
-    /**
-     * Redimensionne le cercle en modifiant son rayon selon les facteurs spécifiés.
-     *
-     * @param i Le facteur de redimensionnement pour la hauteur.
-     * @param j Le facteur de redimensionnement pour la largeur.
-     * @return Une référence à l'instance actuelle du cercle, pour permettre les
-     *         opérations en chaîne.
-     */
     @Override
     public IForme redimmensioner(double i, double j) {
-        if(i<0 || j<0){
+        if (i < 0 || j < 0) {
             throw new IllegalArgumentException("Le rayon ne doit pas être négative.");
         } else if (i == j) {
             rayon *= i;
@@ -160,32 +116,21 @@ public class Cercle implements IForme {
             rayon *= i;
         } else {
             rayon *= i * j;
-        } 
-        rayon = rayonAuPositif(rayon);
+        }
+        if (rayon < 0) {
+            throw new IllegalStateException("Le rayon ne peut pas être négatif.");
+        }
         return this;
 
     }
 
-    /**
-     * Change la couleur du cercle.
-     *
-     * @param couleurs Un tableau de chaînes de caractères représentant les couleurs
-     *                 possibles.
-     * @return Une référence à l'instance actuelle du cercle, pour permettre les
-     *         opérations en chaîne.
-     */
     @Override
     public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
         return this;
     }
 
-    // Les autres méthodes sont également documentées selon leur but et leur
-    // fonctionnement, mais je ne vais pas toutes les répéter ici.
-
-    /**
-     * Crée un fichier SVG représentant le cercle.
-     */
+    @Override
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 
@@ -200,37 +145,26 @@ public class Cercle implements IForme {
         }
     }
 
-    /**
-     * Le rayon passé en paramètre est remis au positif
-     * 
-     * @param ray un double représentant le rayon
-     * @return Le rayon positif
-     */
-    public double rayonAuPositif(double ray) {
-        if (ray < 0) {
-            return -ray;
-        } else {
-            return ray;
-        }
-    }
-
     @Override
-    public IForme tourner(int angle){
-        if(angle<0){
+    public IForme tourner(int angle) {
+        if (angle < 0) {
             throw new IllegalArgumentException("L'angle ne peut pas être négatif.");
         }
         this.angle = angle;
         return this;
     }
-        
+
     @Override
     public IForme aligner(Alignement alignement, double cible) {
+        if (cible < 0) {
+            throw new IllegalArgumentException("Cible ne peut pas être négative.");
+        }
         switch (alignement) {
             case HAUT:
-                point = new Point(point.x(), cible - rayon);
+                point = new Point(point.x(), cible + rayon);
                 break;
             case BAS:
-                point = new Point(point.x(), cible + rayon);
+                point = new Point(point.x(), cible - rayon);
                 break;
             case DROITE:
                 point = new Point(cible - rayon, point.y());
@@ -239,9 +173,10 @@ public class Cercle implements IForme {
                 point = new Point(cible + rayon, point.y());
                 break;
         }
+        if (point.x() < 0 || point.y() < 0) {
+            throw new IllegalStateException("Les coordonnées du centre ne peuvent pas être négatives.");
+        }
         return this;
-    } 
-    
-
+    }
 
 }

@@ -27,6 +27,9 @@ public class Secteur implements IForme {
      * @param arc   L'arc du secteur.
      */
     public Secteur(double x, double y, double rayon, double angle, double arc) {
+        if (x < 0 || y < 0 || rayon < 0 || angle < 0 || arc < 0) {
+            throw new IllegalArgumentException("Aucun des paramètres ne peut être négatif.");
+        }
         this.centre = new Point(x, y);
         this.rayon = rayon;
         this.angle = angle;
@@ -43,26 +46,18 @@ public class Secteur implements IForme {
      * @param arc   L'arc du secteur.
      */
     public Secteur(Point f, double rayon, double angle, double arc) {
-        this.centre = f;
-        this.rayon = rayon;
-        this.angle = angle;
-        this.arc = arc;
+        this(f.x(), f.y(), rayon, angle, arc);
     }
 
     /**
-     * Returns the angle of rotation for this sector.
+     * Retourne l'angle de rotation du secteur.
      *
-     * @return the angle of rotation
+     * @return l'angle de rotation
      */
     public double getanglerotation() {
         return anglerotation;
-    }   
+    }
 
-    /**
-     * Calcule la hauteur du secteur.
-     * 
-     * @return La hauteur du secteur.
-     */
     @Override
     public double hauteur() {
         if (arc <= 180) {
@@ -72,11 +67,6 @@ public class Secteur implements IForme {
         }
     }
 
-    /**
-     * Calcule la largeur du secteur.
-     * 
-     * @return La largeur du secteur.
-     */
     @Override
     public double largeur() {
         if (arc <= 180) {
@@ -86,27 +76,17 @@ public class Secteur implements IForme {
         }
     }
 
-    /**
-     * Rotates the shape by the specified angle.
-     * 
-     * @param angle the angle (in degrees) by which the shape should be rotated
-     * @return the rotated shape
-     */
     @Override
     public IForme tourner(int angle) {
         this.angle = (double) angle;
         return this;
     }
 
-    /**
-     * Aligns the shape based on the specified alignment and target value.
-     *
-     * @param alignement The alignment to apply.
-     * @param cible      The target value for alignment.
-     * @return The aligned shape.
-     */
     @Override
     public IForme aligner(Alignement alignement, double cible) {
+        if (cible < 0) {
+            throw new IllegalArgumentException("La cible ne peut pas être négative.");
+        }
         switch (alignement) {
             case HAUT:
                 centre = new Point(centre.x(), cible + rayon);
@@ -124,12 +104,6 @@ public class Secteur implements IForme {
         return this;
     }
 
-    /**
-     * Redimensionne le secteur.
-     * 
-     * @param largeur La nouvelle largeur.
-     * @param hauteur La nouvelle hauteur.
-     */
     @Override
     public IForme redimmensioner(double h, double l) {
         if (h <= 0 || l <= 0) {
@@ -198,21 +172,11 @@ public class Secteur implements IForme {
         return this;
     }
 
-    /**
-     * Retourne le centre du secteur.
-     * 
-     * @return Le centre du secteur.
-     */
+    @Override
     public Point centre() {
         return centre;
     }
 
-    /**
-     * Génère une description du secteur.
-     * 
-     * @param indentation L'indentation pour la description.
-     * @return Une chaîne de caractères décrivant le secteur.
-     */
     @Override
     public String description(int indentation) {
         StringBuilder indent = new StringBuilder();
@@ -229,16 +193,16 @@ public class Secteur implements IForme {
      * @param dx Le déplacement horizontal.
      * @param dy Le déplacement vertical.
      */
+    @Override
     public IForme deplacer(double dx, double dy) {
         this.centre = this.centre.plus(dx, dy);
+        if (this.centre.x() < 0 || this.centre.y() < 0) {
+            throw new IllegalStateException("Les coordonnées du centre ne peuvent pas être négatives.");
+        }
         return this;
     }
 
-    /**
-     * Duplique le secteur.
-     * 
-     * @return Une copie du secteur.
-     */
+    @Override
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
         Secteur nouvelleForme = new Secteur(centre, rayon, angle, arc);
@@ -246,15 +210,8 @@ public class Secteur implements IForme {
         return nouvelleForme;
     }
 
-    /**
-     * Génère la représentation SVG du secteur.
-     * 
-     * @return La représentation SVG du secteur.
-     */
+    @Override
     public String enSVG() {
-        if (getArc() == 360) {
-            return "<circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + getRayon() + "\" fill=\"" + couleur + "\" stroke=\"black\"/>";
-        } else {
         double startAngle = Math.toRadians(getAngle());
         double endAngle = Math.toRadians(getAngle() + getArc());
 
@@ -268,24 +225,20 @@ public class Secteur implements IForme {
 
         return "<path d=\"M " + startX + " " + startY + " A " + getRayon() + " " + getRayon()
                 + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.x() + " " + centre.y() + " Z\"\n"
-                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(" + getanglerotation() + ")\"/>";
+                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(" + getanglerotation()
+                + ")\"/>";
     }
-    }
-    /**
-     * Colors the shape with the specified colors.
-     * 
-     * @param couleurs the colors to be applied to the shape
-     * @return the updated shape
-     */
+
+    @Override
     public IForme colorier(String... couleurs) {
         couleur = (couleurs.length > 0) ? couleurs[0] : couleur;
         return this;
     }
 
     /**
-     * Returns the color of the sector.
+     * Retourne la couleur du secteur.
      *
-     * @return the color of the sector
+     * @return la couleur du secteur.
      */
     public String getCouleur() {
         return couleur;
@@ -295,7 +248,7 @@ public class Secteur implements IForme {
         this.couleur = couleur;
     }
 
-
+    @Override
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 
@@ -310,5 +263,4 @@ public class Secteur implements IForme {
         }
     }
 
-  
 }

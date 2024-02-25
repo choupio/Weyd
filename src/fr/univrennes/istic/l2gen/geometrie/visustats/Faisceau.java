@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
-import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 
 public class Faisceau extends Groupe {
@@ -78,10 +77,14 @@ public class Faisceau extends Groupe {
      * @param hauteur  La hauteur des rectangles.
      * @param vertical Indique si les rectangles doivent être alignés verticalement (true) ou horizontalement (false).
      */
+<<<<<<< HEAD
     public void agencer(double axeX, double axeY, double largeur, double echelle, boolean verticalement) {
         axes.setX(axeX);
         axes.setY(axeY);
         this.largeur = largeur;
+=======
+    public IForme agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
+>>>>>>> 168ba2618ba59b96052bed0e662ed79df392c429
         Alignement alignement;
         double cible;
         double separation;
@@ -97,8 +100,13 @@ public class Faisceau extends Groupe {
             alignement = Alignement.GAUCHE;
             cible = x;
             separation = largeur;
+<<<<<<< HEAD
             
+=======
+            empilerElements(alignement, cible, separation);
+>>>>>>> 168ba2618ba59b96052bed0e662ed79df392c429
         }
+        
         return this;
     }
     
