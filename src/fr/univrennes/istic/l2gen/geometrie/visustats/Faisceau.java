@@ -24,19 +24,27 @@ public class Faisceau extends Groupe {
     }
 
     public Faisceau(Faisceau faisceau) {
-        // TODO
+        this.nom = faisceau.nom;
+        this.barres = new ArrayList<>();
+        for (Rectangle rect : faisceau.barres) {
+            this.barres.add(rect); // Réutilise le même objet Rectangle sans créer une nouvelle copie
+        }
     }
 
     public void agencer(double axeX, double axeY, double largeur, double echelle, boolean verticalement) {
-        this.alignerElements(Alignement.GAUCHE, axeX);
-        this.alignerElements(Alignement.BAS, axeY);
-        // faisceau vertical
+        this.aligner(Alignement.GAUCHE, axeX);
+        this.aligner(Alignement.BAS, axeY);
+        double offset = 0;
         if (verticalement) {
-
-        }
-        // faisceau horizontal
-        else {
-
+            for (Rectangle rect : barres) {
+                rect.deplacer(0, offset);
+                offset += rect.hauteur() + 5; // Ajustez selon l'espacement souhaité entre les barres verticales
+            }
+        } else {
+            for (Rectangle rect : barres) {
+                rect.deplacer(offset, 0);
+                offset += rect.largeur() + 5; // Ajustez selon l'espacement souhaité entre les barres horizontales
+            }
         }
     }
 
