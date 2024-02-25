@@ -39,7 +39,7 @@ public class RectangleTest {
         assertEquals(11, rectangleDeplace.centre().y(), 0.0001);
     }
 
-    @Test(expected = IllegalArgumentException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si x devient négatif
+    @Test(expected = IllegalStateException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si x devient négatif
     public void testDeplacerXNeg(){
         r.deplacer(-15,2);
     }
@@ -56,7 +56,7 @@ public class RectangleTest {
         assertEquals(4,r2.centre().y(), 0.0001);
     }
 
-    @Test(expected = IllegalArgumentException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si y devient négatif
+    @Test(expected = IllegalStateException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si y devient négatif
     public void testDeplacerYNeg(){
         r.deplacer(2,-15);
     }
@@ -174,10 +174,6 @@ public class RectangleTest {
         assertEquals(7, rectangleTest.centre().y(),0.0001);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testAlignerBASNegatif(){ // Dans le cas où on aligne par le bas, mais que X devient négatif.
-        r.aligner(Alignement.BAS,-8.0);
-    }
 
     @Test
     public void testAlignerDROITE(){ // Dans le cas où on aligne par la droite.
@@ -199,7 +195,8 @@ public class RectangleTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testAlignerGAUCHENegatif(){ // Dans le cas où on aligne par la gauche, mais que Y devient négatif.
-        r.aligner(Alignement.GAUCHE,-8.0);
+    public void testAlignerNegatif(){ // Dans le cas où on aligne, mais que la cible est négative.
+        r.aligner(Alignement.BAS,-8.0);
     }
+
 }

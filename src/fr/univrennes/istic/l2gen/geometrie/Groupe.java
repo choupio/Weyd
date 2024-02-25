@@ -301,37 +301,13 @@ public class Groupe implements IForme {
      * @return IForme
      */
     public IForme empilerElements(Alignement alignement, double cible, double separation) {
-        double xEmpilement = 0.0;
-        // recherche du centre au x minimum
-        if (alignement == Alignement.GAUCHE) {
-            double minX = listFormes.get(0).centre().x();
-            for (IForme formes : listFormes) {
-                if (minX > formes.centre().x()) {
-                    minX = formes.centre().x();
-                }
-            }
-            xEmpilement = minX;
-        } else if (alignement == Alignement.DROITE) {
-            // recherche du centre au x maximum
-            double maxX = listFormes.get(0).centre().x();
-            for (IForme formes : listFormes) {
-                if (maxX < formes.centre().x()) {
-                    maxX = formes.centre().x();
-                }
-            }
-            xEmpilement = maxX;
-        } else {
-            // X de tout le monde = moyenne des centres X
-            double addCentreX = 0.0;
-            for (IForme formes : listFormes) {
-                addCentreX += formes.centre().x();
-            }
-            xEmpilement = addCentreX / listFormes.size();
-        }
-        listFormes.stream().forEach(x -> x.aligner(alignement, cible));
-        for (IForme formes : listFormes) {
-            double deplacementX = formes.centre().x() - xEmpilement;
-            formes.deplacer(-deplacementX, separation);
+        double cibleForme = cible;
+        for (IForme iForme : listFormes) {
+            iForme.aligner(alignement, cibleForme);
+            if(alignement == Alignement.GAUCHE){cibleForme += iForme.largeur() + separation;}
+            else if(alignement == Alignement.DROITE){cibleForme -= iForme.largeur() + separation;}
+            else if(alignement == Alignement.HAUT){cibleForme += iForme.hauteur() + separation;}
+            else if(alignement == Alignement.BAS){cibleForme -= iForme.hauteur() + separation;}
         }
 
         return this;
