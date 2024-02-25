@@ -227,10 +227,10 @@ public class Cercle implements IForme {
     public IForme aligner(Alignement alignement, double cible) {
         switch (alignement) {
             case HAUT:
-                point = new Point(point.x(), cible - rayon);
+                point = new Point(point.x(), cible + rayon);
                 break;
             case BAS:
-                point = new Point(point.x(), cible + rayon);
+                point = new Point(point.x(), cible - rayon);
                 break;
             case DROITE:
                 point = new Point(cible - rayon, point.y());
