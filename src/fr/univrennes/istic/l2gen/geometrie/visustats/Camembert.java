@@ -107,11 +107,6 @@ public class Camembert implements IForme {
         return this;
     }
 
-    /**
-     * Retourne le centre de la forme géométrique
-     * 
-     * @return Le centre de la forme
-     */
     @Override
     public Point centre() {
         if (centre.x() < 0 || centre.y() < 0) {
