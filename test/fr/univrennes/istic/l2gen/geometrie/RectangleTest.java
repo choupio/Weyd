@@ -39,7 +39,7 @@ public class RectangleTest {
         assertEquals(11, rectangleDeplace.centre().y(), 0.0001);
     }
 
-    @Test(expected = IllegalArgumentException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si x devient négatif
+    @Test(expected = IllegalStateException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si x devient négatif
     public void testDeplacerXNeg(){
         r.deplacer(-15,2);
     }
@@ -56,7 +56,7 @@ public class RectangleTest {
         assertEquals(4,r2.centre().y(), 0.0001);
     }
 
-    @Test(expected = IllegalArgumentException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si y devient négatif
+    @Test(expected = IllegalStateException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si y devient négatif
     public void testDeplacerYNeg(){
         r.deplacer(2,-15);
     }
