@@ -227,15 +227,14 @@ public class Camembert implements IForme {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
     }
-
     @Override
     public String enSVG() {
-        String s = "<g>\n";
-        for (Secteur secteur : secteurs) {
-            s += secteur.enSVG() + "\n";
-        }
-        s += "</g>";
-        return s;
+        StringBuilder svg = new StringBuilder();
+        svg.append("<svg width=\"500\" height=\"500\" xmlns=\"http://www.w3.org/2000/svg\">\n");
+        svg.append("  <circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon
+                + "\" fill=\"lightblue\" />\n");
+        svg.append("</svg>");
+        return svg.toString();
     }
 
     public int getNombreSecteurs() {
