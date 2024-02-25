@@ -93,7 +93,7 @@ public class Faisceau extends Groupe {
             this.alignerElements(Alignement.GAUCHE, axeX);
         } else {
             for (IForme rect : listFormes) {
-                rect.redimmensioner(echelle, (largeur-10*listFormes.size())/listFormes.size());
+                rect.redimmensioner(echelle, (largeur-10.0*listFormes.size())/listFormes.size());
             }
             this.empilerElements(Alignement.GAUCHE, axeX, 10); // pas sur de si il faut 10
             this.alignerElements(Alignement.BAS, axeY);

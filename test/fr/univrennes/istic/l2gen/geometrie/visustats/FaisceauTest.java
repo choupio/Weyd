@@ -1,7 +1,10 @@
 package fr.univrennes.istic.l2gen.geometrie.visustats;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
+
+import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import static org.junit.Assert.assertEquals;
 
@@ -11,7 +14,7 @@ public class FaisceauTest {
     public void testCreationFaisceau() {
         Faisceau faisceau = new Faisceau("MonFaisceau", 10, 20, 30);
         assertEquals("MonFaisceau", faisceau.getNom());
-        assertEquals(3, faisceau.getBarres().size());
+        assertEquals(3, faisceau.getListFormes().size());
     }
 
     @Test
@@ -46,7 +49,14 @@ public class FaisceauTest {
     public void testColorier() {
         Faisceau faisceau = new Faisceau("ColorFaisceau", 10, 20, 30);
         faisceau.colorier("red", "green", "blue");
-        List<Rectangle> barres = faisceau.getBarres();
+        List<IForme> formes = faisceau.getListFormes();
+        List<Rectangle> barres = new ArrayList<>();
+        for (IForme forme : formes) {
+            if (forme instanceof Rectangle) {
+                Rectangle rectangle = (Rectangle) forme;
+                barres.add(rectangle);
+            }
+        }
         assertEquals("red", barres.get(0).getCouleur());
         assertEquals("green", barres.get(1).getCouleur());
         assertEquals("blue", barres.get(2).getCouleur());
@@ -57,7 +67,7 @@ public class FaisceauTest {
         Faisceau original = new Faisceau("OriginalFaisceau", 10, 20, 30);
         Faisceau copie = (Faisceau) original.dupliquer();
         assertEquals(original.getNom(), copie.getNom());
-        assertEquals(original.getBarres().size(), copie.getBarres().size());
+        assertEquals(original.getListFormes().size(), copie.getListFormes().size());
         }
 }
 
