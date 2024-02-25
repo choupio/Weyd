@@ -6,6 +6,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
+        
         /*
          * Groupe tableau = new Groupe();
          * tableau.ajouter(new Cercle(256, 256, 128).colorier("white"));
@@ -20,12 +21,13 @@ public class App {
          * tableau.createSvgFile();
          */
 
-        Groupe secteurs = new Groupe();
+         // Autre manière de faire le camembert
+        /*Groupe secteurs = new Groupe();
         secteurs.ajouter(new Secteur(new Point(256, 256), 128, 0, 60).colorier("red").deplacer(800, 0.0));
         secteurs.ajouter(new Secteur(new Point(256, 256), 128, 60, 120).colorier("green").deplacer(800, 0.0));
         secteurs.ajouter(new Secteur(new Point(256, 256), 128, 120, 240).colorier("blue").deplacer(800, 0.0));
         secteurs.createSvgFile();
-        System.out.println(secteurs.description(3));
+        System.out.println(secteurs.description(3));*/
         /*
         Groupe g = new Groupe();
         g.ajouter(new Rectangle(256,256, 100, 200));
@@ -47,10 +49,12 @@ public class App {
          * System.out.println(groupe.description(3));
          */
 
+         // Affichage du camembert
          Camembert c = new Camembert (110 ,110 , 100);
          c . ajouterSecteur ( " red " , 0.15);
          c . ajouterSecteur ( " blue " , 0.2);
          c . ajouterSecteur ( " green " , 0.65);
+         c.tourner(325);
          c.createSvgFile();
 
     }
