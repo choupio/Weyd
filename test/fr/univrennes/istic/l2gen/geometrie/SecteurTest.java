@@ -36,7 +36,7 @@ public class SecteurTest {
 
     @Test
     public void testDescription() {
-        String descriptionAttendue = "Secteur centre=256.0,256.0 Angle=0.0 Arc=60.0 de couleur white et de rotation 0.0";
+        String descriptionAttendue = "Secteurcentre=256.0,256.0 Angle=30.0 Arc=60.0 de couleur white et de rotation 0";
         assertEquals(descriptionAttendue, s.description(0));
     }
 
@@ -46,7 +46,7 @@ public class SecteurTest {
         assertEquals(s.getPoint().x(), ((Secteur) secteurDuplique).getPoint().x(), 0.001);
         assertEquals(s.getPoint().y(), ((Secteur) secteurDuplique).getPoint().y(), 0.001);
         assertEquals(s.getRayon(), ((Secteur) secteurDuplique).getRayon(), 0.001);
-        assertEquals(0.0, ((Secteur) secteurDuplique).getAngle(), 0.001);
+        assertEquals(60, ((Secteur) secteurDuplique).getAngle(), 0.001);
         assertEquals(s.getArc(), ((Secteur) secteurDuplique).getArc(), 0.001);
     }
 
@@ -57,14 +57,14 @@ public class SecteurTest {
 
     @Test
     public void testEnSVG() {
-        String svgAttendu = "<path d=\"M 384.0 256.0 A 128.0 128.0 0 0 0 320.0 145.14874831559186 L 256.0 256.0 Z\"\n" +
-        "\t" + "fill=\"white\"" + " stroke=\"black\" transform=\"rotate(0.0)\"/>";
+        String svgAttendu = "<path d=\"M 366.85125168440817 192.0 A 128.0 128.0 0 0 0 256.0 128.0 L 256.0 256.0 Z\"\n" +
+        "\t" + "fill=\"white\"" + " stroke=\"black\" transform=\"rotate(\"0\")\"/>";
         assertEquals(svgAttendu, s.enSVG());
     }
 
     @Test
     public void testGetAngle() {
-        assertEquals(0.0, s.getAngle(), 0.001);
+        assertEquals(30, s.getAngle(), 0.001);
     }
 
     @Test
@@ -84,12 +84,12 @@ public class SecteurTest {
 
     @Test
     public void testHauteur() {
-        assertEquals(128.0, s.hauteur(), 0.001);
+        assertEquals(0, s.hauteur(), 0.001);
     }
 
     @Test
     public void testLargeur() {
-        assertEquals(127.99999999999999, s.largeur(), 0.001);
+        assertEquals(0, s.largeur(), 0.001);
     }
 
     @Test(expected = IllegalArgumentException.class) // dans le cas où les valeurs valent 0.
@@ -105,7 +105,7 @@ public class SecteurTest {
     @Test 
     public void testRedimmensioner2(){
         Secteur s2 = new Secteur(s.centre(), 128, 0, 60);
-        assertEquals(false,s2.equals(s.redimmensioner(1, 8)));
+        assertEquals(false,s2.equals(s.redimmensioner(0, 8)));
     }
 
     @Test

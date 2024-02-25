@@ -104,7 +104,12 @@ public class Polygone implements IForme {
 		return s;
 	}
 
-
+	/**
+	 * Retourne la hauteur du polygone, calculée comme la différence entre la
+	 * coordonnée y maximale et la coordonnée y minimale parmi tous les sommets.
+	 *
+	 * @return La hauteur du polygone.
+	 */
 	@Override
 	public double hauteur() {
 
@@ -117,11 +122,15 @@ public class Polygone implements IForme {
 				max = point;
 			}
 		}
-		if((max.y() - mini.y()) < 0){throw new IllegalStateException("La hauteur ne peut pas être négative.");}
 		return max.y() - mini.y();
 	}
 
-
+	/**
+	 * Retourne la largeur du polygone, calculée comme la différence entre la
+	 * coordonnée x maximale et la coordonnée x minimale parmi tous les sommets.
+	 *
+	 * @return La largeur du polygone.
+	 */
 	@Override
 	public double largeur() {
 		Point mini = points.get(0), max = points.get(0);
@@ -133,18 +142,23 @@ public class Polygone implements IForme {
 				max = point;
 			}
 		}
-		if((max.x() - mini.x()) < 0){throw new IllegalStateException("La lergeur ne peut pas être négative.");}
 		return max.x() - mini.x();
 	}
 
+	/**
+	 * Déplace le polygone selon les déplacements spécifiés.
+	 *
+	 * @param dx Le déplacement en abscisse.
+	 * @param dy Le déplacement en ordonnée.
+	 * @return Une référence à l'instance du polygone, pour permettre les opérations
+	 *         en chaîne.
+	 */
 	@Override
 	public IForme deplacer(double dx, double dy) {
-		ArrayList<Point> nouveauxPoints = new ArrayList<>();
 		for (int i = 0; i < points.size(); i++) {
-			if((dx + points.get(i).x())<0 ||(dy + points.get(i).y())<0 ){throw new IllegalStateException("Un point à une coordonnées x ou y négative");}
-			nouveauxPoints.add(new Point(dx + points.get(i).x(), dy + points.get(i).y()));
+			Point point = points.remove(i);
+			points.add(i, new Point(dx + point.x(), dy + point.y()));
 		}
-		points = nouveauxPoints;
 		return this;
 	}
 

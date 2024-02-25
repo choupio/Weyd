@@ -10,7 +10,7 @@ public interface IForme {
 	 *
 	 * @return Le centre de la forme géométrique.
 	 * @ensures centre >= (0,0)
-	 * @throws IllegalStateException si centre a son X et/ou Y plus petit que 0.
+	 * @throws IllegalArgumentException si centre a son X et/ou Y plus petit que 0.
 	 */
 	public Point centre();
 
@@ -31,7 +31,7 @@ public interface IForme {
 	 *
 	 * @return La hauteur de la forme géométrique.
 	 * @ensures hauteur >= 0.0
-	 * @throws IllegalStateException si hauteur est plus petit que 0.
+	 * @throws IllegalArgumentException si hauteur est plus petit que 0.
 	 */
 	public double hauteur();
 
@@ -40,7 +40,7 @@ public interface IForme {
 	 *
 	 * @return La largeur de la forme géométrique.
 	 * @ensures largeur >= 0.0
-	 * @throws IllegalStateException si largeur est plus petit que 0.
+	 * @throws IllegalArgumentException si largeur est plus petit que 0.
 	 */
 	public double largeur();
 
@@ -49,7 +49,7 @@ public interface IForme {
 	 *
 	 * @param dx Le déplacement en abscisse.
 	 * @param dy Le déplacement en ordonnée.
-	 * @throws IllegalStateException si x ou y devient plus petit que 0.
+	 * @throws IllegalArgumentException si x ou y devient plus petit que 0.
 	 * @return Une référence à l'instance de la forme géométrique, pour permettre
 	 *         les opérations en chaîne.
 	 * @ensures la forme à été déplacée de dx, dy.
@@ -71,8 +71,7 @@ public interface IForme {
 	 * @param h La hauteur de redimensionnement.
 	 * @param l La largeur de redimensionnement.
 	 * @throws IllegalArgumentException si la hauteur ou la largeur valent 0 ou
-	 *                                  moins.
-	 * @throws IllegalStateException    si aussi si le résultat de
+	 *                                  moins. Mais aussi si le résultat de
 	 *                                  redimensionner donne une coordonnée < 0.
 	 * @return Une référence à l'instance de la forme géométrique, pour permettre
 	 *         les opérations en chaîne.
@@ -119,7 +118,7 @@ public interface IForme {
 	 * @param cible      ligne horizontale ou verticale sur laquelle doit s'aligner
 	 *                   la figure
 	 * @requires cible >= 0
-	 * @throws IllegalStateException si X ou Y deviennent négatifs.
+	 * @throws IllegalArgumentException si X ou Y deviennent négatifs.
 	 * @return Une référence à l'instance de la forme géométrique, pour permettre
 	 *         les opérations en chaîne.
 	 * @ensures la figure doit être alignée de cible pixel selon l'alignement en

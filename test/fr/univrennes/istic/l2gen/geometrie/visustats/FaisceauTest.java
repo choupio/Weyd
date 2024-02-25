@@ -4,6 +4,7 @@ import java.util.List;
 import org.junit.Test;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
 
 public class FaisceauTest {
 
@@ -40,6 +41,15 @@ public class FaisceauTest {
         assertEquals(10.0, faisceau.centre().y(), 0.0001);
     }
 
+    @Test
+    public void testAgencementAvecTaillesDifferents() {
+        Faisceau faisceau = new Faisceau("FaisceauTaillesDifferentes", 10, 20, 30);
+        faisceau.agencer(0, 0, 2, 2, true);
+        assertEquals(10.0, faisceau.getBarres().get(0).centre().y(), 0.001);
+        assertEquals(35.0, faisceau.getBarres().get(1).centre().y(), 0.001);
+        assertEquals(80.0, faisceau.getBarres().get(2).centre().y(), 0.001);
+    }
+
 
     @Test
     public void testColorier() {
@@ -55,8 +65,12 @@ public class FaisceauTest {
     public void testDupliquer() {
         Faisceau original = new Faisceau("OriginalFaisceau", 10, 20, 30);
         Faisceau copie = (Faisceau) original.dupliquer();
+
         assertEquals(original.getNom(), copie.getNom());
         assertEquals(original.getBarres().size(), copie.getBarres().size());
-        }
+
+        // Assurez-vous que les rectangles ne sont pas les mêmes objets dans la mémoire
+        assertNotSame(original.getBarres().get(0), copie.getBarres().get(0));
+    }
 }
 
