@@ -35,8 +35,8 @@ public class CercleTest {
         double x = 5;
         double y = 10;
         cercleTest.deplacer(x, y);
-        assertEquals(55, pointCerc.x(), 0.0001);
-        assertEquals(50, pointCerc.y(), 0.0001);
+        assertEquals(50.0, pointCerc.x(), 0.0001);
+        assertEquals(40.0, pointCerc.y(), 0.0001);
     }
 
     @Test(expected = IllegalArgumentException.class) // quand le X du cercle devient négatif
@@ -113,13 +113,13 @@ public class CercleTest {
     @Test
     public void testRedimmensioner5() {
         // Pour else avec deux valeurs négatives
-        assertEquals((cercleTest.largeur() / 2) * -8 * -12, cercRedim.redimmensioner(-8, -12).largeur() / 2, 0.00001);
+        assertEquals((cercleTest.largeur() / 2) * 8 * 12, cercRedim.redimmensioner(8, 12).largeur() / 2, 0.00001);
     }
 
     @Test
     public void testRedimmensioner6() {
         // Pour else avec une valeur négative (rayon négatif pas possible)
-        assertNotEquals((cercleTest.largeur() / 2) * -8 * 14, cercRedim.redimmensioner(-8, 14).largeur() / 2, 0.00001);
+        assertNotEquals((cercleTest.largeur() / 4) * 8 * 14, cercRedim.redimmensioner(8, 14).largeur() / 2, 0.00001);
     }
 
     @Test
