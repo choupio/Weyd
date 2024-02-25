@@ -11,6 +11,10 @@ import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Secteur;
 
+/**
+ * La classe Camembert représente un camembert défini par un centre, un rayon et
+ * des secteurs.
+ */
 public class Camembert implements IForme {
 
     private Point centre;
@@ -19,14 +23,59 @@ public class Camembert implements IForme {
     private double angle;
     private String couleur = "white";
 
+    /**
+     * Constructeur de la classe Camembert
+     * 
+     * @param point un Point représentant le centre du Camembert
+     * @param a     un double représentant le rayon du Camembert
+     */
+    public Camembert(Point point, double a) {
+        if (point.x() < 0 || point.y() < 0) {
+            throw new IllegalArgumentException(
+                    "Le centre (point) et le rayon (a) doivent avoir des coordonnées strictement positives.");
+        } else {
+            this.centre = point;
+            this.rayon = a;
+        }
+        this.secteurs = new ArrayList<>();
+    }
+
+    /**
+     * Constructeur de la classe Camembert
+     * 
+     * @param x     un double représentant la coordonée X du centre du Camembert
+     * @param y     un double représentant la coordonée Y du centre du Camembert
+     * @param rayon un double représentant le rayon du Camembert
+     */
+    public Camembert(double x, double y, double rayon) {
+        this(new Point(x, y), rayon);
+    }
+
+    /**
+     * Getteur de la liste des secteurs du Camembert
+     * 
+     * @return secteurs, la liste des différents secteurs
+     */
     public List<Secteur> getSecteurs() {
         return secteurs;
     }
 
+    /**
+     * Setteur de la liste des secteurs du Camembert
+     * 
+     * @param secteurs une liste de Secteurs
+     */
     public void setSecteurs(List<Secteur> secteurs) {
         this.secteurs = secteurs;
     }
 
+    /**
+     * 
+     * @param numeroSecteur un entier représentant le secteur dont on veut récupérer
+     *                      la couleur
+     * @throws IllegalArgumentException si le numéro de secteur n'existe pas
+     * @return la couleur correspondant au numéro du secteur entré en paramètres
+     */
     public String getCouleurSecteur(int numeroSecteur) {
         if (numeroSecteur < 0 || numeroSecteur >= secteurs.size()) {
             throw new IllegalArgumentException("Numéro de secteur invalide");
@@ -34,29 +83,42 @@ public class Camembert implements IForme {
         return secteurs.get(numeroSecteur).couleur;
     }
 
-    public Camembert(Point point, double a) {
-        this.centre = point;
-        this.rayon = a;
-        this.secteurs = new ArrayList<>();
-    }
-
-    public Camembert(double x, double y, double rayon) {
-        this(new Point(x, y), rayon);
-    }
-
+    /**
+     * Ajoute un secteur au Camembert
+     * 
+     * @param description une String représentant la couleur du secteur à ajouter
+     * @param proportion  un double représentant la proportion que prendra le
+     *                    secteur dans le Camembert
+     * @throws IllegalArgumentException si la proportion est <= 0
+     * @return Une référence à l'instance de la forme géométrique, pour permettre
+     *         les opérations en chaîne.
+     */
     public Camembert ajouterSecteur(String description, double proportion) {
-        double angleDebut = angle;
-        double angleFin = 360 * proportion;
-        Secteur secteur = new Secteur(centre, rayon, angleDebut, angleFin);
-        secteur.colorier();
-        secteurs.add(secteur);
-        angle = angleFin;
+        if (proportion <= 0) {
+            throw new IllegalArgumentException("La proportion doit être strictement supérieure à 0.");
+        } else {
+            double angleDebut = angle;
+            double angleFin = 360 * proportion;
+            Secteur secteur = new Secteur(centre, rayon, angleDebut, angleFin);
+            secteur.colorier();
+            secteurs.add(secteur);
+            angle = angleFin;
+        }
         return this;
     }
 
+    /**
+     * Retourne le centre de la forme géométrique
+     * 
+     * @return Le centre de la forme
+     */
     @Override
     public Point centre() {
-        return centre;
+        if (centre.x() < 0 || centre.y() < 0) {
+            throw new IllegalArgumentException("Centre ne peut pas avoir de coordonnées négatives.");
+        } else {
+            return centre;
+        }
     }
 
     @Override
@@ -66,7 +128,7 @@ public class Camembert implements IForme {
             indent += " ";
         }
         StringBuilder sb = new StringBuilder(indent + "Camembert:\n");
-        sb.append(indent + "  Centre: ").append("(" + centre.x() + ", " + centre.y()+ ")" ).append("\n");
+        sb.append(indent + "  Centre: ").append("(" + centre.x() + ", " + centre.y() + ")").append("\n");
         sb.append(indent + "  Rayon: ").append(rayon).append("\n");
         sb.append(indent + "  Secteurs:\n");
         for (Secteur secteur : secteurs) {
