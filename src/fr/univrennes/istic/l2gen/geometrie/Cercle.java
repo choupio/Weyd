@@ -101,6 +101,12 @@ public class Cercle implements IForme {
      */
     @Override
     public IForme deplacer(double x, double y) {
+        if(x<0&&(this.centre().x()+x)<0){
+            throw new IllegalArgumentException("Le point x du cercle ne peut pas être négatif.");
+        }
+        else if(y<0&&(this.centre().y()+y)<0){
+            throw new IllegalArgumentException("Le point y du cercle ne peut pas être négatif.");
+        }
         point.plus(x, y);
         return this;
     }
