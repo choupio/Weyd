@@ -82,7 +82,7 @@ public class Faisceau extends Groupe {
         Alignement alignement;
         double cible;
         double separation;
-        if (largeur <=0 || axeX <0 || axeY <0){
+        if (largeur <=0 || axes.x() <0 || axes.y() <0){
             throw new IllegalArgumentException("Les coordonée, l'echelle et la largeur ne peuvent pas être négatif.");
         } else if (vertical) {
             alignement = Alignement.HAUT;
@@ -90,7 +90,7 @@ public class Faisceau extends Groupe {
             separation = hauteur;
             alignerElements(alignement, cible);
         } else {
-            empilerElements(Alignement.GAUCHE, axeX, separation);
+            empilerElements(Alignement.GAUCHE, axes.x(), separation);
             alignement = Alignement.GAUCHE;
             cible = x;
             separation = largeur;
