@@ -30,20 +30,7 @@ public class DiagCamemberts implements IDataVisualiseur {
      */
     @Override
     public Point centre() {
-        if (groupeCamembert.getListFormes().isEmpty()) {
-            return null;
-        }
-        double centreX = 0.0;
-        double centreY = 0.0;
-        for (IForme forme : groupeCamembert.getListFormes()) {
-            Point centreForme = forme.centre();
-            centreX += centreForme.x();
-            centreY += centreForme.y();
-        }
-        centreX /= groupeCamembert.getListFormes().size();
-        centreY /= groupeCamembert.getListFormes().size();
-        Point centre = new Point(centreX, centreY);
-        return centre;
+        return groupeCamembert.centre();
     }
 
     @Override
