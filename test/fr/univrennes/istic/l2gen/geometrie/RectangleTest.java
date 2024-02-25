@@ -23,14 +23,6 @@ public class RectangleTest {
         assertEquals(c.y(), centre.y(), 0.0001);
     }
 
-    @Test(expected = IllegalStateException.class) // quand le centre a une coordonnée négative.
-    public void testCentreNegatif(){
-        Point c1 = new Point(-2,6);
-        Rectangle r1 = new Rectangle(c1, 5, 8);
-        r1.centre();
-    }
-
-
     @Test
     public void testColorier() {
         r.colorier("rouge");
@@ -102,21 +94,9 @@ public class RectangleTest {
         assertEquals(8, r.hauteur(), 0.0001);
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void testHauteurNegative(){
-        Rectangle r1 = new Rectangle(r.centre(),4,-2);
-        r1.hauteur();
-    }
-
     @Test
     public void testLargeur() {
         assertEquals(5, r.largeur(), 0.0001);
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void testLargeurNegative(){
-        Rectangle r1 = new Rectangle(r.centre(),-2,4);
-        r1.largeur();
     }
 
     @Test

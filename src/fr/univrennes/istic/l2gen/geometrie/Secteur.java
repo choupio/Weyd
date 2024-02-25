@@ -252,9 +252,6 @@ public class Secteur implements IForme {
      * @return La représentation SVG du secteur.
      */
     public String enSVG() {
-        if (getArc() == 360) {
-            return "<circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + getRayon() + "\" fill=\"" + couleur + "\" stroke=\"black\"/>";
-        } else {
         double startAngle = Math.toRadians(getAngle());
         double endAngle = Math.toRadians(getAngle() + getArc());
 
@@ -270,7 +267,7 @@ public class Secteur implements IForme {
                 + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.x() + " " + centre.y() + " Z\"\n"
                 + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(" + getanglerotation() + ")\"/>";
     }
-    }
+
     /**
      * Colors the shape with the specified colors.
      * 
