@@ -61,6 +61,9 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public IForme redimmensioner(double h, double l) {
+        if (h < 0 || l < 0) {
+            throw new IllegalArgumentException("Hauteur et Largeur doivent être positifs.");
+        }
         groupeCamembert.redimmensioner(h, l);
         return this;
     }
@@ -72,26 +75,31 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public IForme colorier(String... couleurs) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'colorier'");
+        groupeCamembert.colorier(couleurs);
+        return this;
     }
 
     @Override
     public IForme tourner(int angle) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tourner'");
+        if (angle < 0) {
+            throw new IllegalArgumentException("L'angle doit être positif.");
+        }
+        groupeCamembert.tourner(angle);
+        return this;
     }
 
     @Override
     public IForme aligner(Alignement alignement, double cible) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'aligner'");
+        if (cible < 0) {
+            throw new IllegalArgumentException("La cible doit être positive.");
+        }
+        groupeCamembert.aligner(alignement, cible);
+        return this;
     }
 
     @Override
     public void createSvgFile() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
+        groupeCamembert.createSvgFile();
     }
 
     @Override
