@@ -295,7 +295,7 @@ public class Groupe implements IForme {
             }
             xEmpilement = minX;
         } else if (alignement == Alignement.DROITE) {
-            // recherche du centre au x minimum
+            // recherche du centre au x maximum
             double maxX = listFormes.get(0).centre().x();
             for (IForme formes : listFormes) {
                 if (maxX < formes.centre().x()) {
@@ -304,21 +304,19 @@ public class Groupe implements IForme {
             }
             xEmpilement = maxX;
         } else {
-            // X de tous le monde = moyenne des centres X
-            double moyCentreX = 0.0;
-            for (int i = 0; i < listFormes.size(); i += 1) {
-                moyCentreX += listFormes.get(i).centre().x();
+            // X de tout le monde = moyenne des centres X
+            double addCentreX = 0.0;
+            for (IForme formes : listFormes) {
+                addCentreX += formes.centre().x();
             }
-            moyCentreX /= listFormes.size();
-            xEmpilement = moyCentreX;
+            xEmpilement = addCentreX / listFormes.size();
         }
-        listFormes.stream().forEach(x -> {
-            x.aligner(alignement, cible);
-            x.deplacer(0, separation);
-        });
-        for (int i = 0; i < listFormes.size(); i += 1) {
-            listFormes.get(i).centre().setX(xEmpilement);
+        listFormes.stream().forEach(x -> x.aligner(alignement, cible));
+        for (IForme formes : listFormes) {
+            double deplacementX = formes.centre().x() - xEmpilement;
+            formes.deplacer(-deplacementX, separation);
         }
+
         return this;
     }
 }

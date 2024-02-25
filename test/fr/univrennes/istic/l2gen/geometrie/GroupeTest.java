@@ -156,7 +156,7 @@ public class GroupeTest {
     public void testAlignerElementsH() {
         groupe.alignerElements(Alignement.HAUT, 150);
         assertEquals(125.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
-        // Expexcted = le y du centre car il est calculé à partir de tous les points
+        // Expected = le y du centre car il est calculé à partir de tous les points
         // (= on voit si les y sont bons)
         assertEquals(214.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
     }
@@ -166,7 +166,7 @@ public class GroupeTest {
     public void testAlignerElementsB() {
         groupe.alignerElements(Alignement.BAS, 110);
         assertEquals(135.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
-        // Expexcted = le y du centre car il est calculé à partir de tous les points
+        // Expected = le y du centre car il est calculé à partir de tous les points
         // (= on voit si les y sont bons)
         assertEquals(46.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
     }
@@ -176,7 +176,7 @@ public class GroupeTest {
     public void testAlignerElementsG() {
         groupe.alignerElements(Alignement.GAUCHE, 220);
         assertEquals(245.0, groupe.getListFormes().get(0).centre().x(), 0.0001);
-        // Expexcted = le x du centre car il est calculé à partir de tous les points
+        // Expected = le x du centre car il est calculé à partir de tous les points
         // (= on voit si les x sont bons)
         assertEquals(284.0, groupe.getListFormes().get(1).centre().x(), 0.0001);
     }
@@ -186,7 +186,7 @@ public class GroupeTest {
     public void testAlignerElementsD() {
         groupe.alignerElements(Alignement.DROITE, 180);
         assertEquals(155.0, groupe.getListFormes().get(0).centre().x(), 0.0001);
-        // Expexcted = le x du centre car il est calculé à partir de tous les points
+        // Expected = le x du centre car il est calculé à partir de tous les points
         // (= on voit si les x sont bons)
         assertEquals(116.0, groupe.getListFormes().get(1).centre().x(), 0.0001);
     }
@@ -195,43 +195,47 @@ public class GroupeTest {
     @Test
     public void testEmpilerElementsH() {
         groupe.empilerElements(Alignement.HAUT, 150, 20);
-        assertEquals(70.0, groupe.getListFormes().get(0).centre().x(), 0.0001);
-        assertEquals(125.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
-        // Expexcted = les x,y du centre car ils sont calculés à partir de tous les
+        assertEquals(121.0, groupe.getListFormes().get(0).centre().x(), 0.0001);
+        assertEquals(145.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
+        // Expected = les x,y du centre car ils sont calculés à partir de tous les
         // points (= on voit si les x,y sont bons)
-        assertEquals(212.0, groupe.getListFormes().get(1).centre().x(), 0.0001);
-        assertEquals(214.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
+        assertEquals(121.0, groupe.getListFormes().get(1).centre().x(), 0.0001);
+        assertEquals(234.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
     }
 
     // Pour alignement BAS + sépraration de 40
     @Test
     public void testEmpilerElementsB() {
         groupe.empilerElements(Alignement.BAS, 110, 40);
-        assertEquals(90.0, groupe.getListFormes().get(0).centre().x(), 0.0001);
-        assertEquals(135.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
-        // Expexcted = les x,y du centre car ils sont calculés à partir de tous les
+        assertEquals(121.0, groupe.getListFormes().get(0).centre().x(), 0.0001);
+        assertEquals(175.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
+        // Expected = les x,y du centre car ils sont calculés à partir de tous les
         // points (= on voit si les x,y sont bons)
-        assertEquals(232.0, groupe.getListFormes().get(1).centre().x(), 0.0001);
-        assertEquals(46.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
+        assertEquals(121.0, groupe.getListFormes().get(1).centre().x(), 0.0001);
+        assertEquals(86.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
     }
 
     // Pour alignement GAUCHE + sépraration de 60
     @Test
     public void testEmpilerElementsG() {
         groupe.empilerElements(Alignement.GAUCHE, 220, 60);
-        assertEquals(305.0, groupe.getListFormes().get(0).centre().x(), 0.0001);
-        // Expexcted = le x du centre car il est calculé à partir de tous les points
-        // (= on voit si les x sont bons)
-        assertEquals(344.0, groupe.getListFormes().get(1).centre().x(), 0.0001);
+        assertEquals(50.0, groupe.getListFormes().get(0).centre().x(), 0.0001);
+        assertEquals(100.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
+        // Expected = les x,y du centre car ils sont calculés à partir de tous les
+        // points (= on voit si les x,y sont bons)
+        assertEquals(50.0, groupe.getListFormes().get(1).centre().x(), 0.0001);
+        assertEquals(252.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
     }
 
     // Pour alignement DROITE + sépraration de 80
     @Test
-    public void testEmpilerElements() {
+    public void testEmpilerElementsD() {
         groupe.empilerElements(Alignement.DROITE, 180, 80);
-        assertEquals(235.0, groupe.getListFormes().get(0).centre().x(), 0.0001);
-        // Expexcted = le x du centre car il est calculé à partir de tous les points
-        // (= on voit si les x sont bons)
-        assertEquals(196.0, groupe.getListFormes().get(1).centre().x(), 0.0001);
+        assertEquals(192.0, groupe.getListFormes().get(0).centre().x(), 0.0001);
+        assertEquals(120.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
+        // Expected = les x,y du centre car ils sont calculés à partir de tous les
+        // points (= on voit si les x,y sont bons)
+        assertEquals(192.0, groupe.getListFormes().get(1).centre().x(), 0.0001);
+        assertEquals(272.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
     }
 }
