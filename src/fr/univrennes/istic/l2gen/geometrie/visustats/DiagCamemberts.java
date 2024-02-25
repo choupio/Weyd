@@ -24,9 +24,9 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     /**
      * Retourne le centre du groupe, calculé comme le centre moyen de toutes les
-     * formes dans le groupe.
+     * formes dans le diag.
      *
-     * @return Le centre du groupe.
+     * @return Le centre du diag.
      */
     @Override
     public Point centre() {
@@ -35,8 +35,7 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public String description(int indentation) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'description'");
+        return groupeCamembert.description(indentation);
     }
 
     @Override
