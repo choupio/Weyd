@@ -22,16 +22,16 @@ public class CamembertTest {
     public void testDescription() {
         Camembert camembert = new Camembert(new Point(0, 0), 10);
         camembert.ajouterSecteur("Secteur 1", 0.25);
-        camembert.ajouterSecteur("Secteur 2", 0.5);
+        camembert.ajouterSecteur("Secteur 2", 0.50);
         camembert.ajouterSecteur("Secteur 3", 0.25);
         String actualDescription = camembert.description(0);
         String expectedDescription = "Camembert:\n" +
                 "  Centre: (0.0, 0.0)\n" +
                 "  Rayon: 10.0\n" +
                 "  Secteurs:\n" +
-                "    Secteur: Secteur 1, Proportion: 0.25\n" +
-                "    Secteur: Secteur 2, Proportion: 0.5\n" +
-                "    Secteur: Secteur 3, Proportion: 0.25\n";
+                "    Secteur: Secteur 1, Proportion: 0,25\n" +
+                "    Secteur: Secteur 2, Proportion: 0,50\n" +
+                "    Secteur: Secteur 3, Proportion: 0,25\n";
         assertEquals(expectedDescription, actualDescription);
     }
 

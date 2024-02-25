@@ -132,9 +132,8 @@ public class Camembert implements IForme {
             int i = 1;
             for (Secteur secteur : secteurs) {
                 String nomSecteur = "Secteur " + i;
-                // Format the proportion to a specific precision, e.g., 2 decimal places
-                String formattedProportion = String.format("%.2f", secteur.getAngle()/360);
-                sb.append(indent + "    Secteur: ").append(nomSecteur).append(", Proportion: " + formattedProportion + "\n");
+                String formatProportion = String.format("%.2f", secteur.getArc()/(double)360);
+                sb.append(indent + "    Secteur: ").append(nomSecteur).append(", Proportion: " + formatProportion).append("\n");
                 i++;
             }
             return sb.toString();
