@@ -1,6 +1,3 @@
-
-import fr.univrennes.istic.l2gen.geometrie.*;
-import fr.univrennes.istic.l2gen.geometrie.visustats.Camembert;
 import fr.univrennes.istic.l2gen.geometrie.visustats.Faisceau;
 
 public class App {
