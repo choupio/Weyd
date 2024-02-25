@@ -28,6 +28,9 @@ public class FaisceauTest {
     public void testAgencementHorizontal() {
         Faisceau faisceau = new Faisceau("HorizontalFaisceau", 10, 20, 30);
         faisceau.agencer(0, 0, 1, 1, false);
+        faisceau.agencer(0, 0, 10, 5, false);
+        // Vérifiez si la liste de rectangles contient le bon nombre de rectangles
+        assertEquals(1, faisceau.getBarres().size());
         assertEquals(10.0, faisceau.getBarres().get(0).centre().x(), 0.001);
         assertEquals(15.0, faisceau.getBarres().get(1).centre().x(), 0.001);
         assertEquals(25.0, faisceau.getBarres().get(2).centre().x(), 0.001);
