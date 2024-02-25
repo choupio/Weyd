@@ -81,7 +81,7 @@ public class Faisceau extends Groupe {
     public IForme agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
         Alignement alignement;
         double cible;
-        double separation;
+        double separation = 0.0;
         if (largeur <=0 || axes.x() <0 || axes.y() <0){
             throw new IllegalArgumentException("Les coordonée, l'echelle et la largeur ne peuvent pas être négatif.");
         } else if (vertical) {
