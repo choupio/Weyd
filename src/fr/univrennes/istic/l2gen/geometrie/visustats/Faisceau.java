@@ -16,6 +16,7 @@ public class Faisceau extends Groupe {
     private Point axes = new Point(0, 0);
     private double largeur = 1;
 
+
     /**
      * Retourne la couleur du faisceau.
      *
@@ -55,6 +56,7 @@ public class Faisceau extends Groupe {
             this.barres.add(r);
         }
     }
+
     /**
      * Constructeur de copie de la classe Faisceau.
      *
@@ -67,6 +69,7 @@ public class Faisceau extends Groupe {
             this.barres.add(rect); // Réutilise le même objet Rectangle sans créer une nouvelle copie
         }
     }
+
     /**
      * Agence les rectangles du faisceau en fonction des paramètres spécifiés.
      *
