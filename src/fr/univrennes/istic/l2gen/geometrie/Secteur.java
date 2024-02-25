@@ -13,9 +13,8 @@ public class Secteur implements IForme {
     private double angle; // L'angle du secteur en degrés par rapport à l'axe horizontal
     private Point centre; // Le centre du secteur
     private double rayon; // Le rayon du secteur
-    public String couleur = "white"; // La couleur du secteur en "white"
-    private double larg; // La largeur du secteur
-    private double haut; // La hauteur du secteur
+    public String couleur = "white"; // La couleur du secteur en "white" par défaut
+    private double anglerotation; // L'angle de rotation du secteur
 
     /**
      * Constructeur de la classe Secteur prenant les coordonnées x et y du centre,
@@ -51,6 +50,15 @@ public class Secteur implements IForme {
     }
 
     /**
+     * Returns the angle of rotation for this sector.
+     *
+     * @return the angle of rotation
+     */
+    public double getanglerotation() {
+        return anglerotation;
+    }   
+
+    /**
      * Calcule la hauteur du secteur.
      * 
      * @return La hauteur du secteur.
@@ -59,6 +67,20 @@ public class Secteur implements IForme {
     public double hauteur() {
         if (arc <= 180) {
             return rayon;
+        } else {
+            return 2 * rayon;
+        }
+    }
+
+    /**
+     * Calcule la largeur du secteur.
+     * 
+     * @return La largeur du secteur.
+     */
+    @Override
+    public double largeur() {
+        if (arc <= 180) {
+            return 2 * rayon * Math.sin(Math.toRadians(arc / 2));
         } else {
             return 2 * rayon;
         }
@@ -103,20 +125,6 @@ public class Secteur implements IForme {
     }
 
     /**
-     * Calcule la largeur du secteur.
-     * 
-     * @return La largeur du secteur.
-     */
-    @Override
-    public double largeur() {
-        if (arc <= 180) {
-            return 2 * rayon * Math.sin(Math.toRadians(arc / 2));
-        } else {
-            return 2 * rayon;
-        }
-    }
-
-    /**
      * Redimensionne le secteur.
      * 
      * @param largeur La nouvelle largeur.
@@ -127,8 +135,10 @@ public class Secteur implements IForme {
         if (h <= 0 || l <= 0) {
             throw new IllegalArgumentException("Les dimensions doivent être positives");
         }
-        larg *= l;
-        haut *= h;
+        double newRayon = rayon * Math.max(h, l);
+        double scaleFactor = newRayon / rayon;
+        rayon = newRayon;
+        arc *= scaleFactor;
         return this;
     }
 
@@ -210,7 +220,7 @@ public class Secteur implements IForme {
             indent.append("  ");
         }
         return indent + "Secteur " + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
-                + " Arc=" + getArc() + " de couleur " + couleur + " et de rotation " + angle;
+                + " Arc=" + getArc() + " de couleur " + couleur + " et de rotation " + getanglerotation();
     }
 
     /**
@@ -255,7 +265,7 @@ public class Secteur implements IForme {
 
         return "<path d=\"M " + startX + " " + startY + " A " + getRayon() + " " + getRayon()
                 + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.x() + " " + centre.y() + " Z\"\n"
-                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(" + getAngle() + ")\"/>";
+                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(" + getanglerotation() + ")\"/>";
     }
 
     /**
