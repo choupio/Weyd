@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 
-public class Faisceau implements IForme {
+public class Faisceau extends Groupe {
     private String nom;
     private List<Rectangle> barres;
-    private String couleur = "white";
+    private String couleur = "red";
 
     public Faisceau(String nom, double... h) {
         this.nom = nom;
@@ -22,64 +23,40 @@ public class Faisceau implements IForme {
         }
     }
 
+    public Faisceau(Faisceau faisceau) {
+        // TODO
+    }
+
     public void agencer(double axeX, double axeY, double largeur, double echelle, boolean verticalement) {
+        this.alignerElements(Alignement.GAUCHE, axeX);
+        this.alignerElements(Alignement.BAS, axeY);
+        // faisceau vertical
+        if (verticalement) {
 
+        }
+        // faisceau horizontal
+        else {
+
+        }
     }
 
+    @Override
     public IForme colorier(String... couleurs) {
-        couleur = couleurs[0];
+        int i = 0;
+        for (Rectangle rect : barres) {
+            rect.colorier(couleurs[i]);
+            i++;
+            if (i >= barres.size()) {
+                i = 0;
+            }
+        }
         return this;
     }
 
+    @Override
     public IForme dupliquer() {
-        return this;
-    }
-
-    public Point centre() {
-        throw new UnsupportedOperationException("Unimplemented method 'centre'");
-    }
-
-    public String description(int indentation) {
-        throw new UnsupportedOperationException("Unimplemented method 'description'");
-    }
-
-    public double hauteur() {
-        throw new UnsupportedOperationException("Unimplemented method 'hauteur'");
-    }
-
-    public double largeur() {
-        throw new UnsupportedOperationException("Unimplemented method 'largeur'");
-    }
-
-    public IForme redimmensionner() {
-        throw new UnsupportedOperationException("Unimplemented method 'redimensionner'");
-    }
-
-    public String enSVG() {
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
-    }
-
-    public IForme tourner(int angle) {
-        throw new UnsupportedOperationException("Unimplemented method 'tourner'");
-    }
-
-    public IForme aligner(Alignement alignement, double cible) {
-        throw new UnsupportedOperationException("Unimplemented method 'aligner'");
-    }
-
-    public void createSvgFile() {
-        throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
-    }
-
-    @Override
-    public IForme deplacer(double dx, double dy) {
-        throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
-    }
-
-    @Override
-    public IForme redimmensioner(double h, double l) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
+        Faisceau faisceau = new Faisceau(this);
+        return faisceau;
     }
 
 }
