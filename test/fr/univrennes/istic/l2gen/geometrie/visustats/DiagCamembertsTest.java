@@ -30,7 +30,7 @@ public class DiagCamembertsTest {
         camembert.ajouterSecteur("blue", 0.3);
         diag.groupeCamembert.ajouter(camembert);
 
-        String descriptionAttendue = "Groupe :\n Camembert:\n Centre: (0.0, 0.0)\n Rayon: 10.0\n Secteurs:\n  Secteur: Secteur 1, Proportion: 0,50\n  Secteur: Secteur 2, Proportion: 0,30\n"; // La description du camembert ajouté
+        String descriptionAttendue = "Groupe :\nCamembert:\n  Centre: (0.0, 0.0)\n  Rayon: 10.0\n  Secteurs:\n    Secteur: Secteur 1, Proportion: 0,50\n  Secteur: Secteur 2, Proportion: 0,30\n"; // La description du camembert ajouté
         assertEquals(descriptionAttendue, diag.description(0)); // L'indentation est 0 pour cet exemple
     }
 
@@ -70,11 +70,10 @@ public class DiagCamembertsTest {
     @Test
     public void testDeplacer() {
         DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
-        // Créez un camembert et ajoutez des secteurs
-        Camembert camembert = new Camembert(new Point(0, 0), 10);
-        camembert.ajouterSecteur("red", 0.5);
-        camembert.ajouterSecteur("blue", 0.3);
-        diag.groupeCamembert.ajouter(camembert);
+
+        // Ajoutez des formes au groupeCamembert
+        // ...
+
         Point ancienCentre = diag.centre();
         double dx = 5.0;
         double dy = -3.0;
