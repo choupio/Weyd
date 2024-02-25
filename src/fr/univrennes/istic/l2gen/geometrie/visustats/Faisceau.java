@@ -14,6 +14,18 @@ public class Faisceau extends Groupe {
     private List<Rectangle> barres;
     private String couleur = "red";
 
+    public String getCouleur() {
+        return couleur;
+    }
+    public String getNom() {
+        return nom;
+    }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    public List<Rectangle> getBarres() {
+            return barres;
+        }
     public Faisceau(String nom, double... h) {
         this.nom = nom;
         this.barres = new ArrayList<Rectangle>();
@@ -38,12 +50,12 @@ public class Faisceau extends Groupe {
         if (verticalement) {
             for (Rectangle rect : barres) {
                 rect.deplacer(0, offset);
-                offset += rect.hauteur() + 5; // Ajustez selon l'espacement souhaité entre les barres verticales
+                offset += rect.hauteur() * echelle + 5; // Utilisez l'échelle pour ajuster la hauteur
             }
         } else {
             for (Rectangle rect : barres) {
                 rect.deplacer(offset, 0);
-                offset += rect.largeur() + 5; // Ajustez selon l'espacement souhaité entre les barres horizontales
+                offset += rect.largeur() * echelle + 5; // Utilisez l'échelle pour ajuster la largeur
             }
         }
     }

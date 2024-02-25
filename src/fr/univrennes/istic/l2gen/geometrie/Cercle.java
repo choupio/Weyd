@@ -150,7 +150,9 @@ public class Cercle implements IForme {
      */
     @Override
     public IForme redimmensioner(double i, double j) {
-        if (i == j) {
+        if(i<0 || j<0){
+            throw new IllegalArgumentException("Le rayon ne doit pas être négative.");
+        } else if (i == j) {
             rayon *= i;
         } else if (i == 0) {
             rayon *= j;
