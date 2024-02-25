@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class Polygone implements IForme {
 
+
 	public List<Point> getSommets() {
 		return points;
 	}
@@ -66,24 +67,28 @@ public class Polygone implements IForme {
 	 */
 	@Override
 	public Point centre() {
+		// TODO Il faut refaire car le calcul est mauvais
 		double x = 0, y = 0;
 		for (Point point : points) {
 			x += point.x();
 			y += point.y();
 		}
+		if(x<0 || y<0){throw new IllegalArgumentException("Le centre a un x ou y inférieur à 0");}
 		return new Point(x / points.size(), y / points.size());
 	}
 
 	/**
 	 * Retourne une description du polygone avec une indentation spécifiée.
 	 *
-	 * @param entier Le niveau d'indentation pour la description.
+	 * @param indentation Le niveau d'indentation pour la description.
 	 * @return Une chaîne de caractères décrivant le polygone.
 	 */
 	@Override
-	public String description(int entier) {
+	public String description(int indentation) {
+		if(indentation < 0){throw new IllegalArgumentException("L'indentation doit être supérieur ou égal à 0");}
+		
 		String cran = "";
-		for (int i = 0; i < entier; i += 1) {
+		for (int i = 0; i < indentation; i += 1) {
 			cran += "  ";
 		}
 
@@ -107,6 +112,7 @@ public class Polygone implements IForme {
 	 */
 	@Override
 	public double hauteur() {
+
 		Point mini = points.get(0), max = points.get(0);
 		for (Point point : points) {
 			if (point.y() < mini.y()) {
