@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.univrennes.SVGFile;
+
 /**
  * La classe Groupe représente un groupe de formes géométriques.
  */
@@ -217,15 +219,7 @@ public class Groupe implements IForme {
      * Crée un fichier SVG représentant toutes les formes du groupe.
      */
     public void createSvgFile() {
-        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Groupe.svg"))) {
-            writer.write(svgContent);
-            writer.write(enSVG());
-            writer.write("</svg>");
-            System.out.println("Fichier créé avec succès !");
-        } catch (IOException e) {
-            System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
-        }
+        SVGFile.createSvgFile(this, "Groupe");
     }
     /**
      * Aligne les formes du groupe selon l'alignement spécifié et la cible.
