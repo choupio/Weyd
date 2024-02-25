@@ -126,16 +126,16 @@ public class Rectangle implements IForme {
      *
      * @param dx Le déplacement en abscisse.
      * @param dy Le déplacement en ordonnée.
-     * @throws IllegalArgumentException si x ou y devient négatif
+     * @throws IllegalStateException si x ou y devient négatif
      * @return Une référence à l'instance du rectangle, pour permettre les
      *         opérations en chaîne.
      */
     public IForme deplacer(double dx, double dy) {
         if(dx<0&&(this.centre().x()+dx)<0){
-            throw new IllegalArgumentException("Le point x du rectangle ne peut pas être négatif.");
+            throw new IllegalStateException("Le point x du rectangle ne peut pas être négatif.");
         }
         else if(dy<0&&(this.centre().y()+dy)<0){
-            throw new IllegalArgumentException("Le point y du rectangle ne peut pas être négatif.");
+            throw new IllegalStateException("Le point y du rectangle ne peut pas être négatif.");
         }
         else{
             this.centre.plus(dx, dy);
@@ -247,23 +247,30 @@ public class Rectangle implements IForme {
     }
 
     public IForme aligner(Alignement alignement, double cible) {
-        if((cible - (hauteur/2))<0){
-            throw new IllegalArgumentException("La coordonnée Y ne peut pas être négative.");
-        }
-        else if((cible + (hauteur/2))<0){
-            throw new IllegalArgumentException("La coordonnée Y ne peut pas être négative.");
-        }
+        
         switch (alignement) {
             case HAUT:
+                if((cible - (hauteur/2))<0){
+                    throw new IllegalArgumentException("Y ne peut pas être négatif.");
+                }
                 centre = new Point(centre.x(), cible - (hauteur/2) );
                 break;
             case BAS:
+                if((cible + (hauteur/2))<0){
+                    throw new IllegalArgumentException("Y ne peut pas être négatif.");
+                }
                 centre = new Point(centre.x(), cible + (hauteur/2) );
                 break;
             case DROITE:
+                if((cible - (largeur/2))<0){
+                    throw new IllegalArgumentException("X ne peut pas être négatif.");
+                }
                 centre = new Point(cible - (largeur/2) , centre.y());
                 break;
             case GAUCHE:
+                if((cible + (largeur/2))<0){
+                    throw new IllegalArgumentException("X ne peut pas être négatif.");
+                }
                 centre = new Point(cible + (largeur/2) , centre.y());
                 break;
         }
