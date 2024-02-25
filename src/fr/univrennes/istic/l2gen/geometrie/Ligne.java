@@ -22,11 +22,16 @@ public class Ligne implements IForme {
      *
      * @param l Les coordonnées des sommets de la ligne. Chaque paire de valeurs
      *          consécutives représente les coordonnées x et y d'un sommet.
+     * 
+     * @throws IllegalStateException si un des sommets de la liste est négatif.
      */
     public Ligne(double... l) {
         if (l.length % 2 == 0) {
             ligne = new ArrayList<>();
             for (int i = 0; i < l.length; i = i + 2) {
+                if (l[i] < 0) {
+                    throw new IllegalArgumentException("Un sommet ne peut pas être négatif.");
+                }
                 ligne.add(new Point(l[i], l[i + 1]));
             }
         }
@@ -39,8 +44,12 @@ public class Ligne implements IForme {
      * @param p Le sommet à ajouter à la ligne.
      * @return Une référence à l'instance actuelle de la ligne, pour permettre les
      *         opérations en chaîne.
+     * @throws IllegalArgumentException si le point a une coordonnées négative.
      */
     public IForme ajouterSommet(Point p) {
+        if (p.x() < 0 || p.y() < 0) {
+            throw new IllegalArgumentException("Le point ne peut pas avoir de coordonnées négatives.");
+        }
         ligne.add(p);
         return this;
     }
@@ -58,23 +67,16 @@ public class Ligne implements IForme {
         return this;
     }
 
-    /**
-     * Retourne le centre de la ligne, qui est défini comme étant le dernier sommet
-     * de la ligne.
-     *
-     * @return Le centre de la ligne.
-     */
+    @Override
     public Point centre() {
         return ligne.get(ligne.size() - 1);
     }
 
-    /**
-     * Retourne une description de la ligne avec une indentation spécifiée.
-     *
-     * @param identation Le niveau d'indentation pour la description.
-     * @return Une chaîne de caractères décrivant la ligne.
-     */
+    @Override
     public String description(int identation) {
+        if (identation < 0) {
+            throw new IllegalArgumentException("L'indentation ne peut pas être négative.");
+        }
         String result;
         String identa = "";
         for (int i = 0; i < identation; i++) {
@@ -102,12 +104,7 @@ public class Ligne implements IForme {
         return result;
     }
 
-    /**
-     * Retourne la hauteur de la ligne, calculée comme la différence entre la
-     * coordonnée y maximale et la coordonnée y minimale parmi tous les sommets.
-     *
-     * @return La hauteur de la ligne.
-     */
+    @Override
     public double hauteur() {
         List<Double> dy = new ArrayList<Double>();
         for (int i = 0; i < ligne.size(); i++) {
@@ -123,15 +120,13 @@ public class Ligne implements IForme {
                 min = dy.get(i);
             }
         }
+        if ((max - min) < 0) {
+            throw new IllegalStateException("La hauteur ne peut pas être négative.");
+        }
         return max - min;
     }
 
-    /**
-     * Retourne la largeur de la ligne, calculée comme la différence entre la
-     * coordonnée x maximale et la coordonnée x minimale parmi tous les sommets.
-     *
-     * @return La largeur de la ligne.
-     */
+    @Override
     public double largeur() {
         List<Double> dx = new ArrayList<Double>();
         for (int i = 0; i < ligne.size(); i++) {
@@ -147,14 +142,13 @@ public class Ligne implements IForme {
                 min = dx.get(i);
             }
         }
+        if ((max - min) < 0) {
+            throw new IllegalStateException("La Largeur ne peut pas être négative.");
+        }
         return max - min;
     }
 
-    /**
-     * Retourne une représentation SVG de la ligne.
-     *
-     * @return Une chaîne de caractères représentant la ligne en format SVG.
-     */
+    @Override
     public String enSVG() {
         String result = "<polyline ligne=\"";
         result = result + ligne.get(0).x() + ' ' + ligne.get(0).y() + ' ';
@@ -165,27 +159,19 @@ public class Ligne implements IForme {
         return result;
     }
 
-    /**
-     * Déplace la ligne selon les déplacements spécifiés.
-     *
-     * @param dx Le déplacement en abscisse.
-     * @param dy Le déplacement en ordonnée.
-     * @return Une référence à l'instance de la ligne, pour permettre les opérations
-     *         en chaîne.
-     */
     @Override
     public IForme deplacer(double dx, double dy) {
         for (int i = 0; i < ligne.size(); i++) {
             ligne.set(i, new Point(ligne.get(i).x() + dx, ligne.get(i).y() + dy));
+            if (ligne.get(i).x() < 0 || ligne.get(i).y() < 0) {
+                throw new IllegalStateException(
+                        "Le point " + i + " a au moins une de ses coordonnées qui est négative.");
+            }
         }
         return this;
     }
 
-    /**
-     * Duplique la ligne.
-     *
-     * @return Une nouvelle instance de la ligne avec les mêmes propriétés.
-     */
+    @Override
     public IForme dupliquer() {
         Ligne ligne2 = new Ligne();
         for (int i = 0; i < ligne.size(); i++) {
@@ -196,43 +182,33 @@ public class Ligne implements IForme {
         return ligne2;
     }
 
-    /**
-     * Redimensionne la ligne selon les dimensions spécifiées.
-     *
-     * @param h La hauteur de redimensionnement.
-     * @param l La largeur de redimensionnement.
-     * @return Une référence à l'instance de la ligne, pour permettre les opérations
-     *         en chaîne.
-     */
     @Override
     public IForme redimmensioner(double h, double l) {
+        if (h <= 0 || l <= 0) {
+            throw new IllegalArgumentException("h et l doivent être strictement positifs.");
+        }
         for (int i = 1; i < ligne.size(); i++) {
             ligne.set(i, new Point(ligne.get(i).x() + h, ligne.get(i).y() + l));
         }
         return this;
     }
 
-    /**
-     * Change la couleur de la ligne.
-     *
-     * @param couleurs Un tableau de couleurs à appliquer à la ligne.
-     * @return Une référence à l'instance de la ligne, pour permettre les opérations
-     *         en chaîne.
-     */
     @Override
     public IForme colorier(String... couleurs) {
         this.couleur = couleurs[0];
         return this;
     }
 
+    @Override
     public IForme tourner(int angle) {
+        if (angle < 0) {
+            throw new IllegalArgumentException("L'angle doit être positif.");
+        }
         this.angle += angle;
         return this;
     }
 
-    /**
-     * Crée un fichier SVG représentant la ligne.
-     */
+    @Override
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 
@@ -246,16 +222,12 @@ public class Ligne implements IForme {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
     }
-    /**
-     * Aligne les points de la ligne selon l'alignement spécifié et la cible.
-     *
-     * @param alignement L'alignement à appliquer (HAUT, BAS, DROITE, GAUCHE, etc.).
-     * @param cible      La cible sur laquelle les points de la ligne doivent être alignés.
-     * @return Une référence à l'instance actuelle du groupe, pour permettre les
-     *         opérations en chaîne.
-     */
+
     @Override
     public IForme aligner(Alignement alignement, double cible) {
+        if (cible < 0) {
+            throw new IllegalArgumentException("La cible ne peut pas être négative.");
+        }
         double distanceY;
         double distanceX;
         switch (alignement) {
