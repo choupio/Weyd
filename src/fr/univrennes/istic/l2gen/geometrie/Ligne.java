@@ -246,7 +246,14 @@ public class Ligne implements IForme {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
     }
-
+    /**
+     * Aligne les points de la ligne selon l'alignement spécifié et la cible.
+     *
+     * @param alignement L'alignement à appliquer (HAUT, BAS, DROITE, GAUCHE, etc.).
+     * @param cible      La cible sur laquelle les points de la ligne doivent être alignés.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
+     */
     @Override
     public IForme aligner(Alignement alignement, double cible) {
         double distanceY;

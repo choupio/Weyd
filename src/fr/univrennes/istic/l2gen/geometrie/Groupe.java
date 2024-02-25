@@ -133,7 +133,13 @@ public class Groupe implements IForme {
         }
         return this;
     }
-
+    /**
+     * Tourne toutes les formes du groupe selon l'angle spécifié.
+     *
+     * @param angle L'angle de rotation.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
+     */
     @Override
     public IForme tourner(int angle) {
         for (IForme iForme : listFormes) {
@@ -222,7 +228,14 @@ public class Groupe implements IForme {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
     }
-
+    /**
+     * Aligne les formes du groupe selon l'alignement spécifié et la cible.
+     *
+     * @param alignement L'alignement à appliquer.
+     * @param cible      La cible sur laquelle les formes doivent être alignées.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
+     */
     @Override
     public IForme aligner(Alignement alignement, double cible) {
         if (listFormes.isEmpty()) {
@@ -250,7 +263,11 @@ public class Groupe implements IForme {
         }
         return this;
     }
-
+    /**
+     * Retourne la liste des formes dans le groupe.
+     *
+     * @return La liste des formes dans le groupe.
+     */
     public List<IForme> getListFormes() {
         return listFormes;
     }

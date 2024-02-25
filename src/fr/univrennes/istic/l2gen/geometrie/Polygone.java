@@ -243,13 +243,25 @@ public class Polygone implements IForme {
 			System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
 		}
 	}
-
+	/**
+	 * Tourne la forme (ensemble de points) autour de son centre selon l'angle spécifié.
+	 *
+	 * @param angle L'angle de rotation en degrés.
+	 * @return Une référence à l'instance actuelle de la forme, pour permettre les opérations en chaîne.
+	 */
 	@Override
 	public IForme tourner(int angle) {
 		this.angle = angle;
 		return this;
 	}
 
+	/**
+	 * Aligne les points de la forme (ensemble de points) selon l'alignement spécifié et la cible.
+	 *
+	 * @param alignement L'alignement à appliquer (HAUT, BAS, DROITE, GAUCHE, etc.).
+	 * @param cible      La cible sur laquelle les points de la forme doivent être alignés.
+	 * @return Une référence à l'instance actuelle de la forme, pour permettre les opérations en chaîne.
+	 */
 	@Override
 	public IForme aligner(Alignement alignement, double cible) {
 		if (alignement == Alignement.HAUT) {
