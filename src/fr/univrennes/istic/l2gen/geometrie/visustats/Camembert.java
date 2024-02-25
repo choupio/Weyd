@@ -20,7 +20,7 @@ public class Camembert implements IForme {
     private Point centre;
     private double rayon;
     private List<Secteur> secteurs;
-    private double angle;
+    private double cmptAngle = 0;
     private String couleur = "white";
 
     /**
@@ -94,15 +94,14 @@ public class Camembert implements IForme {
      *         les opérations en chaîne.
      */
     public Camembert ajouterSecteur(String description, double proportion) {
-        if (proportion <= 0) {
-            throw new IllegalArgumentException("La proportion doit être strictement supérieure à 0.");
+        if (proportion <= 0 || proportion >1) {
+            throw new IllegalArgumentException("La proportion doit être strictement supérieure à 0 et inférieur ou égale à 1.");
         } else {
-            double angleDebut = angle;
-            double angleFin = 360 * proportion;
-            Secteur secteur = new Secteur(centre, rayon, angleDebut, angleFin);
-            secteur.colorier();
+            double angleSecteur = 360 * proportion;
+            Secteur secteur = new Secteur(centre, rayon, cmptAngle, angleSecteur);
+            secteur.colorier(description);
             secteurs.add(secteur);
-            angle = angleFin;
+            cmptAngle += angleSecteur;
         }
         return this;
     }
@@ -222,13 +221,14 @@ public class Camembert implements IForme {
         }
     }
 
+    @Override
     public String enSVG() {
-        StringBuilder svg = new StringBuilder();
-        svg.append("<svg width=\"500\" height=\"500\" xmlns=\"http://www.w3.org/2000/svg\">\n");
-        svg.append("  <circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon
-                + "\" fill=\"lightblue\" />\n");
-        svg.append("</svg>");
-        return svg.toString();
+        String s = "<g>\n";
+        for (Secteur secteur : secteurs) {
+            s += secteur.enSVG() + "\n";
+        }
+        s += "</g>";
+        return s;
     }
 
     public int getNombreSecteurs() {

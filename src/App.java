@@ -20,9 +20,9 @@ public class App {
           tableau.createSvgFile();*/
 
           Groupe secteurs = new Groupe();
-          secteurs.ajouter(new Secteur(new Point(256, 256), 128, 30, 60).colorier("red").deplacer(800,0.0));
-          secteurs.ajouter(new Secteur(new Point(256, 256), 128, 90, 230).colorier("green").deplacer(800,0.0));  
-          secteurs.ajouter(new Secteur(new Point(256, 256), 128, 320, 70).colorier("blue").deplacer(800,0.0));
+          secteurs.ajouter(new Secteur(new Point(256, 256), 128, 0, 360).colorier("red").deplacer(800,0.0));
+          //secteurs.ajouter(new Secteur(new Point(256, 256), 128, 60, 240).colorier("green").deplacer(800,0.0));  
+          //secteurs.ajouter(new Secteur(new Point(256, 256), 128, 300, 60).colorier("blue").deplacer(800,0.0));
           secteurs.createSvgFile();
           System.out.println(secteurs.description(3));
           
@@ -38,11 +38,12 @@ public class App {
           System.out.println(groupe.description(3));*/
          
 
-        /*Camembert c = new Camembert(110, 110, 100);
+        Camembert c = new Camembert(110, 110, 100);
         c.ajouterSecteur("red", 0.15);
         c.ajouterSecteur("blue", 0.2);
         c.ajouterSecteur("green", 0.65);
-        System.out.println(c.description(2));*/
+        System.out.println(c.description(2));
+        c.createSvgFile();
 
       
         
