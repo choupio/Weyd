@@ -18,27 +18,41 @@ public class Ellipse implements IForme {
 
 
     /**
-     * Constructeur pour initialiser une ellipse avec les coordonnées du centre, la hauteur et la largeur.
+     * Constructeur avec coordonnées et dimensions.
      *
      * @param x       La coordonnée x du centre de l'ellipse.
      * @param y       La coordonnée y du centre de l'ellipse.
      * @param hauteur La hauteur de l'ellipse.
      * @param largeur La largeur de l'ellipse.
+     * @pre x et y doivent être des nombres réels valides.
+     * @pre hauteur et largeur doivent être des nombres réels positifs.
+     * @post Un objet Ellipse est créé avec le centre aux coordonnées (x, y) et les dimensions spécifiées.
+     * @throws IllegalArgumentException Si x, y, hauteur ou largeur sont négatifs.
      */
     public Ellipse(double x, double y, double hauteur, double largeur) {
+        if (hauteur < 0 || largeur < 0 || x < 0 || y < 0) {
+            throw new IllegalArgumentException("Les coordonnées et dimensions ne peuvent pas être négatives.");
+        }
         this.centre = new Point(x, y);
         this.largeur = largeur;
         this.hauteur = hauteur;
     }
 
     /**
-     * Constructeur pour initialiser une ellipse avec un point central, la hauteur et la largeur.
+     * Constructeur avec un point central et dimensions.
      *
      * @param p       Le point central de l'ellipse.
      * @param hauteur La hauteur de l'ellipse.
      * @param largeur La largeur de l'ellipse.
+     * @pre Le point p doit être non nul.
+     * @pre hauteur et largeur doivent être des nombres réels positifs.
+     * @post Un objet Ellipse est créé avec le centre défini par le point p et les dimensions spécifiées.
+     * @throws IllegalArgumentException Si hauteur ou largeur sont négatifs.
      */
     public Ellipse(Point p, double hauteur, double largeur) {
+        if (hauteur < 0 || largeur < 0) {
+            throw new IllegalArgumentException("Les dimensions ne peuvent pas être négatives.");
+        }
         this.centre = p;
         this.hauteur = hauteur;
         this.largeur = largeur;
@@ -48,6 +62,7 @@ public class Ellipse implements IForme {
      * Retourne le centre de l'ellipse.
      *
      * @return Le centre de l'ellipse.
+     * @post Retourne le centre de l'ellipse.
      */
     @Override
     public Point centre() {
@@ -58,6 +73,7 @@ public class Ellipse implements IForme {
      * Retourne la hauteur de l'ellipse.
      *
      * @return La hauteur de l'ellipse.
+     * @post Retourne la hauteur de l'ellipse.
      */
     @Override
     public double hauteur() {
@@ -68,6 +84,7 @@ public class Ellipse implements IForme {
      * Retourne la largeur de l'ellipse.
      *
      * @return La largeur de l'ellipse.
+     * @post Retourne la largeur de l'ellipse.
      */
     @Override
     public double largeur() {
@@ -79,29 +96,30 @@ public class Ellipse implements IForme {
      *
      * @param entier Le niveau d'indentation.
      * @return Une chaîne de caractères décrivant l'ellipse.
+     * @post Retourne une chaîne de caractères décrivant l'ellipse.
      */
     @Override
-public String description(int entier) {
-    String description = "";
-    for (int i = 0; i < entier; i++) {
-        description += " ";
-    }
-    description += "Ellipse avec centre en " + centre +
-            ", hauteur " + hauteur +
-            ", largeur " + largeur + ". ";
-    
-    if (angle != 0) {
-        description += "Ellipse tournée de " + angle + " degrés. ";
-    }
+    public String description(int entier) {
+        String description = "";
+        for (int i = 0; i < entier; i++) {
+            description += " ";
+        }
+        description += "Ellipse avec centre en " + centre +
+                ", hauteur " + hauteur +
+                ", largeur " + largeur + ". ";
+        
+        if (angle != 0) {
+            description += "Ellipse tournée de " + angle + " degrés. ";
+        }
 
-    if (entier > 0) {
-        description += "C'est une ellipse particuliere.";
-    } else {
-        description += "C'est une ellipse standard.";
-    }
+        if (entier > 0) {
+            description += "C'est une ellipse particuliere.";
+        } else {
+            description += "C'est une ellipse standard.";
+        }
 
-    return description;
-}
+        return description;
+    }
 
     /**
      * Redimensionne l'ellipse en modifiant sa largeur et sa hauteur.
@@ -109,8 +127,20 @@ public String description(int entier) {
      * @param largeur La nouvelle largeur de l'ellipse.
      * @param hauteur La nouvelle hauteur de l'ellipse.
      * @return Une référence à l'instance actuelle de l'ellipse, pour permettre les opérations en chaîne.
+     */ /**
+     * Redimensionne l'ellipse en modifiant sa largeur et sa hauteur.
+     *
+     * @param largeur La nouvelle largeur de l'ellipse.
+     * @param hauteur La nouvelle hauteur de l'ellipse.
+     * @return Une référence à l'instance actuelle de l'ellipse, pour permettre les opérations en chaîne.
+     * @pre largeur et hauteur doivent être des nombres réels positifs.
+     * @post L'ellipse est redimensionnée avec les nouvelles valeurs de largeur et hauteur.
+     * @throws IllegalArgumentException Si largeur ou hauteur sont négatifs.
      */
     public IForme redimmensioner(double largeur, double hauteur) {
+        if (hauteur < 0 || largeur < 0) {
+            throw new IllegalArgumentException("Les dimensions ne peuvent pas être négatives.");
+        }
         this.rayon = rayon * largeur;
         return this;
     }
@@ -121,6 +151,8 @@ public String description(int entier) {
      * @param dx Le déplacement en abscisse.
      * @param dy Le déplacement en ordonnée.
      * @return Une référence à l'instance actuelle de l'ellipse, pour permettre les opérations en chaîne.
+     * @pre dx et dy doivent être des nombres réels valides.
+     * @post L'ellipse est déplacée selon les déplacements spécifiés.
      */
     public IForme deplacer(double dx, double dy) {
         this.centre = centre.plus(dx, dy);
@@ -131,6 +163,7 @@ public String description(int entier) {
      * Duplique l'ellipse avec les mêmes propriétés.
      *
      * @return Une nouvelle instance de la classe Ellipse avec les mêmes propriétés.
+     * @post Retourne une nouvelle instance de la classe Ellipse avec les mêmes propriétés.
      */
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
@@ -144,6 +177,7 @@ public String description(int entier) {
      * Retourne une représentation SVG de l'ellipse.
      *
      * @return Une chaîne de caractères représentant l'ellipse en format SVG.
+     * @post Retourne une chaîne de caractères représentant l'ellipse en format SVG.
      */
     @Override
     public String enSVG() {
@@ -160,6 +194,8 @@ public String description(int entier) {
      *
      * @param couleurs Un tableau de chaînes de caractères représentant les couleurs possibles.
      * @return Une référence à l'instance actuelle de l'ellipse, pour permettre les opérations en chaîne.
+     * @pre couleurs doit contenir au moins une chaîne de caractères.
+     * @post La couleur de l'ellipse est modifiée selon la première couleur spécifiée.
      */
     public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
@@ -168,6 +204,8 @@ public String description(int entier) {
 
     /**
      * Crée un fichier SVG représentant l'ellipse.
+     *
+     * @post Crée un fichier SVG représentant l'ellipse dans le répertoire spécifié.
      */
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
@@ -183,10 +221,25 @@ public String description(int entier) {
         }
     }
 
+    /**
+     * Retourne l'angle de rotation de l'ellipse.
+     *
+     * @return L'angle de rotation de l'ellipse.
+     * @post Retourne l'angle de rotation de l'ellipse.
+     */
     public int getAngle() {
         return angle;
     }
 
+     /**
+     * Aligne l'ellipse selon l'alignement spécifié par rapport à la cible.
+     *
+     * @param alignement L'alignement spécifié.
+     * @param cible      La cible par rapport à laquelle l'ellipse doit être alignée.
+     * @return Une référence à l'instance actuelle de l'ellipse, pour permettre les opérations en chaîne.
+     * @pre alignement doit être une valeur valide de l'énumération Alignement.
+     * @post L'ellipse est alignée selon l'alignement spécifié par rapport à la cible.
+     */
     @Override
     public IForme aligner(Alignement alignement, double cible) {
         double nouveauX = centre.x();
@@ -211,6 +264,13 @@ public String description(int entier) {
         return this;
     }
 
+    /**
+     * Tourne l'ellipse selon l'angle spécifié.
+     *
+     * @param angle L'angle de rotation.
+     * @return Une référence à l'instance actuelle de l'ellipse, pour permettre les opérations en chaîne.
+     * @post L'ellipse est tournée selon l'angle spécifié.
+     */
     @Override
 	public IForme tourner(int angle) {
 		this.angle = angle;
