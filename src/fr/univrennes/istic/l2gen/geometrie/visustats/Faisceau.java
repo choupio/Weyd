@@ -74,7 +74,6 @@ public class Faisceau extends Groupe {
      * @param hauteur  La hauteur des rectangles.
      * @param vertical Indique si les rectangles doivent être alignés verticalement (true) ou horizontalement (false).
      */
-<<<<<<< HEAD
     public IForme agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
         Alignement alignement;
         double cible;
@@ -91,30 +90,6 @@ public class Faisceau extends Groupe {
             cible = x;
             separation = largeur;
             empilerElements(alignement, cible, separation);
-=======
-    public void agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
-        // Vérification des paramètres
-        if (largeur <= 0 || hauteur <= 0) {
-            throw new IllegalArgumentException("Largeur et hauteur doivent être positifs");
-        }
-        // Création du rectangle
-        Rectangle rectangle = new Rectangle(x + largeur / 2, y + hauteur / 2, largeur, hauteur);
-        // Ajout du rectangle à la liste des barres
-        barres.add(rectangle);
-        // Agencement vertical ou horizontal
-        if (vertical) {
-            for (int i = 1; i < barres.size(); i++) {
-                double newX = barres.get(i - 1).centre().x();
-                double newY = barres.get(i - 1).centre().y() + barres.get(i - 1).hauteur() / 2 + hauteur / 2;
-                barres.get(i).deplacer(newX, newY);
-            }
-        } else {
-            for (int i = 1; i < barres.size(); i++) {
-                double newX = barres.get(i - 1).centre().x() + barres.get(i - 1).largeur() / 2 + largeur / 2;
-                double newY = barres.get(i - 1).centre().y();
-                barres.get(i).deplacer(newX, newY);
-            }
->>>>>>> 9153b33b1aa0c1dceb6a6b287035f29c3f64c032
         }
         return this;
     }
