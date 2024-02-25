@@ -77,6 +77,24 @@ public class Faisceau extends Groupe {
      * @param vertical Indique si les rectangles doivent être alignés verticalement
      *                 (true) ou horizontalement (false).
      */
+<<<<<<< HEAD
+    public IForme agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
+        Alignement alignement;
+        double cible;
+        double separation;
+        if (largeur <0 || hauteur <0 || x <0 || y <0){
+            throw new IllegalArgumentException("Les coordonée, la hauteur et la largeur ne peuvent pas être négatif.");
+        } else if (vertical) {
+            alignement = Alignement.HAUT;
+            cible = y;
+            separation = hauteur;
+            alignerElements(alignement, cible);
+        } else {
+            alignement = Alignement.GAUCHE;
+            cible = x;
+            separation = largeur;
+            empilerElements(alignement, cible, separation);
+=======
     public void agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
         // Création du rectangle
         Rectangle rectangle = new Rectangle(x + largeur / 2, y + hauteur / 2, largeur, hauteur);
@@ -95,7 +113,9 @@ public class Faisceau extends Groupe {
                 double newY = barres.get(i+1).centre().y();
                 barres.get(i).deplacer(newX, newY);
             }
+>>>>>>> 9153b33b1aa0c1dceb6a6b287035f29c3f64c032
         }
+        return this;
     }
 
     /**
