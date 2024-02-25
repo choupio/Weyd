@@ -119,7 +119,8 @@ public interface IForme {
 	 * @param cible      ligne horizontale ou verticale sur laquelle doit s'aligner
 	 *                   la figure
 	 * @requires cible >= 0
-	 * @throws IllegalStateException si X ou Y deviennent négatifs.
+	 * @throws IllegalArgumentException si cible < 0
+	 * @throws IllegalStateException    si X ou Y deviennent négatifs.
 	 * @return Une référence à l'instance de la forme géométrique, pour permettre
 	 *         les opérations en chaîne.
 	 * @ensures la figure doit être alignée de cible pixel selon l'alignement en
