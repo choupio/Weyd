@@ -42,23 +42,31 @@ public class Faisceau extends Groupe {
             this.barres.add(rect); // Réutilise le même objet Rectangle sans créer une nouvelle copie
         }
     }
-
-    public void agencer(double axeX, double axeY, double largeur, double echelle, boolean verticalement) {
-        this.aligner(Alignement.GAUCHE, axeX);
-        this.aligner(Alignement.BAS, axeY);
-        double offset = 0;
-        if (verticalement) {
-            for (Rectangle rect : barres) {
-                rect.deplacer(0, offset);
-                offset += rect.hauteur() * echelle + 5; // Utilisez l'échelle pour ajuster la hauteur
+    public void agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
+        // Vérification des paramètres
+        if (largeur <= 0 || hauteur <= 0) {
+            throw new IllegalArgumentException("Largeur et hauteur doivent être positifs");
+        }
+        // Création du rectangle
+        Rectangle rectangle = new Rectangle(x + largeur / 2, y + hauteur / 2, largeur, hauteur);
+        // Ajout du rectangle à la liste des barres
+        barres.add(rectangle);
+        // Agencement vertical ou horizontal
+        if (vertical) {
+            for (int i = 1; i < barres.size(); i++) {
+                double newX = barres.get(i - 1).centre().x();
+                double newY = barres.get(i - 1).centre().y() + barres.get(i - 1).hauteur() / 2 + hauteur / 2;
+                barres.get(i).deplacer(newX, newY);
             }
         } else {
-            for (Rectangle rect : barres) {
-                rect.deplacer(offset, 0);
-                offset += rect.largeur() * echelle + 5; // Utilisez l'échelle pour ajuster la largeur
+            for (int i = 1; i < barres.size(); i++) {
+                double newX = barres.get(i - 1).centre().x() + barres.get(i - 1).largeur() / 2 + largeur / 2;
+                double newY = barres.get(i - 1).centre().y();
+                barres.get(i).deplacer(newX, newY);
             }
         }
     }
+    
 
     @Override
     public IForme colorier(String... couleurs) {

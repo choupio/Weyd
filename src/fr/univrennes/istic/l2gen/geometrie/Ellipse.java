@@ -26,6 +26,9 @@ public class Ellipse implements IForme {
      * @param largeur La largeur de l'ellipse.
      */
     public Ellipse(double x, double y, double hauteur, double largeur) {
+        if (hauteur < 0 || largeur < 0 || x < 0 || y < 0) {
+            throw new IllegalArgumentException("Les coordonnées et dimensions ne peuvent pas être négatives.");
+        }
         this.centre = new Point(x, y);
         this.largeur = largeur;
         this.hauteur = hauteur;
@@ -39,6 +42,9 @@ public class Ellipse implements IForme {
      * @param largeur La largeur de l'ellipse.
      */
     public Ellipse(Point p, double hauteur, double largeur) {
+        if (hauteur < 0 || largeur < 0) {
+            throw new IllegalArgumentException("Les dimensions ne peuvent pas être négatives.");
+        }
         this.centre = p;
         this.hauteur = hauteur;
         this.largeur = largeur;
@@ -111,6 +117,9 @@ public String description(int entier) {
      * @return Une référence à l'instance actuelle de l'ellipse, pour permettre les opérations en chaîne.
      */
     public IForme redimmensioner(double largeur, double hauteur) {
+        if (hauteur < 0 || largeur < 0) {
+            throw new IllegalArgumentException("Les dimensions ne peuvent pas être négatives.");
+        }
         this.rayon = rayon * largeur;
         return this;
     }
