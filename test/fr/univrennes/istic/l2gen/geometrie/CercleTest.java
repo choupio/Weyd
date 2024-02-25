@@ -162,12 +162,29 @@ public class CercleTest {
         assertEquals(40, cercleTest.centre().y(), 0.001);
     }
 
+    @Test(expected = IllegalStateException.class) // si X devient négatif à la fin
+    public void testAlignerDroiteNegatif(){
+        cercleTest.aligner(Alignement.DROITE, 15.0);
+    }
+
+
     @Test
     public void testalignerbas() {     //pour aligner en bas   
         IForme cercleA = cercleTest;
         IForme cercleTest = cercleA.aligner(Alignement.BAS, 25.0);
         assertEquals(50, cercleTest.centre().x(), 0.001);
         assertEquals(0, cercleTest.centre().y(), 0.001);
+    }
+
+    @Test(expected = IllegalStateException.class) // si Y devient négatif à la fin
+    public void testAlignerBASNegatif(){
+        cercleTest.aligner(Alignement.BAS, 15.0);
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAlignerCibleNegative(){
+        cercleTest.aligner(Alignement.BAS, -5.0);
     }
 
 }
