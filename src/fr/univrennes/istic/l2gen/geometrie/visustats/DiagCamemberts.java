@@ -4,6 +4,7 @@ import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.Texte;
 
 public class DiagCamemberts implements IDataVisualiseur {
     private String nom;
@@ -110,8 +111,14 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ajouterDonnees'");
+        Texte nomDonnees = new Texte(0, 0, 5, str);
+        Camembert cam1 = new Camembert(0, 0, 25);
+        for (double d : doubles) {
+            cam1.ajouterSecteur("", d);
+        }
+        groupeCamembert.ajouter(cam1);
+        groupeCamembert.ajouter(nomDonnees);
+        return this;
     }
 
     @Override
