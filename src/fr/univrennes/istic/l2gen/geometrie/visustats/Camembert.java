@@ -125,10 +125,13 @@ public class Camembert implements IForme {
         sb.append(indent + "  Centre: ").append("(" + centre.x() + ", " + centre.y() + ")").append("\n");
         sb.append(indent + "  Rayon: ").append(rayon).append("\n");
         sb.append(indent + "  Secteurs:\n");
+        int i = 1;
         for (Secteur secteur : secteurs) {
-            sb.append(secteur.description(indentation + 2) + "\n");
+            String nomSecteur = "Secteur " + i;
+            String formatProportion = String.format("%.2f", secteur.getArc()/(double)360);
+            sb.append(indent + "    Secteur: ").append(nomSecteur).append(", Proportion: " + formatProportion).append("\n");
+            i++;
         }
-
         return sb.toString();
     }
 

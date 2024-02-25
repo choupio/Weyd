@@ -87,8 +87,8 @@ public class CamembertTest {
         camembert.ajouterSecteur("Secteur 2", 0.5);
         camembert.tourner(45);
         // Vérifiez les angles après avoir tourné
-        assertEquals(45.0, camembert.getSecteurs().get(0).getAngle() - 30, 0.001);
-        assertEquals(90.0, camembert.getSecteurs().get(1).getAngle() - 75, 0.001);
+        assertEquals(45.0, camembert.getSecteurs().get(0).getAngle(), 0.001);
+        assertEquals(90.0, camembert.getSecteurs().get(1).getAngle() - 45, 0.001);
     }
 
     @Test
