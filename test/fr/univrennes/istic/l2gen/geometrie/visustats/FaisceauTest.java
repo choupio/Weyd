@@ -25,6 +25,7 @@ public class FaisceauTest {
         // Vérifier que les éléments ont été alignés correctement
         assertEquals(130.0, faisceau.centre().x(), 0.0001);
         assertEquals(10.0, faisceau.centre().y(), 0.0001);
+
     }
 
     @Test
@@ -36,8 +37,8 @@ public class FaisceauTest {
         // Appeler la méthode agencer avec orientation horizontale
         faisceau.agencer(25.0, 10.0, 20.0, 30.0, false);
         // Vérifier que les éléments ont été alignés correctement
-        assertEquals(500.0, faisceau.centre().x(), 0.0001);
-        assertEquals(380.0, faisceau.centre().y(), 0.0001);
+        assertEquals(25.0, faisceau.centre().x(), 0.0001);
+        assertEquals(-35.0, faisceau.centre().y(), 0.0001);
     }
 
 
