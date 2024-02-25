@@ -100,25 +100,17 @@ public class Ellipse implements IForme {
      */
     @Override
     public String description(int entier) {
-        String description = "";
-        for (int i = 0; i < entier; i++) {
-            description += " ";
+        if(entier<0){
+            throw new IllegalArgumentException("L'indentation ne doit pas être inférieure à 0.");
         }
-        description += "Ellipse avec centre en " + centre +
-                ", hauteur " + hauteur +
-                ", largeur " + largeur + ". ";
-        
-        if (angle != 0) {
-            description += "Ellipse tournée de " + angle + " degrés. ";
+        else{
+            StringBuilder indent = new StringBuilder();
+            for (int i = 0; i < entier; i++) {
+                indent.append(" ");
+            }
+            return indent + "Ellipse" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H="
+                    + hauteur() + " de couleur " + couleur + " angle=" + angle;
         }
-
-        if (entier > 0) {
-            description += "C'est une ellipse particuliere.";
-        } else {
-            description += "C'est une ellipse standard.";
-        }
-
-        return description;
     }
 
     /**
