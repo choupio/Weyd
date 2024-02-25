@@ -58,12 +58,10 @@ public class App {
          */
 
          // Affichage du camembert
-         Camembert c = new Camembert (110 ,110 , 100);
-         c . ajouterSecteur ( " red " , 0.15);
-         c . ajouterSecteur ( " blue " , 0.2);
-         c . ajouterSecteur ( " green " , 0.65);
-         c.tourner(325);
-         c.createSvgFile();
+         Faisceau f = new Faisceau("Exemple", 100,200,500);
+         f.agencer(200, 250, 100, 0.2, false);
+         f.createSvgFile();
+
 
     }
 }
