@@ -24,32 +24,18 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     /**
      * Retourne le centre du groupe, calculé comme le centre moyen de toutes les
-     * formes dans le groupe.
+     * formes dans le diag.
      *
-     * @return Le centre du groupe.
+     * @return Le centre du diag.
      */
     @Override
     public Point centre() {
-        if (groupeCamembert.getListFormes().isEmpty()) {
-            return null;
-        }
-        double centreX = 0.0;
-        double centreY = 0.0;
-        for (IForme forme : groupeCamembert.getListFormes()) {
-            Point centreForme = forme.centre();
-            centreX += centreForme.x();
-            centreY += centreForme.y();
-        }
-        centreX /= groupeCamembert.getListFormes().size();
-        centreY /= groupeCamembert.getListFormes().size();
-        Point centre = new Point(centreX, centreY);
-        return centre;
+        return groupeCamembert.centre();
     }
 
     @Override
     public String description(int indentation) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'description'");
+        return groupeCamembert.description(indentation);
     }
 
     @Override
