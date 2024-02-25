@@ -247,23 +247,30 @@ public class Rectangle implements IForme {
     }
 
     public IForme aligner(Alignement alignement, double cible) {
-        if((cible - (hauteur/2))<0){
-            throw new IllegalArgumentException("La coordonnée Y ne peut pas être négative.");
-        }
-        else if((cible + (hauteur/2))<0){
-            throw new IllegalArgumentException("La coordonnée Y ne peut pas être négative.");
-        }
+        
         switch (alignement) {
             case HAUT:
+                if((cible - (hauteur/2))<0){
+                    throw new IllegalArgumentException("Y ne peut pas être négatif.");
+                }
                 centre = new Point(centre.x(), cible - (hauteur/2) );
                 break;
             case BAS:
+                if((cible + (hauteur/2))<0){
+                    throw new IllegalArgumentException("Y ne peut pas être négatif.");
+                }
                 centre = new Point(centre.x(), cible + (hauteur/2) );
                 break;
             case DROITE:
+                if((cible - (largeur/2))<0){
+                    throw new IllegalArgumentException("X ne peut pas être négatif.");
+                }
                 centre = new Point(cible - (largeur/2) , centre.y());
                 break;
             case GAUCHE:
+                if((cible + (largeur/2))<0){
+                    throw new IllegalArgumentException("X ne peut pas être négatif.");
+                }
                 centre = new Point(cible + (largeur/2) , centre.y());
                 break;
         }
