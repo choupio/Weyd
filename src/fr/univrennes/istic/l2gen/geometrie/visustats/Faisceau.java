@@ -91,6 +91,7 @@ public class Faisceau extends Groupe {
             separation = largeur;
             empilerElements(alignement, cible, separation);
         }
+        
         return this;
     }
     
