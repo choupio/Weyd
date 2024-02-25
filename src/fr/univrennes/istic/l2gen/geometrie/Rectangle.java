@@ -14,8 +14,12 @@ public class Rectangle implements IForme {
     private double hauteur; // Hauteur du rectangle
     private Point centre; // Centre du rectangle
     private String couleur = "white"; // Couleur du rectangle en "white"
-    private int angle = 0; // angle du rectangle, à 0 de base
+    
 
+    private int angle = 0; // angle du rectangle, à 0 de base
+    public String getCouleur() {
+            return couleur;
+        }
     /**
      * Retourne le centre du rectangle.
      *

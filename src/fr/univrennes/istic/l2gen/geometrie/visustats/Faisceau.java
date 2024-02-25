@@ -14,6 +14,18 @@ public class Faisceau extends Groupe {
     private List<Rectangle> barres;
     private String couleur = "red";
 
+    public String getCouleur() {
+        return couleur;
+    }
+    public String getNom() {
+        return nom;
+    }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    public List<Rectangle> getBarres() {
+            return barres;
+        }
     public Faisceau(String nom, double... h) {
         this.nom = nom;
         this.barres = new ArrayList<Rectangle>();
@@ -24,19 +36,27 @@ public class Faisceau extends Groupe {
     }
 
     public Faisceau(Faisceau faisceau) {
-        // TODO
+        this.nom = faisceau.nom;
+        this.barres = new ArrayList<>();
+        for (Rectangle rect : faisceau.barres) {
+            this.barres.add(rect); // Réutilise le même objet Rectangle sans créer une nouvelle copie
+        }
     }
 
     public void agencer(double axeX, double axeY, double largeur, double echelle, boolean verticalement) {
-        this.alignerElements(Alignement.GAUCHE, axeX);
-        this.alignerElements(Alignement.BAS, axeY);
-        // faisceau vertical
+        this.aligner(Alignement.GAUCHE, axeX);
+        this.aligner(Alignement.BAS, axeY);
+        double offset = 0;
         if (verticalement) {
-
-        }
-        // faisceau horizontal
-        else {
-
+            for (Rectangle rect : barres) {
+                rect.deplacer(0, offset);
+                offset += rect.hauteur() * echelle + 5; // Utilisez l'échelle pour ajuster la hauteur
+            }
+        } else {
+            for (Rectangle rect : barres) {
+                rect.deplacer(offset, 0);
+                offset += rect.largeur() * echelle + 5; // Utilisez l'échelle pour ajuster la largeur
+            }
         }
     }
 
