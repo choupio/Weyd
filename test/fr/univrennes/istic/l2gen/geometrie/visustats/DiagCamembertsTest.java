@@ -1,9 +1,8 @@
 package fr.univrennes.istic.l2gen.geometrie.visustats;
 
-import org.junit.Assert;
+
 import org.junit.Test;
 
-import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import static org.junit.Assert.*;
 
