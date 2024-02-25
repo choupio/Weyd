@@ -22,10 +22,12 @@ public class Rectangle implements IForme {
         }
     /**
      * Retourne le centre du rectangle.
-     *
      * @return Le centre du rectangle.
      */
     public Point centre() {
+        if(centre.x()<0||centre.y()<0){
+            throw new IllegalStateException("Le centre ne doit pas avoir des coordonnées négatives.");
+        }
         return centre;
     }
 
@@ -35,6 +37,9 @@ public class Rectangle implements IForme {
      * @return La largeur du rectangle.
      */
     public double largeur() {
+        if(largeur<0){
+            throw new IllegalStateException("La largeur ne doit pas avoir des coordonnées négatives.");
+        }
         return largeur;
     }
 
@@ -44,6 +49,9 @@ public class Rectangle implements IForme {
      * @return La hauteur du rectangle.
      */
     public double hauteur() {
+        if(hauteur<0){
+            throw new IllegalStateException("La hauteur ne doit pas avoir des coordonnées négatives.");
+        }
         return hauteur;
     }
 
