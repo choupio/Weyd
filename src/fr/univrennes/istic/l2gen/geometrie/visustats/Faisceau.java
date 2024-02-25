@@ -3,6 +3,7 @@ package fr.univrennes.istic.l2gen.geometrie.visustats;
 import java.util.List;
 import java.util.ArrayList;
 
+import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
@@ -11,7 +12,6 @@ import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 
 public class Faisceau extends Groupe {
     private String nom;
-    private List<IForme> barres;
     private String couleur = "red";
     private Point axes = new Point(0, 0);
     private double largeur = 1;
@@ -38,8 +38,8 @@ public class Faisceau extends Groupe {
      *
      * @return La liste des rectangles du faisceau.
      */
-    public List<IForme> getBarres() {
-            return barres;
+    public List<IForme> getListFormes() {
+            return listFormes;
     }
 
     /**
@@ -50,10 +50,10 @@ public class Faisceau extends Groupe {
      */
     public Faisceau(String nom, double... h) {
         this.nom = nom;
-        this.barres = new ArrayList<>();
+        this.listFormes = new ArrayList<>();
         for (int i = 0; i < h.length; i++) {
             Rectangle r = new Rectangle(axes.x(),axes.y(), largeur, h[i]);
-            this.barres.add(r);
+            this.listFormes.add(r);
         }
     }
 
@@ -64,9 +64,9 @@ public class Faisceau extends Groupe {
      */
     public Faisceau(Faisceau faisceau) {
         this.nom = faisceau.nom;
-        this.barres = new ArrayList<>();
-        for (IForme rect : faisceau.barres) {
-            this.barres.add(rect); // Réutilise le même objet Rectangle sans créer une nouvelle copie
+        this.listFormes = new ArrayList<>();
+        for (IForme rect : faisceau.listFormes) {
+            this.listFormes.add(rect); // Réutilise le même objet Rectangle sans créer une nouvelle copie
         }
     }
 
@@ -86,41 +86,23 @@ public class Faisceau extends Groupe {
         if (largeur <=0 || echelle <=0 || axeX <0 || axeY <0){
             throw new IllegalArgumentException("Les coordonée, l'echelle et la largeur ne peuvent pas être négatif.");
         } else if (verticalement) {
-            for (IForme rect : barres) {
+            for (IForme rect : listFormes) {
                 rect.redimmensioner(echelle, largeur);
             }
-            listFormes = barres;
             this.empilerElements(Alignement.BAS, axeY, 0);
             this.alignerElements(Alignement.GAUCHE, axeX);
         } else {
-            for (IForme rect : barres) {
-                rect.redimmensioner(echelle, (largeur-10*barres.size())/barres.size());
+            for (IForme rect : listFormes) {
+                rect.redimmensioner(echelle, (largeur-10.0*listFormes.size())/listFormes.size());
             }
-            listFormes = barres;
             this.empilerElements(Alignement.GAUCHE, axeX, 10); // pas sur de si il faut 10
             this.alignerElements(Alignement.BAS, axeY);
         }
     }
 
-
-    
-    /**
-     * Colore chaque rectangle du faisceau avec les couleurs spécifiées.
-     *
-     * @param couleurs Un tableau de couleurs à appliquer aux rectangles du faisceau.
-     * @return Une référence à l'instance actuelle du faisceau, pour permettre les opérations en chaîne.
-     */
     @Override
-    public IForme colorier(String... couleurs) {
-        int i = 0;
-        for (IForme rect : barres) {
-            rect.colorier(couleurs[i]);
-            i++;
-            if (i >= barres.size()) {
-                i = 0;
-            }
-        }
-        return this;
+    public void createSvgFile() {
+        SVGFile.createSvgFile(this, "Faisceau");
     }
     /**
      * Duplique le faisceau.
