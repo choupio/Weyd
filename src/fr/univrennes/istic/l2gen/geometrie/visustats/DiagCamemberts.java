@@ -8,7 +8,7 @@ import fr.univrennes.istic.l2gen.geometrie.Point;
 public class DiagCamemberts implements IDataVisualiseur {
     private String nom;
     private int entier;
-    private Groupe groupeCamembert;
+    Groupe groupeCamembert;
 
     /**
      * Constructeur de DiagCamemberts

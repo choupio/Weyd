@@ -30,7 +30,7 @@ public class DiagCamembertsTest {
         camembert.ajouterSecteur("blue", 0.3);
         diag.groupeCamembert.ajouter(camembert);
 
-        String descriptionAttendue = "Groupe :\nCamembert:\n  Centre: (0.0, 0.0)\n  Rayon: 10.0\n  Secteurs:\n    Secteur: Secteur 1, Proportion: 0,50\n  Secteur: Secteur 2, Proportion: 0,30\n"; // La description du camembert ajouté
+        String descriptionAttendue = "Groupe :\nCamembert:\n  Centre: (0.0, 0.0)\n  Rayon: 10.0\n  Secteurs:\n    Secteur: Secteur 1, Proportion: 0,50\n    Secteur: Secteur 2, Proportion: 0,30\n"; // La description du camembert ajouté
         assertEquals(descriptionAttendue, diag.description(0)); // L'indentation est 0 pour cet exemple
     }
 

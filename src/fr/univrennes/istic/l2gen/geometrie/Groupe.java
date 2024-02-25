@@ -111,9 +111,9 @@ public class Groupe implements IForme {
         if (listFormes.size() == 0) {
             return "Le groupe est vide.";
         }
-        String description = "Groupe : \n";
+        String description = "Groupe :";
         for (IForme forme : listFormes) {
-            description += forme.description(entier) + "\n";
+            description +=  "\n"+forme.description(entier) ;
         }
         return description;
     }
@@ -187,11 +187,10 @@ public class Groupe implements IForme {
      */
     @Override
     public String enSVG() {
-        String s = "<g>\n";
+        String s = "";
         for (IForme iForme : listFormes) {
-            s += iForme.enSVG() + "\n";
+            s += iForme.enSVG();
         }
-        s += "</g>";
         return s;
     }
 
