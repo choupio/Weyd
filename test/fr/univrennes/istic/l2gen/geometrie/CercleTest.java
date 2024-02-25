@@ -151,14 +151,14 @@ public class CercleTest {
         IForme cercleA = cercleTest;
         IForme cercleTest = cercleA.aligner(Alignement.HAUT, 5.0);
         assertEquals(50, cercleTest.centre().x(), 0.001);
-        assertEquals(-20, cercleTest.centre().y(), 0.001);
+        assertEquals(30, cercleTest.centre().y(), 0.001);
     }
 
     @Test
     public void testalignerdroite() {        
         IForme cercleA = cercleTest;
-        IForme cercleTest = cercleA.aligner(Alignement.DROITE, 5.0);
-        assertEquals(-20, cercleTest.centre().x(), 0.001);
+        IForme cercleTest = cercleA.aligner(Alignement.DROITE, 25.0);
+        assertEquals(0, cercleTest.centre().x(), 0.001);
         assertEquals(40, cercleTest.centre().y(), 0.001);
     }
 
@@ -171,9 +171,9 @@ public class CercleTest {
     @Test
     public void testalignerbas() {        
         IForme cercleA = cercleTest;
-        IForme cercleTest = cercleA.aligner(Alignement.BAS, 5.0);
+        IForme cercleTest = cercleA.aligner(Alignement.BAS, 25.0);
         assertEquals(50, cercleTest.centre().x(), 0.001);
-        assertEquals(30, cercleTest.centre().y(), 0.001);
+        assertEquals(0, cercleTest.centre().y(), 0.001);
     }
 
     @Test(expected = IllegalStateException.class) // si Y devient négatif à la fin

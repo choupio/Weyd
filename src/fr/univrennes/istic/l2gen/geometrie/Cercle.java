@@ -159,17 +159,20 @@ public class Cercle implements IForme {
         if (cible < 0) {
             throw new IllegalArgumentException("Cible ne peut pas être négative.");
         }
-        if((cible-rayon)<0){
-            throw new IllegalStateException("Les coordonnées du centre ne peuvent pas être négatives.");
-        }
         switch (alignement) {
             case HAUT:
                 point = new Point(point.x(), cible + rayon);
                 break;
             case BAS:
+                if((cible-rayon)<0){
+                    throw new IllegalStateException("Les coordonnées du centre ne peuvent pas être négatives.");
+                }
                 point = new Point(point.x(), cible - rayon);
                 break;
             case DROITE:
+                if((cible-rayon)<0){
+                    throw new IllegalStateException("Les coordonnées du centre ne peuvent pas être négatives.");
+                }
                 point = new Point(cible - rayon, point.y());
                 break;
             case GAUCHE:
