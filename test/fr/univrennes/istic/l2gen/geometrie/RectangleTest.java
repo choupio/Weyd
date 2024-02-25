@@ -159,7 +159,7 @@ public class RectangleTest {
     public void testAlignerHAUT(){ // Dans le cas où on aligne par le haut.
         IForme rectangleTest = r.aligner(Alignement.HAUT,4.0);
         assertEquals(5, rectangleTest.centre().x(),0.0001);
-        assertEquals(0, rectangleTest.centre().y(),0.0001);
+        assertEquals(8, rectangleTest.centre().y(),0.0001);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -169,9 +169,9 @@ public class RectangleTest {
 
     @Test
     public void testAlignerBAS(){ // Dans le cas où on aligne par le bas.
-        IForme rectangleTest = r.aligner(Alignement.BAS,3.0);
+        IForme rectangleTest = r.aligner(Alignement.BAS,10.0);
         assertEquals(5, rectangleTest.centre().x(),0.0001);
-        assertEquals(7, rectangleTest.centre().y(),0.0001);
+        assertEquals(6, rectangleTest.centre().y(),0.0001);
     }
 
 

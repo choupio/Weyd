@@ -139,7 +139,7 @@ public class CercleTest {
     }
 
     @Test
-    public void testalignergauche() {
+    public void testalignergauche() { //pour aligner à gauche
         IForme cercleA = cercleTest;
         IForme cercleTest = cercleA.aligner(Alignement.GAUCHE, 5.0);
         assertEquals(30, cercleTest.centre().x(), 0.001);
@@ -147,27 +147,27 @@ public class CercleTest {
     }
 
     @Test
-    public void testalignerhaut() {        
+    public void testalignerhaut() {       //pour aligner en haut  
         IForme cercleA = cercleTest;
         IForme cercleTest = cercleA.aligner(Alignement.HAUT, 5.0);
         assertEquals(50, cercleTest.centre().x(), 0.001);
-        assertEquals(-20, cercleTest.centre().y(), 0.001);
+        assertEquals(30, cercleTest.centre().y(), 0.001);
     }
 
     @Test
-    public void testalignerdroite() {        
+    public void testalignerdroite() {        // pour aligner à droite 
         IForme cercleA = cercleTest;
-        IForme cercleTest = cercleA.aligner(Alignement.DROITE, 5.0);
-        assertEquals(-20, cercleTest.centre().x(), 0.001);
+        IForme cercleTest = cercleA.aligner(Alignement.DROITE, 25.0);
+        assertEquals(0, cercleTest.centre().x(), 0.001);
         assertEquals(40, cercleTest.centre().y(), 0.001);
     }
 
     @Test
-    public void testalignerbas() {        
+    public void testalignerbas() {     //pour aligner en bas   
         IForme cercleA = cercleTest;
-        IForme cercleTest = cercleA.aligner(Alignement.BAS, 5.0);
+        IForme cercleTest = cercleA.aligner(Alignement.BAS, 25.0);
         assertEquals(50, cercleTest.centre().x(), 0.001);
-        assertEquals(30, cercleTest.centre().y(), 0.001);
+        assertEquals(0, cercleTest.centre().y(), 0.001);
     }
 
 }
