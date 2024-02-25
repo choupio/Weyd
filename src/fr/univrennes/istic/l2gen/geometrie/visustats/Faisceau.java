@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
+import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 
 public class Faisceau extends Groupe {
@@ -14,7 +15,6 @@ public class Faisceau extends Groupe {
     private String couleur = "red";
     private Point axes = new Point(0, 0);
     private double largeur = 1;
-    private int nbBarres = 0;
 
     /**
      * Retourne la couleur du faisceau.
@@ -50,7 +50,6 @@ public class Faisceau extends Groupe {
     public Faisceau(String nom, double... h) {
         this.nom = nom;
         this.barres = new ArrayList<Rectangle>();
-        nbBarres = h.length;
         for (int i = 0; i < h.length; i++) {
             Rectangle r = new Rectangle(axes.x(),axes.y(), largeur, h[i]);
             this.barres.add(r);
@@ -77,37 +76,20 @@ public class Faisceau extends Groupe {
      * @param hauteur  La hauteur des rectangles.
      * @param vertical Indique si les rectangles doivent être alignés verticalement (true) ou horizontalement (false).
      */
-<<<<<<< HEAD
     public void agencer(double axeX, double axeY, double largeur, double echelle, boolean verticalement) {
         axes.setX(axeX);
         axes.setY(axeY);
         this.largeur = largeur;
-=======
-    public IForme agencer(double x, double y, double largeur, double hauteur, boolean vertical) {
->>>>>>> 168ba2618ba59b96052bed0e662ed79df392c429
-        Alignement alignement;
-        double cible;
-        double separation;
         if (largeur <=0 || echelle <=0 || axeX <0 || axeY <0){
             throw new IllegalArgumentException("Les coordonée, l'echelle et la largeur ne peuvent pas être négatif.");
         } else if (verticalement) {
-            alignement = Alignement.HAUT;
-            cible = y;
-            separation = hauteur;
-            alignerElements(alignement, cible);
+            this.empilerElements(Alignement.BAS, axeY,0);
+            this.alignerElements(Alignement.GAUCHE, axeY);
         } else {
-            empilerElements(Alignement.GAUCHE, axeX, separation);
-            alignement = Alignement.GAUCHE;
-            cible = x;
-            separation = largeur;
-<<<<<<< HEAD
+            this.alignerElements(Alignement.BAS, 500);
+            this.empilerElements(Alignement.GAUCHE, 500,10);
             
-=======
-            empilerElements(alignement, cible, separation);
->>>>>>> 168ba2618ba59b96052bed0e662ed79df392c429
         }
-        
-        return this;
     }
     
     /**
