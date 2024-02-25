@@ -1,6 +1,7 @@
 
 import fr.univrennes.istic.l2gen.geometrie.*;
 import fr.univrennes.istic.l2gen.geometrie.visustats.Camembert;
+import fr.univrennes.istic.l2gen.geometrie.visustats.Faisceau;
 
 public class App {
 
@@ -28,14 +29,21 @@ public class App {
         secteurs.ajouter(new Secteur(new Point(256, 256), 128, 120, 240).colorier("blue").deplacer(800, 0.0));
         secteurs.createSvgFile();
         System.out.println(secteurs.description(3));*/
-        /*
-        Groupe g = new Groupe();
-        g.ajouter(new Rectangle(256,256, 100, 200));
-        g.ajouter(new Rectangle(400,400, 100, 200));
-        g.ajouter(new Rectangle(600,600, 100, 200));
-        g.ajouter(new Rectangle(800,800, 100, 200));
-        g.createSvgFile();
         
+        /*Groupe g = new Groupe();
+        g.ajouter(new Rectangle(256,256, 100, 50));
+        g.ajouter(new Rectangle(400,400, 100, 50));
+        g.ajouter(new Rectangle(600,600, 100, 50));
+        g.ajouter(new Rectangle(800,800, 100, 50));
+        g.alignerElements(Alignement.BAS, 500);
+        g.empilerElements(Alignement.GAUCHE, 500,10);
+        g.ajouter(new Cercle(500, 500, 10));
+        g.createSvgFile();
+        */
+        Faisceau fg = new Faisceau ( " Exemple de Faisceau vertical " , 100 , 200 , 500);
+        fg . colorier ( " cyan " ," purple " ," yellow " );
+        fg . agencer (20 , 250 , 100 , 0.2 , true );
+        fg.createSvgFile();
 
         /*
          * Cercle cercleTest = new Cercle(50, 40, 25);
