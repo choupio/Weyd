@@ -84,7 +84,7 @@ public class Faisceau extends Groupe {
         double separation;
         if (largeur <=0 || echelle <=0 || axeX <0 || axeY <0){
             throw new IllegalArgumentException("Les coordonée, l'echelle et la largeur ne peuvent pas être négatif.");
-        } else if (verticalement) {
+        } else if (vertical) {
             alignement = Alignement.HAUT;
             cible = y;
             separation = hauteur;
