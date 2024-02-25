@@ -129,10 +129,14 @@ public class Camembert implements IForme {
             sb.append(indent + "  Centre: ").append("(" + centre.x() + ", " + centre.y() + ")").append("\n");
             sb.append(indent + "  Rayon: ").append(rayon).append("\n");
             sb.append(indent + "  Secteurs:\n");
+            int i = 1;
             for (Secteur secteur : secteurs) {
-                sb.append(secteur.description(indentation + 2) + "\n");
+                String nomSecteur = "Secteur " + i;
+                // Format the proportion to a specific precision, e.g., 2 decimal places
+                String formattedProportion = String.format("%.2f", secteur.getAngle()/360);
+                sb.append(indent + "    Secteur: ").append(nomSecteur).append(", Proportion: " + formattedProportion + "\n");
+                i++;
             }
-
             return sb.toString();
         }
     }
@@ -197,7 +201,7 @@ public class Camembert implements IForme {
             throw new IllegalArgumentException("L'angle doit être positif.");
         } else {
             for (Secteur secteur : secteurs) {
-                secteur.setAngle(secteur.getAngle() + angle);
+                secteur.setAngle(secteur.getAngle() + 30 + angle);
             }
             return this;
         }
