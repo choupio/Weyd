@@ -16,8 +16,6 @@ public class Texte implements IForme {
 	private int taille;
 	private int angle;
 
-	
-
 	// Bloc d'initialisation
 	{
 		couleur = "black";
@@ -25,51 +23,47 @@ public class Texte implements IForme {
 		largeur = 0.0;
 	}
 
-	 /**
-     * Rotates the shape by the specified angle.
-     * 
-     * @param agle the angle (in degrees) by which the shape should be rotated
-     * @return the rotated shape
-     */
-    @Override
+	@Override
 	public IForme tourner(int angle) {
+		if (angle < 0) {
+			throw new IllegalArgumentException("L'angle ne peut pas être négatif.");
+		}
 		this.angle = angle;
 		return this;
 	}
 
-	/**
-	 * Aligns the shape based on the specified alignment and target position.
-	 * 
-	 * @param alignement the alignment to apply
-	 * @param cible the target position
-	 * @return the aligned shape
-	 */
 	@Override
 	public IForme aligner(Alignement alignement, double cible) {
+		if (cible < 0) {
+			throw new IllegalArgumentException("La cible ne peut pas être négative.");
+		}
 		switch (alignement) {
-		case HAUT:
-			y = cible + hauteur / 2;
-			break;
-		case BAS:
-			y = cible - hauteur / 2;
-			break;
-		case DROITE:
-			x = cible + largeur / 2;
-			break;
-		case GAUCHE:
-			x = cible - largeur / 2;
-			break;
+			case HAUT:
+				y = cible + hauteur / 2;
+				break;
+			case BAS:
+				y = cible - hauteur / 2;
+				break;
+			case DROITE:
+				x = cible + largeur / 2;
+				break;
+			case GAUCHE:
+				x = cible - largeur / 2;
+				break;
 		}
 		return this;
 	}
 
 	/**
-	 * @param x
-	 * @param y
-	 * @param taille
-	 * @param texte
+	 * @param x      coordonnée x du texte
+	 * @param y      coordonnée y du texte
+	 * @param taille la taille du texte
+	 * @param texte  la string affichée
 	 */
 	public Texte(double x, double y, int taille, String texte) {
+		if (x < 0 || y < 0 || taille < 0) {
+			throw new IllegalArgumentException("x, y et taille doivent être positifs.");
+		}
 		this.x = x;
 		this.y = y;
 		this.taille = taille;
@@ -79,54 +73,33 @@ public class Texte implements IForme {
 	public Texte() {
 		this(0, 0, 0, "");
 	}
-	/**
-     * Retourne le centre du rectangle.
-     *
-     * @return Le centre du rectangle.
-     */
+
 	@Override
 	public Point centre() {
 		return new Point(x, y);
 	}
-	/**
-     * Retourne la hauteur du rectangle.
-     *
-     * @return La hauteur du rectangle.
-     */
+
 	@Override
 	public double hauteur() {
 		return hauteur;
 	}
-	/**
-     * Retourne la largeur du rectangle.
-     *
-     * @return La largeur du rectangle.
-     */
+
 	@Override
 	public double largeur() {
 		return largeur;
 	}
-	/**
-     * Déplace le centre du rectangle selon les déplacements spécifiés.
-     *
-     * @param dx Le déplacement en abscisse.
-     * @param dy Le déplacement en ordonnée.
-     * @throws IllegalArgumentException si x ou y devient négatif
-     * @return Une référence à l'instance du rectangle, pour permettre les
-     *         opérations en chaîne.
-     */
+
 	@Override
 	public IForme deplacer(double dx, double dy) {
 		// Logique pour déplacer le texte
 		x += dx;
 		y += dy;
+		if (x < 0 || y < 0) {
+			throw new IllegalStateException("x et y doivent être positifs.");
+		}
 		return this; // Retourne la référence à la forme modifiée
 	}
-	/**
-     * Duplique le rectangle.
-     *
-     * @return Une nouvelle instance du rectangle avec les mêmes propriétés.
-     */
+
 	@Override
 	public IForme dupliquer() {
 		// Crée une nouvelle instance de la classe avec les mêmes propriétés
@@ -139,71 +112,61 @@ public class Texte implements IForme {
 		nouvelleForme.taille = this.taille;
 		nouvelleForme.texte = this.texte;
 		return nouvelleForme;
-	}// Crée une nouvelle instance de la classe avec les mêmes propriétés
-	
-	/**
-     * Retourne une description du rectangle avec une indentation spécifiée.
-     *
-     * @param indentation Le niveau d'indentation pour la description.
-     * @throws IllegalArgumentException si l'indentation est inférieure à 0.
-     * @return Une chaîne de caractères décrivant le rectangle.
-     */
+	}
+
 	@Override
 	public String description(int indentation) {
-		if(indentation<0){
-            throw new IllegalArgumentException("L'indentation ne doit pas être inférieure à 0.");
-        }
-		else{// Génère une description avec un certain niveau d'indentation
+		if (indentation < 0) {
+			throw new IllegalArgumentException("L'indentation ne doit pas être inférieure à 0.");
+		} else {// Génère une description avec un certain niveau d'indentation
 			String sb = "";
 			for (int i = 0; i < indentation; i++) {
 				sb += "  ";
 			}
-			sb += "Texte centre=" + x + "," + y + " taille=" + taille + " texte=" + texte + " couleur=" + couleur + " et de rotation " + angle;
+			sb += "Texte centre=" + x + "," + y + " taille=" + taille + " texte=" + texte + " couleur=" + couleur
+					+ " et de rotation " + angle;
 			return sb.toString();
 		}
 	}
-	/**
-     * Génère une représentation SVG du rectangle.
-     *
-     * @return Une chaîne de caractères représentant le rectangle en format SVG.
-     */
+
 	@Override
 	public String enSVG() {
 		// Génère la représentation SVG du texte avec les dimensions mises à jour
 		return "<text x=\"" + x + "\" y=\"" + y + "\" font-size=\"" + taille + "\" text-anchor=\"middle\" fill=\""
 				+ couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\">" + texte + "</text>";
 	}
-	/**
-     * Change la couleur du rectangle.
-     *
-     * @param couleurs Un tableau de couleurs à appliquer au rectangle.
-     * @return Une référence à l'instance du rectangle, pour permettre les
-     *         opérations en chaîne.
-     */
+
+	@Override
 	public IForme colorier(String... couleurs) {
 		couleur = couleurs[0];
 		return this;
 	}
 
 	/**
-     * Ré-ajuste la hauteur et la largeur du rectangle.
-     *
-     * @param hauteur La hauteur de redimmensionement 
-     * @param largeur La largeur de redimmensionement
-     * @throws IllegalArgumentException si la hauteur ou largeur de red. est égale à 0 ou moins.
-     * @return Une référence à l'instance du rectangle, pour permettre les
-     *         opérations en chaîne. La hauteur du rectangle va être multipliée par celle de redimmensionnement,
-     *         pareil pour la largeur.
-     */
+	 * Ré-ajuste la hauteur et la largeur du texte.
+	 *
+	 * @param hauteur La hauteur de redimmensionement
+	 * @param largeur La largeur de redimmensionement
+	 * @throws IllegalArgumentException si la hauteur ou largeur de red. est égale à
+	 *                                  0 ou moins.
+	 * @return Une référence à l'instance du texte, pour permettre les
+	 *         opérations en chaîne. La hauteur du texte va être multipliée par
+	 *         celle de redimmensionnement,
+	 *         pareil pour la largeur.
+	 */
 	@Override
 	public IForme redimmensioner(double h, double l) {
+		if (h < 0 || l < 0) {
+			throw new IllegalArgumentException("Hauteur et Largeur doivent être positifs.");
+		}
 		hauteur = h;
 		largeur = l;
 		return this;
 	}
+
 	/**
-     * Crée un fichier SVG représentant le rectangle.
-     */
+	 * Crée un fichier SVG représentant le rectangle.
+	 */
 	@Override
 	public void createSvgFile() {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.svg"))) {

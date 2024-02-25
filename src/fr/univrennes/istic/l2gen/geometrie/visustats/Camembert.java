@@ -23,6 +23,10 @@ public class Camembert implements IForme {
     private double cmptAngle = 0;
     private String couleur = "white";
 
+    public String getCouleur() {
+        return couleur;
+    }
+
     /**
      * Constructeur de la classe Camembert
      * 
