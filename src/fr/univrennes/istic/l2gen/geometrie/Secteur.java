@@ -30,7 +30,7 @@ public class Secteur implements IForme {
     public Secteur(double x, double y, double rayon, double angle, double arc) {
         this.centre = new Point(x, y);
         this.rayon = rayon;
-        this.angle = angle + 30;
+        this.angle = angle;
         this.arc = arc;
     }
 
@@ -46,7 +46,7 @@ public class Secteur implements IForme {
     public Secteur(Point f, double rayon, double angle, double arc) {
         this.centre = f;
         this.rayon = rayon;
-        this.angle = angle + 30;
+        this.angle = angle;
         this.arc = arc;
     }
 
@@ -57,13 +57,17 @@ public class Secteur implements IForme {
      */
     @Override
     public double hauteur() {
-        return haut;
+        if (arc <= 180) {
+            return rayon;
+        } else {
+            return 2 * rayon;
+        }
     }
 
     /**
      * Rotates the shape by the specified angle.
      * 
-     * @param agle the angle (in degrees) by which the shape should be rotated
+     * @param angle the angle (in degrees) by which the shape should be rotated
      * @return the rotated shape
      */
     @Override
@@ -105,7 +109,11 @@ public class Secteur implements IForme {
      */
     @Override
     public double largeur() {
-        return larg;
+        if (arc <= 180) {
+            return 2 * rayon * Math.sin(Math.toRadians(arc / 2));
+        } else {
+            return 2 * rayon;
+        }
     }
 
     /**
@@ -202,7 +210,8 @@ public class Secteur implements IForme {
             indent.append("  ");
         }
         return indent + "Secteur " + "centre=" + centre.x() + "," + centre.y() + " Angle=" + getAngle()
-                + " Arc=" + getArc() + " de couleur " + couleur + " et de rotation " + angle;
+                + " Arc=" + getArc() + " de couleur " + couleur ;
+                //+ " et de rotation " + angle
     }
 
     /**
@@ -212,7 +221,7 @@ public class Secteur implements IForme {
      * @param dy Le déplacement vertical.
      */
     public IForme deplacer(double dx, double dy) {
-        this.centre.plus(dx, dy);
+        this.centre = this.centre.plus(dx, dy);
         return this;
     }
 
@@ -247,7 +256,8 @@ public class Secteur implements IForme {
 
         return "<path d=\"M " + startX + " " + startY + " A " + getRayon() + " " + getRayon()
                 + " 0 " + largeArcFlag + " 0 " + endX + " " + endY + " L " + centre.x() + " " + centre.y() + " Z\"\n"
-                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(" + angle + ")\"/>";
+                + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\"/>";
+                // transform=\"rotate(" + getAngle() + ")\"
     }
 
     /**
@@ -270,6 +280,11 @@ public class Secteur implements IForme {
         return couleur;
     }
 
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
+    }
+
+
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 
@@ -284,8 +299,5 @@ public class Secteur implements IForme {
         }
     }
 
-    public void setCouleur(String couleur) {
-        this.couleur = couleur;
-    }
-
+  
 }
