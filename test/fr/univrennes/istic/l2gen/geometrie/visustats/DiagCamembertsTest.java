@@ -129,7 +129,7 @@ public class DiagCamembertsTest {
         // Redimensionnez le diag en multipliant la hauteur et la largeur par 2
         diag.redimmensioner(20, 20);
         // Vérifiez que le rayon du camembert a été ajusté en conséquence
-        assertEquals(10, camembert.rayon, 0.001);
+        assertEquals(10, camembert.getRayon(), 0.001);
     }
     @Test
     public void testCreateSvgFile() {
