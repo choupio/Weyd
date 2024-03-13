@@ -73,11 +73,11 @@ public class Faisceau extends Groupe {
     /**
      * Agence les rectangles du faisceau en fonction des paramètres spécifiés.
      *
-     * @param x        La coordonnée x du point de départ.
-     * @param y        La coordonnée y du point de départ.
-     * @param largeur  La largeur des rectangles.
+     * @param axeX        La coordonnée x du point de départ.
+     * @param axeY        La coordonnée y du point de départ.
+     * @param largeur  La largeur totale du faisceau
      * @param hauteur  La hauteur des rectangles.
-     * @param vertical Indique si les rectangles doivent être alignés verticalement (true) ou horizontalement (false).
+     * @param verticalement Indique si les rectangles doivent être alignés verticalement (true) ou horizontalement (false).
      */
     public void agencer(double axeX, double axeY, double largeur, double echelle, boolean verticalement) {
         axes.setX(axeX);

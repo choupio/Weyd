@@ -258,6 +258,7 @@ public class Rectangle implements IForme {
                 centre = new Point(centre.x(), cible );
                 break;
             case BAS:
+                System.out.println(hauteur);
                 if((cible - hauteur)<0){
                     throw new IllegalArgumentException("Y ne peut pas être négatif.");
                 }

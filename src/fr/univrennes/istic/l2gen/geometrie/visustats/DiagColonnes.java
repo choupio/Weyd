@@ -1,10 +1,26 @@
 package fr.univrennes.istic.l2gen.geometrie.visustats;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.Texte;
 
 public class DiagColonnes implements IDataVisualiseur {
+    Texte texteNom;
+    String nom;
+    List<String> legendes, couleurs;
+    List<Faisceau> donnees;
+
+    public DiagColonnes(String nom) {
+        this.nom = nom;
+        legendes = new ArrayList<>();
+        couleurs = new ArrayList<>();
+        donnees = new ArrayList<>();
+    }
 
     @Override
     public Point centre() {
@@ -50,14 +66,24 @@ public class DiagColonnes implements IDataVisualiseur {
 
     @Override
     public String enSVG() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        String s = "";
+        for (Faisceau f : donnees) {
+            s += f.enSVG();
+        }
+        return s;
     }
 
     @Override
     public IForme colorier(String... couleurs) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'colorier'");
+        int i = 0;
+        for (IForme faisceau : donnees) {
+            faisceau.colorier(couleurs[i]);
+            i++;
+            if (i >= couleurs.length) {
+                i = 0;
+            }
+        }
+        return this;
     }
 
     @Override
@@ -74,26 +100,32 @@ public class DiagColonnes implements IDataVisualiseur {
 
     @Override
     public void createSvgFile() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
+        SVGFile.createSvgFile(this, "diagColonnes");
     }
 
     @Override
     public IDataVisualiseur agencer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agencer'");
+        double axeX = 20;
+        for (Faisceau faisceau : donnees) {
+            faisceau.agencer(axeX, 500, 100, 0.01, false); // TODO il faut modifier axeX et lergeur
+            axeX += 120;
+        }
+        texteNom = new Texte(100 / 2, 0, 0, nom);
+        return this;
     }
 
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ajouterDonnees'");
+        donnees.add(new Faisceau(str, doubles));
+        return this;
     }
 
     @Override
     public IDataVisualiseur legender(String... strings) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'legender'");
+        for (String string : strings) {
+            legendes.add(string);
+        }
+        return this;
     }
 
     @Override

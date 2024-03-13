@@ -4,6 +4,11 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 /**
  * Represents a text shape that implements the {@link IForme} interface.
  */
@@ -81,12 +86,40 @@ public class Texte implements IForme {
 
 	@Override
 	public double hauteur() {
-		return hauteur;
+		// Créer une police avec la taille spécifiée
+		Font font = new Font("Arial", Font.PLAIN, taille);
+
+		// Créer une image tampon pour obtenir les métriques de la police
+		BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+		Graphics g = img.getGraphics();
+		g.setFont(font);
+
+		// Obtenir les métriques de la police
+		FontMetrics fm = g.getFontMetrics();
+
+		// Calculer la largeur du texte
+		int hauteurTexte = fm.getHeight();
+
+		return hauteurTexte;
 	}
 
 	@Override
 	public double largeur() {
-		return largeur;
+		// Créer une police avec la taille spécifiée
+		Font font = new Font("Arial", Font.PLAIN, taille);
+
+		// Créer une image tampon pour obtenir les métriques de la police
+		BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+		Graphics g = img.getGraphics();
+		g.setFont(font);
+
+		// Obtenir les métriques de la police
+		FontMetrics fm = g.getFontMetrics();
+
+		// Calculer la largeur du texte
+		int largeurTexte = fm.stringWidth(texte);
+
+		return largeurTexte;
 	}
 
 	@Override
@@ -170,7 +203,7 @@ public class Texte implements IForme {
 	@Override
 	public void createSvgFile() {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.svg"))) {
-			writer.write("<svg width=\"" + largeur + "\" height=\"" + hauteur + "\">\n");
+			writer.write("<svg xmlns=\"http://www.w3.org/2000/svg\">");
 			writer.write(enSVG() + "\n");
 			writer.write("</svg>");
 		} catch (IOException e) {

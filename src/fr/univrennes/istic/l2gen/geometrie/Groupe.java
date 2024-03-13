@@ -112,7 +112,7 @@ public class Groupe implements IForme {
         }
         String description = "Groupe :";
         for (IForme forme : listFormes) {
-            description +=  "\n"+forme.description(entier) ;
+            description += "\n" + forme.description(entier);
         }
         return description;
     }
@@ -132,6 +132,7 @@ public class Groupe implements IForme {
         }
         return this;
     }
+
     /**
      * Tourne toutes les formes du groupe selon l'angle spécifié.
      *
@@ -205,7 +206,7 @@ public class Groupe implements IForme {
         for (IForme forme : listFormes) {
             forme.colorier(couleurs[i]);
             i++;
-            if (i >= listFormes.size()) {
+            if (i >= couleurs.length) {
                 i = 0;
             }
         }
@@ -218,6 +219,7 @@ public class Groupe implements IForme {
     public void createSvgFile() {
         SVGFile.createSvgFile(this, "Groupe");
     }
+
     /**
      * Aligne les formes du groupe selon l'alignement spécifié et la cible.
      *
@@ -253,6 +255,7 @@ public class Groupe implements IForme {
         }
         return this;
     }
+
     /**
      * Retourne la liste des formes dans le groupe.
      *
@@ -294,10 +297,15 @@ public class Groupe implements IForme {
         double cibleForme = cible;
         for (IForme iForme : listFormes) {
             iForme.aligner(alignement, cibleForme);
-            if(alignement == Alignement.GAUCHE){cibleForme += iForme.largeur() + separation;}
-            else if(alignement == Alignement.DROITE){cibleForme -= iForme.largeur() + separation;}
-            else if(alignement == Alignement.HAUT){cibleForme += iForme.hauteur() + separation;}
-            else if(alignement == Alignement.BAS){cibleForme -= iForme.hauteur() + separation;}
+            if (alignement == Alignement.GAUCHE) {
+                cibleForme += iForme.largeur() + separation;
+            } else if (alignement == Alignement.DROITE) {
+                cibleForme -= iForme.largeur() + separation;
+            } else if (alignement == Alignement.HAUT) {
+                cibleForme += iForme.hauteur() + separation;
+            } else if (alignement == Alignement.BAS) {
+                cibleForme -= iForme.hauteur() + separation;
+            }
         }
 
         return this;

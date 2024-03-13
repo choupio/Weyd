@@ -1,10 +1,12 @@
-import fr.univrennes.istic.l2gen.geometrie.visustats.Faisceau;
+
+
+import fr.univrennes.istic.l2gen.geometrie.*;
+import fr.univrennes.istic.l2gen.geometrie.visustats.*;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
 
-        
         /*
          * Groupe tableau = new Groupe();
          * tableau.ajouter(new Cercle(256, 256, 128).colorier("white"));
@@ -19,27 +21,33 @@ public class App {
          * tableau.createSvgFile();
          */
 
-         // Autre manière de faire le camembert
-        /*Groupe secteurs = new Groupe();
-        secteurs.ajouter(new Secteur(new Point(256, 256), 128, 0, 60).colorier("red").deplacer(800, 0.0));
-        secteurs.ajouter(new Secteur(new Point(256, 256), 128, 60, 120).colorier("green").deplacer(800, 0.0));
-        secteurs.ajouter(new Secteur(new Point(256, 256), 128, 120, 240).colorier("blue").deplacer(800, 0.0));
-        secteurs.createSvgFile();
-        System.out.println(secteurs.description(3));*/
-        
-        /*Groupe g = new Groupe();
-        g.ajouter(new Rectangle(256,256, 100, 50));
-        g.ajouter(new Rectangle(400,400, 100, 50));
-        g.ajouter(new Rectangle(600,600, 100, 50));
-        g.ajouter(new Rectangle(800,800, 100, 50));
-        g.alignerElements(Alignement.BAS, 500);
-        g.empilerElements(Alignement.GAUCHE, 500,10);
-        g.ajouter(new Cercle(500, 500, 10));
-        g.createSvgFile();
-        */
-        Faisceau fg = new Faisceau ( " Exemple de Faisceau vertical " , 100 , 200 , 500);
-        fg . colorier ( " cyan " ," purple " ," yellow " );
-        fg . agencer (20 , 250 , 100 , 0.2 , true );
+        // Autre manière de faire le camembert
+        /*
+         * Groupe secteurs = new Groupe();
+         * secteurs.ajouter(new Secteur(new Point(256, 256), 128, 0,
+         * 60).colorier("red").deplacer(800, 0.0));
+         * secteurs.ajouter(new Secteur(new Point(256, 256), 128, 60,
+         * 120).colorier("green").deplacer(800, 0.0));
+         * secteurs.ajouter(new Secteur(new Point(256, 256), 128, 120,
+         * 240).colorier("blue").deplacer(800, 0.0));
+         * secteurs.createSvgFile();
+         * System.out.println(secteurs.description(3));
+         */
+
+        /*
+         * Groupe g = new Groupe();
+         * g.ajouter(new Rectangle(256,256, 100, 50));
+         * g.ajouter(new Rectangle(400,400, 100, 50));
+         * g.ajouter(new Rectangle(600,600, 100, 50));
+         * g.ajouter(new Rectangle(800,800, 100, 50));
+         * g.alignerElements(Alignement.BAS, 500);
+         * g.empilerElements(Alignement.GAUCHE, 500,10);
+         * g.ajouter(new Cercle(500, 500, 10));
+         * g.createSvgFile();
+         */
+        Faisceau fg = new Faisceau(" Exemple de Faisceau vertical ", 100, 200, 500);
+        fg.colorier(" cyan ", " purple ", " yellow ");
+        fg.agencer(20, 250, 100, 0.2, true);
         fg.createSvgFile();
 
         /*
@@ -54,11 +62,17 @@ public class App {
          * System.out.println(groupe.description(3));
          */
 
-         // Affichage du camembert
-         Faisceau f = new Faisceau("Exemple", 100,200,500);
-         f.agencer(200, 250, 100, 0.2, false);
-         f.createSvgFile();
+        // Affichage du camembert
+        Faisceau f = new Faisceau("Exemple", 100, 200, 500);
+        f.agencer(200, 250, 100, 0.2, false);
+        f.createSvgFile();
 
+        DiagColonnes d = new DiagColonnes("test");
 
+        d.legender("caca", "pipi", "proute");
+        d.ajouterDonnees("2010", 1600,6800,16000);
+        d.ajouterDonnees("2015", 1600,6800,16000);
+        d.colorier("Red","Black", "Blue");
+        d.agencer().createSvgFile();
     }
 }
