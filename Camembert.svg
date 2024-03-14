@@ -1,4 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="110.0" cy="110.0" r="100.0" fill="lightblue" />
-</svg></svg>
+<g>
+<path d="M 75.0 50.0 A 25.0 25.0 0 0 0 42.27457514062632 26.22358709262116 L 50.0 50.0 Z"
+	fill="green" stroke="black" transform="rotate(0.0)"/>
+<path d="M 42.27457514062632 26.22358709262116 A 25.0 25.0 0 0 0 29.774575140626315 64.69463130731182 L 50.0 50.0 Z"
+	fill="black" stroke="black" transform="rotate(0.0)"/>
+<path d="M 29.774575140626315 64.69463130731182 A 25.0 25.0 0 0 0 42.27457514062631 73.77641290737884 L 50.0 50.0 Z"
+	fill="yellow" stroke="black" transform="rotate(0.0)"/>
+<path d="M 42.27457514062631 73.77641290737884 A 25.0 25.0 0 0 0 70.22542485937367 64.69463130731184 L 50.0 50.0 Z"
+	fill="white" stroke="black" transform="rotate(0.0)"/>
+<path d="M 70.22542485937367 64.69463130731184 A 25.0 25.0 0 0 0 75.0 50.00000000000001 L 50.0 50.0 Z"
+	fill="red" stroke="black" transform="rotate(0.0)"/>
+</g></svg>

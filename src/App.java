@@ -100,5 +100,13 @@ public class App {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 1000);
         frame.setVisible(true);
+
+        Camembert testCam = new Camembert(50, 50, 150);
+        testCam.ajouterSecteur("green", 0.3);
+        testCam.ajouterSecteur("black", 0.3);
+        testCam.ajouterSecteur("yellow", 0.1);
+        testCam.ajouterSecteur("white", 0.2);
+        testCam.ajouterSecteur("red", 0.1);
+        testCam.createSvgFile();
     }
 }
