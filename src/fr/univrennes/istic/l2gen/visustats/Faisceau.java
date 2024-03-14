@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie.visustats;
+package fr.univrennes.istic.l2gen.visustats;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ public class Faisceau extends Groupe {
     private Point axes = new Point(0, 0);
     private double largeur = 1;
 
-
     /**
      * Retourne la couleur du faisceau.
      *
@@ -25,6 +24,7 @@ public class Faisceau extends Groupe {
     public String getCouleur() {
         return couleur;
     }
+
     /**
      * Retourne le nom du faisceau.
      *
@@ -33,13 +33,14 @@ public class Faisceau extends Groupe {
     public String getNom() {
         return nom;
     }
-     /**
+
+    /**
      * Retourne la liste des rectangles du faisceau.
      *
      * @return La liste des rectangles du faisceau.
      */
     public List<IForme> getListFormes() {
-            return listFormes;
+        return listFormes;
     }
 
     /**
@@ -52,7 +53,7 @@ public class Faisceau extends Groupe {
         this.nom = nom;
         this.listFormes = new ArrayList<>();
         for (int i = 0; i < h.length; i++) {
-            Rectangle r = new Rectangle(axes.x(),axes.y(), largeur, h[i]);
+            Rectangle r = new Rectangle(axes.x(), axes.y(), largeur, h[i]);
             this.listFormes.add(r);
         }
     }
@@ -73,17 +74,18 @@ public class Faisceau extends Groupe {
     /**
      * Agence les rectangles du faisceau en fonction des paramètres spécifiés.
      *
-     * @param axeX        La coordonnée x du point de départ.
-     * @param axeY        La coordonnée y du point de départ.
-     * @param largeur  La largeur totale du faisceau
-     * @param hauteur  La hauteur des rectangles.
-     * @param verticalement Indique si les rectangles doivent être alignés verticalement (true) ou horizontalement (false).
+     * @param axeX          La coordonnée x du point de départ.
+     * @param axeY          La coordonnée y du point de départ.
+     * @param largeur       La largeur totale du faisceau
+     * @param hauteur       La hauteur des rectangles.
+     * @param verticalement Indique si les rectangles doivent être alignés
+     *                      verticalement (true) ou horizontalement (false).
      */
     public void agencer(double axeX, double axeY, double largeur, double echelle, boolean verticalement) {
         axes.setX(axeX);
         axes.setY(axeY);
         this.largeur = largeur;
-        if (largeur <=0 || echelle <=0 || axeX <0 || axeY <0){
+        if (largeur <= 0 || echelle <= 0 || axeX < 0 || axeY < 0) {
             throw new IllegalArgumentException("Les coordonée, l'echelle et la largeur ne peuvent pas être négatif.");
         } else if (verticalement) {
             for (IForme rect : listFormes) {
@@ -93,7 +95,7 @@ public class Faisceau extends Groupe {
             this.alignerElements(Alignement.GAUCHE, axeX);
         } else {
             for (IForme rect : listFormes) {
-                rect.redimmensioner(echelle, (largeur-10.0*listFormes.size())/listFormes.size());
+                rect.redimmensioner(echelle, (largeur - 10.0 * listFormes.size()) / listFormes.size());
             }
             this.empilerElements(Alignement.GAUCHE, axeX, 10); // pas sur de si il faut 10
             this.alignerElements(Alignement.BAS, axeY);
@@ -104,10 +106,12 @@ public class Faisceau extends Groupe {
     public void createSvgFile() {
         SVGFile.createSvgFile(this, "Faisceau");
     }
+
     /**
      * Duplique le faisceau.
      *
-     * @return Un nouveau faisceau contenant des copies des rectangles du faisceau actuel.
+     * @return Un nouveau faisceau contenant des copies des rectangles du faisceau
+     *         actuel.
      */
     @Override
     public IForme dupliquer() {

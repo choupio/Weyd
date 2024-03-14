@@ -21,7 +21,6 @@ public class App {
          * tableau.createSvgFile();
          */
 
-<<<<<<< HEAD
         Cercle cercleTest = new Cercle(50, 40, 25);
         Cercle cercleTest2 = new Cercle(50, 40, 25);
         Polygone polygone = new Polygone();
@@ -32,7 +31,7 @@ public class App {
         Groupe groupe = new Groupe(cercleTest, polygone, cercleTest2);
         System.out.println(groupe.description(3));
         
-=======
+
         // Autre manière de faire le camembert
         /*
          * Groupe secteurs = new Groupe();
@@ -45,7 +44,7 @@ public class App {
          * secteurs.createSvgFile();
          * System.out.println(secteurs.description(3));
          */
->>>>>>> b9332462b45fabd54185b061cd71880f6096c8c6
+
 
         /*
          * Groupe g = new Groupe();

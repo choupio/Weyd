@@ -60,43 +60,45 @@ public class Groupe implements IForme {
     }
 
     /**
-     * Retourne la hauteur maximale parmi toutes les formes du groupe.
-     *
-     * @return La hauteur maximale parmi toutes les formes du groupe.
+     * @return La hauteur du groupe.
      */
     @Override
     public double hauteur() {
-        if (listFormes.size() == 0) {
+        if (listFormes.isEmpty()) {
             return 0;
         }
-        double hauteurMax = listFormes.get(0).hauteur();
+        double minY = listFormes.get(0).centre().y() - listFormes.get(0).hauteur();
+        double maxY = listFormes.get(0).centre().y() + listFormes.get(0).hauteur();
         for (IForme forme : listFormes) {
-            double hauteurForme = forme.hauteur();
-            if (hauteurForme > hauteurMax) {
-                hauteurMax = hauteurForme;
+            if (forme.centre().y() - forme.hauteur() < minY) {
+                minY = forme.centre().y() - forme.hauteur();
+            }
+            if (forme.centre().y() + forme.hauteur() > maxY) {
+                maxY = forme.centre().y() + forme.hauteur();
             }
         }
-        return hauteurMax;
+        return maxY - minY;
     }
 
     /**
-     * Retourne la largeur maximale parmi toutes les formes du groupe.
-     *
-     * @return La largeur maximale parmi toutes les formes du groupe.
+     * @return La largeur du groupe.
      */
     @Override
     public double largeur() {
         if (listFormes.isEmpty()) {
             return 0;
         }
-        double largeurMax = listFormes.get(0).largeur();
+        double minX = listFormes.get(0).centre().x() - listFormes.get(0).largeur();
+        double maxX = listFormes.get(0).centre().x() + listFormes.get(0).largeur();
         for (IForme forme : listFormes) {
-            double largeurForme = forme.largeur();
-            if (largeurForme > largeurMax) {
-                largeurMax = largeurForme;
+            if (forme.centre().x() - forme.largeur() < minX) {
+                minX = forme.centre().x() - forme.largeur();
+            }
+            if (forme.centre().x() + forme.largeur() > maxX) {
+                maxX = forme.centre().x() + forme.largeur();
             }
         }
-        return largeurMax;
+        return maxX - minX;
     }
 
     /**

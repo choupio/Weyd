@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie.visustats;
+package fr.univrennes.istic.l2gen.visustats;
 
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
