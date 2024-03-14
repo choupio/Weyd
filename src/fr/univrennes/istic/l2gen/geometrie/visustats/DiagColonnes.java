@@ -77,7 +77,7 @@ public class DiagColonnes implements IDataVisualiseur {
     public IForme colorier(String... couleurs) {
         int i = 0;
         for (IForme faisceau : donnees) {
-            faisceau.colorier(couleurs[i]);
+            faisceau.colorier(couleurs);
             i++;
             if (i >= couleurs.length) {
                 i = 0;
