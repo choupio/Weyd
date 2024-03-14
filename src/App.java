@@ -85,7 +85,7 @@ public class App {
         d.colorier("Red", "Black", "Blue");
         d.agencer().createSvgFile();
 
-        MethodeSwing s1 = new MethodeSwing();
+        AccueilSwing s1 = new AccueilSwing();
         Camembert testCam = new Camembert(50, 50, 150);
         testCam.ajouterSecteur("green", 0.3);
         testCam.ajouterSecteur("black", 0.3);
