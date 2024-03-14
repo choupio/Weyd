@@ -1,6 +1,6 @@
 
 import fr.univrennes.istic.l2gen.geometrie.*;
-import fr.univrennes.istic.l2gen.geometrie.visustats.*;
+import fr.univrennes.istic.l2gen.visustats.*;
 import javax.swing.*;
 
 public class App {
@@ -30,7 +30,6 @@ public class App {
         polygone.ajouterSommet(256, 256);
         Groupe groupe = new Groupe(cercleTest, polygone, cercleTest2);
         System.out.println(groupe.description(3));
-        
 
         // Autre manière de faire le camembert
         /*
@@ -44,7 +43,6 @@ public class App {
          * secteurs.createSvgFile();
          * System.out.println(secteurs.description(3));
          */
-
 
         /*
          * Groupe g = new Groupe();
@@ -81,26 +79,19 @@ public class App {
 
         DiagColonnes d = new DiagColonnes("test");
 
-        d.legender("caca", "pipi", "proute");
+        d.legender("samax", "samax", "samax");
         d.ajouterDonnees("2010", 1600, 6800, 16000);
         d.ajouterDonnees("2015", 1600, 6800, 16000);
         d.colorier("Red", "Black", "Blue");
         d.agencer().createSvgFile();
 
-        JFrame frame = new JFrame("Hello World");
-        JLabel label = new JLabel("Projet GEN", JLabel.CENTER);
-        JPanel panel = new JPanel();
-        frame.add(panel);
-
-        JButton btn1 = new JButton("Bouton 1");
-        JButton btn2 = new JButton("Bouton 2");
-
-        panel.add(btn1);
-        panel.add(btn2);
-
-        frame.add(label);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 1000);
-        frame.setVisible(true);
+        AccueilSwing s1 = new AccueilSwing();
+        Camembert testCam = new Camembert(50, 50, 150);
+        testCam.ajouterSecteur("green", 0.3);
+        testCam.ajouterSecteur("black", 0.3);
+        testCam.ajouterSecteur("yellow", 0.1);
+        testCam.ajouterSecteur("white", 0.2);
+        testCam.ajouterSecteur("red", 0.1);
+        testCam.createSvgFile();
     }
 }

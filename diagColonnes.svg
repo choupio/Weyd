@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <rect x="20.0" y="484.0" height="16.0" width="23.333333333333332"
 	fill="Red" stroke="black" transform="rotate(0)"/><rect x="53.33333333333333" y="432.0" height="68.0" width="23.333333333333332"
-	fill="Red" stroke="black" transform="rotate(0)"/><rect x="86.66666666666666" y="340.0" height="160.0" width="23.333333333333332"
-	fill="Red" stroke="black" transform="rotate(0)"/><rect x="140.0" y="484.0" height="16.0" width="23.333333333333332"
-	fill="Black" stroke="black" transform="rotate(0)"/><rect x="173.33333333333331" y="432.0" height="68.0" width="23.333333333333332"
+	fill="Black" stroke="black" transform="rotate(0)"/><rect x="86.66666666666666" y="340.0" height="160.0" width="23.333333333333332"
+	fill="Blue" stroke="black" transform="rotate(0)"/><rect x="140.0" y="484.0" height="16.0" width="23.333333333333332"
+	fill="Red" stroke="black" transform="rotate(0)"/><rect x="173.33333333333331" y="432.0" height="68.0" width="23.333333333333332"
 	fill="Black" stroke="black" transform="rotate(0)"/><rect x="206.66666666666663" y="340.0" height="160.0" width="23.333333333333332"
-	fill="Black" stroke="black" transform="rotate(0)"/></svg>
+	fill="Blue" stroke="black" transform="rotate(0)"/></svg>
