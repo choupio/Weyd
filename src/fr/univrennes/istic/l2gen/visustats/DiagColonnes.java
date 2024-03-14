@@ -1,25 +1,32 @@
-package fr.univrennes.istic.l2gen.geometrie.visustats;
+package fr.univrennes.istic.l2gen.visustats;
 
+import java.security.GuardedObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.GroupLayout.Group;
+
 import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
 
 public class DiagColonnes implements IDataVisualiseur {
     Texte texteNom;
     String nom;
     List<String> legendes, couleurs;
-    List<Faisceau> donnees;
+    Groupe donnees, legendeGroupe, diagGroupe;
 
     public DiagColonnes(String nom) {
         this.nom = nom;
         legendes = new ArrayList<>();
         couleurs = new ArrayList<>();
-        donnees = new ArrayList<>();
+        donnees = new Groupe();
+        diagGroupe = new Groupe();
+        legendeGroupe = new Groupe();
     }
 
     @Override
@@ -67,7 +74,7 @@ public class DiagColonnes implements IDataVisualiseur {
     @Override
     public String enSVG() {
         String s = "";
-        for (Faisceau f : donnees) {
+        for (IForme f : donnees.getListFormes()) {
             s += f.enSVG();
         }
         return s;
@@ -76,7 +83,7 @@ public class DiagColonnes implements IDataVisualiseur {
     @Override
     public IForme colorier(String... couleurs) {
         int i = 0;
-        for (IForme faisceau : donnees) {
+        for (IForme faisceau : donnees.getListFormes()) {
             faisceau.colorier(couleurs);
             i++;
             if (i >= couleurs.length) {
@@ -106,17 +113,25 @@ public class DiagColonnes implements IDataVisualiseur {
     @Override
     public IDataVisualiseur agencer() {
         double axeX = 20;
-        for (Faisceau faisceau : donnees) {
-            faisceau.agencer(axeX, 500, 100, 0.01, false); // TODO il faut modifier axeX et lergeur
+        for (IForme faisceau : donnees.getListFormes()) {
+            Faisceau f = (Faisceau) faisceau;
+            f.agencer(axeX, 500, 100, 0.01, false); // TODO il faut modifier axeX et lergeur
             axeX += 120;
         }
         texteNom = new Texte(100 / 2, 0, 0, nom);
+        diagGroupe.ajouter(donnees);
+
+        // Groupe pour les lÃ©gendes
+        for (String string : couleurs) {
+            legendeGroupe.ajouter(new Rectangle(axeX, axeX, axeX, axeX));
+        }
+
         return this;
     }
 
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
-        donnees.add(new Faisceau(str, doubles));
+        donnees.ajouter(new Faisceau(str, doubles));
         return this;
     }
 
