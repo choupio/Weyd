@@ -19,8 +19,26 @@ public class Camembert implements IForme {
 
     private Point centre;
     private double rayon;
+<<<<<<< HEAD
+    private List<Secteur> secteurs;
+    public List<Secteur> getSecteurs() {
+        return secteurs;
+    }
+
+    public void setSecteurs(List<Secteur> secteurs) {
+        this.secteurs = secteurs;
+    }
+
+    private String description;
+    public double proportion;
+
+    @Override
+    public Point centre() {
+        return centre;
+=======
     public double getRayon() {
         return rayon;
+>>>>>>> b9332462b45fabd54185b061cd71880f6096c8c6
     }
 
     private List<Secteur> secteurs;
@@ -103,6 +121,9 @@ public class Camembert implements IForme {
      *         les opérations en chaîne.
      */
     public Camembert ajouterSecteur(String description, double proportion) {
+<<<<<<< HEAD
+        secteurs.add(new Secteur(centre,rayon,angle,arc));
+=======
         if (proportion <= 0 || proportion >1) {
             throw new IllegalArgumentException("La proportion doit être strictement supérieure à 0 et inférieur ou égale à 1.");
         } else {
@@ -112,6 +133,7 @@ public class Camembert implements IForme {
             secteurs.add(secteur);
             cmptAngle += angleSecteur;
         }
+>>>>>>> b9332462b45fabd54185b061cd71880f6096c8c6
         return this;
     }
 
