@@ -1,10 +1,10 @@
-package fr.univrennes.istic.l2gen.geometrie.visustats;
+package fr.univrennes.istic.l2gen.visustats;
 
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 
-public class DiagBarres implements IDataVisualiseur{
+public class DiagBarres implements IDataVisualiseur {
 
     @Override
     public Point centre() {
@@ -101,5 +101,5 @@ public class DiagBarres implements IDataVisualiseur{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setOption'");
     }
-    
+
 }
