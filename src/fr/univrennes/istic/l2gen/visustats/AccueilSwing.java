@@ -5,9 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MethodeSwing {
+public class AccueilSwing {
 
-    public MethodeSwing() {
+    public AccueilSwing() {
         JFrame frame = new JFrame("Hello World");
         JLabel label = new JLabel("Projet GEN", JLabel.CENTER);
         JPanel panel = new JPanel();
