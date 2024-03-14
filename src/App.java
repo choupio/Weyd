@@ -1,6 +1,5 @@
 
 
-import fr.univrennes.istic.l2gen.geometrie.*;
 import fr.univrennes.istic.l2gen.geometrie.visustats.*;
 
 public class App {
@@ -70,9 +69,9 @@ public class App {
         DiagColonnes d = new DiagColonnes("test");
 
         d.legender("caca", "pipi", "proute");
-        d.ajouterDonnees("2010", 1600,6800,16000);
-        d.ajouterDonnees("2015", 1600,6800,16000);
-        d.colorier("Red","Black", "Blue");
+        d.ajouterDonnees("2010", 1600, 6800, 16000);
+        d.ajouterDonnees("2015", 1600, 6800, 16000);
+        d.colorier("Red", "Black", "Blue");
         d.agencer().createSvgFile();
     }
 }
