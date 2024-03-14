@@ -85,22 +85,6 @@ public class App {
         d.colorier("Red", "Black", "Blue");
         d.agencer().createSvgFile();
 
-        JFrame frame = new JFrame("Hello World");
-        JLabel label = new JLabel("Projet GEN", JLabel.CENTER);
-        JPanel panel = new JPanel();
-
-        JButton btn1 = new JButton("Bouton 1");
-        JButton btn2 = new JButton("Bouton 2");
-
-        panel.add(btn1);
-        panel.add(btn2);
-
-        frame.add(panel);
-        frame.add(label);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 1000);
-        frame.setVisible(true);
-
         Camembert testCam = new Camembert(50, 50, 150);
         testCam.ajouterSecteur("green", 0.3);
         testCam.ajouterSecteur("black", 0.3);
