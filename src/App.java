@@ -1,6 +1,8 @@
 
 
+import fr.univrennes.istic.l2gen.geometrie.*;
 import fr.univrennes.istic.l2gen.geometrie.visustats.*;
+import javax.swing.*;
 
 public class App {
 
@@ -20,6 +22,16 @@ public class App {
          * tableau.createSvgFile();
          */
 
+        Cercle cercleTest = new Cercle(50, 40, 25);
+        Cercle cercleTest2 = new Cercle(50, 40, 25);
+        Polygone polygone = new Polygone();
+        polygone.ajouterSommet(128, 128);
+        polygone.ajouterSommet(128, 256);
+        polygone.ajouterSommet(256, 128);
+        polygone.ajouterSommet(256, 256);
+        Groupe groupe = new Groupe(cercleTest, polygone, cercleTest2);
+        System.out.println(groupe.description(3));
+        
         // Autre manière de faire le camembert
         /*
          * Groupe secteurs = new Groupe();
@@ -73,5 +85,21 @@ public class App {
         d.ajouterDonnees("2015", 1600, 6800, 16000);
         d.colorier("Red", "Black", "Blue");
         d.agencer().createSvgFile();
+
+        JFrame frame = new JFrame("Hello World");
+        JLabel label = new JLabel("Projet GEN", JLabel.CENTER);
+        JPanel panel = new JPanel();
+        frame.add(panel);
+
+        JButton btn1 = new JButton("Bouton 1");
+        JButton btn2 = new JButton("Bouton 2");
+
+        panel.add(btn1);
+        panel.add(btn2);
+
+        frame.add(label);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1000, 1000);
+        frame.setVisible(true);
     }
 }
