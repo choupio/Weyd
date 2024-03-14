@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie.visustats;
+package fr.univrennes.istic.l2gen.visustats;
 
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 
@@ -37,7 +37,8 @@ public interface IDataVisualiseur extends IForme {
     /**
      * Permet d'ajouter des options au diagramme en question.
      * 
-     * @param strings une liste de Strings caractérisant des options à ajouter au diagramme
+     * @param strings une liste de Strings caractérisant des options à ajouter au
+     *                diagramme
      * @return une instance du diagramme
      * @ensures l'ajout d'options au digramme en question
      */
