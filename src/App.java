@@ -74,5 +74,10 @@ public class App {
         d.ajouterDonnees("2015", 1600, 6800, 16000);
         d.colorier("Red", "Black", "Blue");
         d.agencer().createSvgFile();
+
+        JFrame frame = new JFrame("Hello World");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(250, 250);
+        frame.setVisible(true);
     }
 }
