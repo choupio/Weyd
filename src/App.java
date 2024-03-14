@@ -1,6 +1,6 @@
 
 import fr.univrennes.istic.l2gen.geometrie.*;
-import fr.univrennes.istic.l2gen.geometrie.visustats.*;
+import fr.univrennes.istic.l2gen.visustats.*;
 import javax.swing.*;
 
 public class App {
@@ -30,7 +30,6 @@ public class App {
         polygone.ajouterSommet(256, 256);
         Groupe groupe = new Groupe(cercleTest, polygone, cercleTest2);
         System.out.println(groupe.description(3));
-        
 
         // Autre manière de faire le camembert
         /*
@@ -44,7 +43,6 @@ public class App {
          * secteurs.createSvgFile();
          * System.out.println(secteurs.description(3));
          */
-
 
         /*
          * Groupe g = new Groupe();
