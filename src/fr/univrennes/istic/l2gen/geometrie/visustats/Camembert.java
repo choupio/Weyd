@@ -15,6 +15,14 @@ public class Camembert implements IForme {
     private Point centre;
     private double rayon;
     private List<Secteur> secteurs;
+    public List<Secteur> getSecteurs() {
+        return secteurs;
+    }
+
+    public void setSecteurs(List<Secteur> secteurs) {
+        this.secteurs = secteurs;
+    }
+
     private String description;
     public double proportion;
 
@@ -34,7 +42,7 @@ public class Camembert implements IForme {
     }
 
     public Camembert ajouterSecteur(String description, double proportion) {
-        secteurs.add(new Secteur(description, proportion));
+        secteurs.add(new Secteur(centre,rayon,angle,arc));
         return this;
     }
 

@@ -25,6 +25,7 @@ public class App {
         polygone.ajouterSommet(256, 256);
         Groupe groupe = new Groupe(cercleTest, polygone, cercleTest2);
         System.out.println(groupe.description(3));
+        
 
     }
 }
