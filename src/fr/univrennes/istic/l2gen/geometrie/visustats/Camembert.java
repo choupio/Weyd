@@ -19,7 +19,6 @@ public class Camembert implements IForme {
 
     private Point centre;
     private double rayon;
-<<<<<<< HEAD
     private List<Secteur> secteurs;
     public List<Secteur> getSecteurs() {
         return secteurs;
@@ -35,10 +34,8 @@ public class Camembert implements IForme {
     @Override
     public Point centre() {
         return centre;
-=======
     public double getRayon() {
         return rayon;
->>>>>>> b9332462b45fabd54185b061cd71880f6096c8c6
     }
 
     private List<Secteur> secteurs;
