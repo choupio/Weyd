@@ -1,4 +1,6 @@
-package fr.univrennes.istic.l2gen.geometrie.visustats;
+package fr.univrennes.istic.l2gen.visustats;
+
+
 
 import java.util.List;
 import java.util.ArrayList;
