@@ -1,4 +1,6 @@
-package fr.univrennes.istic.l2gen.geometrie.visustats;
+package fr.univrennes.istic.l2gen.visustats;
+
+
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -19,18 +21,9 @@ public class Camembert implements IForme {
 
     private Point centre;
     private double rayon;
-    public double getRayon() {
-        return rayon;
-    }
-
     private List<Secteur> secteurs;
     private double cmptAngle = 0;
     private String couleur = "white";
-
-    public String getCouleur() {
-        return couleur;
-    }
-
 
     /**
      * Constructeur de la classe Camembert
@@ -134,13 +127,10 @@ public class Camembert implements IForme {
         sb.append(indent + "  Centre: ").append("(" + centre.x() + ", " + centre.y() + ")").append("\n");
         sb.append(indent + "  Rayon: ").append(rayon).append("\n");
         sb.append(indent + "  Secteurs:\n");
-        int i = 1;
         for (Secteur secteur : secteurs) {
-            String nomSecteur = "Secteur " + i;
-            String formatProportion = String.format("%.2f", secteur.getArc()/(double)360);
-            sb.append(indent + "    Secteur: ").append(nomSecteur).append(", Proportion: " + formatProportion).append("\n");
-            i++;
+            sb.append(secteur.description(indentation + 2) + "\n");
         }
+
         return sb.toString();
     }
 
@@ -232,14 +222,15 @@ public class Camembert implements IForme {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
     }
+
     @Override
     public String enSVG() {
-        StringBuilder svg = new StringBuilder();
-        svg.append("<svg width=\"500\" height=\"500\" xmlns=\"http://www.w3.org/2000/svg\">\n");
-        svg.append("  <circle cx=\"" + centre.x() + "\" cy=\"" + centre.y() + "\" r=\"" + rayon
-                + "\" fill=\"lightblue\" />\n");
-        svg.append("</svg>");
-        return svg.toString();
+        String s = "<g>\n";
+        for (Secteur secteur : secteurs) {
+            s += secteur.enSVG() + "\n";
+        }
+        s += "</g>";
+        return s;
     }
 
     public int getNombreSecteurs() {
