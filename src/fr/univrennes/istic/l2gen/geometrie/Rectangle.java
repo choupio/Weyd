@@ -14,8 +14,12 @@ public class Rectangle implements IForme {
     private double hauteur; // Hauteur du rectangle
     private Point centre; // Centre du rectangle
     private String couleur = "white"; // Couleur du rectangle en "white"
-    private int angle = 0; // angle du rectangle, à 0 de base
+    
 
+    private int angle = 0; // angle du rectangle, à 0 de base
+    public String getCouleur() {
+            return couleur;
+        }
     /**
      * Retourne le centre du rectangle.
      *
@@ -98,16 +102,23 @@ public class Rectangle implements IForme {
      * Retourne une description du rectangle avec une indentation spécifiée.
      *
      * @param indentation Le niveau d'indentation pour la description.
+     * @throws IllegalArgumentException si l'indentation est inférieure à 0.
      * @return Une chaîne de caractères décrivant le rectangle.
      */
     @Override
     public String description(int indentation) {
-        StringBuilder indent = new StringBuilder();
-        for (int i = 0; i < indentation; i++) {
-            indent.append(" ");
+        if(indentation<0){
+            throw new IllegalArgumentException("L'indentation ne doit pas être inférieure à 0.");
         }
-        return indent + "Rectangle" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H="
+        else{
+            StringBuilder indent = new StringBuilder();
+            for (int i = 0; i < indentation; i++) {
+                indent.append(" ");
+            }
+            return indent + "Rectangle" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H="
                 + hauteur() + " de couleur " + couleur + " angle=" + angle;
+        }
+        
     }
 
     /**
@@ -115,12 +126,21 @@ public class Rectangle implements IForme {
      *
      * @param dx Le déplacement en abscisse.
      * @param dy Le déplacement en ordonnée.
+     * @throws IllegalStateException si x ou y devient négatif
      * @return Une référence à l'instance du rectangle, pour permettre les
      *         opérations en chaîne.
      */
     public IForme deplacer(double dx, double dy) {
-        this.centre.plus(dx, dy);
-        return this;
+        if(dx<0&&(this.centre().x()+dx)<0){
+            throw new IllegalStateException("Le point x du rectangle ne peut pas être négatif.");
+        }
+        else if(dy<0&&(this.centre().y()+dy)<0){
+            throw new IllegalStateException("Le point y du rectangle ne peut pas être négatif.");
+        }
+        else{
+            this.centre.plus(dx, dy);
+            return this;
+        }
     }
 
     /**
@@ -139,15 +159,25 @@ public class Rectangle implements IForme {
     /**
      * Ré-ajuste la hauteur et la largeur du rectangle.
      *
-     * @param hauteur La nouvelle hauteur du rectangle.
-     * @param largeur La nouvelle largeur du rectangle.
+     * @param hauteur La hauteur de redimmensionement 
+     * @param largeur La largeur de redimmensionement
+     * @throws IllegalArgumentException si la hauteur ou largeur de red. est égale à 0 ou moins.
      * @return Une référence à l'instance du rectangle, pour permettre les
-     *         opérations en chaîne.
+     *         opérations en chaîne. La hauteur du rectangle va être multipliée par celle de redimmensionnement,
+     *         pareil pour la largeur.
      */
     public IForme redimmensioner(double hauteur, double largeur) {
-        this.setHauteur(this.hauteur * hauteur);
-        this.setLargeur(this.largeur * largeur);
-        return this;
+        if(hauteur<=0){
+            throw new IllegalArgumentException("La hauteur de redimmensionement ne doit pas être inférieure à 0.");
+        }
+        if(largeur<=0){
+            throw new IllegalArgumentException("La largeur de redimmensionement ne doit pas être inférieure à 0.");
+        }
+        else{
+            this.setHauteur(this.hauteur * hauteur);
+            this.setLargeur(this.largeur * largeur);
+            return this;
+        }
     }
 
     /**
@@ -200,13 +230,52 @@ public class Rectangle implements IForme {
         }
     }
 
+    /**
+     * @param angle un entier qui représente l'angle.
+     * @throws IllegalArgumentException si l'angle est négatif.
+     * @return le nouveau rectangle tourné avec l'angle.
+     */
     public IForme tourner(int angle) {
-        this.angle = angle;
-        return this;
+        if(angle<0){
+            throw new IllegalArgumentException("L'angle ne peut pas être négatif");
+        }
+        else{
+            this.angle = angle;
+            return this;
+        }
+        
     }
 
     public IForme aligner(Alignement alignement, double cible) {
-        throw new UnsupportedOperationException("Unimplemented method 'aligner'");
-
+        if(cible<0){
+            throw new IllegalArgumentException("La cible ne peut pas être négative.");
+        }
+        switch (alignement) {
+            case HAUT:
+                if((cible)<0){
+                    throw new IllegalArgumentException("Y ne peut pas être négatif.");
+                }
+                centre = new Point(centre.x(), cible );
+                break;
+            case BAS:
+                if((cible - hauteur)<0){
+                    throw new IllegalArgumentException("Y ne peut pas être négatif.");
+                }
+                centre = new Point(centre.x(), cible - hauteur );
+                break;
+            case DROITE:
+                if((cible - largeur)<0){
+                    throw new IllegalArgumentException("X ne peut pas être négatif.");
+                }
+                centre = new Point(cible - largeur , centre.y());
+                break;
+            case GAUCHE:
+                if((cible)<0){
+                    throw new IllegalArgumentException("X ne peut pas être négatif.");
+                }
+                centre = new Point(cible , centre.y());
+                break;
+        }
+        return this;
     }
 }

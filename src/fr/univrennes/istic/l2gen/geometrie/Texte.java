@@ -4,6 +4,11 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 /**
  * Represents a text shape that implements the {@link IForme} interface.
  */
@@ -16,8 +21,6 @@ public class Texte implements IForme {
 	private int taille;
 	private int angle;
 
-	
-
 	// Bloc d'initialisation
 	{
 		couleur = "black";
@@ -25,51 +28,47 @@ public class Texte implements IForme {
 		largeur = 0.0;
 	}
 
-	 /**
-     * Rotates the shape by the specified angle.
-     * 
-     * @param agle the angle (in degrees) by which the shape should be rotated
-     * @return the rotated shape
-     */
-    @Override
+	@Override
 	public IForme tourner(int angle) {
+		if (angle < 0) {
+			throw new IllegalArgumentException("L'angle ne peut pas être négatif.");
+		}
 		this.angle = angle;
 		return this;
 	}
 
-	/**
-	 * Aligns the shape based on the specified alignment and target position.
-	 * 
-	 * @param alignement the alignment to apply
-	 * @param cible the target position
-	 * @return the aligned shape
-	 */
 	@Override
 	public IForme aligner(Alignement alignement, double cible) {
+		if (cible < 0) {
+			throw new IllegalArgumentException("La cible ne peut pas être négative.");
+		}
 		switch (alignement) {
-		case HAUT:
-			y = cible + hauteur / 2;
-			break;
-		case BAS:
-			y = cible - hauteur / 2;
-			break;
-		case DROITE:
-			x = cible + largeur / 2;
-			break;
-		case GAUCHE:
-			x = cible - largeur / 2;
-			break;
+			case HAUT:
+				y = cible + hauteur / 2;
+				break;
+			case BAS:
+				y = cible - hauteur / 2;
+				break;
+			case DROITE:
+				x = cible + largeur / 2;
+				break;
+			case GAUCHE:
+				x = cible - largeur / 2;
+				break;
 		}
 		return this;
 	}
 
 	/**
-	 * @param x
-	 * @param y
-	 * @param taille
-	 * @param texte
+	 * @param x      coordonnée x du texte
+	 * @param y      coordonnée y du texte
+	 * @param taille la taille du texte
+	 * @param texte  la string affichée
 	 */
 	public Texte(double x, double y, int taille, String texte) {
+		if (x < 0 || y < 0 || taille < 0) {
+			throw new IllegalArgumentException("x, y et taille doivent être positifs.");
+		}
 		this.x = x;
 		this.y = y;
 		this.taille = taille;
@@ -87,12 +86,40 @@ public class Texte implements IForme {
 
 	@Override
 	public double hauteur() {
-		return hauteur;
+		// Créer une police avec la taille spécifiée
+		Font font = new Font("Arial", Font.PLAIN, taille);
+
+		// Créer une image tampon pour obtenir les métriques de la police
+		BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+		Graphics g = img.getGraphics();
+		g.setFont(font);
+
+		// Obtenir les métriques de la police
+		FontMetrics fm = g.getFontMetrics();
+
+		// Calculer la largeur du texte
+		int hauteurTexte = fm.getHeight();
+
+		return hauteurTexte;
 	}
 
 	@Override
 	public double largeur() {
-		return largeur;
+		// Créer une police avec la taille spécifiée
+		Font font = new Font("Arial", Font.PLAIN, taille);
+
+		// Créer une image tampon pour obtenir les métriques de la police
+		BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+		Graphics g = img.getGraphics();
+		g.setFont(font);
+
+		// Obtenir les métriques de la police
+		FontMetrics fm = g.getFontMetrics();
+
+		// Calculer la largeur du texte
+		int largeurTexte = fm.stringWidth(texte);
+
+		return largeurTexte;
 	}
 
 	@Override
@@ -100,6 +127,9 @@ public class Texte implements IForme {
 		// Logique pour déplacer le texte
 		x += dx;
 		y += dy;
+		if (x < 0 || y < 0) {
+			throw new IllegalStateException("x et y doivent être positifs.");
+		}
 		return this; // Retourne la référence à la forme modifiée
 	}
 
@@ -115,17 +145,21 @@ public class Texte implements IForme {
 		nouvelleForme.taille = this.taille;
 		nouvelleForme.texte = this.texte;
 		return nouvelleForme;
-	}// Crée une nouvelle instance de la classe avec les mêmes propriétés
+	}
 
 	@Override
 	public String description(int indentation) {
-		// Génère une description avec un certain niveau d'indentation
-		String sb = "";
-		for (int i = 0; i < indentation; i++) {
-			sb += "  ";
+		if (indentation < 0) {
+			throw new IllegalArgumentException("L'indentation ne doit pas être inférieure à 0.");
+		} else {// Génère une description avec un certain niveau d'indentation
+			String sb = "";
+			for (int i = 0; i < indentation; i++) {
+				sb += "  ";
+			}
+			sb += "Texte centre=" + x + "," + y + " taille=" + taille + " texte=" + texte + " couleur=" + couleur
+					+ " et de rotation " + angle;
+			return sb.toString();
 		}
-		sb += "Texte centre=" + x + "," + y + " taille=" + taille + " texte=" + texte + " couleur=" + couleur + " et de rotation " + angle;
-		return sb.toString();
 	}
 
 	@Override
@@ -135,26 +169,45 @@ public class Texte implements IForme {
 				+ couleur + "\" stroke=\"black\" transform=\"rotate(" + angle + ")\">" + texte + "</text>";
 	}
 
+	@Override
 	public IForme colorier(String... couleurs) {
 		couleur = couleurs[0];
 		return this;
 	}
 
+	/**
+	 * Ré-ajuste la hauteur et la largeur du texte.
+	 *
+	 * @param hauteur La hauteur de redimmensionement
+	 * @param largeur La largeur de redimmensionement
+	 * @throws IllegalArgumentException si la hauteur ou largeur de red. est égale à
+	 *                                  0 ou moins.
+	 * @return Une référence à l'instance du texte, pour permettre les
+	 *         opérations en chaîne. La hauteur du texte va être multipliée par
+	 *         celle de redimmensionnement,
+	 *         pareil pour la largeur.
+	 */
 	@Override
 	public IForme redimmensioner(double h, double l) {
+		if (h < 0 || l < 0) {
+			throw new IllegalArgumentException("Hauteur et Largeur doivent être positifs.");
+		}
 		hauteur = h;
 		largeur = l;
 		return this;
 	}
 
+	/**
+	 * Crée un fichier SVG représentant le rectangle.
+	 */
 	@Override
 	public void createSvgFile() {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.svg"))) {
-			writer.write("<svg width=\"" + largeur + "\" height=\"" + hauteur + "\">\n");
+			writer.write("<svg xmlns=\"http://www.w3.org/2000/svg\">");
 			writer.write(enSVG() + "\n");
 			writer.write("</svg>");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	}
+}

@@ -29,7 +29,7 @@ public class RectangleTest {
         assertEquals("<rect x=\"" + r.centre().x() + "\" y=\"" + r.centre().y() + "\" height=\"" + r.hauteur()
                 + "\" width=\""
                 + r.largeur()
-                + "\"\n" + "\t" + "fill=\"" + "rouge" + "\"" + " stroke=\"black\"/>", r.enSVG());
+                + "\"\n" + "\t" + "fill=\"" + "rouge" + "\"" + " stroke=\"black\"" + " transform=\"rotate(0)\"/>", r.enSVG());
     }
 
     @Test
@@ -39,10 +39,37 @@ public class RectangleTest {
         assertEquals(11, rectangleDeplace.centre().y(), 0.0001);
     }
 
+    @Test(expected = IllegalStateException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si x devient négatif
+    public void testDeplacerXNeg(){
+        r.deplacer(-15,2);
+    }
+
+    @Test
+    public void testDeplacerX(){ // dans le cas où dx est négatif, mais que x ne descend pas en dessous de 0.
+        IForme r2 = r.deplacer(-2,2);
+        assertEquals(3,r2.centre().x(), 0.0001);
+    }
+
+    @Test
+    public void testDeplacerY(){ // dans le cas où dy est négatif, mais que y ne descend pas en dessous de 0.
+        IForme r2 = r.deplacer(2,-2);
+        assertEquals(4,r2.centre().y(), 0.0001);
+    }
+
+    @Test(expected = IllegalStateException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si y devient négatif
+    public void testDeplacerYNeg(){
+        r.deplacer(2,-15);
+    }
+
     @Test
     public void testDescription() {
         assertEquals(" Rectangle Centre=" + r.centre().x() + "," + r.centre().y() + " L=" + r.largeur() + " H="
-                + r.hauteur() + " de couleur white", r.description(1));
+                + r.hauteur() + " de couleur white" + " angle=0", r.description(1));
+    }
+
+    @Test(expected = IllegalArgumentException.class) // On teste pour vérifier que la fonction renvoie IllegalArgumentException si l'indentation est négative.
+    public void testDescriptionIndentationNeg(){
+        r.description(-1);
     }
 
     @Test
@@ -59,7 +86,7 @@ public class RectangleTest {
         assertEquals("<rect x=\"" + r.centre().x() + "\" y=\"" + r.centre().y() + "\" height=\"" + r.hauteur()
                 + "\" width=\""
                 + r.largeur()
-                + "\"\n" + "\t" + "fill=\"" + "white" + "\"" + " stroke=\"black\"/>", r.enSVG());
+                + "\"\n" + "\t" + "fill=\"" + "white" + "\"" + " stroke=\"black\"" + " transform=\"rotate(0)\"/>", r.enSVG());
     }
 
     @Test
@@ -80,6 +107,26 @@ public class RectangleTest {
         assertEquals(r.hauteur(), 4, 0.0001);
     }
 
+    @Test(expected = IllegalArgumentException.class) // Dans le cas où la hauteur de red. est à 0.
+    public void testRedimmensionerHauteur0(){
+        r.redimmensioner(0,2);
+    }
+
+    @Test(expected = IllegalArgumentException.class) // Dans le cas où la hauteur de red. est négative.
+    public void testRedimmensionerHauteurNeg(){
+        r.redimmensioner(-2,2);
+    }
+
+    @Test(expected = IllegalArgumentException.class) // Dans le cas où la largeur de red. est à 0.
+    public void testRedimmensionerLargeur0(){
+        r.redimmensioner(2,0);
+    }
+
+    @Test(expected = IllegalArgumentException.class) // Dans le cas où la largeur de red. est négative.
+    public void testRedimmensionerLargeurNeg(){
+        r.redimmensioner(2,-2);
+    }
+
     @Test
     public void testSetHauteur() {
         r.setHauteur(3);
@@ -98,8 +145,58 @@ public class RectangleTest {
         assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=38", r.description(1));
     }
 
+    @Test(expected = IllegalArgumentException.class) // pareil que le précédent mais quand l'angle est négatif
+    public void testTournerNegatif(){
+        r.tourner(-10);
+    }
+
     @Test
     public void testTournerPasModif() { // sans modifier l'angle
         assertEquals(" Rectangle Centre=5.0,6.0 L=5.0 H=8.0 de couleur white angle=0", r.description(1));
     }
+
+    @Test
+    public void testAlignerHAUT(){ // Dans le cas où on aligne par le haut.
+        IForme rectangleTest = r.aligner(Alignement.HAUT,4.0);
+        assertEquals(5, rectangleTest.centre().x(),0.0001);
+        assertEquals(8, rectangleTest.centre().y(),0.0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAlignerHAUTNegatif(){ // Dans le cas où on aligne par le haut, mais que X devient négatif.
+        r.aligner(Alignement.HAUT,2.0);
+    }
+
+    @Test
+    public void testAlignerBAS(){ // Dans le cas où on aligne par le bas.
+        IForme rectangleTest = r.aligner(Alignement.BAS,10.0);
+        assertEquals(5, rectangleTest.centre().x(),0.0001);
+        assertEquals(6, rectangleTest.centre().y(),0.0001);
+    }
+
+
+    @Test
+    public void testAlignerDROITE(){ // Dans le cas où on aligne par la droite.
+        IForme rectangleTest = r.aligner(Alignement.DROITE,3.0);
+        assertEquals(0.5, rectangleTest.centre().x(),0.0001);
+        assertEquals(6, rectangleTest.centre().y(),0.0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAlignerDROITENegatif(){ // Dans le cas où on aligne par la droite, mais que Y devient négatif.
+        r.aligner(Alignement.DROITE,2.0);
+    }
+
+    @Test
+    public void testAlignerGAUCHE(){ // Dans le cas où on aligne par la gauche.
+        IForme rectangleTest = r.aligner(Alignement.GAUCHE,3.0);
+        assertEquals(5.5, rectangleTest.centre().x(),0.0001);
+        assertEquals(6, rectangleTest.centre().y(),0.0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAlignerNegatif(){ // Dans le cas où on aligne, mais que la cible est négative.
+        r.aligner(Alignement.BAS,-8.0);
+    }
+
 }

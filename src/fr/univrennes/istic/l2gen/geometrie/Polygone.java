@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class Polygone implements IForme {
 
+
 	public List<Point> getSommets() {
 		return points;
 	}
@@ -58,32 +59,27 @@ public class Polygone implements IForme {
 		return this;
 	}
 
-	/**
-	 * Retourne le centre du polygone, calculé comme la moyenne des coordonnées de
-	 * ses sommets.
-	 *
-	 * @return Le centre du polygone.
-	 */
+
 	@Override
 	public Point centre() {
-		double x = 0, y = 0;
+		double xMin=points.get(0).x(), yMin = points.get(0).y(),x,y;
 		for (Point point : points) {
-			x += point.x();
-			y += point.y();
+			if(xMin > point.x()){xMin = point.x();}
+			if(yMin > point.y()){yMin = point.y();}
 		}
-		return new Point(x / points.size(), y / points.size());
+		x = xMin + largeur()/2;
+		y = yMin + hauteur()/2;
+		if(x<0 || y<0){throw new IllegalArgumentException("Le centre a un x ou y inférieur à 0");}
+		return new Point(x, y);
 	}
 
-	/**
-	 * Retourne une description du polygone avec une indentation spécifiée.
-	 *
-	 * @param entier Le niveau d'indentation pour la description.
-	 * @return Une chaîne de caractères décrivant le polygone.
-	 */
+
 	@Override
-	public String description(int entier) {
+	public String description(int indentation) {
+		if(indentation < 0){throw new IllegalArgumentException("L'indentation doit être supérieur ou égal à 0");}
+		
 		String cran = "";
-		for (int i = 0; i < entier; i += 1) {
+		for (int i = 0; i < indentation; i += 1) {
 			cran += "  ";
 		}
 
@@ -99,14 +95,10 @@ public class Polygone implements IForme {
 		return s;
 	}
 
-	/**
-	 * Retourne la hauteur du polygone, calculée comme la différence entre la
-	 * coordonnée y maximale et la coordonnée y minimale parmi tous les sommets.
-	 *
-	 * @return La hauteur du polygone.
-	 */
+
 	@Override
 	public double hauteur() {
+
 		Point mini = points.get(0), max = points.get(0);
 		for (Point point : points) {
 			if (point.y() < mini.y()) {
@@ -116,15 +108,11 @@ public class Polygone implements IForme {
 				max = point;
 			}
 		}
+		if((max.y() - mini.y()) < 0){throw new IllegalStateException("La hauteur ne peut pas être négative.");}
 		return max.y() - mini.y();
 	}
 
-	/**
-	 * Retourne la largeur du polygone, calculée comme la différence entre la
-	 * coordonnée x maximale et la coordonnée x minimale parmi tous les sommets.
-	 *
-	 * @return La largeur du polygone.
-	 */
+
 	@Override
 	public double largeur() {
 		Point mini = points.get(0), max = points.get(0);
@@ -136,31 +124,22 @@ public class Polygone implements IForme {
 				max = point;
 			}
 		}
+		if((max.x() - mini.x()) < 0){throw new IllegalStateException("La lergeur ne peut pas être négative.");}
 		return max.x() - mini.x();
 	}
 
-	/**
-	 * Déplace le polygone selon les déplacements spécifiés.
-	 *
-	 * @param dx Le déplacement en abscisse.
-	 * @param dy Le déplacement en ordonnée.
-	 * @return Une référence à l'instance du polygone, pour permettre les opérations
-	 *         en chaîne.
-	 */
 	@Override
 	public IForme deplacer(double dx, double dy) {
+		ArrayList<Point> nouveauxPoints = new ArrayList<>();
 		for (int i = 0; i < points.size(); i++) {
-			Point point = points.remove(i);
-			points.add(i, new Point(dx + point.x(), dy + point.y()));
+			if((dx + points.get(i).x())<0 ||(dy + points.get(i).y())<0 ){throw new IllegalStateException("Un point à une coordonnées x ou y négative");}
+			nouveauxPoints.add(new Point(dx + points.get(i).x(), dy + points.get(i).y()));
 		}
+		points = nouveauxPoints;
 		return this;
 	}
 
-	/**
-	 * Duplique le polygone.
-	 *
-	 * @return Une nouvelle instance du polygone avec les mêmes propriétés.
-	 */
+
 	@Override
 	public IForme dupliquer() {
 		// Crée une nouvelle instance de la classe avec les mêmes propriétés
@@ -173,31 +152,21 @@ public class Polygone implements IForme {
 		return nouvelleForme;
 	}
 
-	/**
-	 * Redimensionne le polygone selon les dimensions spécifiées.
-	 *
-	 * @param h La hauteur de redimensionnement.
-	 * @param l La largeur de redimensionnement.
-	 * @return Une référence à l'instance du polygone, pour permettre les opérations
-	 *         en chaîne.
-	 */
 	@Override
 	public IForme redimmensioner(double h, double l) {
 		Point centre = this.centre();
+		ArrayList<Point> nouveauxPoints = new ArrayList<>();
 		for (int i = 0; i < points.size(); i++) {
-			Point point = points.remove(i);
+			Point point = points.get(i);
 			double distanceX = centre.x() - point.x();
 			double distanceY = centre.y() - point.y();
-			points.add(i, new Point(centre.x() - distanceX * h, centre.y() - distanceY * l));
+			nouveauxPoints.add(i, new Point(centre.x() - distanceX * h, centre.y() - distanceY * l));
 		}
+		points = nouveauxPoints;
 		return this;
 	}
 
-	/**
-	 * Génère une représentation SVG du polygone.
-	 *
-	 * @return Une chaîne de caractères représentant le polygone en format SVG.
-	 */
+
 	@Override
 	public String enSVG() {
 		String s = "<polygon points=\"";
@@ -214,22 +183,14 @@ public class Polygone implements IForme {
 		return s;
 	}
 
-	/**
-	 * Change la couleur du polygone.
-	 *
-	 * @param couleurs Un tableau de couleurs à appliquer au polygone.
-	 * @return Une référence à l'instance du polygone, pour permettre les opérations
-	 *         en chaîne.
-	 */
+
 	@Override
 	public IForme colorier(String... couleurs) {
 		this.couleur = couleurs[0];
 		return this;
 	}
 
-	/**
-	 * Crée un fichier SVG représentant le polygone.
-	 */
+
 	public void createSvgFile() {
 		String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 
@@ -246,12 +207,15 @@ public class Polygone implements IForme {
 
 	@Override
 	public IForme tourner(int angle) {
+		if(angle<0){throw new IllegalArgumentException("L'angle ne peut pas être négatif");}
 		this.angle = angle;
 		return this;
 	}
 
+
 	@Override
 	public IForme aligner(Alignement alignement, double cible) {
+		if(cible<0){throw new IllegalArgumentException("La cible ne peut pas être inférieur à 0");}
 		if (alignement == Alignement.HAUT) {
 
 			// recherche du y minimum
@@ -268,6 +232,7 @@ public class Polygone implements IForme {
 				points.add(i, new Point(point.x(), point.y() + distanceY));
 			}
 		} else if (alignement == Alignement.BAS) {
+			if(cible-hauteur() <0){throw new IllegalStateException("Une coordonnées x ou y devient négative.");}
 			// recherche du y maximum
 			double maxY = points.get(0).y();
 			for (Point point : points) {
@@ -296,7 +261,8 @@ public class Polygone implements IForme {
 				points.add(i, new Point(point.x() + distanceX, point.y()));
 			}
 		} else if (alignement == Alignement.DROITE) {
-			// recherche du x minimum
+			if(cible-largeur() <0){throw new IllegalStateException("Une coordonnées x ou y devient négative.");}
+			// recherche du x maximum
 			double maxX = points.get(0).x();
 			for (Point point : points) {
 				if (maxX < point.x()) {

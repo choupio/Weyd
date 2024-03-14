@@ -35,13 +35,28 @@ public class CercleTest {
         double x = 5;
         double y = 10;
         cercleTest.deplacer(x, y);
-        assertEquals(55, pointCerc.x(), 0.0001);
-        assertEquals(50, pointCerc.y(), 0.0001);
+        assertEquals(50.0, pointCerc.x(), 0.0001);
+        assertEquals(40.0, pointCerc.y(), 0.0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class) // quand le X du cercle devient négatif
+    public void testDeplacerXNeg(){
+        cercleTest.deplacer(-51,3);
+    }
+
+    @Test(expected = IllegalArgumentException.class) //quand le Y du cercle devient négatif
+    public void testDeplacerYNeg(){
+        cercleTest.deplacer(10,-41);
     }
 
     @Test
     public void testDescription() {
         assertEquals("   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black", cercleTest.description(3));
+    }
+
+    @Test(expected = IllegalArgumentException.class) // dans le cas où l'indentation est négative
+    public void testDescriptionIndentationNeg(){
+        cercleTest.description(-1);
     }
 
     @Test
@@ -98,13 +113,13 @@ public class CercleTest {
     @Test
     public void testRedimmensioner5() {
         // Pour else avec deux valeurs négatives
-        assertEquals((cercleTest.largeur() / 2) * -8 * -12, cercRedim.redimmensioner(-8, -12).largeur() / 2, 0.00001);
+        assertEquals((cercleTest.largeur() / 2) * 8 * 12, cercRedim.redimmensioner(8, 12).largeur() / 2, 0.00001);
     }
 
     @Test
     public void testRedimmensioner6() {
         // Pour else avec une valeur négative (rayon négatif pas possible)
-        assertNotEquals((cercleTest.largeur() / 2) * -8 * 14, cercRedim.redimmensioner(-8, 14).largeur() / 2, 0.00001);
+        assertNotEquals((cercleTest.largeur() / 4) * 8 * 14, cercRedim.redimmensioner(8, 14).largeur() / 2, 0.00001);
     }
 
     @Test
@@ -114,9 +129,15 @@ public class CercleTest {
     }
     @Test
     public void testTourner2() {
-        cercleTest.tourner(0); // Rotation de 180 degrés
+        cercleTest.tourner(0); // Rotation de 0 degrés
         assertEquals("   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black", cercleTest.description(3));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTournerNegatif(){
+        cercleTest.tourner(-2);
+    }
+
     @Test
     public void testalignergauche() {
         IForme cercleA = cercleTest;
@@ -130,23 +151,40 @@ public class CercleTest {
         IForme cercleA = cercleTest;
         IForme cercleTest = cercleA.aligner(Alignement.HAUT, 5.0);
         assertEquals(50, cercleTest.centre().x(), 0.001);
-        assertEquals(-20, cercleTest.centre().y(), 0.001);
+        assertEquals(30, cercleTest.centre().y(), 0.001);
     }
 
     @Test
     public void testalignerdroite() {        
         IForme cercleA = cercleTest;
-        IForme cercleTest = cercleA.aligner(Alignement.DROITE, 5.0);
-        assertEquals(-20, cercleTest.centre().x(), 0.001);
+        IForme cercleTest = cercleA.aligner(Alignement.DROITE, 25.0);
+        assertEquals(0, cercleTest.centre().x(), 0.001);
         assertEquals(40, cercleTest.centre().y(), 0.001);
     }
+
+    @Test(expected = IllegalStateException.class) // si X devient négatif à la fin
+    public void testAlignerDroiteNegatif(){
+        cercleTest.aligner(Alignement.DROITE, 15.0);
+    }
+
 
     @Test
     public void testalignerbas() {        
         IForme cercleA = cercleTest;
-        IForme cercleTest = cercleA.aligner(Alignement.BAS, 5.0);
+        IForme cercleTest = cercleA.aligner(Alignement.BAS, 25.0);
         assertEquals(50, cercleTest.centre().x(), 0.001);
-        assertEquals(30, cercleTest.centre().y(), 0.001);
+        assertEquals(0, cercleTest.centre().y(), 0.001);
+    }
+
+    @Test(expected = IllegalStateException.class) // si Y devient négatif à la fin
+    public void testAlignerBASNegatif(){
+        cercleTest.aligner(Alignement.BAS, 15.0);
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAlignerCibleNegative(){
+        cercleTest.aligner(Alignement.BAS, -5.0);
     }
 
 }

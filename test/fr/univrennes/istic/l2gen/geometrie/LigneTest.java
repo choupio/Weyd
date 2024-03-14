@@ -43,7 +43,7 @@ public class LigneTest {
     public void testColorier() {
         ligne.colorier("red");
         assertEquals(
-                "<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"red\" transform=\"rotate(0)\"/>",
+                "<polyline ligne=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"red\" transform=\"rotate(0)\"/>",
                 ligne.enSVG());
     }
 
@@ -68,7 +68,7 @@ public class LigneTest {
     @Test
     public void testEnSVG() {
         assertEquals(
-                "<polyline points=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"black\" transform=\"rotate(0)\"/>",
+                "<polyline ligne=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"black\" transform=\"rotate(0)\"/>",
                 ligne.enSVG());
     }
 
@@ -114,21 +114,21 @@ public class LigneTest {
     @Test
     public void testAlignerHaut() {
         setUp();
-        assertEquals("  Ligne 10.0,25.0 30.0,45.0 50.0,65.0 de couleur black angle=0",
+        assertEquals("  Ligne 10.0,5.0 30.0,25.0 50.0,45.0 de couleur black angle=0",
                 ligne.aligner(Alignement.HAUT, 5).description(1));
     }
 
     @Test
     public void testAlignerBas() {
         setUp();
-        assertEquals("  Ligne 10.0,15.0 30.0,35.0 50.0,55.0 de couleur black angle=0",
+        assertEquals("  Ligne 10.0,-35.0 30.0,-15.0 50.0,5.0 de couleur black angle=0",
                 ligne.aligner(Alignement.BAS, 5).description(1));
     }
 
     @Test
     public void testAlignerDroite() {
         setUp();
-        assertEquals("  Ligne 15.0,20.0 35.0,40.0 55.0,60.0 de couleur black angle=0",
+        assertEquals("  Ligne -35.0,20.0 -15.0,40.0 5.0,60.0 de couleur black angle=0",
                 ligne.aligner(Alignement.DROITE, 5).description(1));
     }
 

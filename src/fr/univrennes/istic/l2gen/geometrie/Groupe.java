@@ -1,17 +1,16 @@
 package fr.univrennes.istic.l2gen.geometrie;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.univrennes.SVGFile;
 
 /**
  * La classe Groupe représente un groupe de formes géométriques.
  */
 public class Groupe implements IForme {
 
-    private List<IForme> listFormes; // Liste des formes dans le groupe
+    protected List<IForme> listFormes; // Liste des formes dans le groupe
 
     /**
      * Constructeur de la classe Groupe prenant en paramètre un tableau de formes.
@@ -37,7 +36,8 @@ public class Groupe implements IForme {
     }
 
     /**
-     * Retourne le centre du groupe, calculé comme le centre moyen de toutes les formes dans le groupe.
+     * Retourne le centre du groupe, calculé comme le centre moyen de toutes les
+     * formes dans le groupe.
      *
      * @return Le centre du groupe.
      */
@@ -58,7 +58,6 @@ public class Groupe implements IForme {
         Point centre = new Point(centreX, centreY);
         return centre;
     }
-    
 
     /**
      * Retourne la hauteur maximale parmi toutes les formes du groupe.
@@ -111,9 +110,9 @@ public class Groupe implements IForme {
         if (listFormes.size() == 0) {
             return "Le groupe est vide.";
         }
-        String description = "Groupe : \n";
+        String description = "Groupe :";
         for (IForme forme : listFormes) {
-            description += forme.description(entier) + "\n";
+            description += "\n" + forme.description(entier);
         }
         return description;
     }
@@ -123,7 +122,8 @@ public class Groupe implements IForme {
      *
      * @param dx Le déplacement en abscisse.
      * @param dy Le déplacement en ordonnée.
-     * @return Une référence à l'instance actuelle du groupe, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
      */
     @Override
     public IForme deplacer(double dx, double dy) {
@@ -133,6 +133,13 @@ public class Groupe implements IForme {
         return this;
     }
 
+    /**
+     * Tourne toutes les formes du groupe selon l'angle spécifié.
+     *
+     * @param angle L'angle de rotation.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
+     */
     @Override
     public IForme tourner(int angle) {
         for (IForme iForme : listFormes) {
@@ -144,7 +151,8 @@ public class Groupe implements IForme {
     /**
      * Duplique toutes les formes du groupe.
      *
-     * @return Un nouveau groupe contenant des copies de toutes les formes du groupe actuel.
+     * @return Un nouveau groupe contenant des copies de toutes les formes du groupe
+     *         actuel.
      */
     @Override
     public IForme dupliquer() {
@@ -160,28 +168,29 @@ public class Groupe implements IForme {
      *
      * @param h La hauteur de redimensionnement.
      * @param l La largeur de redimensionnement.
-     * @return Une référence à l'instance actuelle du groupe, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
      */
     @Override
-public IForme redimmensioner(double h, double l) {
-    for (IForme iForme : listFormes) {
-        iForme.redimmensioner(h, l);
+    public IForme redimmensioner(double h, double l) {
+        for (IForme iForme : listFormes) {
+            iForme.redimmensioner(h, l);
+        }
+        return this;
     }
-    return this;
-}
 
     /**
      * Retourne une représentation SVG de toutes les formes du groupe.
      *
-     * @return Une chaîne de caractères représentant toutes les formes du groupe en format SVG.
+     * @return Une chaîne de caractères représentant toutes les formes du groupe en
+     *         format SVG.
      */
     @Override
     public String enSVG() {
-        String s = "<g>\n";
+        String s = "";
         for (IForme iForme : listFormes) {
-            s += iForme.enSVG() + "\n";
+            s += iForme.enSVG();
         }
-        s += "</g>";
         return s;
     }
 
@@ -189,14 +198,15 @@ public IForme redimmensioner(double h, double l) {
      * Colorie chaque forme dans le groupe avec les couleurs spécifiées.
      *
      * @param couleurs Un tableau de couleurs à appliquer aux formes du groupe.
-     * @return Une référence à l'instance actuelle du groupe, pour permettre les opérations en chaîne.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
      */
     public IForme colorier(String... couleurs) {
         int i = 0;
         for (IForme forme : listFormes) {
             forme.colorier(couleurs[i]);
             i++;
-            if (i >= listFormes.size()) {
+            if (i >= couleurs.length) {
                 i = 0;
             }
         }
@@ -207,19 +217,19 @@ public IForme redimmensioner(double h, double l) {
      * Crée un fichier SVG représentant toutes les formes du groupe.
      */
     public void createSvgFile() {
-        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Groupe.svg"))) {
-            writer.write(svgContent);
-            writer.write(enSVG());
-            writer.write("</svg>");
-            System.out.println("Fichier créé avec succès !");
-        } catch (IOException e) {
-            System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
-        }
+        SVGFile.createSvgFile(this, "Groupe");
     }
 
+    /**
+     * Aligne les formes du groupe selon l'alignement spécifié et la cible.
+     *
+     * @param alignement L'alignement à appliquer.
+     * @param cible      La cible sur laquelle les formes doivent être alignées.
+     * @return Une référence à l'instance actuelle du groupe, pour permettre les
+     *         opérations en chaîne.
+     */
     @Override
-	public IForme aligner(Alignement alignement, double cible) {
+    public IForme aligner(Alignement alignement, double cible) {
         if (listFormes.isEmpty()) {
             return this;
         }
@@ -227,16 +237,16 @@ public IForme redimmensioner(double h, double l) {
         double deviationY = 0;
         switch (alignement) {
             case GAUCHE:
-                deviationX = cible - largeur() / 2;  // Align to the left
+                deviationX = cible - largeur() / 2; // Align to the left
                 break;
             case DROITE:
-                deviationX = cible - largeur() / 2;  // Align to the right
+                deviationX = cible - largeur() / 2; // Align to the right
                 break;
             case HAUT:
-                deviationY = cible - hauteur() / 2;  // Align to the top
+                deviationY = cible - hauteur() / 2; // Align to the top
                 break;
             case BAS:
-                deviationY = cible - hauteur() / 2;  // Align to the bottom
+                deviationY = cible - hauteur() / 2; // Align to the bottom
                 break;
             // Add additional cases for other alignments if needed
         }
@@ -246,39 +256,58 @@ public IForme redimmensioner(double h, double l) {
         return this;
     }
 
+    /**
+     * Retourne la liste des formes dans le groupe.
+     *
+     * @return La liste des formes dans le groupe.
+     */
     public List<IForme> getListFormes() {
         return listFormes;
     }
 
-    /* *
-    * Vide ce groupe de tous ses elements
-    *@return IForme : ce groupe qui ne contient plus aucun element
-    */
-    
+    /**
+     * Vide ce groupe de tous ses elements
+     * 
+     * @return IForme : ce groupe qui ne contient plus aucun element
+     */
     public IForme vider() {
+        listFormes.clear();
         return this;
     }
-    /* *
-    * @param alignement direction HAUT , BAS , DROITE , GAUCHE tc .
-    * @param cible ligne horizontale ou verticale sur laquelle
-    * doivent s ’ aligner chacun des elements du groupe
-    TP GEN 4
-    L2 informatique
-    TP5-6
-    Test avec JUnit et Test Driven Development
-    * @return IForme
-    */
-    public IForme alignerElements ( Alignement alignement , double cible ) {
+
+    /**
+     * @param alignement direction HAUT, BAS, DROITE, GAUCHE etc.
+     * @param cible      ligne horizontale ou verticale sur laquelle
+     *                   doivent s’aligner chacun des elements du groupe
+     * @return IForme
+     */
+    public IForme alignerElements(Alignement alignement, double cible) {
+        listFormes.stream().forEach(x -> x.aligner(alignement, cible));
         return this;
     }
-    /* *
-    * @param alignement direction HAUT , BAS , DROITE , GAUCHE tc .
-    * @param cible ligne horizontale ou verticale sur laquelle
-    * doivent s ’ empiler chacun des elements du groupe
-    * @param separation : distance entre chaque element empile
-    * @return IForme
-    */
-    public IForme empilerElements ( Alignement alignement , double cible , double separation ) {
+
+    /**
+     * @param alignement direction HAUT, BAS, DROITE, GAUCHE etc.
+     * @param cible      ligne horizontale ou verticale sur laquelle
+     *                   doivent s’empiler chacun des elements du groupe
+     * @param separation : distance entre chaque element empile
+     * @return IForme
+     */
+    public IForme empilerElements(Alignement alignement, double cible, double separation) {
+        double cibleForme = cible;
+        for (IForme iForme : listFormes) {
+            iForme.aligner(alignement, cibleForme);
+            if (alignement == Alignement.GAUCHE) {
+                cibleForme += iForme.largeur() + separation;
+            } else if (alignement == Alignement.DROITE) {
+                cibleForme -= iForme.largeur() + separation;
+            } else if (alignement == Alignement.HAUT) {
+                cibleForme += iForme.hauteur() + separation;
+            } else if (alignement == Alignement.BAS) {
+                cibleForme -= iForme.hauteur() + separation;
+            }
+        }
+
         return this;
     }
 }

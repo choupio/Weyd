@@ -29,9 +29,12 @@ public class Triangle implements IForme {
      * @param y3 Coordonnée y du troisième sommet.
      */
     public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
-        point1 = new Point(x1, y1);
-        point2 = new Point(x2, y2);
-        point3 = new Point(x3, y3);
+        if (x1 < 0 || y1 < 0 || x2 < 0 || y2 < 0 || x3 < 0 || y3 < 0) {
+            throw new IllegalArgumentException("Toutes les coordonnées doivent être positives.");
+        }
+        this.point1 = new Point(x1, y1);
+        this.point2 = new Point(x2, y2);
+        this.point3 = new Point(x3, y3);
     }
 
     /**
@@ -43,16 +46,9 @@ public class Triangle implements IForme {
      * @param point3 Troisième sommet du triangle.
      */
     public Triangle(Point point1, Point point2, Point point3) {
-        this.point1 = point1;
-        this.point2 = point2;
-        this.point3 = point3;
+        this(point1.x(), point1.y(), point2.x(), point2.y(), point3.x(), point3.y());
     }
 
-    /**
-     * Retourne le centre du triangle.
-     *
-     * @return Le centre du triangle.
-     */
     @Override
     public Point centre() {
         double milieuXdeP1P2 = (point1.x() + point2.x()) / 2;
@@ -67,14 +63,11 @@ public class Triangle implements IForme {
         return centre;
     }
 
-    /**
-     * Retourne une description du triangle avec une indentation spécifiée.
-     *
-     * @param entier L'indentation pour la description.
-     * @return La description du triangle.
-     */
     @Override
     public String description(int entier) {
+        if (entier < 0) {
+            throw new IllegalArgumentException("L'indentation ne doit pas être négative.");
+        }
         String cran = "";
         for (int i = 0; i < entier; i += 1) {
             cran += " ";
@@ -83,11 +76,6 @@ public class Triangle implements IForme {
                 + point3.x() + "," + point3.y() + " de couleur " + couleur + " angle=" + angle;
     }
 
-    /**
-     * Retourne la hauteur du triangle.
-     *
-     * @return La hauteur du triangle.
-     */
     @Override
     public double hauteur() {
         double minY = Math.min(point1.y(), Math.min(point2.y(), point3.y()));
@@ -95,11 +83,6 @@ public class Triangle implements IForme {
         return maxY - minY;
     }
 
-    /**
-     * Retourne la largeur du triangle.
-     *
-     * @return La largeur du triangle.
-     */
     @Override
     public double largeur() {
         return cote(point2, point1);
@@ -116,27 +99,17 @@ public class Triangle implements IForme {
         return Math.sqrt(Math.pow(pointB.x() - pointA.x(), 2) + Math.pow(pointB.y() - pointA.y(), 2));
     }
 
-    /**
-     * Déplace le triangle selon les déplacements spécifiés.
-     *
-     * @param dx Le déplacement en abscisse.
-     * @param dy Le déplacement en ordonnée.
-     * @return Une référence à l'instance du triangle, pour permettre les opérations
-     *         en chaîne.
-     */
     @Override
     public IForme deplacer(double dx, double dy) {
         point1 = new Point(dx + point1.x(), dy + point1.y());
         point2 = new Point(dx + point2.x(), dy + point2.y());
         point3 = new Point(dx + point3.x(), dy + point3.y());
+        if (point1.x() < 0 || point1.y() < 0 || point2.x() < 0 || point2.y() < 0 || point3.x() < 0 || point3.y() < 0) {
+            throw new IllegalStateException("Les coordonnées ne peuvent pas devenir négatives.");
+        }
         return this;
     }
 
-    /**
-     * Duplique le triangle.
-     *
-     * @return Une nouvelle instance du triangle avec les mêmes propriétés.
-     */
     @Override
     public IForme dupliquer() {
         // Crée une nouvelle instance de la classe avec les mêmes propriétés
@@ -146,16 +119,11 @@ public class Triangle implements IForme {
         return nouvelleForme;
     }
 
-    /**
-     * Redimensionne le triangle selon les nouvelles dimensions spécifiées.
-     *
-     * @param h La nouvelle hauteur du triangle.
-     * @param l La nouvelle largeur du triangle.
-     * @return Une référence à l'instance du triangle, pour permettre les opérations
-     *         en chaîne.
-     */
     @Override
     public IForme redimmensioner(double h, double l) {
+        if (h < 0 || l < 0) {
+            throw new IllegalArgumentException("Hauteur et Largeur doivent être positifs.");
+        }
         Point leCentre = centre();
         double halfHeight = h / 2;
         double halfWidth = l / 2;
@@ -171,11 +139,6 @@ public class Triangle implements IForme {
         return this;
     }
 
-    /**
-     * Génère une représentation SVG du triangle.
-     *
-     * @return Une chaîne de caractères représentant le triangle en format SVG.
-     */
     @Override
     public String enSVG() {
         // Génère la représentation SVG du triangle
@@ -190,22 +153,12 @@ public class Triangle implements IForme {
         }
     }
 
-    /**
-     * Change la couleur du triangle.
-     *
-     * @param couleurs Un tableau de couleurs à appliquer au triangle.
-     * @return Une référence à l'instance du triangle, pour permettre les opérations
-     *         en chaîne.
-     */
     @Override
     public IForme colorier(String... couleurs) {
         couleur = couleurs[0];
         return this;
     }
 
-    /**
-     * Créer un fichier SVG représentant le triangle.
-     */
     @Override
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
@@ -221,25 +174,21 @@ public class Triangle implements IForme {
         }
     }
 
-    /**
-     * Effectue une rotation de triangle d’une valeur d’angle exprimée en degrés
-     * 
-     * @param angle un entier représentant le degré
-     * @return l'objet triangle
-     */
+    @Override
     public IForme tourner(int angle) {
-        this.angle = angle;
-        return this;
+        if (angle < 0) {
+            throw new IllegalArgumentException("L'angle ne doit pas être négatif.");
+        } else {
+            this.angle = angle;
+            return this;
+        }
     }
 
-    /**
-     * Aligne le HAUT, BAS, DROITE ou GAUCHE de triangle sur l’axe cible
-     * 
-     * @param alignement un Alignement représentant par rapport à où on s'aligne
-     * @param cible      un double qui représente l'axe cible
-     * @return l'objet triangle
-     */
+    @Override
     public IForme aligner(Alignement alignement, double cible) {
+        if (cible < 0) {
+            throw new IllegalArgumentException("La cible ne doit pas être négatif.");
+        }
         ArrayList<Point> lstPoints = new ArrayList<Point>();
         lstPoints.add(0, point1);
         lstPoints.add(1, point2);
