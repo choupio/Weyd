@@ -152,7 +152,7 @@ public class DiagColonnes implements IDataVisualiseur {
     public IDataVisualiseur legender(String... strings) {
         for (String string : strings) {
             legendeGroupe.ajouter(new Rectangle(0, 0, 20, 7));
-            legendeGroupe.ajouter(new Texte(0, 0, 7, string));
+            legendeGroupe.ajouter(new Texte(0, 0, 10, string));
         }
 
         return this;

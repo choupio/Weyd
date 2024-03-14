@@ -1,10 +1,28 @@
 package fr.univrennes.istic.l2gen.visustats;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.Texte;
 
 public class DiagBarres implements IDataVisualiseur {
+    Texte texteNom;
+    String nom;
+    List<String> legendes, couleurs;
+    Groupe donnees, legendeGroupe, diagGroupe;
+
+    public DiagBarres(String nom){
+        this.nom = nom;
+        legendes = new ArrayList<>();
+        couleurs = new ArrayList<>();
+        donnees = new Groupe();
+        diagGroupe = new Groupe();
+        legendeGroupe = new Groupe();
+    }
 
     @Override
     public Point centre() {
