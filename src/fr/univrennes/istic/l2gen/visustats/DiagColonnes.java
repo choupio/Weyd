@@ -1,10 +1,7 @@
 package fr.univrennes.istic.l2gen.visustats;
 
-import java.security.GuardedObject;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.GroupLayout.Group;
 
 import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
@@ -73,23 +70,27 @@ public class DiagColonnes implements IDataVisualiseur {
 
     @Override
     public String enSVG() {
-        String s = "";
-        for (IForme f : donnees.getListFormes()) {
-            s += f.enSVG();
-        }
-        return s;
+        return diagGroupe.enSVG();
     }
 
     @Override
     public IForme colorier(String... couleurs) {
-        int i = 0;
         for (IForme faisceau : donnees.getListFormes()) {
             faisceau.colorier(couleurs);
-            i++;
-            if (i >= couleurs.length) {
-                i = 0;
-            }
         }
+
+        int i = 0;
+        for (IForme forme : legendeGroupe.getListFormes()) {
+            if (forme instanceof Rectangle) {
+                forme.colorier(couleurs[i]);
+                i++;
+                if (i >= couleurs.length) {
+                    i = 0;
+                }
+            }
+
+        }
+
         return this;
     }
 
@@ -112,19 +113,31 @@ public class DiagColonnes implements IDataVisualiseur {
 
     @Override
     public IDataVisualiseur agencer() {
+        // Titre
+        texteNom = new Texte(0, 0, 20, nom);
+
+        double axeY = donnees.getListFormes().get(0).hauteur();
+        for (IForme forme : donnees.getListFormes()) {
+            if (axeY > forme.hauteur()) {
+                axeY = forme.hauteur();
+            }
+        }
         double axeX = 20;
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
-            f.agencer(axeX, 500, 100, 0.01, false); // TODO il faut modifier axeX et lergeur
+            f.agencer(axeX, axeY * 0.01, 100, 0.01, false); // TODO il faut modifier axeX et lergeur
             axeX += 120;
         }
-        texteNom = new Texte(100 / 2, 0, 0, nom);
-        diagGroupe.ajouter(donnees);
 
-        // Groupe pour les lÃ©gendes
-        for (String string : couleurs) {
-            legendeGroupe.ajouter(new Rectangle(axeX, axeX, axeX, axeX));
-        }
+        texteNom.deplacer(donnees.centre().x(), donnees.centre().y() - donnees.hauteur() / 4);
+        diagGroupe.ajouter(donnees);
+        diagGroupe.ajouter(texteNom);
+
+        // Groupe pour les légendes
+        System.out.println(donnees.hauteur());
+        legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
+        legendeGroupe.alignerElements(Alignement.BAS, donnees.centre().y() + donnees.hauteur() / 4);
+        diagGroupe.ajouter(legendeGroupe);
 
         return this;
     }
@@ -138,8 +151,10 @@ public class DiagColonnes implements IDataVisualiseur {
     @Override
     public IDataVisualiseur legender(String... strings) {
         for (String string : strings) {
-            legendes.add(string);
+            legendeGroupe.ajouter(new Rectangle(0, 0, 20, 7));
+            legendeGroupe.ajouter(new Texte(0, 0, 7, string));
         }
+
         return this;
     }
 
