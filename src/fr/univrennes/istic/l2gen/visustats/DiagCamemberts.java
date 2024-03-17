@@ -7,6 +7,7 @@ import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
 
 public class DiagCamemberts implements IDataVisualiseur {
+    
     private String nom;
     private int entier;
     Groupe groupeCamembert;
@@ -20,7 +21,7 @@ public class DiagCamemberts implements IDataVisualiseur {
     public DiagCamemberts(String nom, int entier) {
         this.nom = nom;
         this.entier = entier;
-        this.groupeCamembert = new Groupe();
+        groupeCamembert = new Groupe();
     }
 
     /**
@@ -31,33 +32,32 @@ public class DiagCamemberts implements IDataVisualiseur {
      */
     @Override
     public Point centre() {
-        return groupeCamembert.centre();
+        return this.groupeCamembert.centre();
     }
 
     @Override
     public String description(int indentation) {
-        return groupeCamembert.description(indentation);
-    }
+      return groupeCamembert.description(indentation);
+    }  
 
     @Override
     public double hauteur() {
-        return groupeCamembert.hauteur();
+        return this.groupeCamembert.hauteur();
     }
 
     @Override
     public double largeur() {
-        return groupeCamembert.largeur();
+        return this.groupeCamembert.largeur();
     }
 
     @Override
     public IForme deplacer(double dx, double dy) {
-        groupeCamembert.deplacer(dx, dy);
-        return this;
+        return this.groupeCamembert.deplacer(dx, dy);
     }
 
     @Override
     public IForme dupliquer() {
-        return groupeCamembert.dupliquer();
+        return this.groupeCamembert.dupliquer();
     }
 
     @Override
@@ -76,7 +76,14 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public IForme colorier(String... couleurs) {
-        groupeCamembert.colorier(couleurs);
+        for (IForme forme : groupeCamembert.getListFormes()) {
+            if (forme instanceof Camembert) {
+                Camembert camembert = (Camembert) forme;
+                for (int i = 0; i < camembert.getSecteurs().size(); i++) {
+                    camembert.getSecteurs().get(i).setCouleur(couleurs[i % couleurs.length]);
+                }
+            }
+        }
         return this;
     }
 
@@ -111,14 +118,29 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
-        Texte nomDonnees = new Texte(0, 0, 5, str);
-        Camembert cam1 = new Camembert(0, 0, 25);
-        for (double d : doubles) {
-            cam1.ajouterSecteur("", d);
+
+        double total = 0;
+        for (double value : doubles) {
+            total += value;
         }
-        groupeCamembert.ajouter(cam1);
-        groupeCamembert.ajouter(nomDonnees);
-        return this;
+
+        for (int i = 0; i < 3; i++) {
+            Camembert camembert = new Camembert(new Point(256 + i * 250, 256), 100); 
+
+            double sum = 0;
+            for (double value : doubles) {
+                sum += value / total;
+            }
+
+            for (int j = 0; j < 5; j++) {
+                double proportion = (doubles[j % doubles.length] / total) / sum;
+                
+                camembert.ajouterSecteur(str + j, proportion);
+            }
+            groupeCamembert.ajouter(camembert);
+        }
+
+        return this;   
     }
 
     @Override
