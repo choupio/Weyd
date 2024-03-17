@@ -8,8 +8,8 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         DiagCamemberts diag = new DiagCamemberts("test", 3);
-        diag.ajouterDonnees("2010", 6800, 10020, 62020, 2500, 10000);
-        diag.colorier("orange", "red", "yellow", "blue", "green");
+        diag.ajouterDonnees("2010", 6800, 10020, 62020, 2500, 10000,6500);
+        diag.colorier("orange", "red", "yellow", "blue", "green", "black");
         System.out.println(diag.description(0));
         diag.createSvgFile();
         
