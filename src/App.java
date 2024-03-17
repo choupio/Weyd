@@ -10,11 +10,9 @@ import javax.swing.*;
  */
 public class App {
 
-
-
     public static void main(String[] args) throws Exception {
 
-        /*DiagCamemberts diag = new DiagCamemberts("test", 3);
+        DiagCamemberts diag = new DiagCamemberts("test", 3);
         diag.ajouterDonnees("2010", 1600 , 6800 , 16000 , 4300 , 300);
         diag.ajouterDonnees("2015", 1900 , 6600 , 17500 , 3800 , 330);
         diag.ajouterDonnees("2020", 2100 , 6200 , 17800 , 3600 , 340);
@@ -22,7 +20,7 @@ public class App {
         diag.tourner(90);
         diag.legender("Afrique", "Amerique", "Asie", "Europe", "Oceanie");
         System.out.println(diag.description(0));
-        diag.createSvgFile();*/
+        diag.createSvgFile();
         
         
         /*
