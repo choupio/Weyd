@@ -1,7 +1,5 @@
 package fr.univrennes.istic.l2gen.visustats;
 
-
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -42,6 +40,7 @@ public class Camembert implements IForme {
         this.secteurs = new ArrayList<>();
     }
 
+
     /**
      * Constructeur de la classe Camembert
      * 
@@ -53,6 +52,7 @@ public class Camembert implements IForme {
         this(new Point(x, y), rayon);
     }
 
+
     /**
      * Getteur de la liste des secteurs du Camembert
      * 
@@ -62,6 +62,7 @@ public class Camembert implements IForme {
         return secteurs;
     }
 
+
     /**
      * Setteur de la liste des secteurs du Camembert
      * 
@@ -70,6 +71,7 @@ public class Camembert implements IForme {
     public void setSecteurs(List<Secteur> secteurs) {
         this.secteurs = secteurs;
     }
+
 
     /**
      * 
@@ -84,6 +86,7 @@ public class Camembert implements IForme {
         }
         return secteurs.get(numeroSecteur).couleur;
     }
+
 
     /**
      * Ajoute un secteur au Camembert
@@ -108,6 +111,13 @@ public class Camembert implements IForme {
         return this;
     }
 
+
+    /**
+        * Renvoie le centre du camembert.
+        *
+        * @return le centre du camembert
+        * @throws IllegalArgumentException si les coordonnées du centre sont négatives
+        */
     @Override
     public Point centre() {
         if (centre.x() < 0 || centre.y() < 0) {
@@ -117,6 +127,23 @@ public class Camembert implements IForme {
         }
     }
 
+    
+    /**
+     * Renvoie la couleur du camembert.
+     *
+     * @return la couleur du camembert
+     */
+    public String getCouleur() {
+        return couleur;
+    }
+
+
+    /**
+     * Retourne une description détaillée de l'objet Camembert.
+     *
+     * @param indentation L'indentation à appliquer à la description.
+     * @return Une chaîne de caractères contenant la description de l'objet Camembert.
+     */
     @Override
     public String description(int indentation) {
         String indent = "";
@@ -134,22 +161,49 @@ public class Camembert implements IForme {
         return sb.toString();
     }
 
+
+    /**
+     * Calcule et retourne la hauteur du camembert.
+     * La hauteur est définie comme le double du rayon du camembert.
+     *
+     * @return la hauteur du camembert
+     */
     @Override
     public double hauteur() {
         return rayon * 2;
     }
+    
 
+    /**
+     * Retourne la largeur du camembert.
+     * 
+     * @return La largeur du camembert.
+     */
     @Override
     public double largeur() {
         return rayon * 2;
     }
 
+
+    /**
+     * Déplace la forme selon les coordonnées spécifiées.
+     *
+     * @param dx Le déplacement horizontal.
+     * @param dy Le déplacement vertical.
+     * @return La forme déplacée.
+     */
     @Override
     public IForme deplacer(double dx, double dy) {
         this.centre.plus(dx, dy);
         return this;
     }
 
+
+    /**
+     * Cette méthode permet de dupliquer un objet de type Camembert.
+     * 
+     * @return Une nouvelle instance de Camembert avec les mêmes attributs que l'objet actuel.
+     */
     @Override
     public IForme dupliquer() {
         Camembert camembertNouveau = new Camembert(centre.x(), centre.y(), rayon);
@@ -161,6 +215,15 @@ public class Camembert implements IForme {
         return camembertNouveau;
     }
 
+
+    /**
+     * Redimensionne la forme en ajustant ses dimensions en fonction des paramètres spécifiés.
+     * 
+     * @param h la hauteur de la forme
+     * @param l la largeur de la forme
+     * @return la forme redimensionnée
+     * @throws IllegalArgumentException si les dimensions spécifiées sont négatives ou nulles
+     */
     @Override
     public IForme redimmensioner(double h, double l) {
         if (h <= 0 || l <= 0) {
@@ -174,6 +237,15 @@ public class Camembert implements IForme {
         return this;
     }
 
+
+    /**
+     * Colorie chaque secteur du camembert avec une couleur différente.
+     * 
+     * @param couleurs Les couleurs à utiliser pour colorier les secteurs.
+     *                 Chaque secteur sera colorié avec une couleur différente
+     *                 dans l'ordre spécifié.
+     * @return L'instance du camembert avec les secteurs coloriés.
+     */
     @Override
     public IForme colorier(String... couleurs) {
         // Supposons que chaque secteur doit être colorié avec une couleur différente
@@ -183,6 +255,13 @@ public class Camembert implements IForme {
         return this;
     }
 
+
+    /**
+     * Fait tourner le camembert en modifiant l'angle de chaque secteur.
+     * 
+     * @param angle l'angle de rotation à appliquer à chaque secteur du camembert
+     * @return l'instance du camembert après la rotation
+     */
     @Override
     public IForme tourner(int angle) {
         for (Secteur secteur : secteurs) {
@@ -191,6 +270,14 @@ public class Camembert implements IForme {
         return this;
     }
 
+
+    /**
+     * Aligne la forme selon l'alignement spécifié par rapport à une cible donnée.
+     *
+     * @param alignement L'alignement spécifié (HAUT, BAS, DROITE, GAUCHE).
+     * @param cible      La position cible pour l'alignement.
+     * @return La forme alignée.
+     */
     @Override
     public IForme aligner(Alignement alignement, double cible) {
         switch (alignement) {
@@ -210,6 +297,13 @@ public class Camembert implements IForme {
         return this;
     }
 
+
+    /**
+     * Crée un fichier SVG contenant un camembert.
+     * Le contenu du camembert est défini par la méthode enSVG().
+     * Le fichier SVG est créé avec succès s'il n'y a pas d'erreur lors de l'écriture.
+     * En cas d'erreur, un message d'erreur est affiché.
+     */
     public void createSvgFile() {
         String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
 
@@ -223,6 +317,12 @@ public class Camembert implements IForme {
         }
     }
 
+
+    /**
+     * Retourne une représentation SVG de l'objet Camembert.
+     *
+     * @return une chaîne de caractères représentant l'objet Camembert au format SVG.
+     */
     @Override
     public String enSVG() {
         String s = "<g>\n";
@@ -233,8 +333,13 @@ public class Camembert implements IForme {
         return s;
     }
 
+
+    /**
+     * Renvoie le nombre de secteurs dans le camembert.
+     *
+     * @return le nombre de secteurs dans le camembert.
+     */
     public int getNombreSecteurs() {
-        // Return the number of sectors in the Camembert object
         return secteurs.size();
     }
 
