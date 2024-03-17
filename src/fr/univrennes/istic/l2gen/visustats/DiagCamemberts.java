@@ -1,10 +1,14 @@
 package fr.univrennes.istic.l2gen.visustats;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
+import fr.univrennes.istic.l2gen.geometrie.Secteur;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
 
 /**
@@ -30,6 +34,7 @@ public class DiagCamemberts implements IDataVisualiseur {
      */
     Groupe groupeCamembert;
 
+    List<String> legendes, couleurs;
 
     /**
      * Constructeur de DiagCamemberts
@@ -41,6 +46,8 @@ public class DiagCamemberts implements IDataVisualiseur {
         this.nom = nom;
         this.entier = entier;
         groupeCamembert = new Groupe();
+        legendes = new ArrayList<>();
+        couleurs = new ArrayList<>();
     }
 
 
@@ -161,12 +168,12 @@ public class DiagCamemberts implements IDataVisualiseur {
      */
     @Override
     public IForme colorier(String... couleurs) {
-        String temp = couleurs[1];
+        /*String temp = couleurs[1];
         couleurs[1] = couleurs[3];
         couleurs[3] = temp;
         String temp1 = couleurs[0];
         couleurs[0] = couleurs[4];
-        couleurs[4] = temp1;
+        couleurs[4] = temp1;*/
         for (IForme forme : groupeCamembert.getListFormes()) {
             if (forme instanceof Camembert) {
                 Camembert camembert = (Camembert) forme;
@@ -235,6 +242,22 @@ public class DiagCamemberts implements IDataVisualiseur {
     }
 
 
+    /*public void echangerSecteurs(int index1, int index2) {
+        for (IForme forme : groupeCamembert.getListFormes()) {
+            if (forme instanceof Camembert) {
+                Camembert camembert = (Camembert) forme;
+                List<Secteur> secteurs = camembert.getSecteurs();
+                if (index1 < secteurs.size() && index2 < secteurs.size()) {
+                    // Échanger les secteurs
+                    Secteur temp = secteurs.get(index1);
+                    secteurs.set(index1, secteurs.get(index2));
+                    secteurs.set(index2, temp);
+                }
+            }
+        }
+    }*/
+
+
     /**
      * Ajoute les données spécifiées à l'objet IDataVisualiseur.
      * 
@@ -244,12 +267,6 @@ public class DiagCamemberts implements IDataVisualiseur {
      */
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
-        double temp = doubles[1];
-        doubles[1] = doubles[3];
-        doubles[3] = temp;
-        double temp1 = doubles[0];
-        doubles[0] = doubles[4];
-        doubles[4] = temp1;
 
         double total = 0;
         for (double value : doubles) {
@@ -271,6 +288,7 @@ public class DiagCamemberts implements IDataVisualiseur {
             }
             groupeCamembert.ajouter(camembert);
         }
+        //echangerSecteurs(1, 3);
 
         return this;   
     }
@@ -285,9 +303,11 @@ public class DiagCamemberts implements IDataVisualiseur {
     @Override
     public IDataVisualiseur legender(String... strings) {
 
+        legendes.clear();
+
         for (int i = 0; i < strings.length; i++) {
             Rectangle rectangle = new Rectangle(256 + i * 250, 256 + 110 + 50, 50, 15);
-            
+
             // Obtenez la couleur du secteur correspondant du camembert
             String couleur = null;
             for (IForme forme : groupeCamembert.getListFormes()) {
@@ -307,7 +327,11 @@ public class DiagCamemberts implements IDataVisualiseur {
 
             groupeCamembert.ajouter(rectangle);
             groupeCamembert.ajouter(new Texte(rectangle.centre().x(), rectangle.centre().y(), 20, strings[i]));
+
+            // Ajouter la légende à la liste
+            legendes.add(strings[i]);
         }
+
         return this;
     }
     
