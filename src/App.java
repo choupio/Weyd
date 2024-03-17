@@ -7,6 +7,13 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
+        DiagCamemberts diag = new DiagCamemberts("test", 3);
+        diag.ajouterDonnees("2010", 6800, 10020, 62020);
+        diag.colorier("orange", "red", "yellow", "blue", "green");
+        System.out.println(diag.description(0));
+        diag.createSvgFile();
+        
+        
         /*
          * Groupe tableau = new Groupe();
          * tableau.ajouter(new Cercle(256, 256, 128).colorier("white"));
@@ -21,7 +28,7 @@ public class App {
          * tableau.createSvgFile();
          */
 
-        Cercle cercleTest = new Cercle(50, 40, 25);
+        /*Cercle cercleTest = new Cercle(50, 40, 25);
         Cercle cercleTest2 = new Cercle(50, 40, 25);
         Polygone polygone = new Polygone();
         polygone.ajouterSommet(128, 128);
@@ -29,7 +36,7 @@ public class App {
         polygone.ajouterSommet(256, 128);
         polygone.ajouterSommet(256, 256);
         Groupe groupe = new Groupe(cercleTest, polygone, cercleTest2);
-        System.out.println(groupe.description(3));
+        System.out.println(groupe.description(3));*/
 
         // Autre manière de faire le camembert
         /*
@@ -55,10 +62,10 @@ public class App {
          * g.ajouter(new Cercle(500, 500, 10));
          * g.createSvgFile();
          */
-        Faisceau fg = new Faisceau(" Exemple de Faisceau vertical ", 100, 200, 500);
+        /*Faisceau fg = new Faisceau(" Exemple de Faisceau vertical ", 100, 200, 500);
         fg.colorier(" cyan ", " purple ", " yellow ");
         fg.agencer(20, 250, 100, 0.2, true);
-        fg.createSvgFile();
+        fg.createSvgFile();*/
 
         /*
          * Cercle cercleTest = new Cercle(50, 40, 25);
@@ -73,7 +80,7 @@ public class App {
          */
 
         // Affichage du camembert
-        Faisceau f = new Faisceau("Exemple", 100, 200, 500);
+        /*Faisceau f = new Faisceau("Exemple", 100, 200, 500);
         f.agencer(200, 250, 100, 0.2, false);
         f.createSvgFile();
 
@@ -92,6 +99,6 @@ public class App {
         testCam.ajouterSecteur("yellow", 0.1);
         testCam.ajouterSecteur("white", 0.2);
         testCam.ajouterSecteur("red", 0.1);
-        testCam.createSvgFile();
+        testCam.createSvgFile();*/
     }
 }
