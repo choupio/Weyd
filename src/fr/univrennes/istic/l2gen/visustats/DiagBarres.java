@@ -123,7 +123,7 @@ public class DiagBarres implements IDataVisualiseur {
 
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
-            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, true); // TODO il faut modifier axeX et lergeur
+            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, true);
             axeX += 120;
         }
         texteNom.deplacer(donnees.centre().x(),

@@ -108,27 +108,30 @@ public class DiagColonnes implements IDataVisualiseur {
         // Titre
         texteNom = new Texte(0, 0, 20, nom);
 
-        double axeY = donnees.getListFormes().get(0).hauteur();
+        double axeY = donnees.getListFormes().get(0).hauteur() * 0.01;
         for (IForme forme : donnees.getListFormes()) {
-            if (axeY > forme.hauteur()) {
-                axeY = forme.hauteur();
+            if (axeY < forme.hauteur() * 0.01) {
+                axeY = forme.hauteur() * 0.01;
             }
         }
         double axeX = 20;
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
-            f.agencer(axeX, axeY * 0.01, 100, 0.01, false); // TODO il faut modifier axeX et lergeur
+            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, false);
             axeX += 120;
         }
+        System.out.println(donnees.hauteur());
 
-        texteNom.deplacer(donnees.centre().x(), donnees.centre().y() - donnees.hauteur() / 4);
+        texteNom.deplacer(donnees.centre().x(),
+                0 + texteNom.hauteur()); // TODO changer le 0
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
 
         // Groupe pour les légendes
         System.out.println(donnees.hauteur());
         legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
-        legendeGroupe.alignerElements(Alignement.BAS, donnees.centre().y() + donnees.hauteur() / 4);
+        legendeGroupe.alignerElements(Alignement.BAS,
+                donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);
 
         return this;
