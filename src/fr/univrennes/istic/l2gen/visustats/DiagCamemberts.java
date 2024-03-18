@@ -8,7 +8,6 @@ import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
-import fr.univrennes.istic.l2gen.geometrie.Secteur;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
 
 /**
@@ -266,7 +265,7 @@ public class DiagCamemberts implements IDataVisualiseur {
             }
             groupeCamembert.ajouter(camembert);
         }
-        
+
         return this;   
     }
 
