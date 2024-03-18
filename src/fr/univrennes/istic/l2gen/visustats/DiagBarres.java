@@ -3,10 +3,12 @@ package fr.univrennes.istic.l2gen.visustats;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
 
 public class DiagBarres implements IDataVisualiseur {
@@ -15,7 +17,7 @@ public class DiagBarres implements IDataVisualiseur {
     List<String> legendes, couleurs;
     Groupe donnees, legendeGroupe, diagGroupe;
 
-    public DiagBarres(String nom){
+    public DiagBarres(String nom) {
         this.nom = nom;
         legendes = new ArrayList<>();
         couleurs = new ArrayList<>();
@@ -68,14 +70,28 @@ public class DiagBarres implements IDataVisualiseur {
 
     @Override
     public String enSVG() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        return diagGroupe.enSVG();
     }
 
     @Override
     public IForme colorier(String... couleurs) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'colorier'");
+        for (IForme faisceau : donnees.getListFormes()) {
+            faisceau.colorier(couleurs);
+        }
+
+        int i = 0;
+        for (IForme forme : legendeGroupe.getListFormes()) {
+            if (forme instanceof Rectangle) {
+                forme.colorier(couleurs[i]);
+                i++;
+                if (i >= couleurs.length) {
+                    i = 0;
+                }
+            }
+
+        }
+
+        return this;
     }
 
     @Override
@@ -92,26 +108,54 @@ public class DiagBarres implements IDataVisualiseur {
 
     @Override
     public void createSvgFile() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
+        SVGFile.createSvgFile(this, "diagColonnes");
     }
 
     @Override
     public IDataVisualiseur agencer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agencer'");
+        // Titre
+        texteNom = new Texte(0, 0, 20, nom);
+
+        double axeY = donnees.getListFormes().get(0).hauteur();
+        for (IForme forme : donnees.getListFormes()) {
+            if (axeY > forme.hauteur()) {
+                axeY = forme.hauteur();
+            }
+        }
+        double axeX = 20;
+        for (IForme faisceau : donnees.getListFormes()) {
+            Faisceau f = (Faisceau) faisceau;
+            f.agencer(axeX, axeY * 0.01, 100, 0.01, true); // TODO il faut modifier axeX et lergeur
+            axeX += 120;
+        }
+
+        texteNom.deplacer(donnees.centre().x(), donnees.centre().y() - donnees.hauteur() / 4 + 20);
+        diagGroupe.ajouter(donnees);
+        diagGroupe.ajouter(texteNom);
+
+        // Groupe pour les légendes
+        System.out.println(donnees.hauteur());
+        legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
+        legendeGroupe.alignerElements(Alignement.BAS, donnees.centre().y() + donnees.hauteur() / 4);
+        diagGroupe.ajouter(legendeGroupe);
+
+        return this;
     }
 
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ajouterDonnees'");
+        donnees.ajouter(new Faisceau(str, doubles));
+        return this;
     }
 
     @Override
     public IDataVisualiseur legender(String... strings) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'legender'");
+        for (String string : strings) {
+            legendeGroupe.ajouter(new Rectangle(0, 0, 20, 7));
+            legendeGroupe.ajouter(new Texte(0, 0, 10, string));
+        }
+
+        return this;
     }
 
     @Override
