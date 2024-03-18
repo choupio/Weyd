@@ -45,8 +45,6 @@ public class Groupe implements IForme {
         if (listFormes.isEmpty()) {
             return null;
         }
-        double centreX = 0.0;
-        double centreY = 0.0;
         double minY = listFormes.get(0).centre().y() - listFormes.get(0).hauteur() / 2;
         double minX = listFormes.get(0).centre().x() - listFormes.get(0).largeur() / 2;
         for (IForme forme : listFormes) {
@@ -193,7 +191,7 @@ public class Groupe implements IForme {
     public String enSVG() {
         String s = "";
         for (IForme iForme : listFormes) {
-            s += iForme.enSVG();
+            s += iForme.enSVG()+"\n";
         }
         return s;
     }
