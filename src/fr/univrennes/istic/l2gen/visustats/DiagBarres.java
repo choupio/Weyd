@@ -135,7 +135,7 @@ public class DiagBarres implements IDataVisualiseur {
 
         legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
         legendeGroupe.alignerElements(Alignement.BAS,
-                donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur());
+                donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur()*2);
         diagGroupe.ajouter(legendeGroupe);
 
         return this;
