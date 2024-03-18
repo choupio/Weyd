@@ -6,23 +6,22 @@ import javax.swing.*;
 /**
  * Cette classe représente l'application principale.
  * 
- * Pour tester et afficher des éléments d'autres classes, il suffit de décommenter les lignes de code correspondantes.
+ * Pour tester et afficher des éléments d'autres classes, il suffit de
+ * décommenter les lignes de code correspondantes.
  */
 public class App {
 
     public static void main(String[] args) throws Exception {
 
-        DiagCamemberts diag = new DiagCamemberts("test", 3);
-        diag.ajouterDonnees("2010", 1600 , 6800 , 16000 , 4300 , 300);
-        diag.ajouterDonnees("2015", 1900 , 6600 , 17500 , 3800 , 330);
-        diag.ajouterDonnees("2020", 2100 , 6200 , 17800 , 3600 , 340);
-        diag.colorier( "Blue " , " Green " , " Red " , " Yellow " , " Maroon ");
-        diag.tourner(90);
+        DiagBarres diag = new DiagBarres("test");
+        diag.ajouterDonnees("2010", 1600, 6800, 16000, 4300, 300);
+        diag.ajouterDonnees("2015", 1900, 6600, 17500, 3800, 330);
+        diag.ajouterDonnees("2020", 2100, 6200, 17800, 3600, 340);
+        diag.colorier("Blue ", " Green ", " Red ", " Yellow ", " Maroon ");
         diag.legender("Afrique", "Amerique", "Asie", "Europe", "Oceanie");
-        System.out.println(diag.description(0));
+        diag.agencer();
         diag.createSvgFile();
-        
-        
+
         /*
          * Groupe tableau = new Groupe();
          * tableau.ajouter(new Cercle(256, 256, 128).colorier("white"));
@@ -37,17 +36,17 @@ public class App {
          * tableau.createSvgFile();
          */
 
-
-        /*Cercle cercleTest = new Cercle(50, 40, 25);
-        Cercle cercleTest2 = new Cercle(50, 40, 25);
-        Polygone polygone = new Polygone();
-        polygone.ajouterSommet(128, 128);
-        polygone.ajouterSommet(128, 256);
-        polygone.ajouterSommet(256, 128);
-        polygone.ajouterSommet(256, 256);
-        Groupe groupe = new Groupe(cercleTest, polygone, cercleTest2);
-        System.out.println(groupe.description(3));*/
-
+        /*
+         * Cercle cercleTest = new Cercle(50, 40, 25);
+         * Cercle cercleTest2 = new Cercle(50, 40, 25);
+         * Polygone polygone = new Polygone();
+         * polygone.ajouterSommet(128, 128);
+         * polygone.ajouterSommet(128, 256);
+         * polygone.ajouterSommet(256, 128);
+         * polygone.ajouterSommet(256, 256);
+         * Groupe groupe = new Groupe(cercleTest, polygone, cercleTest2);
+         * System.out.println(groupe.description(3));
+         */
 
         /*
          * Groupe g = new Groupe();
@@ -61,12 +60,12 @@ public class App {
          * g.createSvgFile();
          */
 
-
-        /*Faisceau fg = new Faisceau(" Exemple de Faisceau vertical ", 100, 200, 500);
-        fg.colorier(" cyan ", " purple ", " yellow ");
-        fg.agencer(20, 250, 100, 0.2, true);
-        fg.createSvgFile();*/
-
+        /*
+         * Faisceau fg = new Faisceau(" Exemple de Faisceau vertical ", 100, 200, 500);
+         * fg.colorier(" cyan ", " purple ", " yellow ");
+         * fg.agencer(20, 250, 100, 0.2, true);
+         * fg.createSvgFile();
+         */
 
         /*
          * Cercle cercleTest = new Cercle(50, 40, 25);
@@ -80,33 +79,35 @@ public class App {
          * System.out.println(groupe.description(3));
          */
 
-
         // Création d'un Faisceau
-        /*Faisceau f = new Faisceau("Exemple", 100, 200, 500);
-        f.agencer(200, 250, 100, 0.2, false);
-        f.createSvgFile();*/
-
+        /*
+         * Faisceau f = new Faisceau("Exemple", 100, 200, 500);
+         * f.agencer(200, 250, 100, 0.2, false);
+         * f.createSvgFile();
+         */
 
         // Affichage du diagramme en colonnes
-        /*DiagColonnes d = new DiagColonnes("test");
-        d.legender("samax", "samax", "samax");
-        d.ajouterDonnees("2010", 1600, 6800, 16000);
-        d.ajouterDonnees("2015", 1600, 6800, 16000);
-        d.colorier("Red", "Black", "Blue");
-        d.agencer().createSvgFile();*/
+        /*
+         * DiagColonnes d = new DiagColonnes("test");
+         * d.legender("samax", "samax", "samax");
+         * d.ajouterDonnees("2010", 1600, 6800, 16000);
+         * d.ajouterDonnees("2015", 1600, 6800, 16000);
+         * d.colorier("Red", "Black", "Blue");
+         * d.agencer().createSvgFile();
+         */
 
-
-        //AccueilSwing s1 = new AccueilSwing();
-
+        // AccueilSwing s1 = new AccueilSwing();
 
         // Création d'un camembert
-        /*Camembert camembert = new Camembert(110, 110, 100);
-        camembert.ajouterSecteur("blue", 0.2);
-        camembert.ajouterSecteur("red", 0.15);
-        camembert.ajouterSecteur("green", 0.65);
-        System.out.println(camembert.description(0));
-        camembert.tourner(-35);
-        camembert.createSvgFile();*/
+        /*
+         * Camembert camembert = new Camembert(110, 110, 100);
+         * camembert.ajouterSecteur("blue", 0.2);
+         * camembert.ajouterSecteur("red", 0.15);
+         * camembert.ajouterSecteur("green", 0.65);
+         * System.out.println(camembert.description(0));
+         * camembert.tourner(-35);
+         * camembert.createSvgFile();
+         */
 
         // Autre manière de faire le camembert
         /*

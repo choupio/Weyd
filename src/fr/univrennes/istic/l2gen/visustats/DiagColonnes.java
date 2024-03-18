@@ -28,44 +28,38 @@ public class DiagColonnes implements IDataVisualiseur {
 
     @Override
     public Point centre() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'centre'");
+        return diagGroupe.centre();
     }
 
     @Override
     public String description(int indentation) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'description'");
+        return diagGroupe.description(indentation);
     }
 
     @Override
     public double hauteur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hauteur'");
+        return diagGroupe.hauteur();
     }
 
     @Override
     public double largeur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'largeur'");
+        return diagGroupe.largeur();
     }
 
     @Override
     public IForme deplacer(double dx, double dy) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
+        diagGroupe.deplacer(dx, dy);
+        return diagGroupe;
     }
 
     @Override
     public IForme dupliquer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dupliquer'");
+        return diagGroupe.dupliquer();
     }
 
     @Override
     public IForme redimmensioner(double h, double l) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
+        return diagGroupe.redimmensioner(h, l);
     }
 
     @Override
@@ -96,14 +90,12 @@ public class DiagColonnes implements IDataVisualiseur {
 
     @Override
     public IForme tourner(int angle) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tourner'");
+        return diagGroupe.tourner(angle);
     }
 
     @Override
     public IForme aligner(Alignement alignement, double cible) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'aligner'");
+        return diagGroupe.aligner(alignement, cible);
     }
 
     @Override

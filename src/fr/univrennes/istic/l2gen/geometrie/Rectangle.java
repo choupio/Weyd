@@ -14,12 +14,13 @@ public class Rectangle implements IForme {
     private double hauteur; // Hauteur du rectangle
     private Point centre; // Centre du rectangle
     private String couleur = "white"; // Couleur du rectangle en "white"
-    
 
     private int angle = 0; // angle du rectangle, à 0 de base
+
     public String getCouleur() {
-            return couleur;
-        }
+        return couleur;
+    }
+
     /**
      * Retourne le centre du rectangle.
      *
@@ -107,18 +108,17 @@ public class Rectangle implements IForme {
      */
     @Override
     public String description(int indentation) {
-        if(indentation<0){
+        if (indentation < 0) {
             throw new IllegalArgumentException("L'indentation ne doit pas être inférieure à 0.");
-        }
-        else{
+        } else {
             StringBuilder indent = new StringBuilder();
             for (int i = 0; i < indentation; i++) {
                 indent.append(" ");
             }
             return indent + "Rectangle" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H="
-                + hauteur() + " de couleur " + couleur + " angle=" + angle;
+                    + hauteur() + " de couleur " + couleur + " angle=" + angle;
         }
-        
+
     }
 
     /**
@@ -131,13 +131,11 @@ public class Rectangle implements IForme {
      *         opérations en chaîne.
      */
     public IForme deplacer(double dx, double dy) {
-        if(dx<0&&(this.centre().x()+dx)<0){
+        if (dx < 0 && (this.centre().x() + dx) < 0) {
             throw new IllegalStateException("Le point x du rectangle ne peut pas être négatif.");
-        }
-        else if(dy<0&&(this.centre().y()+dy)<0){
+        } else if (dy < 0 && (this.centre().y() + dy) < 0) {
             throw new IllegalStateException("Le point y du rectangle ne peut pas être négatif.");
-        }
-        else{
+        } else {
             this.centre.plus(dx, dy);
             return this;
         }
@@ -159,21 +157,22 @@ public class Rectangle implements IForme {
     /**
      * Ré-ajuste la hauteur et la largeur du rectangle.
      *
-     * @param hauteur La hauteur de redimmensionement 
+     * @param hauteur La hauteur de redimmensionement
      * @param largeur La largeur de redimmensionement
-     * @throws IllegalArgumentException si la hauteur ou largeur de red. est égale à 0 ou moins.
+     * @throws IllegalArgumentException si la hauteur ou largeur de red. est égale à
+     *                                  0 ou moins.
      * @return Une référence à l'instance du rectangle, pour permettre les
-     *         opérations en chaîne. La hauteur du rectangle va être multipliée par celle de redimmensionnement,
+     *         opérations en chaîne. La hauteur du rectangle va être multipliée par
+     *         celle de redimmensionnement,
      *         pareil pour la largeur.
      */
     public IForme redimmensioner(double hauteur, double largeur) {
-        if(hauteur<=0){
+        if (hauteur <= 0) {
             throw new IllegalArgumentException("La hauteur de redimmensionement ne doit pas être inférieure à 0.");
         }
-        if(largeur<=0){
+        if (largeur <= 0) {
             throw new IllegalArgumentException("La largeur de redimmensionement ne doit pas être inférieure à 0.");
-        }
-        else{
+        } else {
             this.setHauteur(this.hauteur * hauteur);
             this.setLargeur(this.largeur * largeur);
             return this;
@@ -236,44 +235,44 @@ public class Rectangle implements IForme {
      * @return le nouveau rectangle tourné avec l'angle.
      */
     public IForme tourner(int angle) {
-        if(angle<0){
+        if (angle < 0) {
             throw new IllegalArgumentException("L'angle ne peut pas être négatif");
-        }
-        else{
+        } else {
             this.angle = angle;
             return this;
         }
-        
+
     }
 
     public IForme aligner(Alignement alignement, double cible) {
-        if(cible<0){
+        if (cible < 0) {
             throw new IllegalArgumentException("La cible ne peut pas être négative.");
         }
         switch (alignement) {
             case HAUT:
-                if((cible)<0){
+                if ((cible) < 0) {
                     throw new IllegalArgumentException("Y ne peut pas être négatif.");
                 }
-                centre = new Point(centre.x(), cible );
+                centre = new Point(centre.x(), cible);
                 break;
             case BAS:
-                if((cible - hauteur)<0){
+                if ((cible - hauteur) < 0) {
+                    System.out.println(cible +" "+ hauteur);
                     throw new IllegalArgumentException("Y ne peut pas être négatif.");
                 }
-                centre = new Point(centre.x(), cible - hauteur );
+                centre = new Point(centre.x(), cible - hauteur);
                 break;
             case DROITE:
-                if((cible - largeur)<0){
+                if ((cible - largeur) < 0) {
                     throw new IllegalArgumentException("X ne peut pas être négatif.");
                 }
-                centre = new Point(cible - largeur , centre.y());
+                centre = new Point(cible - largeur, centre.y());
                 break;
             case GAUCHE:
-                if((cible)<0){
+                if ((cible) < 0) {
                     throw new IllegalArgumentException("X ne peut pas être négatif.");
                 }
-                centre = new Point(cible , centre.y());
+                centre = new Point(cible, centre.y());
                 break;
         }
         return this;
