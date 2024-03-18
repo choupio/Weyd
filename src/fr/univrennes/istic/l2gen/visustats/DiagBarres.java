@@ -100,7 +100,7 @@ public class DiagBarres implements IDataVisualiseur {
 
     @Override
     public void createSvgFile() {
-        SVGFile.createSvgFile(this, "diagColonnes");
+        SVGFile.createSvgFile(this, "DiagBarres");
     }
 
     @Override
@@ -127,7 +127,7 @@ public class DiagBarres implements IDataVisualiseur {
             axeX += 120;
         }
         texteNom.deplacer(donnees.centre().x(),
-                donnees.centre().y() - donnees.hauteur() / 2 + texteNom.hauteur() * 1.5);
+                donnees.centre().y() - donnees.hauteur() / 2 + texteNom.hauteur());
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
 
@@ -135,7 +135,7 @@ public class DiagBarres implements IDataVisualiseur {
 
         legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
         legendeGroupe.alignerElements(Alignement.BAS,
-                donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur()*2);
+                donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);
 
         return this;
@@ -151,7 +151,7 @@ public class DiagBarres implements IDataVisualiseur {
     public IDataVisualiseur legender(String... strings) {
         for (String string : strings) {
             legendeGroupe.ajouter(new Rectangle(0, 0, 20, 7));
-            legendeGroupe.ajouter(new Texte(0, 0, 10, string));
+            legendeGroupe.ajouter(new Texte(0, 0, 15, string));
         }
 
         return this;
