@@ -3,10 +3,12 @@ package fr.univrennes.istic.l2gen.visustats;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
 
 public class DiagBarres implements IDataVisualiseur {
@@ -15,7 +17,7 @@ public class DiagBarres implements IDataVisualiseur {
     List<String> legendes, couleurs;
     Groupe donnees, legendeGroupe, diagGroupe;
 
-    public DiagBarres(String nom){
+    public DiagBarres(String nom) {
         this.nom = nom;
         legendes = new ArrayList<>();
         couleurs = new ArrayList<>();
@@ -26,92 +28,133 @@ public class DiagBarres implements IDataVisualiseur {
 
     @Override
     public Point centre() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'centre'");
+        return diagGroupe.centre();
     }
 
     @Override
     public String description(int indentation) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'description'");
+        return diagGroupe.description(indentation);
     }
 
     @Override
     public double hauteur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hauteur'");
+        return diagGroupe.hauteur();
     }
 
     @Override
     public double largeur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'largeur'");
+        return diagGroupe.largeur();
     }
 
     @Override
     public IForme deplacer(double dx, double dy) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deplacer'");
+        diagGroupe.deplacer(dx, dy);
+        return diagGroupe;
     }
 
     @Override
     public IForme dupliquer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dupliquer'");
+        return diagGroupe.dupliquer();
     }
 
     @Override
     public IForme redimmensioner(double h, double l) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'redimmensioner'");
+        return diagGroupe.redimmensioner(h, l);
     }
 
     @Override
     public String enSVG() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        return diagGroupe.enSVG();
     }
 
     @Override
     public IForme colorier(String... couleurs) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'colorier'");
+        for (IForme faisceau : donnees.getListFormes()) {
+            faisceau.colorier(couleurs);
+        }
+
+        int i = 0;
+        for (IForme forme : legendeGroupe.getListFormes()) {
+            if (forme instanceof Rectangle) {
+                forme.colorier(couleurs[i]);
+                i++;
+                if (i >= couleurs.length) {
+                    i = 0;
+                }
+            }
+
+        }
+
+        return this;
     }
 
     @Override
     public IForme tourner(int angle) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tourner'");
+        return diagGroupe.tourner(angle);
     }
 
     @Override
     public IForme aligner(Alignement alignement, double cible) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'aligner'");
+        return diagGroupe.aligner(alignement, cible);
     }
 
     @Override
     public void createSvgFile() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createSvgFile'");
+        SVGFile.createSvgFile(this, "DiagBarres");
     }
 
     @Override
     public IDataVisualiseur agencer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agencer'");
+        // Titre
+        texteNom = new Texte(0, 0, 20, nom);
+        double axeY = 0;
+        for (IForme donnee : donnees.getListFormes()) {
+            Faisceau faisceau = (Faisceau) donnee;
+            double hauteur = 0;
+            for (IForme barre : faisceau.getListFormes()) {
+                hauteur += barre.hauteur() * 0.01;
+            }
+            if (axeY < hauteur) {
+                axeY = hauteur;
+            }
+
+        }
+        double axeX = 20;
+
+        for (IForme faisceau : donnees.getListFormes()) {
+            Faisceau f = (Faisceau) faisceau;
+            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, true);
+            axeX += 120;
+        }
+        texteNom.deplacer(donnees.centre().x(),
+                donnees.centre().y() - donnees.hauteur() / 2 + texteNom.hauteur());
+        diagGroupe.ajouter(donnees);
+        diagGroupe.ajouter(texteNom);
+
+        // Groupe pour les légendes
+
+        legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
+        legendeGroupe.alignerElements(Alignement.BAS,
+                donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
+        diagGroupe.ajouter(legendeGroupe);
+
+        return this;
     }
 
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ajouterDonnees'");
+        donnees.ajouter(new Faisceau(str, doubles));
+        return this;
     }
 
     @Override
     public IDataVisualiseur legender(String... strings) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'legender'");
+        for (String string : strings) {
+            legendeGroupe.ajouter(new Rectangle(0, 0, 20, 7));
+            legendeGroupe.ajouter(new Texte(0, 0, 15, string));
+        }
+
+        return this;
     }
 
     @Override

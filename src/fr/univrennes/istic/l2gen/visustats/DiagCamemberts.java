@@ -8,7 +8,6 @@ import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
-import fr.univrennes.istic.l2gen.geometrie.Secteur;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
 
 /**
@@ -168,12 +167,6 @@ public class DiagCamemberts implements IDataVisualiseur {
      */
     @Override
     public IForme colorier(String... couleurs) {
-        /*String temp = couleurs[1];
-        couleurs[1] = couleurs[3];
-        couleurs[3] = temp;
-        String temp1 = couleurs[0];
-        couleurs[0] = couleurs[4];
-        couleurs[4] = temp1;*/
         for (IForme forme : groupeCamembert.getListFormes()) {
             if (forme instanceof Camembert) {
                 Camembert camembert = (Camembert) forme;
@@ -242,22 +235,6 @@ public class DiagCamemberts implements IDataVisualiseur {
     }
 
 
-    /*public void echangerSecteurs(int index1, int index2) {
-        for (IForme forme : groupeCamembert.getListFormes()) {
-            if (forme instanceof Camembert) {
-                Camembert camembert = (Camembert) forme;
-                List<Secteur> secteurs = camembert.getSecteurs();
-                if (index1 < secteurs.size() && index2 < secteurs.size()) {
-                    // Échanger les secteurs
-                    Secteur temp = secteurs.get(index1);
-                    secteurs.set(index1, secteurs.get(index2));
-                    secteurs.set(index2, temp);
-                }
-            }
-        }
-    }*/
-
-
     /**
      * Ajoute les données spécifiées à l'objet IDataVisualiseur.
      * 
@@ -288,7 +265,6 @@ public class DiagCamemberts implements IDataVisualiseur {
             }
             groupeCamembert.ajouter(camembert);
         }
-        //echangerSecteurs(1, 3);
 
         return this;   
     }

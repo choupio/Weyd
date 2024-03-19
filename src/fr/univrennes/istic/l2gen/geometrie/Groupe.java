@@ -36,8 +36,7 @@ public class Groupe implements IForme {
     }
 
     /**
-     * Retourne le centre du groupe, calculé comme le centre moyen de toutes les
-     * formes dans le groupe.
+     * Retourne le centre du groupe
      *
      * @return Le centre du groupe.
      */
@@ -46,17 +45,18 @@ public class Groupe implements IForme {
         if (listFormes.isEmpty()) {
             return null;
         }
-        double centreX = 0.0;
-        double centreY = 0.0;
+        double minY = listFormes.get(0).centre().y() - listFormes.get(0).hauteur() / 2;
+        double minX = listFormes.get(0).centre().x() - listFormes.get(0).largeur() / 2;
         for (IForme forme : listFormes) {
-            Point centreForme = forme.centre();
-            centreX += centreForme.x();
-            centreY += centreForme.y();
+            if (forme.centre().x() - forme.largeur() / 2 < minX) {
+                minX = forme.centre().x() - forme.largeur() / 2;
+            }
+            if (forme.centre().y() - forme.hauteur() / 2 < minY) {
+                minY = forme.centre().y() - forme.hauteur() / 2;
+            }
+
         }
-        centreX /= listFormes.size();
-        centreY /= listFormes.size();
-        Point centre = new Point(centreX, centreY);
-        return centre;
+        return new Point(minX + this.largeur()/2, minY + this.hauteur()/2);
     }
 
     /**
@@ -67,14 +67,14 @@ public class Groupe implements IForme {
         if (listFormes.isEmpty()) {
             return 0;
         }
-        double minY = listFormes.get(0).centre().y() - listFormes.get(0).hauteur();
-        double maxY = listFormes.get(0).centre().y() + listFormes.get(0).hauteur();
+        double minY = listFormes.get(0).centre().y() - listFormes.get(0).hauteur() / 2;
+        double maxY = listFormes.get(0).centre().y() + listFormes.get(0).hauteur() / 2;
         for (IForme forme : listFormes) {
-            if (forme.centre().y() - forme.hauteur() < minY) {
-                minY = forme.centre().y() - forme.hauteur();
+            if (forme.centre().y() - forme.hauteur() / 2 < minY) {
+                minY = forme.centre().y() - forme.hauteur() / 2;
             }
-            if (forme.centre().y() + forme.hauteur() > maxY) {
-                maxY = forme.centre().y() + forme.hauteur();
+            if (forme.centre().y() + forme.hauteur() / 2 > maxY) {
+                maxY = forme.centre().y() + forme.hauteur() / 2;
             }
         }
         return maxY - minY;
@@ -88,14 +88,14 @@ public class Groupe implements IForme {
         if (listFormes.isEmpty()) {
             return 0;
         }
-        double minX = listFormes.get(0).centre().x() - listFormes.get(0).largeur();
-        double maxX = listFormes.get(0).centre().x() + listFormes.get(0).largeur();
+        double minX = listFormes.get(0).centre().x() - listFormes.get(0).largeur() / 2;
+        double maxX = listFormes.get(0).centre().x() + listFormes.get(0).largeur() / 2;
         for (IForme forme : listFormes) {
-            if (forme.centre().x() - forme.largeur() < minX) {
-                minX = forme.centre().x() - forme.largeur();
+            if (forme.centre().x() - forme.largeur() / 2 < minX) {
+                minX = forme.centre().x() - forme.largeur() / 2;
             }
-            if (forme.centre().x() + forme.largeur() > maxX) {
-                maxX = forme.centre().x() + forme.largeur();
+            if (forme.centre().x() + forme.largeur() / 2 > maxX) {
+                maxX = forme.centre().x() + forme.largeur() / 2;
             }
         }
         return maxX - minX;
@@ -191,7 +191,7 @@ public class Groupe implements IForme {
     public String enSVG() {
         String s = "";
         for (IForme iForme : listFormes) {
-            s += iForme.enSVG();
+            s += iForme.enSVG()+"\n";
         }
         return s;
     }
