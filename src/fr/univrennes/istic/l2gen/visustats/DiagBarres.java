@@ -7,6 +7,7 @@ import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
+import fr.univrennes.istic.l2gen.geometrie.Ligne;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
@@ -16,6 +17,7 @@ public class DiagBarres implements IDataVisualiseur {
     String nom;
     List<String> legendes, couleurs;
     Groupe donnees, legendeGroupe, diagGroupe;
+    double echelle_max;
 
     public DiagBarres(String nom) {
         this.nom = nom;
@@ -24,6 +26,7 @@ public class DiagBarres implements IDataVisualiseur {
         donnees = new Groupe();
         diagGroupe = new Groupe();
         legendeGroupe = new Groupe();
+        echelle_max = 0;
     }
 
     @Override
@@ -132,11 +135,15 @@ public class DiagBarres implements IDataVisualiseur {
         diagGroupe.ajouter(texteNom);
 
         // Groupe pour les légendes
-
         legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
         legendeGroupe.alignerElements(Alignement.BAS,
                 donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);
+
+        // Echelles
+        Groupe echelles = new Groupe();
+        echelles.ajouter(new Ligne(donnees.centre().x()-donnees.largeur()/2,donnees.centre().y()-donnees.hauteur()/2, donnees.centre().x()-donnees.largeur()/2, donnees.centre().y()+donnees.hauteur()/2));
+        diagGroupe.ajouter(echelles);
 
         return this;
     }
@@ -144,6 +151,15 @@ public class DiagBarres implements IDataVisualiseur {
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
         donnees.ajouter(new Faisceau(str, doubles));
+        double d_max = doubles[0];
+        for (double d : doubles) {
+            if (d > d_max) {
+                d_max = d;
+            }
+        }
+        if (d_max > echelle_max) {
+            echelle_max = d_max;
+        }
         return this;
     }
 
