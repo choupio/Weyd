@@ -253,11 +253,10 @@ public class Rectangle implements IForme {
                 if ((cible) < 0) {
                     throw new IllegalArgumentException("Y ne peut pas être négatif.");
                 }
-                centre = new Point(centre.x(), cible);
+                centre = new Point(centre.x(), cible + hauteur);
                 break;
             case BAS:
                 if ((cible - hauteur) < 0) {
-                    System.out.println(cible +" "+ hauteur);
                     throw new IllegalArgumentException("Y ne peut pas être négatif.");
                 }
                 centre = new Point(centre.x(), cible - hauteur);
@@ -266,13 +265,13 @@ public class Rectangle implements IForme {
                 if ((cible - largeur) < 0) {
                     throw new IllegalArgumentException("X ne peut pas être négatif.");
                 }
-                centre = new Point(cible - largeur, centre.y());
+                centre = new Point(cible - largeur / 2, centre.y());
                 break;
             case GAUCHE:
                 if ((cible) < 0) {
                     throw new IllegalArgumentException("X ne peut pas être négatif.");
                 }
-                centre = new Point(cible, centre.y());
+                centre = new Point(cible + largeur / 2, centre.y());
                 break;
         }
         return this;
