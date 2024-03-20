@@ -143,13 +143,12 @@ public class DiagBarres implements IDataVisualiseur {
 
         // Echelles
         Groupe echelles = new Groupe();
-        diagGroupe.ajouter(new Rectangle(donnees.centre().x(), donnees.centre().y(), 20, 20));
 
-        System.out.println(donnees.description(1));
-        // echelles.ajouter(new
-        // Ligne(donnees.centre().x()-donnees.largeur()/2,donnees.centre().y()-donnees.hauteur()/2,
-        // donnees.centre().x()-donnees.largeur()/2,
-        // donnees.centre().y()+donnees.hauteur()/2));
+        echelles.ajouter(
+                new Ligne(donnees.centre().x() - donnees.largeur() / 2,
+                        donnees.centre().y() + donnees.hauteur() / 2,
+                        donnees.centre().x() + donnees.largeur() / 2,
+                        donnees.centre().y() + donnees.hauteur() / 2).colorier("Black"));
         diagGroupe.ajouter(echelles);
 
         return this;
