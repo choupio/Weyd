@@ -50,7 +50,6 @@
 	fill=" Maroon " stroke="black" transform="rotate(0)"/>
 <text x="512.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Oceanie</text>
 
-<rect x="180.0" y="160.3" height="20.0" width="20.0"
-	fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="120.0 341.3 341.3 341.3 " fill="white" stroke="Black" transform="rotate(0)"/>
 
 </svg>
