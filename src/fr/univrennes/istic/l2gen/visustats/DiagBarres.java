@@ -9,6 +9,7 @@ import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Ligne;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.Polygone;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
 
@@ -142,7 +143,13 @@ public class DiagBarres implements IDataVisualiseur {
 
         // Echelles
         Groupe echelles = new Groupe();
-        echelles.ajouter(new Ligne(donnees.centre().x()-donnees.largeur()/2,donnees.centre().y()-donnees.hauteur()/2, donnees.centre().x()-donnees.largeur()/2, donnees.centre().y()+donnees.hauteur()/2));
+        diagGroupe.ajouter(new Rectangle(donnees.centre().x(), donnees.centre().y(), 20, 20));
+
+        System.out.println(donnees.description(1));
+        // echelles.ajouter(new
+        // Ligne(donnees.centre().x()-donnees.largeur()/2,donnees.centre().y()-donnees.hauteur()/2,
+        // donnees.centre().x()-donnees.largeur()/2,
+        // donnees.centre().y()+donnees.hauteur()/2));
         diagGroupe.ajouter(echelles);
 
         return this;
