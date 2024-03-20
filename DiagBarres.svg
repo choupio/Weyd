@@ -1,53 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-<rect x="20.0" y="333.3" height="16.0" width="100.0"
+<rect x="70.0" y="333.3" height="16.0" width="100.0"
 	fill="Blue " stroke="black" transform="rotate(0)"/>
-<rect x="20.0" y="265.3" height="68.0" width="100.0"
+<rect x="70.0" y="265.3" height="68.0" width="100.0"
 	fill=" Green " stroke="black" transform="rotate(0)"/>
-<rect x="20.0" y="105.30000000000001" height="160.0" width="100.0"
+<rect x="70.0" y="105.30000000000001" height="160.0" width="100.0"
 	fill=" Red " stroke="black" transform="rotate(0)"/>
-<rect x="20.0" y="62.30000000000001" height="43.0" width="100.0"
+<rect x="70.0" y="62.30000000000001" height="43.0" width="100.0"
 	fill=" Yellow " stroke="black" transform="rotate(0)"/>
-<rect x="20.0" y="59.30000000000001" height="3.0" width="100.0"
+<rect x="70.0" y="59.30000000000001" height="3.0" width="100.0"
 	fill=" Maroon " stroke="black" transform="rotate(0)"/>
 
-<rect x="140.0" y="330.3" height="19.0" width="100.0"
+<rect x="190.0" y="330.3" height="19.0" width="100.0"
 	fill="Blue " stroke="black" transform="rotate(0)"/>
-<rect x="140.0" y="264.3" height="66.0" width="100.0"
+<rect x="190.0" y="264.3" height="66.0" width="100.0"
 	fill=" Green " stroke="black" transform="rotate(0)"/>
-<rect x="140.0" y="89.30000000000001" height="175.0" width="100.0"
+<rect x="190.0" y="89.30000000000001" height="175.0" width="100.0"
 	fill=" Red " stroke="black" transform="rotate(0)"/>
-<rect x="140.0" y="51.30000000000001" height="38.0" width="100.0"
+<rect x="190.0" y="51.30000000000001" height="38.0" width="100.0"
 	fill=" Yellow " stroke="black" transform="rotate(0)"/>
-<rect x="140.0" y="48.000000000000014" height="3.3000000000000003" width="100.0"
+<rect x="190.0" y="48.000000000000014" height="3.3000000000000003" width="100.0"
 	fill=" Maroon " stroke="black" transform="rotate(0)"/>
 
-<rect x="260.0" y="328.3" height="21.0" width="100.0"
+<rect x="310.0" y="328.3" height="21.0" width="100.0"
 	fill="Blue " stroke="black" transform="rotate(0)"/>
-<rect x="260.0" y="266.3" height="62.0" width="100.0"
+<rect x="310.0" y="266.3" height="62.0" width="100.0"
 	fill=" Green " stroke="black" transform="rotate(0)"/>
-<rect x="260.0" y="88.30000000000001" height="178.0" width="100.0"
+<rect x="310.0" y="88.30000000000001" height="178.0" width="100.0"
 	fill=" Red " stroke="black" transform="rotate(0)"/>
-<rect x="260.0" y="52.30000000000001" height="36.0" width="100.0"
+<rect x="310.0" y="52.30000000000001" height="36.0" width="100.0"
 	fill=" Yellow " stroke="black" transform="rotate(0)"/>
-<rect x="260.0" y="48.90000000000001" height="3.4" width="100.0"
+<rect x="310.0" y="48.90000000000001" height="3.4" width="100.0"
 	fill=" Maroon " stroke="black" transform="rotate(0)"/>
 
 
-<text x="140.0" y="23.30000000000001" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">test</text>
-<rect x="70.0" y="370.3" height="7.0" width="20.0"
+<text x="190.0" y="23.30000000000001" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">test</text>
+<rect x="130.0" y="370.3" height="7.0" width="20.0"
 	fill="Blue " stroke="black" transform="rotate(0)"/>
-<text x="100.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Afrique</text>
-<rect x="161.0" y="370.3" height="7.0" width="20.0"
+<text x="150.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Afrique</text>
+<rect x="221.0" y="370.3" height="7.0" width="20.0"
 	fill=" Green " stroke="black" transform="rotate(0)"/>
-<text x="191.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Amerique</text>
-<rect x="271.0" y="370.3" height="7.0" width="20.0"
+<text x="241.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Amerique</text>
+<rect x="331.0" y="370.3" height="7.0" width="20.0"
 	fill=" Red " stroke="black" transform="rotate(0)"/>
-<text x="301.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Asie</text>
-<rect x="341.0" y="370.3" height="7.0" width="20.0"
+<text x="351.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Asie</text>
+<rect x="401.0" y="370.3" height="7.0" width="20.0"
 	fill=" Yellow " stroke="black" transform="rotate(0)"/>
-<text x="371.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Europe</text>
-<rect x="432.0" y="370.3" height="7.0" width="20.0"
+<text x="421.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Europe</text>
+<rect x="492.0" y="370.3" height="7.0" width="20.0"
 	fill=" Maroon " stroke="black" transform="rotate(0)"/>
-<text x="462.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Oceanie</text>
+<text x="512.0" y="367.3" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Oceanie</text>
+
+<rect x="180.0" y="160.3" height="20.0" width="20.0"
+	fill="white" stroke="black" transform="rotate(0)"/>
 
 </svg>
