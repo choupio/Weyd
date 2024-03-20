@@ -51,7 +51,7 @@ public class Groupe implements IForme {
         double maxX = listFormes.get(0).centre().x() + listFormes.get(0).largeur() / 2;
         for (IForme forme : listFormes) {
             if (forme.centre().x() - forme.largeur() / 2 < minX) {
-                minX = forme.centre().x() - forme.largeur() / 2;
+                minX = forme.centre().x() - forme.largeur();
             }
             if (forme.centre().y() + forme.hauteur() / 2 > maxY) {
                 maxY = forme.centre().y() + forme.hauteur() / 2;
