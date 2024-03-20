@@ -141,15 +141,6 @@ public class DiagBarres implements IDataVisualiseur {
                 donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);
 
-        // Echelles
-        Groupe echelles = new Groupe();
-
-        echelles.ajouter(
-                new Ligne(donnees.centre().x() - donnees.largeur() / 2,
-                        donnees.centre().y() + donnees.hauteur() / 2,
-                        donnees.centre().x() + donnees.largeur() / 2,
-                        donnees.centre().y() + donnees.hauteur() / 2).colorier("Black"));
-        diagGroupe.ajouter(echelles);
 
         return this;
     }
