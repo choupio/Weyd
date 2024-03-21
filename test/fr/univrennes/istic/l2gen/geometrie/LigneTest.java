@@ -43,7 +43,7 @@ public class LigneTest {
     public void testColorier() {
         ligne.colorier("red");
         assertEquals(
-                "<polyline ligne=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"red\" transform=\"rotate(0)\"/>",
+                "<polyline points=\"10.0 20.0 10.0 20.0 30.0 40.0 50.0 60.0 \" fill=\"white\" stroke=\"red\" transform=\"rotate(0)\"/>",
                 ligne.enSVG());
     }
 
@@ -68,7 +68,7 @@ public class LigneTest {
     @Test
     public void testEnSVG() {
         assertEquals(
-                "<polyline ligne=\"10.0 20.0 40.0 40.0 60.0 60.0 \" fill=\"white\" stroke=\"black\" transform=\"rotate(0)\"/>",
+                "<polyline points=\"10.0 20.0 10.0 20.0 30.0 40.0 50.0 60.0 \" fill=\"white\" stroke=\"black\" transform=\"rotate(0)\"/>",
                 ligne.enSVG());
     }
 
