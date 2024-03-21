@@ -152,7 +152,7 @@ public class Ligne implements IForme {
     public String enSVG() {
         String result = "<polyline points=\"";
         result = result + ligne.get(0).x() + ' ' + ligne.get(0).y() + ' ';
-        for (int i = 1; i < ligne.size(); i++) {
+        for (int i = 1; i < ligne.size(); i+=2) {
             result = result + ligne.get(i).y() + ' ' + ligne.get(i).y() + ' ';
         }
         result = result + "\" fill=\"white\" stroke=\"" + couleur + "\" transform=\"rotate(" + angle + ")\"/>";
