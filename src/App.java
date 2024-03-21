@@ -99,15 +99,14 @@ public class App {
         // AccueilSwing s1 = new AccueilSwing();
 
         // Création d'un camembert
-        /*
-         * Camembert camembert = new Camembert(110, 110, 100);
-         * camembert.ajouterSecteur("blue", 0.2);
-         * camembert.ajouterSecteur("red", 0.15);
-         * camembert.ajouterSecteur("green", 0.65);
-         * System.out.println(camembert.description(0));
-         * camembert.tourner(-35);
-         * camembert.createSvgFile();
-         */
+        
+          Camembert camembert = new Camembert(110, 110, 100);
+          camembert.ajouterSecteur("red", 0.15);
+          camembert.ajouterSecteur("blue", 0.2);
+          camembert.ajouterSecteur("green", 0.65);
+          System.out.println(camembert.description(0));
+          camembert.createSvgFile();
+         
 
         // Autre manière de faire le camembert
         /*

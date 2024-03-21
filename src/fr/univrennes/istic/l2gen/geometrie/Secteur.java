@@ -46,7 +46,7 @@ public class Secteur implements IForme {
      * @param arc   L'arc du secteur.
      */
     public Secteur(Point f, double rayon, double angle, double arc) {
-        this(f.x(), f.y(), rayon, angle, arc);
+        this(f.x(), f.y(), rayon, angle + 90, arc);
     }
 
     /**
