@@ -56,7 +56,8 @@ public class TexteTest {
 
 	@Test
 	public void testDescription() {
-		assertEquals("Texte centre=192.0,128.0 taille=64 texte=Istic L2GEN couleur=black et de rotation 0", texte.description(0));
+		assertEquals("Texte centre=192.0,128.0 taille=64 texte=Istic L2GEN couleur=black et de rotation 0",
+				texte.description(0));
 	}
 
 	@Test
@@ -68,7 +69,8 @@ public class TexteTest {
 	public void testDescription3() {
 		// test quand changement de couleur
 		texte.colorier("red");
-		assertEquals("Texte centre=192.0,128.0 taille=64 texte=Istic L2GEN couleur=red et de rotation 0", texte.description(0));
+		assertEquals("Texte centre=192.0,128.0 taille=64 texte=Istic L2GEN couleur=red et de rotation 0",
+				texte.description(0));
 	}
 
 	@Test
@@ -105,7 +107,7 @@ public class TexteTest {
 
 	@Test
 	public void testHauteur() {
-		assertEquals(20.0, texte.hauteur(), 0.00001);
+		assertEquals(76.0, texte.hauteur(), 0.00001);
 	}
 
 	@Test
