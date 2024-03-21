@@ -120,15 +120,14 @@ public class DiagColonnes implements IDataVisualiseur {
             f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, false);
             axeX += 120;
         }
-        System.out.println(donnees.hauteur());
+
 
         texteNom.deplacer(donnees.centre().x(),
-                0 + texteNom.hauteur()); // TODO changer le 0
+                donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
 
         // Groupe pour les légendes
-        System.out.println(donnees.hauteur());
         legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
         legendeGroupe.alignerElements(Alignement.BAS,
                 donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);

@@ -131,7 +131,7 @@ public class DiagBarres implements IDataVisualiseur {
             axeX += 120;
         }
         texteNom.deplacer(donnees.centre().x(),
-                donnees.centre().y() - donnees.hauteur() / 2 + texteNom.hauteur());
+                donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
 
