@@ -15,6 +15,7 @@ import fr.univrennes.istic.l2gen.geometrie.Texte;
  * Elle implémente l'interface IDataVisualiseur.
  */
 public class DiagCamemberts implements IDataVisualiseur {
+    private List<Rectangle> rectangles;
 
     /**
      * Le nom du diagramme en camembert.
@@ -33,7 +34,9 @@ public class DiagCamemberts implements IDataVisualiseur {
      */
     Groupe groupeCamembert;
 
-    List<String> legendes, couleurs;
+    List<String> legendes;
+
+    private String couleur;
 
     /**
      * Constructeur de DiagCamemberts
@@ -46,7 +49,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         this.entier = entier;
         groupeCamembert = new Groupe();
         legendes = new ArrayList<>();
-        couleurs = new ArrayList<>();
     }
 
 
@@ -282,30 +284,25 @@ public class DiagCamemberts implements IDataVisualiseur {
         legendes.clear();
 
         for (int i = 0; i < strings.length; i++) {
-            Rectangle rectangle = new Rectangle(256 + i * 250, 256 + 110 + 50, 50, 15);
+            rectangles.add(new Rectangle(256 + i * 250, 256 + 110 + 50, 50, 15));
 
-            // Obtenez la couleur du secteur correspondant du camembert
-            String couleur = null;
             for (IForme forme : groupeCamembert.getListFormes()) {
                 if (forme instanceof Camembert) {
                     Camembert camembert = (Camembert) forme;
                     if (i < camembert.getSecteurs().size()) {
                         couleur = camembert.getSecteurs().get(i).getCouleur();
-                        break;
+                        rectangles.get(i).colorier(couleur);
                     }
                 }
             }
 
-            // Coloriez le rectangle avec la couleur obtenue
-            if (couleur != null) {
-                rectangle.colorier(couleur);
+
+            System.out.println(couleur);
+            for(Rectangle rectangle : rectangles){
+                groupeCamembert.ajouter(rectangle);
             }
 
-            groupeCamembert.ajouter(rectangle);
-            groupeCamembert.ajouter(new Texte(rectangle.centre().x(), rectangle.centre().y(), 20, strings[i]));
 
-            // Ajouter la légende à la liste
-            legendes.add(strings[i]);
         }
 
         return this;
