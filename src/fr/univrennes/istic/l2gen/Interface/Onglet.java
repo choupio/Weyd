@@ -13,21 +13,21 @@ public class Onglet {
         
         String[] Granularite={"Région","Departement"};
         JComboBox<String> choixGranuralite = new JComboBox<>(Granularite);
-
         JButton button = new JButton("Rapport");
+        JLabel jLabel = new JLabel("Granularité");
+
         JPanel onglet1 = new JPanel();
         onglet1.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         onglets.addTab(titreOnglet1, onglet1);
 
         JPanel onglet2 = new JPanel();
         onglet2.setPreferredSize(new Dimension(WIDTH,HEIGTH));
+        onglet2.add(jLabel);
         onglet2.add(choixGranuralite);
         onglet2.add(button);
-        
-
         onglets.addTab(titreOnglet2, onglet2);
+
         panelOnglet.add(onglets);
-        
     }
 
     public JPanel GetPanel(){
