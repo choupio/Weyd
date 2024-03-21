@@ -46,17 +46,25 @@ public class Groupe implements IForme {
             return null;
         }
         double minY = listFormes.get(0).centre().y() - listFormes.get(0).hauteur() / 2;
+        double maxY = listFormes.get(0).centre().y() + listFormes.get(0).hauteur() / 2;
         double minX = listFormes.get(0).centre().x() - listFormes.get(0).largeur() / 2;
+        double maxX = listFormes.get(0).centre().x() + listFormes.get(0).largeur() / 2;
         for (IForme forme : listFormes) {
             if (forme.centre().x() - forme.largeur() / 2 < minX) {
-                minX = forme.centre().x() - forme.largeur() / 2;
+                minX = forme.centre().x() - forme.largeur();
+            }
+            if (forme.centre().y() + forme.hauteur() / 2 > maxY) {
+                maxY = forme.centre().y() + forme.hauteur() / 2;
             }
             if (forme.centre().y() - forme.hauteur() / 2 < minY) {
                 minY = forme.centre().y() - forme.hauteur() / 2;
             }
+            if (forme.centre().x() + forme.largeur() / 2 > maxX) {
+                maxX = forme.centre().x() + forme.largeur() / 2;
+            }
 
         }
-        return new Point(minX + this.largeur()/2, minY + this.hauteur()/2);
+        return new Point((minX + maxX)/2, (minY + maxY)/2);
     }
 
     /**

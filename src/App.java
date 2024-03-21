@@ -19,6 +19,7 @@ public class App {
         diag.ajouterDonnees("2020", 2100, 6200, 17800, 3600, 340);
         diag.legender("Afrique", "Amerique", "Asie", "Europe", "Oceanie");
         diag.colorier("Blue ", " Green ", " Red ", " Yellow ", " Maroon ");
+        diag.agencer();
         diag.createSvgFile();
 
         /*

@@ -7,6 +7,7 @@ import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
+import fr.univrennes.istic.l2gen.geometrie.Ligne;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
@@ -120,19 +121,24 @@ public class DiagColonnes implements IDataVisualiseur {
             f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, false);
             axeX += 120;
         }
-        System.out.println(donnees.hauteur());
+
 
         texteNom.deplacer(donnees.centre().x(),
-                0 + texteNom.hauteur()); // TODO changer le 0
+                donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
 
         // Groupe pour les légendes
-        System.out.println(donnees.hauteur());
         legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
         legendeGroupe.alignerElements(Alignement.BAS,
                 donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);
+        System.out.println(donnees.centre().y()-donnees.hauteur()/2);
+        // Echelle
+        diagGroupe.ajouter(new Ligne(donnees.centre().x()-donnees.largeur()/2, 
+                                    donnees.centre().y()+donnees.hauteur()/2, 
+                                    donnees.centre().x()+donnees.largeur()/2, 
+                                    donnees.centre().y()+donnees.hauteur()/2));
 
         return this;
     }
