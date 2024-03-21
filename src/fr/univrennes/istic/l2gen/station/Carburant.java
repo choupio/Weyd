@@ -9,4 +9,12 @@ public class Carburant {
         this.prix = prix;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public Double getPrix() {
+        return prix;
+    }
+
 }
