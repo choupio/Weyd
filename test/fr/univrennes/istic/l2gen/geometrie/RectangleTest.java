@@ -26,7 +26,7 @@ public class RectangleTest {
     @Test
     public void testColorier() {
         r.colorier("rouge");
-        assertEquals("<rect x=\"" + r.centre().x() + "\" y=\"" + r.centre().y() + "\" height=\"" + r.hauteur()
+        assertEquals("<rect x=\"" + r.getCoin().x() + "\" y=\"" + r.getCoin().y() + "\" height=\"" + r.hauteur()
                 + "\" width=\""
                 + r.largeur()
                 + "\"\n" + "\t" + "fill=\"" + "rouge" + "\"" + " stroke=\"black\"" + " transform=\"rotate(0)\"/>",
