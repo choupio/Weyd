@@ -1,18 +1,16 @@
 package fr.univrennes.istic.l2gen.Interface;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import java.awt.Dimension;
 
 public class Onglet {
     private JTabbedPane onglets;
+    private JPanel panelOnglet=new JPanel();
+
 
     public Onglet(String titreOnglet1,String titreOnglet2,int WIDTH,int HEIGTH){
         onglets = new JTabbedPane(SwingConstants.TOP);
-
+        
         String[] Granularite={"Région","Departement"};
         JComboBox<String> choixGranuralite = new JComboBox<>(Granularite);
 
@@ -23,16 +21,17 @@ public class Onglet {
 
         JPanel onglet2 = new JPanel();
         onglet2.setPreferredSize(new Dimension(WIDTH,HEIGTH));
-        onglets.addTab(titreOnglet2, onglet2);
-
         onglet2.add(choixGranuralite);
         onglet2.add(button);
         
-        onglets.setOpaque(true);
+
+        onglets.addTab(titreOnglet2, onglet2);
+        panelOnglet.add(onglets);
+        
     }
 
-    public JTabbedPane GetOnglet(){
-        return onglets;
+    public JPanel GetPanel(){
+        return panelOnglet;
     }
 
     
