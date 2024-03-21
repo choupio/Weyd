@@ -12,7 +12,7 @@ public class Rectangle implements IForme {
 
     private double largeur; // Largeur du rectangle
     private double hauteur; // Hauteur du rectangle
-    private Point centre; // Centre du rectangle
+    private Point coin; // coin supérieur gauche
     private String couleur = "white"; // Couleur du rectangle en "white"
 
     private int angle = 0; // angle du rectangle, à 0 de base
@@ -27,7 +27,7 @@ public class Rectangle implements IForme {
      * @return Le centre du rectangle.
      */
     public Point centre() {
-        return centre;
+        return new Point(coin.x() + largeur()/2, coin.y() + hauteur()/2); // TODO Le point qui est nommé cente n'est pas le cnetre du rectangle mais le coin supérieur gauche
     }
 
     /**
@@ -81,7 +81,7 @@ public class Rectangle implements IForme {
      * @param hauteur La hauteur du rectangle.
      */
     public Rectangle(double x, double y, double largeur, double hauteur) {
-        this.centre = new Point(x - (largeur / 2), y - (hauteur / 2));
+        this.coin = new Point(x - (largeur / 2), y - (hauteur / 2));
         this.hauteur = hauteur;
         this.largeur = largeur;
     }
@@ -94,7 +94,7 @@ public class Rectangle implements IForme {
      * @param hauteur La hauteur du rectangle.
      */
     public Rectangle(Point p, double largeur, double hauteur) {
-        this.centre = p;
+        this.coin = new Point(p.x()- (largeur / 2),p.y() - (hauteur / 2));
         this.hauteur = hauteur;
         this.largeur = largeur;
     }
@@ -115,7 +115,7 @@ public class Rectangle implements IForme {
             for (int i = 0; i < indentation; i++) {
                 indent.append(" ");
             }
-            return indent + "Rectangle" + indent + "Centre=" + centre.x() + "," + centre.y() + " L=" + largeur() + " H="
+            return indent + "Rectangle" + indent + "Centre=" + (coin.x() + largeur/2) + "," + (coin.y() + hauteur/2) + " L=" + largeur() + " H="
                     + hauteur() + " de couleur " + couleur + " angle=" + angle;
         }
 
@@ -136,7 +136,7 @@ public class Rectangle implements IForme {
         } else if (dy < 0 && (this.centre().y() + dy) < 0) {
             throw new IllegalStateException("Le point y du rectangle ne peut pas être négatif.");
         } else {
-            this.centre.plus(dx, dy);
+            this.coin.plus(dx, dy);
             return this;
         }
     }
@@ -185,7 +185,7 @@ public class Rectangle implements IForme {
      * @return Une chaîne de caractères représentant le rectangle en format SVG.
      */
     public String enSVG() {
-        return "<rect x=\"" + centre().x() + "\" y=\"" + centre().y() + "\" height=\"" + hauteur() + "\" width=\""
+        return "<rect x=\"" + coin.x() + "\" y=\"" + coin.y() + "\" height=\"" + hauteur() + "\" width=\""
                 + largeur()
                 + "\"\n" + "\t" + "fill=\"" + couleur + "\"" + " stroke=\"black\" transform=\"rotate(" + angle
                 + ")\"/>";
@@ -253,25 +253,25 @@ public class Rectangle implements IForme {
                 if ((cible) < 0) {
                     throw new IllegalArgumentException("Y ne peut pas être négatif.");
                 }
-                centre = new Point(centre.x(), cible + hauteur);
+                coin = new Point(coin.x(), cible);
                 break;
             case BAS:
                 if ((cible - hauteur) < 0) {
                     throw new IllegalArgumentException("Y ne peut pas être négatif.");
                 }
-                centre = new Point(centre.x(), cible - hauteur);
+                coin = new Point(coin.x(), cible - hauteur);
                 break;
             case DROITE:
                 if ((cible - largeur) < 0) {
                     throw new IllegalArgumentException("X ne peut pas être négatif.");
                 }
-                centre = new Point(cible - largeur / 2, centre.y());
+                coin = new Point(cible - largeur , coin.y());
                 break;
             case GAUCHE:
                 if ((cible) < 0) {
                     throw new IllegalArgumentException("X ne peut pas être négatif.");
                 }
-                centre = new Point(cible + largeur / 2, centre.y());
+                coin = new Point(cible , coin.y());
                 break;
         }
         return this;
