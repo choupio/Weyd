@@ -33,7 +33,9 @@ public class DiagCamemberts implements IDataVisualiseur {
      */
     Groupe groupeCamembert;
 
-    List<String> legendes, couleurs;
+    List<String> legendes;
+
+    private String couleur;
 
     /**
      * Constructeur de DiagCamemberts
@@ -46,7 +48,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         this.entier = entier;
         groupeCamembert = new Groupe();
         legendes = new ArrayList<>();
-        couleurs = new ArrayList<>();
     }
 
 
@@ -284,27 +285,27 @@ public class DiagCamemberts implements IDataVisualiseur {
         for (int i = 0; i < strings.length; i++) {
             Rectangle rectangle = new Rectangle(256 + i * 250, 256 + 110 + 50, 50, 15);
 
-            // Obtenez la couleur du secteur correspondant du camembert
-            String couleur = null;
             for (IForme forme : groupeCamembert.getListFormes()) {
                 if (forme instanceof Camembert) {
                     Camembert camembert = (Camembert) forme;
                     if (i < camembert.getSecteurs().size()) {
                         couleur = camembert.getSecteurs().get(i).getCouleur();
+                        rectangle.colorier(couleur);
                         break;
                     }
                 }
             }
 
-            // Coloriez le rectangle avec la couleur obtenue
             if (couleur != null) {
                 rectangle.colorier(couleur);
             }
+            System.out.println(couleur);
 
             groupeCamembert.ajouter(rectangle);
-            groupeCamembert.ajouter(new Texte(rectangle.centre().x(), rectangle.centre().y(), 20, strings[i]));
 
-            // Ajouter la légende à la liste
+            Texte texte = new Texte(rectangle.centre().x(), rectangle.centre().y(), 15, strings[i]);
+            texte.deplacer(texte.largeur() + 15 , texte.hauteur()/3 ); 
+            groupeCamembert.ajouter(texte);
             legendes.add(strings[i]);
         }
 
