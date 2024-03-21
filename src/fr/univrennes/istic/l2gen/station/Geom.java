@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen;
+package fr.univrennes.istic.l2gen.station;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
