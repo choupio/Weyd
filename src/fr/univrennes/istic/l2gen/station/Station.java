@@ -24,4 +24,7 @@ public class Station {
         carburants.add(new Carburant(nom, prix));
     }
 
+    public List<Carburant> getCarburants() {
+        return carburants;
+    }
 }
