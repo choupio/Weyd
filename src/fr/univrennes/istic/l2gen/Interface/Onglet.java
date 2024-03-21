@@ -28,6 +28,7 @@ public class Onglet {
         onglet2.setPreferredSize(new Dimension(WIDTH,HEIGTH));
         onglet2.add(choixGranuralite);
         onglet2.add(button);
+        
         onglets.addTab(titreOnglet2, onglet2);
         onglets.setOpaque(true);
     }
