@@ -18,7 +18,7 @@ public class Accueil {
         Rectangle tailleUtilisable = tailleEcran.getMaximumWindowBounds();
         fenetre.getFenetre().setSize((int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
         JPanel panelOnglet=new JPanel();
-        Onglet onglets=new Onglet("Acceuil", "Stat");
+        Onglet onglets=new Onglet("Acceuil", "Stat",(int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
         panelOnglet.add(onglets.GetOnglet());
         fenetre.getFenetre().add(panelOnglet);
 
