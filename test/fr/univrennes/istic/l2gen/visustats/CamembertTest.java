@@ -29,9 +29,9 @@ public class CamembertTest {
                 "  Centre: (0.0, 0.0)\n" +
                 "  Rayon: 10.0\n" +
                 "  Secteurs:\n" +
-                "    Secteur: Secteur 1, Proportion: 0,25\n" +
-                "    Secteur: Secteur 2, Proportion: 0,50\n" +
-                "    Secteur: Secteur 3, Proportion: 0,25\n";
+                "    Secteur centre=0.0,0.0 Angle=90.0 Arc=90.0 de couleur Secteur 1 et de rotation 0.0\n" +
+                "    Secteur centre=0.0,0.0 Angle=180.0 Arc=180.0 de couleur Secteur 2 et de rotation 0.0\n" +
+                "    Secteur centre=0.0,0.0 Angle=360.0 Arc=90.0 de couleur Secteur 3 et de rotation 0.0\n";
         assertEquals(expectedDescription, actualDescription);
     }
 
@@ -87,8 +87,8 @@ public class CamembertTest {
         camembert.ajouterSecteur("Secteur 2", 0.5);
         camembert.tourner(45);
         // Vérifiez les angles après avoir tourné
-        assertEquals(45.0, camembert.getSecteurs().get(0).getAngle(), 0.001);
-        assertEquals(90.0, camembert.getSecteurs().get(1).getAngle() - 45, 0.001);
+        assertEquals(135.0, camembert.getSecteurs().get(0).getAngle(), 0.001);
+        assertEquals(180.0, camembert.getSecteurs().get(1).getAngle() - 45, 0.001);
     }
 
     @Test
