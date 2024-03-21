@@ -1,5 +1,6 @@
 package fr.univrennes.istic.l2gen.station;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Station {
@@ -8,7 +9,7 @@ public class Station {
     private List<Carburant> carburants;
 
     public Station(List<String> services_service, String nom, String nom_dep, String nom_ville, String adresse,
-            String nom_reg, String code_dep, String code_reg, List<Carburant> carburants) {
+            String nom_reg, String code_dep, String code_reg) {
         this.services_service = services_service;
         this.nom = nom;
         this.nom_dep = nom_dep;
@@ -17,7 +18,11 @@ public class Station {
         this.nom_reg = nom_reg;
         this.code_dep = code_dep;
         this.code_reg = code_reg;
-        this.carburants = carburants;
+        this.carburants = new ArrayList<>();
+    }
+
+    public void ajoutCarburant(String nom, Double prix) {
+        carburants.add(new Carburant(nom, prix));
     }
 
 }
