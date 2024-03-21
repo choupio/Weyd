@@ -20,6 +20,7 @@ public class Accueil {
         JPanel panelOnglet=new JPanel();
         Onglet onglets=new Onglet("Acceuil", "Stat");
         panelOnglet.add(onglets.GetOnglet());
+        fenetre.getFenetre().add(panelOnglet);
 
     }
 }
