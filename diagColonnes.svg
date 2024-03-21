@@ -10,11 +10,11 @@
 <rect x="100.0" y="223.0" height="3.0" width="10.0"
 	fill=" Maroon " stroke="black" transform="rotate(0)"/>
 
-<rect x="140.0" y="207.0" height="19.0" width="10.0"
+<rect x="140.0" y="126.0" height="100.0" width="10.0"
 	fill="Blue " stroke="black" transform="rotate(0)"/>
-<rect x="160.0" y="160.0" height="66.0" width="10.0"
+<rect x="160.0" y="126.0" height="100.0" width="10.0"
 	fill=" Green " stroke="black" transform="rotate(0)"/>
-<rect x="180.0" y="51.0" height="175.0" width="10.0"
+<rect x="180.0" y="126.0" height="100.0" width="10.0"
 	fill=" Red " stroke="black" transform="rotate(0)"/>
 <rect x="200.0" y="188.0" height="38.0" width="10.0"
 	fill=" Yellow " stroke="black" transform="rotate(0)"/>
