@@ -7,11 +7,11 @@ import org.junit.Test;
 
 public class SecteurTest {
     Secteur s;
-    @Before
-    public void setUp(){
-        s = new Secteur(256 , 256 , 128 , 0 , 60);
-    }
 
+    @Before
+    public void setUp() {
+        s = new Secteur(256, 256, 128, 0, 60);
+    }
 
     @Test
     public void testCentre() {
@@ -25,14 +25,12 @@ public class SecteurTest {
         assertEquals("red", s.getCouleur());
     }
 
-    
     @Test
     public void testDeplacer() {
         IForme secteurDeplace = s.deplacer(5, 10);
         assertEquals(261, secteurDeplace.centre().x(), 0.001);
         assertEquals(266, secteurDeplace.centre().y(), 0.001);
     }
-    
 
     @Test
     public void testDescription() {
@@ -46,7 +44,7 @@ public class SecteurTest {
         assertEquals(s.getPoint().x(), ((Secteur) secteurDuplique).getPoint().x(), 0.001);
         assertEquals(s.getPoint().y(), ((Secteur) secteurDuplique).getPoint().y(), 0.001);
         assertEquals(s.getRayon(), ((Secteur) secteurDuplique).getRayon(), 0.001);
-        assertEquals(0.0, ((Secteur) secteurDuplique).getAngle(), 0.001);
+        assertEquals(90.0, ((Secteur) secteurDuplique).getAngle(), 0.001);
         assertEquals(s.getArc(), ((Secteur) secteurDuplique).getArc(), 0.001);
     }
 
@@ -58,7 +56,7 @@ public class SecteurTest {
     @Test
     public void testEnSVG() {
         String svgAttendu = "<path d=\"M 384.0 256.0 A 128.0 128.0 0 0 0 320.0 145.14874831559186 L 256.0 256.0 Z\"\n" +
-        "\t" + "fill=\"white\"" + " stroke=\"black\" transform=\"rotate(0.0)\"/>";
+                "\t" + "fill=\"white\"" + " stroke=\"black\" transform=\"rotate(0.0)\"/>";
         assertEquals(svgAttendu, s.enSVG());
     }
 
@@ -98,14 +96,14 @@ public class SecteurTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testRedimmensionerNeg(){
-        s.redimmensioner(-2,-3);
+    public void testRedimmensionerNeg() {
+        s.redimmensioner(-2, -3);
     }
 
-    @Test 
-    public void testRedimmensioner2(){
+    @Test
+    public void testRedimmensioner2() {
         Secteur s2 = new Secteur(s.centre(), 128, 0, 60);
-        assertEquals(false,s2.equals(s.redimmensioner(1, 8)));
+        assertEquals(false, s2.equals(s.redimmensioner(1, 8)));
     }
 
     @Test
@@ -146,7 +144,7 @@ public class SecteurTest {
         IForme secteurAligne = s.aligner(Alignement.BAS, 17.2);
         assertEquals(256, secteurAligne.centre().x(), 0.001);
         assertEquals(-110.8, secteurAligne.centre().y(), 0.001);
-    }   
+    }
 
     @Test
     public void testaligner2() {
