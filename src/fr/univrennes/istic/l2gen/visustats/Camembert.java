@@ -23,6 +23,10 @@ public class Camembert implements IForme {
     private double cmptAngle = 0;
     private String couleur = "white";
 
+    public double getRayon() {
+        return rayon;
+    }
+
     /**
      * Constructeur de la classe Camembert
      * 
@@ -40,7 +44,6 @@ public class Camembert implements IForme {
         this.secteurs = new ArrayList<>();
     }
 
-
     /**
      * Constructeur de la classe Camembert
      * 
@@ -52,7 +55,6 @@ public class Camembert implements IForme {
         this(new Point(x, y), rayon);
     }
 
-
     /**
      * Getteur de la liste des secteurs du Camembert
      * 
@@ -62,7 +64,6 @@ public class Camembert implements IForme {
         return secteurs;
     }
 
-
     /**
      * Setteur de la liste des secteurs du Camembert
      * 
@@ -71,7 +72,6 @@ public class Camembert implements IForme {
     public void setSecteurs(List<Secteur> secteurs) {
         this.secteurs = secteurs;
     }
-
 
     /**
      * 
@@ -87,7 +87,6 @@ public class Camembert implements IForme {
         return secteurs.get(numeroSecteur).couleur;
     }
 
-
     /**
      * Ajoute un secteur au Camembert
      * 
@@ -99,8 +98,9 @@ public class Camembert implements IForme {
      *         les opérations en chaîne.
      */
     public Camembert ajouterSecteur(String description, double proportion) {
-        if (proportion <= 0 || proportion >1) {
-            throw new IllegalArgumentException("La proportion doit être strictement supérieure à 0 et inférieur ou égale à 1.");
+        if (proportion <= 0 || proportion > 1) {
+            throw new IllegalArgumentException(
+                    "La proportion doit être strictement supérieure à 0 et inférieur ou égale à 1.");
         } else {
             double angleSecteur = 360 * proportion;
             Secteur secteur = new Secteur(centre, rayon, cmptAngle, angleSecteur);
@@ -111,13 +111,12 @@ public class Camembert implements IForme {
         return this;
     }
 
-
     /**
-        * Renvoie le centre du camembert.
-        *
-        * @return le centre du camembert
-        * @throws IllegalArgumentException si les coordonnées du centre sont négatives
-        */
+     * Renvoie le centre du camembert.
+     *
+     * @return le centre du camembert
+     * @throws IllegalArgumentException si les coordonnées du centre sont négatives
+     */
     @Override
     public Point centre() {
         if (centre.x() < 0 || centre.y() < 0) {
@@ -127,7 +126,6 @@ public class Camembert implements IForme {
         }
     }
 
-    
     /**
      * Renvoie la couleur du camembert.
      *
@@ -137,12 +135,12 @@ public class Camembert implements IForme {
         return couleur;
     }
 
-
     /**
      * Retourne une description détaillée de l'objet Camembert.
      *
      * @param indentation L'indentation à appliquer à la description.
-     * @return Une chaîne de caractères contenant la description de l'objet Camembert.
+     * @return Une chaîne de caractères contenant la description de l'objet
+     *         Camembert.
      */
     @Override
     public String description(int indentation) {
@@ -161,7 +159,6 @@ public class Camembert implements IForme {
         return sb.toString();
     }
 
-
     /**
      * Calcule et retourne la hauteur du camembert.
      * La hauteur est définie comme le double du rayon du camembert.
@@ -172,7 +169,6 @@ public class Camembert implements IForme {
     public double hauteur() {
         return rayon * 2;
     }
-    
 
     /**
      * Retourne la largeur du camembert.
@@ -183,7 +179,6 @@ public class Camembert implements IForme {
     public double largeur() {
         return rayon * 2;
     }
-
 
     /**
      * Déplace la forme selon les coordonnées spécifiées.
@@ -198,11 +193,11 @@ public class Camembert implements IForme {
         return this;
     }
 
-
     /**
      * Cette méthode permet de dupliquer un objet de type Camembert.
      * 
-     * @return Une nouvelle instance de Camembert avec les mêmes attributs que l'objet actuel.
+     * @return Une nouvelle instance de Camembert avec les mêmes attributs que
+     *         l'objet actuel.
      */
     @Override
     public IForme dupliquer() {
@@ -215,14 +210,15 @@ public class Camembert implements IForme {
         return camembertNouveau;
     }
 
-
     /**
-     * Redimensionne la forme en ajustant ses dimensions en fonction des paramètres spécifiés.
+     * Redimensionne la forme en ajustant ses dimensions en fonction des paramètres
+     * spécifiés.
      * 
      * @param h la hauteur de la forme
      * @param l la largeur de la forme
      * @return la forme redimensionnée
-     * @throws IllegalArgumentException si les dimensions spécifiées sont négatives ou nulles
+     * @throws IllegalArgumentException si les dimensions spécifiées sont négatives
+     *                                  ou nulles
      */
     @Override
     public IForme redimmensioner(double h, double l) {
@@ -236,7 +232,6 @@ public class Camembert implements IForme {
         }
         return this;
     }
-
 
     /**
      * Colorie chaque secteur du camembert avec une couleur différente.
@@ -255,7 +250,6 @@ public class Camembert implements IForme {
         return this;
     }
 
-
     /**
      * Fait tourner le camembert en modifiant l'angle de chaque secteur.
      * 
@@ -269,7 +263,6 @@ public class Camembert implements IForme {
         }
         return this;
     }
-
 
     /**
      * Aligne la forme selon l'alignement spécifié par rapport à une cible donnée.
@@ -297,11 +290,11 @@ public class Camembert implements IForme {
         return this;
     }
 
-
     /**
      * Crée un fichier SVG contenant un camembert.
      * Le contenu du camembert est défini par la méthode enSVG().
-     * Le fichier SVG est créé avec succès s'il n'y a pas d'erreur lors de l'écriture.
+     * Le fichier SVG est créé avec succès s'il n'y a pas d'erreur lors de
+     * l'écriture.
      * En cas d'erreur, un message d'erreur est affiché.
      */
     public void createSvgFile() {
@@ -317,11 +310,11 @@ public class Camembert implements IForme {
         }
     }
 
-
     /**
      * Retourne une représentation SVG de l'objet Camembert.
      *
-     * @return une chaîne de caractères représentant l'objet Camembert au format SVG.
+     * @return une chaîne de caractères représentant l'objet Camembert au format
+     *         SVG.
      */
     @Override
     public String enSVG() {
@@ -332,7 +325,6 @@ public class Camembert implements IForme {
         s += "</g>";
         return s;
     }
-
 
     /**
      * Renvoie le nombre de secteurs dans le camembert.

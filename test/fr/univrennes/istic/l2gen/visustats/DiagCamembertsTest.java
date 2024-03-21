@@ -1,5 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie.visustats;
-
+package fr.univrennes.istic.l2gen.visustats;
 
 import org.junit.Test;
 
@@ -30,7 +29,11 @@ public class DiagCamembertsTest {
         camembert.ajouterSecteur("blue", 0.3);
         diag.groupeCamembert.ajouter(camembert);
 
-        String descriptionAttendue = "Groupe :\nCamembert:\n  Centre: (0.0, 0.0)\n  Rayon: 10.0\n  Secteurs:\n    Secteur: Secteur 1, Proportion: 0,50\n    Secteur: Secteur 2, Proportion: 0,30\n"; // La description du camembert ajouté
+        String descriptionAttendue = "Groupe :\nCamembert:\n  Centre: (0.0, 0.0)\n  Rayon: 10.0\n  Secteurs:\n    Secteur: Secteur 1, Proportion: 0,50\n    Secteur: Secteur 2, Proportion: 0,30\n"; // La
+                                                                                                                                                                                                     // description
+                                                                                                                                                                                                     // du
+                                                                                                                                                                                                     // camembert
+                                                                                                                                                                                                     // ajouté
         assertEquals(descriptionAttendue, diag.description(0)); // L'indentation est 0 pour cet exemple
     }
 
@@ -45,7 +48,8 @@ public class DiagCamembertsTest {
         diag.groupeCamembert.ajouter(camembert);
 
         double hauteurAttendue = 20; // Le double du rayon du camembert ajouté
-        assertEquals(hauteurAttendue, diag.hauteur(), 0.001); // Utilisez une petite tolérance pour les calculs à virgule flottante
+        assertEquals(hauteurAttendue, diag.hauteur(), 0.001); // Utilisez une petite tolérance pour les calculs à
+                                                              // virgule flottante
     }
 
     // Ajoutez des tests similaires pour les autres méthodes de DiagCamemberts
@@ -61,11 +65,10 @@ public class DiagCamembertsTest {
         diag.groupeCamembert.ajouter(camembert);
 
         String svgAttendu = "<svg width=\"500\" height=\"500\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "  <circle cx=\"0.0\" cy=\"0.0\" r=\"10.0\" fill=\"lightblue\" />\n" +
-                            "</svg>"; // Le SVG du camembert ajouté
+                "  <circle cx=\"0.0\" cy=\"0.0\" r=\"10.0\" fill=\"lightblue\" />\n" +
+                "</svg>"; // Le SVG du camembert ajouté
         assertEquals(svgAttendu, diag.enSVG());
     }
-
 
     @Test
     public void testDeplacer() {
@@ -85,7 +88,7 @@ public class DiagCamembertsTest {
     public void testDupliquer() {
 
     }
-        
+
     @Test
     public void testColorier() {
         // Créez un DiagCamemberts avec un groupe et un camembert
@@ -131,6 +134,7 @@ public class DiagCamembertsTest {
         // Vérifiez que le rayon du camembert a été ajusté en conséquence
         assertEquals(10, camembert.getRayon(), 0.001);
     }
+
     @Test
     public void testCreateSvgFile() {
         // Créez un DiagCamemberts avec un groupe et un camembert
@@ -143,10 +147,11 @@ public class DiagCamembertsTest {
         // Appelez la méthode pour créer le fichier SVG
         diag.createSvgFile();
 
-        // Vérifiez si le fichier SVG a été créé avec succès (vous pouvez ajouter des vérifications supplémentaires si nécessaire)
-        // Par exemple, vous pouvez vérifier si le fichier existe sur le système de fichiers.
+        // Vérifiez si le fichier SVG a été créé avec succès (vous pouvez ajouter des
+        // vérifications supplémentaires si nécessaire)
+        // Par exemple, vous pouvez vérifier si le fichier existe sur le système de
+        // fichiers.
     }
-    
 
     @Test
     public void testSetOption() {
@@ -155,7 +160,7 @@ public class DiagCamembertsTest {
 
     @Test
     public void testTourner() {
-        
+
     }
 
     @Test
