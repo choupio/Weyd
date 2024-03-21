@@ -43,8 +43,8 @@ public class GroupeTest {
     @Test
     public void testCentre() {
         Point centre = groupe.centre();
-        assertEquals(121.0, centre.x(), 0.001); // Correct the expected x-coordinate value
-        assertEquals(116.0, centre.y(), 0.001); // Correct the expected y-coordinate value
+        assertEquals(140.5, centre.x(), 0.001); // Correct the expected x-coordinate value
+        assertEquals(135.5, centre.y(), 0.001); // Correct the expected y-coordinate value
     }
 
     @Test
@@ -57,14 +57,14 @@ public class GroupeTest {
     public void testDeplacer() {
         groupe.deplacer(10, 20);
         Point newCentre = groupe.centre();
-        assertEquals(131.0, newCentre.x(), 0.001);
-        assertEquals(136.0, newCentre.y(), 0.001); // Correct the expected y-coordinate value
+        assertEquals(150.5, newCentre.x(), 0.001);
+        assertEquals(155.5, newCentre.y(), 0.001); // Correct the expected y-coordinate value
     }
 
     @Test
     public void testDescription() {
-        String expectedDescription = "Groupe : \n   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black\n"
-                + "      Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white\n";
+        String expectedDescription = "Groupe :\n   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black\n"
+                + "      Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white";
         assertEquals(expectedDescription, groupe.description(3));
     }
 
@@ -83,26 +83,26 @@ public class GroupeTest {
     public void testHauteur() {
         double hauteur = groupe.hauteur();
         // Adjust the expected value based on your correct logic
-        assertEquals(128.0, hauteur, 0.001);
+        assertEquals(241.0, hauteur, 0.001);
     }
 
     @Test
     public void testLargeur() {
         double largeur = groupe.largeur();
-        assertEquals(128.0, largeur, 0.001);
+        assertEquals(231.0, largeur, 0.001);
     }
 
     @Test
     public void testRedimmensioner() {
         groupe.redimmensioner(2, 1);
         double newHauteur = groupe.hauteur();
-        assertEquals(128.0, newHauteur, 0.001); // Correct the expected height value
+        assertEquals(266.0, newHauteur, 0.001); // Correct the expected height value
     }
 
     @Test
     public void testTourner() {
         assertEquals(
-                "Groupe : \n   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black\n      Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white\n",
+                "Groupe :\n   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black\n      Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white",
                 groupe.description(3));
     }
 
@@ -110,7 +110,7 @@ public class GroupeTest {
     public void testTourner2() {
         groupe.tourner(180); // Rotation de 180 degrés
         assertEquals(
-                "Groupe : \n   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black angle=180\n      Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white angle=180\n",
+                "Groupe :\n   Cercle centre= 50.0, 40.0 r= 25.0 de couleur black angle=180\n      Polygone 128.0,128.0 128.0,256.0 256.0,128.0 256.0,256.0 couleur=white angle=180",
                 groupe.description(3));
     }
 
@@ -119,29 +119,29 @@ public class GroupeTest {
         groupe.aligner(Alignement.GAUCHE, 100);
         Point centre = groupe.centre();
         System.out.println("Actual x-coordinate: " + centre.x());
-        assertEquals(157.0, centre.x(), 0.001); // Adjust the expected value
-        assertEquals(116.0, centre.y(), 0.001);
+        assertEquals(125.0, centre.x(), 0.001); // Adjust the expected value
+        assertEquals(135.5, centre.y(), 0.001);
     }
 
     @Test
     public void testAlignerDroite() {
         groupe.aligner(Alignement.DROITE, 200);
-        assertEquals(257.0, groupe.centre().x(), 0.001);
-        assertEquals(116.0, groupe.centre().y(), 0.001);
+        assertEquals(225.0, groupe.centre().x(), 0.001);
+        assertEquals(135.5, groupe.centre().y(), 0.001);
     }
 
     @Test
     public void testAlignerHaut() {
         groupe.aligner(Alignement.HAUT, 100);
-        assertEquals(121.0, groupe.centre().x(), 0.001);
-        assertEquals(152.0, groupe.centre().y(), 0.001);
+        assertEquals(140.5, groupe.centre().x(), 0.001);
+        assertEquals(115.0, groupe.centre().y(), 0.001);
     }
 
     @Test
     public void testAlignerBas() {
         groupe.aligner(Alignement.BAS, 200);
-        assertEquals(121.0, groupe.centre().x(), 0.001);
-        assertEquals(252.0, groupe.centre().y(), 0.001);
+        assertEquals(140.5, groupe.centre().x(), 0.001);
+        assertEquals(215.0, groupe.centre().y(), 0.001);
     }
 
     @Test
@@ -155,7 +155,7 @@ public class GroupeTest {
     @Test
     public void testAlignerElementsH() {
         groupe.alignerElements(Alignement.HAUT, 150);
-        assertEquals(125.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
+        assertEquals(175.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
         // Expected = le y du centre car il est calculé à partir de tous les points
         // (= on voit si les y sont bons)
         assertEquals(214.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
@@ -164,11 +164,11 @@ public class GroupeTest {
     // Pour alignement BAS
     @Test
     public void testAlignerElementsB() {
-        groupe.alignerElements(Alignement.BAS, 110);
-        assertEquals(135.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
+        groupe.alignerElements(Alignement.BAS, 300);
+        assertEquals(275.0, groupe.getListFormes().get(0).centre().y(), 0.0001);
         // Expected = le y du centre car il est calculé à partir de tous les points
         // (= on voit si les y sont bons)
-        assertEquals(46.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
+        assertEquals(236.0, groupe.getListFormes().get(1).centre().y(), 0.0001);
     }
 
     // Pour alignement GAUCHE

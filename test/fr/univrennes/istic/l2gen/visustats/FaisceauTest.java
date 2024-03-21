@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie.visustats;
+package fr.univrennes.istic.l2gen.visustats;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,6 @@ public class FaisceauTest {
         assertEquals(380.0, faisceau.centre().y(), 0.0001);
     }
 
-
     @Test
     public void testColorier() {
         Faisceau faisceau = new Faisceau("ColorFaisceau", 10, 20, 30);
@@ -68,6 +67,5 @@ public class FaisceauTest {
         Faisceau copie = (Faisceau) original.dupliquer();
         assertEquals(original.getNom(), copie.getNom());
         assertEquals(original.getListFormes().size(), copie.getListFormes().size());
-        }
+    }
 }
-
