@@ -10,7 +10,8 @@
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
 <path d="M 262.49527107634117 156.21116568651158 A 100.0 100.0 0 0 0 256.0000000000002 156.0 L 256.0 256.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g><g>
+</g>
+<g>
 <path d="M 506.0 156.0 A 100.0 100.0 0 0 0 472.0243015231202 161.9486740497076 L 506.0 256.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
 <path d="M 472.0243015231202 161.9486740497076 A 100.0 100.0 0 0 0 409.08802972699795 280.6590757694762 L 506.0 256.0 Z"
@@ -21,7 +22,8 @@
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
 <path d="M 512.4952710763412 156.21116568651158 A 100.0 100.0 0 0 0 506.0000000000002 156.0 L 506.0 256.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g><g>
+</g>
+<g>
 <path d="M 756.0 156.0 A 100.0 100.0 0 0 0 722.0243015231201 161.9486740497076 L 756.0 256.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
 <path d="M 722.0243015231201 161.9486740497076 A 100.0 100.0 0 0 0 659.088029726998 280.6590757694762 L 756.0 256.0 Z"
@@ -32,40 +34,44 @@
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
 <path d="M 762.4952710763412 156.21116568651158 A 100.0 100.0 0 0 0 756.0000000000002 156.0 L 756.0 256.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g><g>
-<path d="M 256.0 156.0 A 100.0 100.0 0 0 0 217.40677724667287 163.74728644905844 L 256.0 256.0 Z"
+</g>
+<g>
+<path d="M 256.0 156.0 A 100.0 100.0 0 0 0 159.6271899647158 282.688602172145 L 256.0 256.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 217.40677724667287 163.74728644905844 A 100.0 100.0 0 0 0 158.028428523065 276.0392410619718 L 256.0 256.0 Z"
+<path d="M 159.6271899647158 282.688602172145 A 100.0 100.0 0 0 0 307.44111174486807 341.75437028193954 L 256.0 256.0 Z"
 	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 158.028428523065 276.0392410619718 A 100.0 100.0 0 1 0 331.86595244328635 190.85126816373923 L 256.0 256.0 Z"
+<path d="M 307.44111174486807 341.75437028193954 A 100.0 100.0 0 0 0 324.9149827022515 183.53811236830512 L 256.0 256.0 Z"
 	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 331.86595244328635 190.85126816373923 A 100.0 100.0 0 0 0 262.8762528341283 156.23669438635693 L 256.0 256.0 Z"
+<path d="M 324.9149827022514 183.538112368305 A 100.0 100.0 0 0 0 262.07142090203945 156.1844809249069 L 256.0 256.0 Z"
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 262.8762528341283 156.23669438635693 A 100.0 100.0 0 0 0 256.00000000000006 156.0 L 256.0 256.0 Z"
+<path d="M 262.07142090203945 156.1844809249069 A 100.0 100.0 0 0 0 256.00000000000006 156.0 L 256.0 256.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g><g>
-<path d="M 506.0 156.0 A 100.0 100.0 0 0 0 467.40677724667285 163.74728644905844 L 506.0 256.0 Z"
+</g>
+<g>
+<path d="M 506.0 156.0 A 100.0 100.0 0 0 0 409.6271899647158 282.688602172145 L 506.0 256.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 467.40677724667285 163.74728644905844 A 100.0 100.0 0 0 0 408.02842852306503 276.0392410619718 L 506.0 256.0 Z"
+<path d="M 409.6271899647158 282.688602172145 A 100.0 100.0 0 0 0 557.4411117448681 341.75437028193954 L 506.0 256.0 Z"
 	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 408.02842852306503 276.0392410619718 A 100.0 100.0 0 1 0 581.8659524432863 190.85126816373923 L 506.0 256.0 Z"
+<path d="M 557.4411117448681 341.75437028193954 A 100.0 100.0 0 0 0 574.9149827022516 183.53811236830512 L 506.0 256.0 Z"
 	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 581.8659524432863 190.85126816373923 A 100.0 100.0 0 0 0 512.8762528341283 156.23669438635693 L 506.0 256.0 Z"
+<path d="M 574.9149827022513 183.538112368305 A 100.0 100.0 0 0 0 512.0714209020394 156.1844809249069 L 506.0 256.0 Z"
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 512.8762528341283 156.23669438635693 A 100.0 100.0 0 0 0 506.00000000000006 156.0 L 506.0 256.0 Z"
+<path d="M 512.0714209020394 156.1844809249069 A 100.0 100.0 0 0 0 506.00000000000006 156.0 L 506.0 256.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g><g>
-<path d="M 756.0 156.0 A 100.0 100.0 0 0 0 717.4067772466728 163.74728644905844 L 756.0 256.0 Z"
+</g>
+<g>
+<path d="M 756.0 156.0 A 100.0 100.0 0 0 0 659.6271899647159 282.688602172145 L 756.0 256.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 717.4067772466728 163.74728644905844 A 100.0 100.0 0 0 0 658.028428523065 276.0392410619718 L 756.0 256.0 Z"
+<path d="M 659.6271899647159 282.688602172145 A 100.0 100.0 0 0 0 807.4411117448681 341.75437028193954 L 756.0 256.0 Z"
 	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 658.028428523065 276.0392410619718 A 100.0 100.0 0 1 0 831.8659524432863 190.85126816373923 L 756.0 256.0 Z"
+<path d="M 807.4411117448681 341.75437028193954 A 100.0 100.0 0 0 0 824.9149827022516 183.53811236830512 L 756.0 256.0 Z"
 	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 831.8659524432863 190.85126816373923 A 100.0 100.0 0 0 0 762.8762528341283 156.23669438635693 L 756.0 256.0 Z"
+<path d="M 824.9149827022513 183.538112368305 A 100.0 100.0 0 0 0 762.0714209020394 156.1844809249069 L 756.0 256.0 Z"
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 762.8762528341283 156.23669438635693 A 100.0 100.0 0 0 0 756.0 156.0 L 756.0 256.0 Z"
+<path d="M 762.0714209020394 156.1844809249069 A 100.0 100.0 0 0 0 756.0 156.0 L 756.0 256.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g><g>
+</g>
+<g>
 <path d="M 256.0 156.0 A 100.0 100.0 0 0 0 213.47506931709432 165.4923745178669 L 256.0 256.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
 <path d="M 213.47506931709432 165.4923745178669 A 100.0 100.0 0 0 0 157.3620583253924 272.44860061515004 L 256.0 256.0 Z"
@@ -76,7 +82,8 @@
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
 <path d="M 263.10546879667066 156.25275786679845 A 100.0 100.0 0 0 0 256.00000000000006 156.0 L 256.0 256.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g><g>
+</g>
+<g>
 <path d="M 506.0 156.0 A 100.0 100.0 0 0 0 463.4750693170943 165.4923745178669 L 506.0 256.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
 <path d="M 463.4750693170943 165.4923745178669 A 100.0 100.0 0 0 0 407.3620583253924 272.44860061515004 L 506.0 256.0 Z"
@@ -87,7 +94,8 @@
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
 <path d="M 513.1054687966707 156.25275786679845 A 100.0 100.0 0 0 0 506.00000000000006 156.0 L 506.0 256.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g><g>
+</g>
+<g>
 <path d="M 756.0 156.0 A 100.0 100.0 0 0 0 713.4750693170944 165.4923745178669 L 756.0 256.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
 <path d="M 713.4750693170944 165.4923745178669 A 100.0 100.0 0 0 0 657.3620583253925 272.44860061515004 L 756.0 256.0 Z"
@@ -98,9 +106,35 @@
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
 <path d="M 763.1054687966707 156.25275786679845 A 100.0 100.0 0 0 0 756.0 156.0 L 756.0 256.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g><rect x="231.0" y="408.5" height="15.0" width="50.0"
-	fill="Blue " stroke="black" transform="rotate(0)"/><text x="231.0" y="408.5" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Afrique</text><rect x="481.0" y="408.5" height="15.0" width="50.0"
-	fill=" Green " stroke="black" transform="rotate(0)"/><text x="481.0" y="408.5" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Amerique</text><rect x="731.0" y="408.5" height="15.0" width="50.0"
-	fill=" Red " stroke="black" transform="rotate(0)"/><text x="731.0" y="408.5" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Asie</text><rect x="981.0" y="408.5" height="15.0" width="50.0"
-	fill=" Yellow " stroke="black" transform="rotate(0)"/><text x="981.0" y="408.5" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Europe</text><rect x="1231.0" y="408.5" height="15.0" width="50.0"
-	fill=" Maroon " stroke="black" transform="rotate(0)"/><text x="1231.0" y="408.5" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Oceanie</text></svg>
+</g>
+<rect x="231.0" y="408.5" height="15.0" width="50.0"
+	fill="20200" stroke="black" transform="rotate(0)"/>
+<rect x="231.0" y="408.5" height="15.0" width="50.0"
+	fill="20200" stroke="black" transform="rotate(0)"/>
+<rect x="481.0" y="408.5" height="15.0" width="50.0"
+	fill="20201" stroke="black" transform="rotate(0)"/>
+<rect x="231.0" y="408.5" height="15.0" width="50.0"
+	fill="20200" stroke="black" transform="rotate(0)"/>
+<rect x="481.0" y="408.5" height="15.0" width="50.0"
+	fill="20201" stroke="black" transform="rotate(0)"/>
+<rect x="731.0" y="408.5" height="15.0" width="50.0"
+	fill="20202" stroke="black" transform="rotate(0)"/>
+<rect x="231.0" y="408.5" height="15.0" width="50.0"
+	fill="20200" stroke="black" transform="rotate(0)"/>
+<rect x="481.0" y="408.5" height="15.0" width="50.0"
+	fill="20201" stroke="black" transform="rotate(0)"/>
+<rect x="731.0" y="408.5" height="15.0" width="50.0"
+	fill="20202" stroke="black" transform="rotate(0)"/>
+<rect x="981.0" y="408.5" height="15.0" width="50.0"
+	fill="20203" stroke="black" transform="rotate(0)"/>
+<rect x="231.0" y="408.5" height="15.0" width="50.0"
+	fill="20200" stroke="black" transform="rotate(0)"/>
+<rect x="481.0" y="408.5" height="15.0" width="50.0"
+	fill="20201" stroke="black" transform="rotate(0)"/>
+<rect x="731.0" y="408.5" height="15.0" width="50.0"
+	fill="20202" stroke="black" transform="rotate(0)"/>
+<rect x="981.0" y="408.5" height="15.0" width="50.0"
+	fill="20203" stroke="black" transform="rotate(0)"/>
+<rect x="1231.0" y="408.5" height="15.0" width="50.0"
+	fill="20204" stroke="black" transform="rotate(0)"/>
+</svg>
