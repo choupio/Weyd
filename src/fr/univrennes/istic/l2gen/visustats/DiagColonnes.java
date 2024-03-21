@@ -136,9 +136,9 @@ public class DiagColonnes implements IDataVisualiseur {
         System.out.println(donnees.centre().y()-donnees.hauteur()/2);
         // Echelle
         diagGroupe.ajouter(new Ligne(donnees.centre().x()-donnees.largeur()/2, 
-                                    donnees.centre().y()-donnees.hauteur()/2, 
+                                    donnees.centre().y()+donnees.hauteur()/2, 
                                     donnees.centre().x()+donnees.largeur()/2, 
-                                    donnees.centre().y()-donnees.hauteur()/2));
+                                    donnees.centre().y()+donnees.hauteur()/2));
 
         return this;
     }
