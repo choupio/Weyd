@@ -15,6 +15,7 @@ import fr.univrennes.istic.l2gen.geometrie.Texte;
  * Elle implémente l'interface IDataVisualiseur.
  */
 public class DiagCamemberts implements IDataVisualiseur {
+    private List<Rectangle> rectangles;
 
     /**
      * Le nom du diagramme en camembert.
@@ -283,30 +284,25 @@ public class DiagCamemberts implements IDataVisualiseur {
         legendes.clear();
 
         for (int i = 0; i < strings.length; i++) {
-            Rectangle rectangle = new Rectangle(256 + i * 250, 256 + 110 + 50, 50, 15);
+            rectangles.add(new Rectangle(256 + i * 250, 256 + 110 + 50, 50, 15));
 
             for (IForme forme : groupeCamembert.getListFormes()) {
                 if (forme instanceof Camembert) {
                     Camembert camembert = (Camembert) forme;
                     if (i < camembert.getSecteurs().size()) {
                         couleur = camembert.getSecteurs().get(i).getCouleur();
-                        rectangle.colorier(couleur);
-                        break;
+                        rectangles.get(i).colorier(couleur);
                     }
                 }
             }
 
-            if (couleur != null) {
-                rectangle.colorier(couleur);
-            }
+
             System.out.println(couleur);
+            for(Rectangle rectangle : rectangles){
+                groupeCamembert.ajouter(rectangle);
+            }
 
-            groupeCamembert.ajouter(rectangle);
 
-            Texte texte = new Texte(rectangle.centre().x(), rectangle.centre().y(), 15, strings[i]);
-            texte.deplacer(texte.largeur() + 15 , texte.hauteur()/3 ); 
-            groupeCamembert.ajouter(texte);
-            legendes.add(strings[i]);
         }
 
         return this;
