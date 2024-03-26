@@ -40,8 +40,12 @@ public class Onglet {
             Region.setVisible(true);
         }else Region.setVisible(false);
 
+        
 
-
+        JPanel Departement=new JPanel();
+        if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals("Departement")){
+            Departement.setVisible(true);
+        }else Departement.setVisible(false);
 
         onglet2.setPreferredSize(new Dimension(WIDTH,HEIGTH));
         onglet2.add(onglet21,BorderLayout.WEST);
