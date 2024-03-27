@@ -2,6 +2,7 @@ package fr.univrennes.istic.l2gen.station;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class StationAPI {
     private HashMap<String, Station> stationsMap;
+    private List<StationParCarb> stationsParCarb;
 
     public StationAPI() {
         // Créez un ObjectMapper
@@ -22,12 +24,12 @@ public class StationAPI {
         try {
             // Utilisez la méthode readValue() de l'ObjectMapper pour mapper le fichier JSON
             // en un objet Java.
-            List<StationParCarb> stations = objectMapper.readValue(new File(cheminFichier),
+            stationsParCarb = objectMapper.readValue(new File(cheminFichier),
                     new TypeReference<List<StationParCarb>>() {
                     });
 
             stationsMap = new HashMap<>();
-            for (StationParCarb station : stations) {
+            for (StationParCarb station : stationsParCarb) {
                 if (!stationsMap.containsKey(station.getId())) {
                     stationsMap.put(station.getId(),
                             new Station(station.getServices_service(), station.getDep_name(), station.getVille(),
@@ -42,6 +44,33 @@ public class StationAPI {
             // Gérez les erreurs d'entrée/sortie ici
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Cette méthode permet de récupérer la liste des prix des carburants, mis en
+     * paramètre,
+     * sous la forme d'une Map ou les clés sont les noms des carburants et les
+     * valeurs sont les listes des prix associé.
+     * <p>
+     * exemple pour faire une moyenne :
+     * this.getPrixCarburants("Gazole").get("Gazole").stream().mapToDouble(Double::doubleValue)
+     * .average()
+     * <p>
+     * 
+     * @param carburants : liste des noms de carburants où l'on veut les prix
+     */
+    public HashMap<String, List<Double>> getPrixCarburants(List<String> carburants) {
+        HashMap<String, List<Double>> carburantsMap = new HashMap<>();
+        // ajout de tout les carburants demandé dans la Map
+        carburants.stream().forEach(x -> carburantsMap.put(x, new ArrayList<>()));
+
+        for (StationParCarb station : stationsParCarb) {
+            if (carburants.contains(station.getPrix_nom())) {
+                carburantsMap.get(station.getPrix_nom()).add(station.getPrix_valeur());
+            }
+        }
+
+        return carburantsMap;
     }
 
 }
