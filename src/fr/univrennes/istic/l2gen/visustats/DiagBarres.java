@@ -7,6 +7,7 @@ import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
+import fr.univrennes.istic.l2gen.geometrie.Ligne;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import fr.univrennes.istic.l2gen.geometrie.Texte;
@@ -121,7 +122,7 @@ public class DiagBarres implements IDataVisualiseur {
             }
 
         }
-        double axeX = 20;
+        double axeX = 50;
 
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
@@ -139,6 +140,31 @@ public class DiagBarres implements IDataVisualiseur {
                 donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);
 
+        // Echelle
+        // Barre horizontale
+        diagGroupe.ajouter(new Ligne(donnees.centre().x() - donnees.largeur() / 2,
+                donnees.centre().y() + donnees.hauteur() / 2,
+                donnees.centre().x() + donnees.largeur() / 2,
+                donnees.centre().y() + donnees.hauteur() / 2));
+        // Barre verticale
+        diagGroupe.ajouter(new Ligne(donnees.centre().x() - donnees.largeur() / 2,
+                donnees.centre().y() - donnees.hauteur() / 2,
+                donnees.centre().x() - donnees.largeur() / 2,
+                donnees.centre().y() + donnees.hauteur() / 2));
+        // Valeurs
+        int tailleTxtLegende = 10;
+        for (int i = 0; i <= 5; i++) {
+            diagGroupe.ajouter(new Ligne(donnees.centre().x() - donnees.largeur() / 2 - 5,
+                    donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5,
+                    donnees.centre().x() - donnees.largeur() / 2 + 5,
+                    donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5));
+            Texte valeurTxt = new Texte(0, 0, tailleTxtLegende,
+                    Integer.toString((int) Math.round(echelle_max * (5 - i) / 5)));
+            valeurTxt.deplacer(
+                    donnees.centre().x() - donnees.largeur() / 2 - 5 - valeurTxt.largeur() / 2,
+                    donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5);
+            diagGroupe.ajouter(valeurTxt);
+        }
 
         return this;
     }
