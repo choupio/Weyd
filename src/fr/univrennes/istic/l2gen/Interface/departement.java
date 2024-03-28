@@ -11,7 +11,7 @@ public class Departement {
 
     public Departement() {
         Border border2 = BorderFactory.createTitledBorder("Departement");
-        departements.setBorder(border2);
+        this.departements.setBorder(border2);
 
         // Noms des départements en France
         String[] tabDepart = { "Bouches-du-Rhône", "Nord", "Pas-de-Calais", "Gironde", "Rhône", "Haute-Garonne",
