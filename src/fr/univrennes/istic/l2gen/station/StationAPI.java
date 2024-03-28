@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -75,16 +77,16 @@ public class StationAPI {
     }
 
     /**
-     * Renvoie un ensemble de String, chaque élément est un nom de carburants
+     * Renvoie une liste de String, chaque élément est un nom de carburants
      * 
-     * @return HashSet de String
+     * @return liste de String
      */
-    public HashSet<String> getNomsCarburants() {
+    public List<String> getNomsCarburants() {
         HashSet<String> nomsCarburant = new HashSet<>();
         for (StationParCarb station : stationsParCarb) {
             nomsCarburant.add(station.getPrix_nom());
         }
-        return nomsCarburant;
+        return nomsCarburant.stream().collect(Collectors.toList());
     }
 
 }
