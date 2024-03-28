@@ -60,8 +60,8 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public IForme deplacer(double dx, double dy) {
-        diagGroupe.deplacer(dx, dy);
-        return diagGroupe;
+        centre = new Point(centre.x() + dx, centre.y() + dy);
+        return this;
     }
 
     @Override
