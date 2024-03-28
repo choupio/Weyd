@@ -7,6 +7,7 @@ import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
+import fr.univrennes.istic.l2gen.geometrie.Ligne;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
 import fr.univrennes.istic.l2gen.geometrie.Secteur;
@@ -135,7 +136,6 @@ public class DiagCamemberts implements IDataVisualiseur {
             axeX += 120;
         }
 
-
         texteNom.deplacer(donnees.centre().x(),
                 donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
         diagGroupe.ajouter(donnees);
@@ -146,12 +146,12 @@ public class DiagCamemberts implements IDataVisualiseur {
         legendeGroupe.alignerElements(Alignement.BAS,
                 donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);
-        System.out.println(donnees.centre().y()-donnees.hauteur()/2);
+        System.out.println(donnees.centre().y() - donnees.hauteur() / 2);
         // Echelle
-        diagGroupe.ajouter(new Ligne(donnees.centre().x()-donnees.largeur()/2, 
-                                    donnees.centre().y()+donnees.hauteur()/2, 
-                                    donnees.centre().x()+donnees.largeur()/2, 
-                                    donnees.centre().y()+donnees.hauteur()/2));
+        diagGroupe.ajouter(new Ligne(donnees.centre().x() - donnees.largeur() / 2,
+                donnees.centre().y() + donnees.hauteur() / 2,
+                donnees.centre().x() + donnees.largeur() / 2,
+                donnees.centre().y() + donnees.hauteur() / 2));
 
         return this;
     }
@@ -159,15 +159,15 @@ public class DiagCamemberts implements IDataVisualiseur {
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
         double somme = 0;
-        for(int i = 0;i<doubles.length;i++){
+        for (int i = 0; i < doubles.length; i++) {
             somme += doubles[i];
         }
         Camembert cam = new Camembert(centre(), rayon);
-        for(int i = 0;i<doubles.length;i++){
-            cam.ajouterSecteur("white", doubles[i]/somme);
-        }        
+        for (int i = 0; i < doubles.length; i++) {
+            cam.ajouterSecteur("white", doubles[i] / somme);
+        }
         donnees.ajouter(cam);
-        
+
         return this;
     }
 
