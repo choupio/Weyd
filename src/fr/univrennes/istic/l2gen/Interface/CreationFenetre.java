@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.Interface;
 
 import javax.swing.*;
 
-public class CreationFenetre extends JFrame {
+public class CreationFenetre {
     private JFrame fenetre;
 
     public CreationFenetre(String nomFenetre) {
@@ -10,6 +10,10 @@ public class CreationFenetre extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         this.fenetre = frame;
+    }
+
+    public JFrame getFenetre() {
+        return fenetre;
     }
 
     public void ajouterImage(String imagePath) {
