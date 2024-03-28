@@ -1,9 +1,6 @@
 package fr.univrennes.istic.l2gen.Interface;
 
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 public class Departement {
@@ -35,6 +32,7 @@ public class Departement {
         for (int i = 0; i < tabDepart.length; i += 1) {
             radioButtons[i] = new JRadioButton(tabDepart[i]);
             groupdept.add(radioButtons[i]);
+            this.departements.add(radioButtons[i]);
         }
     }
 

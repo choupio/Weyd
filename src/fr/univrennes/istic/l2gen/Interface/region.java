@@ -1,69 +1,32 @@
 package fr.univrennes.istic.l2gen.Interface;
 
-import java.awt.GridLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.*;
 import javax.swing.border.Border;
 
-public class region {
-    private JPanel Region = new JPanel();
+public class Region {
+    private JPanel region = new JPanel();
 
-    public region(){
+    public Region() {
         Border border = BorderFactory.createTitledBorder("région");
-        Region.setBorder(border);
+        this.region.setBorder(border);
+
+        String[] tabRegion = { "Auvergne-Rhône-Alpes", "Nouvelle-Aquitaine", "Occitanie", "Île-de-France", "Grand Est",
+                "Hauts-de-France", "Provence-Alpes-Côte d'Azur", "Bourgogne-Franche-Comté", "Normandie", "Bretagne",
+                "Pays de la Loire", "Centre-Val de Loire", "Corse" };
 
         ButtonGroup groupregion = new ButtonGroup();
-        JRadioButton radioregion1 = new JRadioButton("Auvergne-Rhône-Alpes");
-        JRadioButton radioregion2 = new JRadioButton("Nouvelle-Aquitaine");
-        JRadioButton radioregion3 = new JRadioButton("Occitanie");
-        JRadioButton radioregion4 = new JRadioButton("Île-de-France");
-        JRadioButton radioregion5 = new JRadioButton("Grand Est");
-        JRadioButton radioregion6 = new JRadioButton("Hauts-de-France");
-        JRadioButton radioregion7 = new JRadioButton("Provence-Alpes-Côte d'Azur");
-        JRadioButton radioregion8 = new JRadioButton("Bourgogne-Franche-Comté");
-        JRadioButton radioregion9 = new JRadioButton("Normandie");
-        JRadioButton radioregion10 = new JRadioButton("Bretagne");
-        JRadioButton radioregion11 = new JRadioButton("Pays de la Loire");
-        JRadioButton radioregion12 = new JRadioButton("Centre-Val de Loire");
-        JRadioButton radioregion13 = new JRadioButton("Corse");
+        JRadioButton[] radioButtons = new JRadioButton[tabRegion.length];
 
-        groupregion.add(radioregion1);
-        groupregion.add(radioregion2);
-        groupregion.add(radioregion3);
-        groupregion.add(radioregion4);
-        groupregion.add(radioregion5);
-        groupregion.add(radioregion6);
-        groupregion.add(radioregion7);
-        groupregion.add(radioregion8);
-        groupregion.add(radioregion9);
-        groupregion.add(radioregion10);
-        groupregion.add(radioregion11);
-        groupregion.add(radioregion12);
-        groupregion.add(radioregion13);
-
-
-        Region.add(radioregion1);
-        Region.add(radioregion2);
-        Region.add(radioregion3);
-        Region.add(radioregion4);
-        Region.add(radioregion5);
-        Region.add(radioregion6);
-        Region.add(radioregion7);
-        Region.add(radioregion8);
-        Region.add(radioregion9);
-        Region.add(radioregion10);
-        Region.add(radioregion11);
-        Region.add(radioregion12);
-        Region.add(radioregion13);
+        for (int i = 0; i < tabRegion.length; i += 1) {
+            radioButtons[i] = new JRadioButton(tabRegion[i]);
+            groupregion.add(radioButtons[i]);
+            this.region.add(radioButtons[i]);
+        }
 
     }
 
-    public JPanel GetRegion(){
-        return Region;
+    public JPanel GetRegion() {
+        return this.region;
     }
 
-    
 }
