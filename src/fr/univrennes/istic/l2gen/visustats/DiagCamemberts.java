@@ -119,19 +119,19 @@ public class DiagCamemberts implements IDataVisualiseur {
     public IDataVisualiseur agencer() {
 
         // Titre
-        texteNom = new Texte(0, 0, 20, nom);
+        texteNom = new Texte(0, 0, 12, nom);
         double axeY = donnees.getListFormes().get(0).centre().y() * 0.01;
         double axeX = donnees.getListFormes().get(0).centre().x() * 0.01;
-        texteNom.deplacer(centre.x(),
+        texteNom.deplacer(centre.x() * 1.55,
                 centre.y() - donnees.hauteur() / 2 - texteNom.hauteur());
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
-        legendeGroupe.empilerElements(Alignement.GAUCHE, centre.x() - legendeGroupe.largeur(), 10);
+        legendeGroupe.empilerElements(Alignement.GAUCHE, centre.x() * 1.5 - legendeGroupe.largeur(), 10);
         legendeGroupe.alignerElements(Alignement.BAS,
                 centre.y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2 + 40);
         diagGroupe.ajouter(legendeGroupe);
         System.out.println(centre.y() - donnees.hauteur() / 2);
-        legendes.empilerElements(Alignement.GAUCHE, centre.x() - legendes.largeur(), 250);
+        legendes.empilerElements(Alignement.GAUCHE, centre.x() + 30 - legendes.largeur(), 225);
         legendes.alignerElements(Alignement.BAS,
                 centre.y() + donnees.hauteur() / 2 + legendes.hauteur() * 2 + 10);
         diagGroupe.ajouter(legendes);
