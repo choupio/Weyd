@@ -16,6 +16,7 @@ public class DiagCamembertsTest {
     @Before
     public void setUp() {
         diag = new DiagCamemberts("Diagramme Test");
+        diag.ajouterDonnees(" 2010 ", 1600, 6800, 16000, 4300, 300);
     }
 
     @Test
@@ -43,7 +44,6 @@ public class DiagCamembertsTest {
 
     @Test
     public void testHauteur() {
-        diag.ajouterDonnees(" 2010 ", 1600, 6800, 16000, 4300, 300);
 
         double hauteurAttendue = 0; // Le double du rayon du camembert ajouté
         assertEquals(hauteurAttendue, diag.hauteur(), 0.001); // Utilisez une petite tolérance pour les calculs à
@@ -70,21 +70,24 @@ public class DiagCamembertsTest {
 
     @Test
     public void testDeplacer() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
-        // Créez un groupe avec un camembert
-        Groupe groupe = new Groupe();
-        Camembert camembert = new Camembert(new Point(0, 0), 10);
-        groupe.ajouter(camembert);
-        diag.groupeCamembert = groupe;
         // Déplacez le diag
         diag.deplacer(5, 5);
         // Vérifiez que le centre du camembert a été déplacé
-        assertEquals(new Point(5, 5), camembert.centre());
+        assertEquals(new Point(505, 505), diag.centre());
     }
 
     @Test
     public void testDupliquer() {
-
+        DiagCamemberts diag2 = (DiagCamemberts) diag.dupliquer();
+        assertEquals(diag.centre(), diag2.centre());
+        assertEquals(diag.hauteur(), diag2.hauteur(), 0.0001);
+        assertEquals(diag.largeur(), diag2.largeur(), 0.0001);
+        assertEquals(diag.nom, diag2.nom);
+        assertEquals(diag.couleurs, diag2.couleurs);
+        assertEquals(diag.legendes, diag2.legendes);
+        assertEquals(diag.legendeGroupe, diag2.legendeGroupe);
+        assertEquals(diag.donnees, diag2.donnees);
+        assertEquals(diag.diagGroupe, diag2.diagGroupe);
     }
 
     @Test
