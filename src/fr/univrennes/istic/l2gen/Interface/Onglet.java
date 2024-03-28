@@ -1,6 +1,6 @@
 package fr.univrennes.istic.l2gen.Interface;
 
-
+import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -32,14 +32,22 @@ public class Onglet {
         Carburant carb=new Carburant();
         JPanel carburant = carb.Getcarburant();
 
-        
-        if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals("Departement")){
-          region.setVisible(false);
-          dept.setVisible(true);
-        }else if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals("Region")){
-          dept.setVisible(false);
-          region.setVisible(true);
-        }
+        choixGranuralite.addItemListener(new ItemListener(){
+            public void itemStateChanged(ItemEvent e) {
+                String selectedChoice = (String) choixGranuralite.getSelectedItem();
+                    if (selectedChoice.equals("Département")) {
+                        dept.setVisible(false);
+                        region.setVisible(true);
+                    } else {
+                        dept.setVisible(true);
+                        region.setVisible(false);
+                    }
+            }
+        });
+        /*else{
+            dept.setVisible(false);
+            region.setVisible(false);
+        }*/
          
         
         onglet2.setPreferredSize(new Dimension(WIDTH, HEIGTH));
