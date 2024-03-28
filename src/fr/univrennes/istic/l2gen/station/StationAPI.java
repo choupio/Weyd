@@ -3,10 +3,10 @@ package fr.univrennes.istic.l2gen.station;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class StationAPI {
     private HashMap<String, Station> stationsMap;
     private List<StationParCarb> stationsParCarb;
+    private HashMap<String, List<Station>> stationsParReg;
+    private HashMap<String, List<Station>> stationsParDep;
 
     public StationAPI() {
         // Créez un ObjectMapper
@@ -31,6 +33,8 @@ public class StationAPI {
                     });
 
             stationsMap = new HashMap<>();
+            stationsParDep = new HashMap<>();
+            stationsParReg = new HashMap<>();
             for (StationParCarb station : stationsParCarb) {
                 // Change le String unicode en normal
                 station.setReg_name(decodeUnicode(station.getReg_name()));
@@ -42,10 +46,28 @@ public class StationAPI {
                                     station.getAdresse(),
                                     station.getReg_name(), station.getDep_code(), station.getReg_code()));
                 }
+                // Ajout des stations par région
+                if (station.getReg_name() != "") {
+                    if (!stationsParReg.containsKey(station.getReg_name())) {
+                        stationsParReg.put(station.getReg_name(), new ArrayList<>());
+                    }
+                    stationsParReg.get(station.getReg_name()).add(stationsMap.get(station.getId()));
+                }
 
-                stationsMap.get(station.getId()).ajoutCarburant(station.getPrix_nom(), station.getPrix_valeur());
+                // Ajout des stations par département
+                if (station.getDep_name() != "") {
+                    if (!stationsParDep.containsKey(station.getDep_name())) {
+                        stationsParDep.put(station.getDep_name(), new ArrayList<>());
+                    }
+                    stationsParDep.get(station.getDep_name()).add(stationsMap.get(station.getId()));
+                }
+
+                // Des carburants de la station
+                if (station.getPrix_nom() != "") {
+                    stationsMap.get(station.getId()).ajoutCarburant(station.getPrix_nom(), station.getPrix_valeur());
+                }
+
             }
-
         } catch (IOException e) {
             // Gérez les erreurs d'entrée/sortie ici
             e.printStackTrace();
@@ -137,13 +159,7 @@ public class StationAPI {
      * @return liste de String
      */
     public ArrayList<String> getNomsRegion() {
-        HashSet<String> nomsRegion = new HashSet<>();
-        for (StationParCarb station : stationsParCarb) {
-            nomsRegion.add(station.getReg_name());
-        }
-        nomsRegion.remove(null);
-        nomsRegion.remove("");
-        return new ArrayList<>(nomsRegion);
+        return new ArrayList<>(stationsParReg.keySet());
     }
 
     /**
@@ -152,13 +168,7 @@ public class StationAPI {
      * @return liste de String
      */
     public ArrayList<String> getNomsDepartement() {
-        HashSet<String> nomsDepartement = new HashSet<>();
-        for (StationParCarb station : stationsParCarb) {
-            nomsDepartement.add(station.getDep_name());
-        }
-        nomsDepartement.remove("");
-        nomsDepartement.remove(null);
-        return new ArrayList<>(nomsDepartement);
+        return new ArrayList<>(stationsParDep.keySet());
     }
 
 }
