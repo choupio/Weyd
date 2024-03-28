@@ -131,7 +131,8 @@ public class DiagCamemberts implements IDataVisualiseur {
                 centre.y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2 + 40);
         diagGroupe.ajouter(legendeGroupe);
         System.out.println(centre.y() - donnees.hauteur() / 2);
-        legendes.empilerElements(Alignement.GAUCHE, centre.x() + 30 - legendes.largeur(), 225);
+        legendes.empilerElements(Alignement.GAUCHE, centre.x() + 30 - legendes.largeur(), 225); // pour espacer les
+                                                                                                // années
         legendes.alignerElements(Alignement.BAS,
                 centre.y() + donnees.hauteur() / 2 + legendes.hauteur() * 2 + 10);
         diagGroupe.ajouter(legendes);
