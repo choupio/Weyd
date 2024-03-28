@@ -13,7 +13,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        DiagCamemberts diag = new DiagCamemberts("test",3);
+        DiagCamemberts diag = new DiagCamemberts("test");
         diag.ajouterDonnees("2010", 1600, 6800, 16000, 4300, 300);
         diag.ajouterDonnees("2015", 10000, 10000, 10000, 3800, 330);
         diag.ajouterDonnees("2020", 2100, 6200, 17800, 3600, 340);
