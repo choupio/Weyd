@@ -1,25 +1,24 @@
 package fr.univrennes.istic.l2gen.Interface;
 
-import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-public class Region {
-    private JPanel region = new JPanel();
+public class Carburant {
+    private JPanel carburant=new JPanel();
 
-    public Region() {
-        Border border = BorderFactory.createTitledBorder("région");
-        this.region.setBorder(border);
+    public Carburant(){
+        Border border = BorderFactory.createTitledBorder("Carburant");
+        this.carburant.setBorder(border);
 
-        ArrayList<String> tabRegion = Accueil.getRecup().getNomsRegion();
+        ArrayList<String> tabcarburant =Accueil.getRecup().getNomsCarburants();
 
-        JCheckBox[] Checkbox = new JCheckBox[tabRegion.size()];
+        JCheckBox[] Checkbox = new JCheckBox[tabcarburant.size()];
 
-        for (int i = 0; i < tabRegion.size(); i += 1) {
-            Checkbox[i] = new JCheckBox(tabRegion.get(i));
-            this.region.add(Checkbox[i]);
+         for (int i = 0; i < tabcarburant.size(); i += 1) {
+            Checkbox[i] = new JCheckBox(tabcarburant.get(i));
+            this.carburant.add(Checkbox[i]);
             int index = i;
             Checkbox[i].addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent e) {
@@ -31,11 +30,10 @@ public class Region {
                 }
             });
         }
-
     }
-
-    public JPanel GetRegion() {
-        return this.region;
+    public JPanel Getcarburant() {
+        return this.carburant;
     }
-
+    
+    
 }

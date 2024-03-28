@@ -24,14 +24,13 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        DiagCamemberts diag = new DiagCamemberts("test");
-        diag.ajouterDonnees("2010", 1600, 6800, 16000, 4300, 300);
-        diag.ajouterDonnees("2015", 10000, 10000, 10000, 3800, 330);
-        diag.ajouterDonnees("2020", 2100, 6200, 17800, 3600, 340);
-        
-        diag.legender("Afrique", "Amerique", "Asie", "Europe", "Oceanie");
-        diag.colorier("Blue ", " Green ", " Red ", " Yellow ", " Maroon ");
-        diag.agencer().createSvgFile();
+      DiagCamemberts visualiseur = new DiagCamemberts( " Emissions de CO2 ( en Mt ) " );
+      visualiseur . legender ( " Afrique " , " Amerique " , " Asie " , " Europe " , " Oceanie " );
+      visualiseur . ajouterDonnees ( " 2010 " , 1600 , 6800 , 16000 , 4300 , 300);
+      visualiseur . ajouterDonnees ( " 2015 " , 1900 , 6600 , 17500 , 3800 , 330);
+      visualiseur . ajouterDonnees ( " 2020 " , 2100 , 6200 , 17800 , 3600 , 340);
+      visualiseur . colorier ( " Blue " , " Green " , " Red " , " Yellow " , " Maroon " );
+      visualiseur . agencer (). createSvgFile();
 
         /*
          * Groupe tableau = new Groupe();
@@ -111,7 +110,7 @@ public class App {
 
         // Création d'un camembert
 
-        Camembert camembert = new Camembert(110, 110, 100);
+        /*Camembert camembert = new Camembert(110, 110, 100);
         camembert.ajouterSecteur("red", 0.15);
         camembert.ajouterSecteur("blue", 0.2);
         camembert.ajouterSecteur("green", 0.65);

@@ -1,5 +1,6 @@
 package fr.univrennes.istic.l2gen.Interface;
 
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -31,26 +32,27 @@ public class Onglet {
         Region Region = new Region();
         JPanel region = Region.GetRegion();
 
-        /*
-         * if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals(
-         * "Région")){
-         * Region.setVisible(true);
-         * }else Region.setVisible(false);
-         */
+        if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals(
+         "Région")){
+            region.setVisible(true);
+         }else region.setVisible(false);
+        
 
         Departement Departement = new Departement();
         JPanel dept = Departement.GetDept();
 
-        /*
-         * if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals(
-         * "Departement")){
-         * Departement.setVisible(true);
-         * }else Departement.setVisible(false);
-         */
-
+        
+          if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals(
+          "Departement")){
+            dept.setVisible(true);
+          }else dept.setVisible(false);
+         
+        
         onglet2.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         // onglet2.add(onglet21,BorderLayout.WEST);
         onglets.addTab(titreOnglet2, onglet2);
+
+        onglet2.add(dept);
 
         panelOnglet.add(onglets);
 
