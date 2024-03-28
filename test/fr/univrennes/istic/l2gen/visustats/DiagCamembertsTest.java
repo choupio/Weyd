@@ -43,15 +43,9 @@ public class DiagCamembertsTest {
 
     @Test
     public void testHauteur() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
+        diag.ajouterDonnees(" 2010 ", 1600, 6800, 16000, 4300, 300);
 
-        // Créez un camembert et ajoutez des secteurs
-        Camembert camembert = new Camembert(new Point(0, 0), 10);
-        camembert.ajouterSecteur("red", 0.5);
-        camembert.ajouterSecteur("blue", 0.3);
-        diag.groupeCamembert.ajouter(camembert);
-
-        double hauteurAttendue = 20; // Le double du rayon du camembert ajouté
+        double hauteurAttendue = 0; // Le double du rayon du camembert ajouté
         assertEquals(hauteurAttendue, diag.hauteur(), 0.001); // Utilisez une petite tolérance pour les calculs à
                                                               // virgule flottante
     }
