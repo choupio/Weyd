@@ -190,6 +190,9 @@ public class Camembert implements IForme {
     @Override
     public IForme deplacer(double dx, double dy) {
         this.centre.plus(dx, dy);
+        for(Secteur secteur : secteurs){
+            secteur.deplacer(dx, dy);
+        }
         return this;
     }
 
