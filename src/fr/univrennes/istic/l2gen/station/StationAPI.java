@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -63,7 +64,7 @@ public class StationAPI {
                 }
 
                 // Des carburants de la station
-                if (station.getPrix_nom() != "") {
+                if (station.getPrix_nom() != "" || station.getPrix_nom() != null) {
                     stationsMap.get(station.getId()).ajoutCarburant(station.getPrix_nom(), station.getPrix_valeur());
                 }
 
@@ -149,7 +150,6 @@ public class StationAPI {
             nomsCarburant.add(station.getPrix_nom());
         }
         nomsCarburant.remove(null);
-        System.out.println(nomsCarburant.toArray());
         return new ArrayList<>(nomsCarburant);
     }
 
@@ -169,6 +169,65 @@ public class StationAPI {
      */
     public ArrayList<String> getNomsDepartement() {
         return new ArrayList<>(stationsParDep.keySet());
+    }
+
+    /**
+     * 
+     * @param stationsParGranu soit stationParDep soit StatioParReg
+     * @param granuList        liste des départements ou régions
+     * @return soit stationParDep soit StatioParReg avec le filtre granuList
+     */
+    private HashMap<String, List<Station>> filtreGranu(HashMap<String, List<Station>> stationsParGranu,
+            List<String> granuList) {
+        HashMap<String, List<Station>> filtre = new HashMap<>();
+        for (String granu : granuList) {
+            filtre.put(granu, stationsParGranu.get(granu));
+        }
+        return filtre;
+    }
+
+    /**
+     * Filtre toute les stations qui ne propose pas un des carburant dans la listes
+     * entrée en paramètre
+     * 
+     * @param stationsParGranu soit stationParDep soit StatioParReg
+     * @param carburantList    liste des carburant
+     * @return
+     */
+    private HashMap<String, List<Station>> filtreCarb(HashMap<String, List<Station>> stationsParGranu,
+            List<String> carburantList) {
+        HashMap<String, List<Station>> filtre = new HashMap<>();
+        for (String granu : stationsParGranu.keySet()) {
+            List<Station> stationsFiltre = new ArrayList<>(stationsParGranu.get(granu)).stream().filter(x -> {
+                for (String carb : carburantList) {
+                    if (x.getCarburants() != null) {
+                        if (x.getCarburants().stream().map(y -> y.getNom()).collect(Collectors.toList())
+                                .contains(carb)) {
+                            return true;
+                        }
+                    }
+
+                }
+                return false;
+            }).collect(Collectors.toList());
+            filtre.put(granu, stationsFiltre);
+        }
+        return filtre;
+    }
+
+    /**
+     * filtre les station selon les départements et selon les carburants
+     * 
+     * @param departement
+     * @param carburants
+     * @return
+     */
+    public HashMap<String, List<Station>> filtre(List<String> departement, List<String> carburants) {
+        HashMap<String, List<Station>> filtre = filtreGranu(stationsParDep, departement);
+        if (filtre.isEmpty()) {
+            return filtre;
+        }
+        return filtreCarb(filtre, carburants);
     }
 
 }
