@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -71,6 +72,19 @@ public class StationAPI {
         }
 
         return carburantsMap;
+    }
+
+    /**
+     * Renvoie un ensemble de String, chaque élément est un nom de carburants
+     * 
+     * @return HashSet de String
+     */
+    public HashSet<String> getNomsCarburants() {
+        HashSet<String> nomsCarburant = new HashSet<>();
+        for (StationParCarb station : stationsParCarb) {
+            nomsCarburant.add(station.getPrix_nom());
+        }
+        return nomsCarburant;
     }
 
 }
