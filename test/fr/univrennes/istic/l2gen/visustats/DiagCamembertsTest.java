@@ -84,6 +84,10 @@ public class DiagCamembertsTest {
         assertEquals(diag.largeur(), diag2.largeur(), 0.0001);
         assertEquals(diag.nom, diag2.nom);
         assertEquals(diag.couleurs, diag2.couleurs);
+        assertEquals(diag.legendes, diag2.legendes);
+        assertEquals(diag.legendeGroupe, diag2.legendeGroupe);
+        assertEquals(diag.donnees, diag2.donnees);
+        assertEquals(diag.diagGroupe, diag2.diagGroupe);
     }
 
     @Test
