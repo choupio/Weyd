@@ -10,7 +10,7 @@ public class DiagCamembertsTest {
 
     @Test
     public void testCentre() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
         // Créez un camembert et ajoutez des secteurs
         Camembert camembert = new Camembert(new Point(0, 0), 10);
         camembert.ajouterSecteur("red", 0.5);
@@ -22,7 +22,7 @@ public class DiagCamembertsTest {
 
     @Test
     public void testDescription() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
         // Créez un camembert et ajoutez des secteurs
         Camembert camembert = new Camembert(new Point(0, 0), 10);
         camembert.ajouterSecteur("red", 0.5);
@@ -39,7 +39,7 @@ public class DiagCamembertsTest {
 
     @Test
     public void testHauteur() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
 
         // Créez un camembert et ajoutez des secteurs
         Camembert camembert = new Camembert(new Point(0, 0), 10);
@@ -56,7 +56,7 @@ public class DiagCamembertsTest {
 
     @Test
     public void testEnSVG() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
 
         // Créez un camembert et ajoutez des secteurs
         Camembert camembert = new Camembert(new Point(0, 0), 10);
@@ -72,7 +72,7 @@ public class DiagCamembertsTest {
 
     @Test
     public void testDeplacer() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
         // Créez un groupe avec un camembert
         Groupe groupe = new Groupe();
         Camembert camembert = new Camembert(new Point(0, 0), 10);
@@ -92,7 +92,7 @@ public class DiagCamembertsTest {
     @Test
     public void testColorier() {
         // Créez un DiagCamemberts avec un groupe et un camembert
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
         Groupe groupe = new Groupe();
         Camembert camembert = new Camembert(new Point(0, 0), 10);
         groupe.ajouter(camembert);
@@ -106,7 +106,7 @@ public class DiagCamembertsTest {
     @Test
     public void testLargeur() {
         // Créez un DiagCamemberts avec un groupe et un camembert
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
         Groupe groupe = new Groupe();
         Camembert camembert = new Camembert(new Point(0, 0), 10);
         groupe.ajouter(camembert);
@@ -124,7 +124,7 @@ public class DiagCamembertsTest {
     @Test
     public void testRedimmensioner() {
         // Créez un DiagCamemberts avec un groupe et un camembert
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
         Groupe groupe = new Groupe();
         Camembert camembert = new Camembert(new Point(0, 0), 10);
         groupe.ajouter(camembert);
@@ -138,7 +138,7 @@ public class DiagCamembertsTest {
     @Test
     public void testCreateSvgFile() {
         // Créez un DiagCamemberts avec un groupe et un camembert
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme", 42);
+        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
         Groupe groupe = new Groupe();
         Camembert camembert = new Camembert(new Point(0, 0), 10);
         groupe.ajouter(camembert);
