@@ -16,6 +16,7 @@ public class DiagCamembertsTest {
     @Before
     public void setUp() {
         diag = new DiagCamemberts("Diagramme Test");
+        diag.ajouterDonnees(" 2010 ", 1600, 6800, 16000, 4300, 300);
     }
 
     @Test
@@ -43,7 +44,6 @@ public class DiagCamembertsTest {
 
     @Test
     public void testHauteur() {
-        diag.ajouterDonnees(" 2010 ", 1600, 6800, 16000, 4300, 300);
 
         double hauteurAttendue = 0; // Le double du rayon du camembert ajouté
         assertEquals(hauteurAttendue, diag.hauteur(), 0.001); // Utilisez une petite tolérance pour les calculs à
@@ -70,16 +70,10 @@ public class DiagCamembertsTest {
 
     @Test
     public void testDeplacer() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
-        // Créez un groupe avec un camembert
-        Groupe groupe = new Groupe();
-        Camembert camembert = new Camembert(new Point(0, 0), 10);
-        groupe.ajouter(camembert);
-        diag.groupeCamembert = groupe;
         // Déplacez le diag
         diag.deplacer(5, 5);
         // Vérifiez que le centre du camembert a été déplacé
-        assertEquals(new Point(5, 5), camembert.centre());
+        assertEquals(new Point(505, 505), diag.centre());
     }
 
     @Test
