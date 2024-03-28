@@ -61,18 +61,32 @@ public class StationAPI {
      * 
      * @param carburants : liste des noms de carburants où l'on veut les prix
      */
-    public HashMap<String, List<Double>> getPrixCarburants(List<String> carburants) {
-        HashMap<String, List<Double>> carburantsMap = new HashMap<>();
-        // ajout de tout les carburants demandé dans la Map
-        carburants.stream().forEach(x -> carburantsMap.put(x, new ArrayList<>()));
+    public HashMap<String, HashMap<String, List<Double>>> getPrixCarburants(List<String> carburants,
+            List<String> granularite) {
+        HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = new HashMap<>();
+        // ajout de toute les granularité demandé dans la Map
+        granularite.stream().forEach(x -> carburantsParGranularite.put(x, new HashMap<>()));
+        // Initialisation des listes
+        for (String granu : carburantsParGranularite.keySet()) {
+            carburants.stream().forEach(x -> carburantsParGranularite.get(granu).put(x, new ArrayList<>()));
+        }
 
         for (StationParCarb station : stationsParCarb) {
-            if (carburants.contains(station.getPrix_nom())) {
-                carburantsMap.get(station.getPrix_nom()).add(station.getPrix_valeur());
+            if (granularite.contains(station.getDep_name())) {
+                HashMap<String, List<Double>> granu = carburantsParGranularite.get(station.getDep_name());
+                if (carburants.contains(station.getPrix_nom())) {
+                    granu.get(station.getPrix_nom()).add(station.getPrix_valeur());
+                }
+            }
+            if (granularite.contains(station.getReg_name())) {
+                HashMap<String, List<Double>> granu = carburantsParGranularite.get(station.getReg_name());
+                if (carburants.contains(station.getPrix_nom())) {
+                    granu.get(station.getPrix_nom()).add(station.getPrix_valeur());
+                }
             }
         }
 
-        return carburantsMap;
+        return carburantsParGranularite;
     }
 
     /**

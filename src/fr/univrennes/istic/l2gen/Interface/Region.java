@@ -19,12 +19,12 @@ public class Region {
         ArrayList<String> tabRegion = recup.getNomsRegion();
 
         ButtonGroup groupregion = new ButtonGroup();
-        JRadioButton[] radioButtons = new JRadioButton[tabRegion.size()];
+        JCheckBox[] Checkbox = new JCheckBox[tabRegion.size()];
 
         for (int i = 0; i < tabRegion.size(); i += 1) {
-            radioButtons[i] = new JRadioButton(tabRegion.get(i));
-            groupregion.add(radioButtons[i]);
-            this.region.add(radioButtons[i]);
+            Checkbox[i] = new JCheckBox(tabRegion.get(i));
+            groupregion.add(Checkbox[i]);
+            this.region.add(Checkbox[i]);
         }
 
     }
