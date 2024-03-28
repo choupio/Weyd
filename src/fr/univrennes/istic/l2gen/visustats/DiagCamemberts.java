@@ -20,7 +20,11 @@ public class DiagCamemberts implements IDataVisualiseur {
     Texte texteNom;
     String nom;
     double rayon = 300;
+<<<<<<< HEAD
     Point centre = new Point(100, 100);
+=======
+    Point centre = new Point(500,500);
+>>>>>>> 4585c61e290026cfb13d72bc476609e2144c1ee1
     List<String> legendes, couleurs;
     Groupe donnees, legendeGroupe, diagGroupe;
 
@@ -117,6 +121,7 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public IDataVisualiseur agencer() {
+        
         // Titre
         texteNom = new Texte(0, 0, 20, nom);
 
@@ -129,6 +134,7 @@ public class DiagCamemberts implements IDataVisualiseur {
 
         texteNom.deplacer(centre.x(),
                 centre.y() - donnees.hauteur() / 2 - texteNom.hauteur());
+        System.out.println("lllaaaaaaaaa");
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
 
