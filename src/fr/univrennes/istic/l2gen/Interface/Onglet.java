@@ -37,7 +37,7 @@ public class Onglet {
         //onglet21.add(new JSeparator(),BorderLayout.WEST);
         onglet2.add(button);
 
-        region Region = new region();
+        Region Region = new Region();
         JPanel region =Region.GetRegion();
 
         
@@ -47,7 +47,7 @@ public class Onglet {
 
         
 
-        departement Departement=new departement();
+        Departement Departement=new Departement();
         JPanel dept =Departement.GetDept();
 
         /* if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals("Departement")){
