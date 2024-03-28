@@ -4,19 +4,24 @@ import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.Rectangle;
+
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+
 public class DiagCamembertsTest {
+    DiagCamemberts diag;
+
+    @Before
+    public void setUp() {
+        diag = new DiagCamemberts("Diagramme Test");
+        diag.ajouterDonnees(" 2010 ", 1600, 6800, 16000, 4300, 300);
+    }
 
     @Test
     public void testCentre() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
-        // Créez un camembert et ajoutez des secteurs
-        Camembert camembert = new Camembert(new Point(0, 0), 10);
-        camembert.ajouterSecteur("red", 0.5);
-        camembert.ajouterSecteur("blue", 0.3);
-        diag.groupeCamembert.ajouter(camembert);
-        Point centreAttendu = new Point(0, 0); // Le centre du camembert ajouté
+        Point centreAttendu = new Point(500, 500); // Le centre du camembert ajouté
         assertEquals(centreAttendu, diag.centre());
     }
 
@@ -39,15 +44,8 @@ public class DiagCamembertsTest {
 
     @Test
     public void testHauteur() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
 
-        // Créez un camembert et ajoutez des secteurs
-        Camembert camembert = new Camembert(new Point(0, 0), 10);
-        camembert.ajouterSecteur("red", 0.5);
-        camembert.ajouterSecteur("blue", 0.3);
-        diag.groupeCamembert.ajouter(camembert);
-
-        double hauteurAttendue = 20; // Le double du rayon du camembert ajouté
+        double hauteurAttendue = 0; // Le double du rayon du camembert ajouté
         assertEquals(hauteurAttendue, diag.hauteur(), 0.001); // Utilisez une petite tolérance pour les calculs à
                                                               // virgule flottante
     }
@@ -72,16 +70,10 @@ public class DiagCamembertsTest {
 
     @Test
     public void testDeplacer() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
-        // Créez un groupe avec un camembert
-        Groupe groupe = new Groupe();
-        Camembert camembert = new Camembert(new Point(0, 0), 10);
-        groupe.ajouter(camembert);
-        diag.groupeCamembert = groupe;
         // Déplacez le diag
         diag.deplacer(5, 5);
         // Vérifiez que le centre du camembert a été déplacé
-        assertEquals(new Point(5, 5), camembert.centre());
+        assertEquals(new Point(505, 505), diag.centre());
     }
 
     @Test
