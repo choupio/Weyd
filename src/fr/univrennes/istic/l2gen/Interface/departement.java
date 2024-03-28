@@ -6,312 +6,40 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.Border;
 
-public class departement {
-    private JPanel Departement=new JPanel();
+public class Departement {
+    private JPanel departements = new JPanel();
 
-    public departement(){
+    public Departement() {
         Border border2 = BorderFactory.createTitledBorder("Departement");
-        Departement.setBorder(border2);
+        departements.setBorder(border2);
+
+        // Noms des départements en France
+        String[] tabDepart = { "Bouches-du-Rhône", "Nord", "Pas-de-Calais", "Gironde", "Rhône", "Haute-Garonne",
+                "Isère", "Bourgogne-Franche-Comté", "Loire-Atlantique", "Seine-et-Marne", "Var", "Seine-Maritime",
+                "Hérault", "Finistère", "Bas-Rhin", "Ille-et-Vilaine", "Yvelines", "Morbihan", "Saône-et-Loire",
+                "Alpes-Maritimes", "Gard", "Moselle", "Essonne", "Loire", "Calvados", "Côte-d'Or", "Haute-Savoie",
+                "Puy-de-Dôme", "Côtes-d'Armor", "Ain", "Vendée", "Charente-Maritime", "Manche", "Oise",
+                "Pyrénées-Atlantiques", "Drôme", "Haut-Rhin", "Val-d'Oise", "Somme", "Loiret", "Vaucluse", "Landes",
+                "Maine-et-Loire", "Doubs", "Sarthe", "Maurthe-et-Moselle", "Eure", "Dordogne", "Indre-et-Loire",
+                "Savoie", "Aisne", "Marne", "Aveyron", "Yonne", "Aude", "Seine-Saint-Denis", "Haute-Vienne", "Vosges",
+                "Val-de-Marne", "Lot-et-Garonne", "Allier", "Hauts-de-Seine", "Jura", "Tarn", "Eure-et-Loir", "Vienne",
+                "Pyrénées-Orientales", "Ardèche", "Deux-Sèvres", "Haute-Corse", "Aube", "Charente", "Tarn-et-Garonne",
+                "Loir-et-Cher", "Cher", "Corrèze", "Nièvre", "Haute-Saône", "Orne", "Lot", "Cantal", "Corse-du-Sude",
+                "Alpes-de-Haute-Provence", "Paris", "Mayenne", "Haute-Marne", "Haute-Loire", "Gers", "Hautes-Alpes",
+                "Ardennes", "Hautes-Pyrénées", "Indre", "Meuse", "Lozère", "Ariège", "Creuse",
+                "Territoire de Belfort" };
 
         ButtonGroup groupdept = new ButtonGroup();
-        JRadioButton radiodept1 = new JRadioButton("Bouches-du-Rhône");
-        JRadioButton radiodept2 = new JRadioButton("Nord");
-        JRadioButton radiodept3 = new JRadioButton("Pas-de-Calais");
-        JRadioButton radiodept4 = new JRadioButton("Gironde");
-        JRadioButton radiodept5 = new JRadioButton("Rhône");
-        JRadioButton radiodept6 = new JRadioButton("Haute-Garonne");
-        JRadioButton radiodept7 = new JRadioButton("Isère");
-        JRadioButton radiodept8 = new JRadioButton("Bourgogne-Franche-Comté");
-        JRadioButton radiodept9 = new JRadioButton("Loire-Atlantique");
-        JRadioButton radiodept10 = new JRadioButton("Seine-et-Marne");
-        JRadioButton radiodept11 = new JRadioButton("Var");
-        JRadioButton radiodept12 = new JRadioButton("Seine-Maritime");
-        JRadioButton radiodept13 = new JRadioButton("Hérault");
-        JRadioButton radiodept14 = new JRadioButton("Finistère");
-        JRadioButton radiodept15= new JRadioButton("Bas-Rhin");
-        JRadioButton radiodept16= new JRadioButton("Ille-et-Vilaine");
-        JRadioButton radiodept17= new JRadioButton("Yvelines");
-        JRadioButton radiodept18= new JRadioButton("Morbihan");
-        JRadioButton radiodept19= new JRadioButton("Saône-et-Loire");
-        JRadioButton radiodept20= new JRadioButton("Alpes-Maritimes");
-        JRadioButton radiodept21 = new JRadioButton("Gard");
-        JRadioButton radiodept22= new JRadioButton("Moselle");
-        JRadioButton radiodept23= new JRadioButton("Essonne");
-        JRadioButton radiodept24= new JRadioButton("Loire");
-        JRadioButton radiodept25= new JRadioButton("Calvados");
-        JRadioButton radiodept26= new JRadioButton("Côte-d'Or");
-        JRadioButton radiodept27= new JRadioButton("Haute-Savoie");
-        JRadioButton radiodept28= new JRadioButton("Puy-de-Dôme");
-        JRadioButton radiodept29= new JRadioButton("Côtes-d'Armor");
-        JRadioButton radiodept30= new JRadioButton("Ain");
-        JRadioButton radiodept31= new JRadioButton("Vendée");
-        JRadioButton radiodept32= new JRadioButton("Charente-Maritime");
-        JRadioButton radiodept33= new JRadioButton("Manche");
-        JRadioButton radiodept34= new JRadioButton("Oise");
-        JRadioButton radiodept35= new JRadioButton("Pyrénées-Atlantiques");
-        JRadioButton radiodept36= new JRadioButton("Drôme");
-        JRadioButton radiodept37= new JRadioButton("Haut-Rhin");
-        JRadioButton radiodept38= new JRadioButton("Val-d'Oise");
-        JRadioButton radiodept39= new JRadioButton("Somme");
-        JRadioButton radiodept40= new JRadioButton("Loiret");
-        JRadioButton radiodept41= new JRadioButton("Vaucluse");
-        JRadioButton radiodept42= new JRadioButton("Landes");
-        JRadioButton radiodept43= new JRadioButton("Maine-et-Loire");
-        JRadioButton radiodept44= new JRadioButton("Doubs");
-        JRadioButton radiodept45= new JRadioButton("Sarthe");
-        JRadioButton radiodept46= new JRadioButton("Maurthe-et-Moselle");
-        JRadioButton radiodept47= new JRadioButton("Eure");
-        JRadioButton radiodept48= new JRadioButton("Dordogne");
-        JRadioButton radiodept49= new JRadioButton("Indre-et-Loire");
-        JRadioButton radiodept50= new JRadioButton("Savoie");
-        JRadioButton radiodept51= new JRadioButton("Aisne");
-        JRadioButton radiodept52= new JRadioButton("Marne");
-        JRadioButton radiodept53= new JRadioButton("Aveyron");
-        JRadioButton radiodept54= new JRadioButton("Yonne");
-        JRadioButton radiodept55= new JRadioButton("Aude");
-        JRadioButton radiodept56= new JRadioButton("Seine-Saint-Denis");
-        JRadioButton radiodept57= new JRadioButton("Haute-Vienne");
-        JRadioButton radiodept58= new JRadioButton("Vosges");
-        JRadioButton radiodept59= new JRadioButton("Val-de-Marne");
-        JRadioButton radiodept60= new JRadioButton("Lot-et-Garonne");
-        JRadioButton radiodept61= new JRadioButton("Allier");
-        JRadioButton radiodept62= new JRadioButton("Hauts-de-Seine");
-        JRadioButton radiodept63= new JRadioButton("Jura");
-        JRadioButton radiodept64= new JRadioButton("Tarn");
-        JRadioButton radiodept65= new JRadioButton("Eure-et-Loir");
-        JRadioButton radiodept66= new JRadioButton("Vienne");
-        JRadioButton radiodept67= new JRadioButton("Pyrénées-Orientales");
-        JRadioButton radiodept68= new JRadioButton("Ardèche");
-        JRadioButton radiodept69= new JRadioButton("Deux-Sèvres");
-        JRadioButton radiodept70= new JRadioButton("Haute-Corse");
-        JRadioButton radiodept71= new JRadioButton("Aube");
-        JRadioButton radiodept72= new JRadioButton("Charente");
-        JRadioButton radiodept73= new JRadioButton("Tarn-et-Garonne");
-        JRadioButton radiodept74= new JRadioButton("Loir-et-Cher");
-        JRadioButton radiodept75= new JRadioButton("Cher");
-        JRadioButton radiodept76= new JRadioButton("Corrèze");
-        JRadioButton radiodept77= new JRadioButton("Nièvre");
-        JRadioButton radiodept78= new JRadioButton("Haute-Saône");
-        JRadioButton radiodept79= new JRadioButton("Orne");
-        JRadioButton radiodept80= new JRadioButton("Lot");
-        JRadioButton radiodept81= new JRadioButton("Cantal");
-        JRadioButton radiodept82= new JRadioButton("Corse-du-Sude");
-        JRadioButton radiodept83= new JRadioButton("Alpes-de-Haute-Provence");
-        JRadioButton radiodept84= new JRadioButton("Paris");
-        JRadioButton radiodept85= new JRadioButton("Mayenne");
-        JRadioButton radiodept86= new JRadioButton("Haute-Marne");
-        JRadioButton radiodept87= new JRadioButton("Haute-Loire");
-        JRadioButton radiodept88= new JRadioButton("Gers");
-        JRadioButton radiodept89= new JRadioButton("Hautes-Alpes");
-        JRadioButton radiodept90= new JRadioButton("Ardennes");
-        JRadioButton radiodept91= new JRadioButton("Hautes-Pyrénées");
-        JRadioButton radiodept92= new JRadioButton("Indre");
-        JRadioButton radiodept93= new JRadioButton("Meuse");
-        JRadioButton radiodept94= new JRadioButton("Lozère");
-        JRadioButton radiodept95= new JRadioButton("Ariège");
-        JRadioButton radiodept96= new JRadioButton("Creuse");
-        JRadioButton radiodept97= new JRadioButton("Territoire de Belfort");
+        JRadioButton[] radioButtons = new JRadioButton[tabDepart.length];
 
-        groupdept.add(radiodept1);
-        groupdept.add(radiodept2);
-        groupdept.add(radiodept3);
-        groupdept.add(radiodept4);
-        groupdept.add(radiodept5);
-        groupdept.add(radiodept6);
-        groupdept.add(radiodept7);
-        groupdept.add(radiodept8);
-        groupdept.add(radiodept9);
-        groupdept.add(radiodept10);
-        groupdept.add(radiodept11);
-        groupdept.add(radiodept12);
-        groupdept.add(radiodept13);
-        groupdept.add(radiodept14);
-        groupdept.add(radiodept15);
-        groupdept.add(radiodept16);
-        groupdept.add(radiodept17);
-        groupdept.add(radiodept18);
-        groupdept.add(radiodept19);
-        groupdept.add(radiodept20);
-        groupdept.add(radiodept21);
-        groupdept.add(radiodept22);
-        groupdept.add(radiodept23);
-        groupdept.add(radiodept24);
-        groupdept.add(radiodept25);
-        groupdept.add(radiodept26);
-        groupdept.add(radiodept27);
-        groupdept.add(radiodept28);
-        groupdept.add(radiodept29);
-        groupdept.add(radiodept30);
-        groupdept.add(radiodept31);
-        groupdept.add(radiodept32);
-        groupdept.add(radiodept33);
-        groupdept.add(radiodept34);
-        groupdept.add(radiodept35);
-        groupdept.add(radiodept36);
-        groupdept.add(radiodept37);
-        groupdept.add(radiodept38);
-        groupdept.add(radiodept39);
-        groupdept.add(radiodept40);
-        groupdept.add(radiodept41);
-        groupdept.add(radiodept42);
-        groupdept.add(radiodept43);
-        groupdept.add(radiodept44);
-        groupdept.add(radiodept45);
-        groupdept.add(radiodept46);
-        groupdept.add(radiodept47);
-        groupdept.add(radiodept48);
-        groupdept.add(radiodept49);
-        groupdept.add(radiodept50);
-        groupdept.add(radiodept51);
-        groupdept.add(radiodept52);
-        groupdept.add(radiodept53);
-        groupdept.add(radiodept54);
-        groupdept.add(radiodept55);
-        groupdept.add(radiodept56);
-        groupdept.add(radiodept57);
-        groupdept.add(radiodept58);
-        groupdept.add(radiodept59);
-        groupdept.add(radiodept60);
-        groupdept.add(radiodept61);
-        groupdept.add(radiodept62);
-        groupdept.add(radiodept63);
-        groupdept.add(radiodept64);
-        groupdept.add(radiodept65);
-        groupdept.add(radiodept66);
-        groupdept.add(radiodept67);
-        groupdept.add(radiodept68);
-        groupdept.add(radiodept69);
-        groupdept.add(radiodept70);
-        groupdept.add(radiodept71);
-        groupdept.add(radiodept72);
-        groupdept.add(radiodept73);
-        groupdept.add(radiodept74);
-        groupdept.add(radiodept75);
-        groupdept.add(radiodept76);
-        groupdept.add(radiodept77);
-        groupdept.add(radiodept78);
-        groupdept.add(radiodept79);
-        groupdept.add(radiodept80);
-        groupdept.add(radiodept81);
-        groupdept.add(radiodept82);
-        groupdept.add(radiodept83);
-        groupdept.add(radiodept84);
-        groupdept.add(radiodept85);
-        groupdept.add(radiodept86);
-        groupdept.add(radiodept87);
-        groupdept.add(radiodept88);
-        groupdept.add(radiodept89);
-        groupdept.add(radiodept90);
-        groupdept.add(radiodept91);
-        groupdept.add(radiodept92);
-        groupdept.add(radiodept93);
-        groupdept.add(radiodept94);
-        groupdept.add(radiodept95);
-        groupdept.add(radiodept96);
-        groupdept.add(radiodept97);
-        
-        Departement.add(radiodept1);
-        Departement.add(radiodept2);
-        Departement.add(radiodept3);
-        Departement.add(radiodept4);
-        Departement.add(radiodept5);
-        Departement.add(radiodept6);
-        Departement.add(radiodept7);
-        Departement.add(radiodept8);
-        Departement.add(radiodept9);
-        Departement.add(radiodept10);
-        Departement.add(radiodept11);
-        Departement.add(radiodept12);
-        Departement.add(radiodept13);
-        Departement.add(radiodept14);
-        Departement.add(radiodept15);
-        Departement.add(radiodept16);
-        Departement.add(radiodept17);
-        Departement.add(radiodept18);
-        Departement.add(radiodept19);
-        Departement.add(radiodept20);
-        Departement.add(radiodept21);
-        Departement.add(radiodept22);
-        Departement.add(radiodept23);
-        Departement.add(radiodept24);
-        Departement.add(radiodept25);
-        Departement.add(radiodept26);
-        Departement.add(radiodept27);
-        Departement.add(radiodept28);
-        Departement.add(radiodept29);
-        Departement.add(radiodept30);
-        Departement.add(radiodept31);
-        Departement.add(radiodept32);
-        Departement.add(radiodept33);
-        Departement.add(radiodept34);
-        Departement.add(radiodept35);
-        Departement.add(radiodept36);
-        Departement.add(radiodept37);
-        Departement.add(radiodept38);
-        Departement.add(radiodept39);
-        Departement.add(radiodept40);
-        Departement.add(radiodept41);
-        Departement.add(radiodept42);
-        Departement.add(radiodept43);
-        Departement.add(radiodept44);
-        Departement.add(radiodept45);
-        Departement.add(radiodept46);
-        Departement.add(radiodept47);
-        Departement.add(radiodept48);
-        Departement.add(radiodept49);
-        Departement.add(radiodept50);
-        Departement.add(radiodept51);
-        Departement.add(radiodept52);
-        Departement.add(radiodept53);
-        Departement.add(radiodept54);
-        Departement.add(radiodept55);
-        Departement.add(radiodept56);
-        Departement.add(radiodept57);
-        Departement.add(radiodept58);
-        Departement.add(radiodept59);
-        Departement.add(radiodept60);
-        Departement.add(radiodept61);
-        Departement.add(radiodept62);
-        Departement.add(radiodept63);
-        Departement.add(radiodept64);
-        Departement.add(radiodept65);
-        Departement.add(radiodept66);
-        Departement.add(radiodept67);
-        Departement.add(radiodept68);
-        Departement.add(radiodept69);
-        Departement.add(radiodept70);
-        Departement.add(radiodept71);
-        Departement.add(radiodept72);
-        Departement.add(radiodept73);
-        Departement.add(radiodept74);
-        Departement.add(radiodept75);
-        Departement.add(radiodept76);
-        Departement.add(radiodept77);
-        Departement.add(radiodept78);
-        Departement.add(radiodept79);
-        Departement.add(radiodept80);
-        Departement.add(radiodept81);
-        Departement.add(radiodept82);
-        Departement.add(radiodept83);
-        Departement.add(radiodept84);
-        Departement.add(radiodept85);
-        Departement.add(radiodept86);
-        Departement.add(radiodept87);
-        Departement.add(radiodept88);
-        Departement.add(radiodept89);
-        Departement.add(radiodept90);
-        Departement.add(radiodept91);
-        Departement.add(radiodept92);
-        Departement.add(radiodept93);
-        Departement.add(radiodept94);
-        Departement.add(radiodept95);
-        Departement.add(radiodept96);
-        Departement.add(radiodept97);
-
+        for (int i = 0; i < tabDepart.length; i += 1) {
+            radioButtons[i] = new JRadioButton(tabDepart[i]);
+            groupdept.add(radioButtons[i]);
+        }
     }
 
-    public JPanel GetDept(){
-        return Departement;
+    public JPanel GetDept() {
+        return departements;
     }
-    
+
 }
