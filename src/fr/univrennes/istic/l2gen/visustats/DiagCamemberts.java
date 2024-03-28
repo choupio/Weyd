@@ -122,7 +122,7 @@ public class DiagCamemberts implements IDataVisualiseur {
         texteNom = new Texte(0, 0, 12, nom);
         double axeY = donnees.getListFormes().get(0).centre().y() * 0.01;
         double axeX = donnees.getListFormes().get(0).centre().x() * 0.01;
-        texteNom.deplacer(centre.x() * 1.55,
+        texteNom.deplacer(centre.x() * 1.55, // pour la position du titre du diagramme
                 centre.y() - donnees.hauteur() / 2 - texteNom.hauteur());
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
@@ -139,12 +139,13 @@ public class DiagCamemberts implements IDataVisualiseur {
         legendes.empilerElements(Alignement.GAUCHE, centre.x() + 30 - legendes.largeur(), 225); // pour espacer les
                                                                                                 // années
         legendes.alignerElements(Alignement.BAS,
-                centre.y() + donnees.hauteur() / 2 + legendes.hauteur() * 2 + 10);
+                centre.y() + donnees.hauteur() / 2 + legendes.hauteur() * 2 + 10); // pour la position des années (en
+                                                                                   // bas)
         diagGroupe.ajouter(legendes);
         for (IForme forme : donnees.getListFormes()) {
             forme.deplacer(axeX, axeY);
             System.out.print(forme.description(0));
-            axeX += 250;
+            axeX += 250; // pour espacer les camemberts
         }
 
         // Echelle
