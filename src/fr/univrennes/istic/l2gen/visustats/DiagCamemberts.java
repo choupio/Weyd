@@ -126,9 +126,14 @@ public class DiagCamemberts implements IDataVisualiseur {
                 centre.y() - donnees.hauteur() / 2 - texteNom.hauteur());
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
-        legendeGroupe.empilerElements(Alignement.GAUCHE, centre.x() * 1.5 - legendeGroupe.largeur(), 10);
+        legendeGroupe.empilerElements(Alignement.GAUCHE, centre.x() * 1.5 - legendeGroupe.largeur(), 10); // pour
+                                                                                                          // l'espacement
+                                                                                                          // entre les
+                                                                                                          // légende de
+                                                                                                          // couleurs
         legendeGroupe.alignerElements(Alignement.BAS,
-                centre.y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2 + 40);
+                centre.y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2 + 40); // pour mettre la légende des
+                                                                                        // couleurs en bas
         diagGroupe.ajouter(legendeGroupe);
         System.out.println(centre.y() - donnees.hauteur() / 2);
         legendes.empilerElements(Alignement.GAUCHE, centre.x() + 30 - legendes.largeur(), 225); // pour espacer les
