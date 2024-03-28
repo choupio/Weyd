@@ -78,7 +78,12 @@ public class DiagCamembertsTest {
 
     @Test
     public void testDupliquer() {
-
+        DiagCamemberts diag2 = (DiagCamemberts) diag.dupliquer();
+        assertEquals(diag.centre(), diag2.centre());
+        assertEquals(diag.hauteur(), diag2.hauteur(), 0.0001);
+        assertEquals(diag.largeur(), diag2.largeur(), 0.0001);
+        assertEquals(diag.nom, diag2.nom);
+        assertEquals(diag.couleurs, diag2.couleurs);
     }
 
     @Test
