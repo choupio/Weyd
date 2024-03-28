@@ -1,56 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <g>
-<path d="M 500.0 400.0 A 100.0 100.0 0 0 0 466.0243015231202 405.9486740497076 L 500.0 500.0 Z"
+<path d="M 505.0 405.0 A 100.0 100.0 0 0 0 471.0243015231202 410.9486740497076 L 505.0 505.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 466.0243015231202 405.9486740497076 A 100.0 100.0 0 0 0 403.08802972699795 524.6590757694762 L 500.0 500.0 Z"
+<path d="M 471.0243015231202 410.9486740497076 A 100.0 100.0 0 0 0 408.08802972699795 529.6590757694762 L 505.0 505.0 Z"
 	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 403.08802972699795 524.6590757694762 A 100.0 100.0 0 1 0 583.9652553298511 445.68760825195676 L 500.0 500.0 Z"
+<path d="M 408.08802972699795 529.6590757694762 A 100.0 100.0 0 1 0 588.9652553298511 450.68760825195676 L 505.0 505.0 Z"
 	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 583.9652553298511 445.68760825195676 A 100.0 100.0 0 0 0 506.49527107634117 400.21116568651155 L 500.0 500.0 Z"
+<path d="M 588.9652553298511 450.68760825195676 A 100.0 100.0 0 0 0 511.49527107634117 405.21116568651155 L 505.0 505.0 Z"
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 506.49527107634117 400.21116568651155 A 100.0 100.0 0 0 0 500.0000000000002 400.0 L 500.0 500.0 Z"
+<path d="M 511.49527107634117 405.21116568651155 A 100.0 100.0 0 0 0 505.0000000000002 405.0 L 505.0 505.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
 </g>
 <g>
-<path d="M 500.0 400.0 A 100.0 100.0 0 0 0 403.6271899647158 526.688602172145 L 500.0 500.0 Z"
+<path d="M 755.0 405.0 A 100.0 100.0 0 0 0 658.6271899647159 531.688602172145 L 755.0 505.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 403.6271899647158 526.688602172145 A 100.0 100.0 0 0 0 551.4411117448681 585.7543702819396 L 500.0 500.0 Z"
+<path d="M 658.6271899647159 531.688602172145 A 100.0 100.0 0 0 0 806.4411117448681 590.7543702819396 L 755.0 505.0 Z"
 	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 551.4411117448681 585.7543702819396 A 100.0 100.0 0 0 0 568.9149827022516 427.5381123683051 L 500.0 500.0 Z"
+<path d="M 806.4411117448681 590.7543702819396 A 100.0 100.0 0 0 0 823.9149827022516 432.5381123683051 L 755.0 505.0 Z"
 	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 568.9149827022513 427.538112368305 A 100.0 100.0 0 0 0 506.07142090203945 400.1844809249069 L 500.0 500.0 Z"
+<path d="M 823.9149827022513 432.538112368305 A 100.0 100.0 0 0 0 761.0714209020394 405.1844809249069 L 755.0 505.0 Z"
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 506.07142090203945 400.1844809249069 A 100.0 100.0 0 0 0 500.00000000000006 400.0 L 500.0 500.0 Z"
+<path d="M 761.0714209020394 405.1844809249069 A 100.0 100.0 0 0 0 755.0 405.0 L 755.0 505.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
 </g>
 <g>
-<path d="M 500.0 400.0 A 100.0 100.0 0 0 0 457.4750693170943 409.4923745178669 L 500.0 500.0 Z"
+<path d="M 1005.0 405.0 A 100.0 100.0 0 0 0 962.4750693170944 414.4923745178669 L 1005.0 505.0 Z"
 	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 457.4750693170943 409.4923745178669 A 100.0 100.0 0 0 0 401.3620583253924 516.44860061515 L 500.0 500.0 Z"
+<path d="M 962.4750693170944 414.4923745178669 A 100.0 100.0 0 0 0 906.3620583253925 521.44860061515 L 1005.0 505.0 Z"
 	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 401.3620583253924 516.44860061515 A 100.0 100.0 0 1 0 573.3931947407834 432.07769905442365 L 500.0 500.0 Z"
+<path d="M 906.3620583253925 521.44860061515 A 100.0 100.0 0 1 0 1078.3931947407834 437.07769905442365 L 1005.0 505.0 Z"
 	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 573.3931947407834 432.07769905442365 A 100.0 100.0 0 0 0 507.10546879667066 400.25275786679845 L 500.0 500.0 Z"
+<path d="M 1078.3931947407834 437.07769905442365 A 100.0 100.0 0 0 0 1012.1054687966707 405.25275786679845 L 1005.0 505.0 Z"
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 507.10546879667066 400.25275786679845 A 100.0 100.0 0 0 0 500.00000000000006 400.0 L 500.0 500.0 Z"
+<path d="M 1012.1054687966707 405.25275786679845 A 100.0 100.0 0 0 0 1005.0 405.0 L 1005.0 505.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
 </g>
 
-<text x="575.0" y="391.0" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">test</text>
-<rect x="528.0" y="634.0" height="7.0" width="20.0"
+<text x="1265.0" y="1534.0" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">test</text>
+<rect x="453.0" y="619.0" height="7.0" width="20.0"
 	fill="Blue " stroke="black" transform="rotate(0)"/>
-<text x="558.0" y="631.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Afrique</text>
-<rect x="603.0" y="634.0" height="7.0" width="20.0"
+<text x="483.0" y="616.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Afrique</text>
+<rect x="528.0" y="619.0" height="7.0" width="20.0"
 	fill=" Green " stroke="black" transform="rotate(0)"/>
-<text x="633.0" y="631.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Amerique</text>
-<rect x="690.0" y="634.0" height="7.0" width="20.0"
+<text x="558.0" y="616.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Amerique</text>
+<rect x="615.0" y="619.0" height="7.0" width="20.0"
 	fill=" Red " stroke="black" transform="rotate(0)"/>
-<text x="720.0" y="631.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Asie</text>
-<rect x="750.0" y="634.0" height="7.0" width="20.0"
+<text x="645.0" y="616.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Asie</text>
+<rect x="675.0" y="619.0" height="7.0" width="20.0"
 	fill=" Yellow " stroke="black" transform="rotate(0)"/>
-<text x="780.0" y="631.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Europe</text>
-<rect x="825.0" y="634.0" height="7.0" width="20.0"
+<text x="705.0" y="616.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Europe</text>
+<rect x="750.0" y="619.0" height="7.0" width="20.0"
 	fill=" Maroon " stroke="black" transform="rotate(0)"/>
-<text x="855.0" y="631.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Oceanie</text>
+<text x="780.0" y="616.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Oceanie</text>
 
 </svg>
