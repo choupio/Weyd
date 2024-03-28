@@ -20,9 +20,16 @@ public class DiagCamemberts implements IDataVisualiseur {
     Texte texteNom;
     String nom;
     double rayon = 100;
+<<<<<<< HEAD
     Point centre = new Point(500, 500);
     List<String> legendes, couleurs;
     Groupe donnees, legendeGroupe, diagGroupe;
+=======
+    Point centre = new Point(500,500);
+    List<String> couleurs;
+    Groupe donnees, legendeGroupe, legendes, diagGroupe;
+    
+>>>>>>> 11d4a82415c4b5515c3bea804e993242b6662f33
 
     /**
      * Constructeur de DiagCamemberts
@@ -31,7 +38,7 @@ public class DiagCamemberts implements IDataVisualiseur {
      */
     public DiagCamemberts(String nom) {
         this.nom = nom;
-        legendes = new ArrayList<>();
+        legendes = new Groupe();
         couleurs = new ArrayList<>();
         donnees = new Groupe();
         diagGroupe = new Groupe();
@@ -128,8 +135,9 @@ public class DiagCamemberts implements IDataVisualiseur {
         diagGroupe.ajouter(texteNom);
         legendeGroupe.empilerElements(Alignement.GAUCHE, centre.x() - legendeGroupe.largeur(), 10);
         legendeGroupe.alignerElements(Alignement.BAS,
-                centre.y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
+                centre.y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2 +40);
         diagGroupe.ajouter(legendeGroupe);
+<<<<<<< HEAD
         System.out.println(centre.y() - donnees.hauteur() / 2);
         int i = 0;
         for (IForme forme : donnees.getListFormes()) {
@@ -140,10 +148,18 @@ public class DiagCamemberts implements IDataVisualiseur {
             texteNomCam.deplacer(axeX,
                     centre.y() - donnees.hauteur() / 2 - texteNom.hauteur());
 
+=======
+        System.out.println(centre.y()-donnees.hauteur()/2);        
+        legendes.empilerElements(Alignement.GAUCHE, centre.x() - legendes.largeur(), 250);
+        legendes.alignerElements(Alignement.BAS,
+                centre.y() + donnees.hauteur() / 2 + legendes.hauteur() * 2+10  );
+        diagGroupe.ajouter(legendes);
+        for (IForme forme : donnees.getListFormes()) {
+            forme.deplacer(axeX, axeY);
+>>>>>>> 11d4a82415c4b5515c3bea804e993242b6662f33
             System.out.print(forme.description(0));
             axeX += 250;
         }
-        diagGroupe.ajouter(legendes);
 
         // Echelle
 
@@ -157,10 +173,17 @@ public class DiagCamemberts implements IDataVisualiseur {
             somme += doubles[i];
         }
         Camembert cam = new Camembert(centre, rayon);
+<<<<<<< HEAD
         for (int i = 0; i < doubles.length; i++) {
             cam.ajouterSecteur("white", doubles[i] / somme);
             legendes.add(str);
         }
+=======
+        for(int i = 0;i<doubles.length;i++){
+            cam.ajouterSecteur("white", doubles[i]/somme);
+        }        
+        legendes.ajouter(new Texte(0, 0, 10, str));
+>>>>>>> 11d4a82415c4b5515c3bea804e993242b6662f33
         donnees.ajouter(cam);
         return this;
     }
