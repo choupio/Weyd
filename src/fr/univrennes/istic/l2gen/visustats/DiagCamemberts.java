@@ -29,7 +29,7 @@ public class DiagCamemberts implements IDataVisualiseur {
      * 
      * @param nom une String représentant le nom du diagramme
      */
-    
+
     public DiagCamemberts(String nom) {
         this.nom = nom;
         legendes = new Groupe();
@@ -39,7 +39,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         legendeGroupe = new Groupe();
     }
 
-
     /**
      * Cette classe représente un point dans un système de coordonnées.
      */
@@ -48,7 +47,6 @@ public class DiagCamemberts implements IDataVisualiseur {
     public Point centre() {
         return centre;
     }
-
 
     /**
      * Renvoie la description de l'objet sous forme de chaîne de caractères.
@@ -62,7 +60,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         return diagGroupe.description(indentation);
     }
 
-
     /**
      * Renvoie la hauteur du diagramme.
      *
@@ -73,7 +70,6 @@ public class DiagCamemberts implements IDataVisualiseur {
     public double hauteur() {
         return diagGroupe.hauteur();
     }
-
 
     /**
      * Retourne la largeur du diagramme de groupe.
@@ -86,7 +82,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         return diagGroupe.largeur();
     }
 
-
     /**
      * L'interface IForme représente une forme géométrique.
      */
@@ -97,16 +92,20 @@ public class DiagCamemberts implements IDataVisualiseur {
         return this;
     }
 
-
     /**
      * L'interface IForme représente une forme géométrique.
      */
 
     @Override
     public IForme dupliquer() {
-        return diagGroupe.dupliquer();
+        DiagCamemberts nouvelleForme = new DiagCamemberts(nom);
+        nouvelleForme.legendes = this.legendes;
+        nouvelleForme.couleurs = this.couleurs;
+        nouvelleForme.donnees = this.donnees;
+        nouvelleForme.diagGroupe = this.diagGroupe;
+        nouvelleForme.legendeGroupe = this.legendeGroupe;
+        return nouvelleForme;
     }
-
 
     /**
      * Redimensionne la forme en utilisant les dimensions spécifiées.
@@ -121,7 +120,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         return diagGroupe.redimmensioner(h, l);
     }
 
-
     /**
      * Renvoie une représentation SVG de l'objet.
      *
@@ -133,7 +131,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         return diagGroupe.enSVG();
     }
 
-  
     /**
      * Colorie la forme avec les couleurs spécifiées.
      * 
@@ -161,7 +158,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         return this;
     }
 
-
     /**
      * Effectue une rotation de la forme selon un angle donné.
      *
@@ -174,13 +170,13 @@ public class DiagCamemberts implements IDataVisualiseur {
         return diagGroupe.tourner(angle);
     }
 
-
     /**
      * Aligne le diagramme de groupe selon l'alignement spécifié et la cible donnée.
      *
      * @param alignement L'alignement souhaité pour le diagramme de groupe.
-     * @param cible La valeur cible pour l'alignement.
-     * @return Une instance de l'interface IForme représentant le diagramme de groupe aligné.
+     * @param cible      La valeur cible pour l'alignement.
+     * @return Une instance de l'interface IForme représentant le diagramme de
+     *         groupe aligné.
      */
 
     @Override
@@ -188,20 +184,19 @@ public class DiagCamemberts implements IDataVisualiseur {
         return diagGroupe.aligner(alignement, cible);
     }
 
-
     /**
-        * Crée un fichier SVG pour le diagramme en camembert.
-        */
+     * Crée un fichier SVG pour le diagramme en camembert.
+     */
 
     @Override
     public void createSvgFile() {
         SVGFile.createSvgFile(this, "diagCamenberts");
     }
 
-
     /**
      * Cette interface représente un visualiseur de données.
-     * Un visualiseur de données est responsable de l'agencement et de l'affichage des données.
+     * Un visualiseur de données est responsable de l'agencement et de l'affichage
+     * des données.
      */
 
     @Override
@@ -239,7 +234,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         return this;
     }
 
-
     /**
      * Ajoute des données à visualiser.
      *
@@ -263,14 +257,13 @@ public class DiagCamemberts implements IDataVisualiseur {
         return this;
     }
 
-    
     /**
      * Ajoute une légende à la visualisation.
      * 
      * @param strings Les chaînes de caractères représentant les légendes à ajouter.
      * @return Une instance de IDataVisualiseur avec la légende ajoutée.
      */
-    
+
     @Override
     public IDataVisualiseur legender(String... strings) {
         for (String string : strings) {
@@ -281,14 +274,14 @@ public class DiagCamemberts implements IDataVisualiseur {
         return this;
     }
 
-
     /**
-     * L'interface IDataVisualiseur définit les méthodes nécessaires pour visualiser les données.
+     * L'interface IDataVisualiseur définit les méthodes nécessaires pour visualiser
+     * les données.
      */
 
     @Override
     public IDataVisualiseur setOption(String... options) {
-        
+
         for (String option : options) {
             // Traitez chaque option individuellement
             if (option.equals("Camembert supplémentaire")) {
@@ -302,7 +295,7 @@ public class DiagCamemberts implements IDataVisualiseur {
                 donnees.getListFormes().remove(0);
             }
         }
-        
+
         return this;
     }
 
