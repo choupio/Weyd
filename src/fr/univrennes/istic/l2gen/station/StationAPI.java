@@ -80,12 +80,12 @@ public class StationAPI {
      * 
      * @return liste de String
      */
-    public List<String> getNomsCarburants() {
+    public ArrayList<String> getNomsCarburants() {
         HashSet<String> nomsCarburant = new HashSet<>();
         for (StationParCarb station : stationsParCarb) {
             nomsCarburant.add(station.getPrix_nom());
         }
-        return nomsCarburant.stream().collect(Collectors.toList());
+        return new ArrayList<>(nomsCarburant);
     }
 
     /**
