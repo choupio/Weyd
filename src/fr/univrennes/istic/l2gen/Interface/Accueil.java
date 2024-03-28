@@ -1,9 +1,13 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import javax.swing.*;
+
+import fr.univrennes.istic.l2gen.station.StationAPI;
+
 import java.awt.*;
 
 public class Accueil {
+    private static StationAPI recup = new StationAPI();
 
     public Accueil() {
         ///////// Création de la fenêtre /////////
@@ -21,4 +25,9 @@ public class Accueil {
         fenetre.getFenetre().setSize((int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
 
     }
+
+    public static StationAPI getRecup() {
+        return recup;
+    }
+
 }
