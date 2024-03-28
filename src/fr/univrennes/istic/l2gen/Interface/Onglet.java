@@ -33,15 +33,15 @@ public class Onglet {
         JPanel carburant = carb.Getcarburant();
 
         choixGranuralite.addItemListener(new ItemListener(){
+            boolean panelVisible = false;
             public void itemStateChanged(ItemEvent e) {
                 String selectedChoice = (String) choixGranuralite.getSelectedItem();
+                if (e.getStateChange() == ItemEvent.SELECTED) {
                     if (selectedChoice.equals("Département")) {
-                        dept.setVisible(false);
-                        region.setVisible(true);
-                    } else {
-                        dept.setVisible(true);
-                        region.setVisible(false);
+                        dept.setVisible(!panelVisible);
+                        panelVisible = !panelVisible;
                     }
+                }
             }
         });
         /*else{
