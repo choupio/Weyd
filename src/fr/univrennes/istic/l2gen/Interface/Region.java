@@ -15,12 +15,12 @@ public class Region {
                 "Pays de la Loire", "Centre-Val de Loire", "Corse" };
 
         ButtonGroup groupregion = new ButtonGroup();
-        JRadioButton[] radioButtons = new JRadioButton[tabRegion.length];
+        JCheckBox[] Checkbox = new JCheckBox[tabRegion.length];
 
         for (int i = 0; i < tabRegion.length; i += 1) {
-            radioButtons[i] = new JRadioButton(tabRegion[i]);
-            groupregion.add(radioButtons[i]);
-            this.region.add(radioButtons[i]);
+            Checkbox[i] = new JCheckBox(tabRegion[i]);
+            groupregion.add(Checkbox[i]);
+            this.region.add(Checkbox[i]);
         }
 
     }
