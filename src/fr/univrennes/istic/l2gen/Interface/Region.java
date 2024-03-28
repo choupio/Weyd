@@ -1,7 +1,11 @@
 package fr.univrennes.istic.l2gen.Interface;
 
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.border.Border;
+
+import fr.univrennes.istic.l2gen.station.StationAPI;
 
 public class Region {
     private JPanel region = new JPanel();
@@ -10,15 +14,15 @@ public class Region {
         Border border = BorderFactory.createTitledBorder("région");
         this.region.setBorder(border);
 
-        String[] tabRegion = { "Auvergne-Rhône-Alpes", "Nouvelle-Aquitaine", "Occitanie", "Île-de-France", "Grand Est",
-                "Hauts-de-France", "Provence-Alpes-Côte d'Azur", "Bourgogne-Franche-Comté", "Normandie", "Bretagne",
-                "Pays de la Loire", "Centre-Val de Loire", "Corse" };
+        StationAPI recup = new StationAPI();
+
+        ArrayList<String> tabRegion = recup.getNomsRegion();
 
         ButtonGroup groupregion = new ButtonGroup();
-        JRadioButton[] radioButtons = new JRadioButton[tabRegion.length];
+        JRadioButton[] radioButtons = new JRadioButton[tabRegion.size()];
 
-        for (int i = 0; i < tabRegion.length; i += 1) {
-            radioButtons[i] = new JRadioButton(tabRegion[i]);
+        for (int i = 0; i < tabRegion.size(); i += 1) {
+            radioButtons[i] = new JRadioButton(tabRegion.get(i));
             groupregion.add(radioButtons[i]);
             this.region.add(radioButtons[i]);
         }
