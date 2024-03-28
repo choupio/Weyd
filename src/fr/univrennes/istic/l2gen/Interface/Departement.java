@@ -21,12 +21,12 @@ public class Departement {
         ArrayList<String> tabDepart = recup.getNomsDepartement();
 
         ButtonGroup groupdept = new ButtonGroup();
-        JRadioButton[] radioButtons = new JRadioButton[tabDepart.size()];
+        JCheckBox[] Checkbox = new JCheckBox[tabDepart.size()];
 
         for (int i = 0; i < tabDepart.size(); i += 1) {
-            radioButtons[i] = new JRadioButton(tabDepart.get(i));
-            groupdept.add(radioButtons[i]);
-            this.departements.add(radioButtons[i]);
+            Checkbox[i] = new JCheckBox(tabDepart.get(i));
+            groupdept.add(Checkbox[i]);
+            this.departements.add(Checkbox[i]);
         }
     }
 
