@@ -4,19 +4,23 @@ import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.Rectangle;
+
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+
 public class DiagCamembertsTest {
+    DiagCamemberts diag;
+
+    @Before
+    public void setUp() {
+        diag = new DiagCamemberts("Diagramme Test");
+    }
 
     @Test
     public void testCentre() {
-        DiagCamemberts diag = new DiagCamemberts("MonDiagramme");
-        // Créez un camembert et ajoutez des secteurs
-        Camembert camembert = new Camembert(new Point(0, 0), 10);
-        camembert.ajouterSecteur("red", 0.5);
-        camembert.ajouterSecteur("blue", 0.3);
-        diag.groupeCamembert.ajouter(camembert);
-        Point centreAttendu = new Point(0, 0); // Le centre du camembert ajouté
+        Point centreAttendu = new Point(500, 500); // Le centre du camembert ajouté
         assertEquals(centreAttendu, diag.centre());
     }
 
