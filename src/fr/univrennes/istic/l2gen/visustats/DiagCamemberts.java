@@ -130,7 +130,7 @@ public class DiagCamemberts implements IDataVisualiseur {
             }
         }
         double axeX = 20;
-        for (IForme camenbert : donnees.getListFormes()) {
+        for (IForme camembert : donnees.getListFormes()) {
             Secteur f = (Secteur) secteur;
             s.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, false);
             axeX += 120;
