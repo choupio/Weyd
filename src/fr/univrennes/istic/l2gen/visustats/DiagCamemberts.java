@@ -21,14 +21,14 @@ public class DiagCamemberts implements IDataVisualiseur {
     Texte texteNom;
     String nom;
     double rayon = 300;
-    Point centre = new Point(100,100);
+    Point centre = new Point(100, 100);
     List<String> legendes, couleurs;
     Groupe donnees, legendeGroupe, diagGroupe;
 
     /**
      * Constructeur de DiagCamemberts
      * 
-     * @param nom    une String représentant le nom du diagramme
+     * @param nom une String représentant le nom du diagramme
      */
     public DiagCamemberts(String nom) {
         this.nom = nom;
@@ -124,14 +124,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         double axeY = donnees.getListFormes().get(0).centre().y() * 0.01;
         double axeX = donnees.getListFormes().get(0).centre().x() * 0.01;
         for (IForme forme : donnees.getListFormes()) {
-<<<<<<< HEAD
-            forme.deplacer(axeX, axeY);
-            axeX += 20;
-        }
-
-        texteNom.deplacer(centre.x(),
-                centre.y() - donnees.hauteur() / 2 - texteNom.hauteur());
-=======
             if (axeY < forme.hauteur() * 0.01) {
                 axeY = forme.hauteur() * 0.01;
             }
@@ -145,7 +137,6 @@ public class DiagCamemberts implements IDataVisualiseur {
 
         texteNom.deplacer(donnees.centre().x(),
                 donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
->>>>>>> 7d6cc66cc83fa6dfcb1fcfec8fa24d8123a92a70
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
 
@@ -154,17 +145,12 @@ public class DiagCamemberts implements IDataVisualiseur {
         legendeGroupe.alignerElements(Alignement.BAS,
                 centre.y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);
-<<<<<<< HEAD
-        System.out.println(centre.y()-donnees.hauteur()/2);
-        // Echelle
-=======
         System.out.println(donnees.centre().y() - donnees.hauteur() / 2);
         // Echelle
         diagGroupe.ajouter(new Ligne(donnees.centre().x() - donnees.largeur() / 2,
                 donnees.centre().y() + donnees.hauteur() / 2,
                 donnees.centre().x() + donnees.largeur() / 2,
                 donnees.centre().y() + donnees.hauteur() / 2));
->>>>>>> 7d6cc66cc83fa6dfcb1fcfec8fa24d8123a92a70
 
         return this;
     }
@@ -175,20 +161,12 @@ public class DiagCamemberts implements IDataVisualiseur {
         for (int i = 0; i < doubles.length; i++) {
             somme += doubles[i];
         }
-<<<<<<< HEAD
-        Camembert cam = new Camembert(centre, rayon);
-        for(int i = 0;i<doubles.length;i++){
-            cam.ajouterSecteur("white", doubles[i]/somme);
-        }        
-        donnees.ajouter(cam);
-=======
         Camembert cam = new Camembert(centre(), rayon);
         for (int i = 0; i < doubles.length; i++) {
             cam.ajouterSecteur("white", doubles[i] / somme);
         }
         donnees.ajouter(cam);
 
->>>>>>> 7d6cc66cc83fa6dfcb1fcfec8fa24d8123a92a70
         return this;
     }
 
