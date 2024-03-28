@@ -32,6 +32,10 @@ public class StationAPI {
 
             stationsMap = new HashMap<>();
             for (StationParCarb station : stationsParCarb) {
+                // Change le String unicode en normal
+                station.setReg_name(decodeUnicode(station.getReg_name()));
+                station.setDep_name(decodeUnicode(station.getDep_name()));
+
                 if (!stationsMap.containsKey(station.getId())) {
                     stationsMap.put(station.getId(),
                             new Station(station.getServices_service(), station.getDep_name(), station.getVille(),
@@ -46,6 +50,33 @@ public class StationAPI {
             // Gérez les erreurs d'entrée/sortie ici
             e.printStackTrace();
         }
+
+    }
+
+    /**
+     * Cette fonction permet de décodé les texte en unicode
+     * 
+     * @param texteEncodé
+     * @return
+     */
+    public String decodeUnicode(String texteEncodé) {
+        if (texteEncodé == null) {
+            return ""; // ou toute autre valeur par défaut que vous voulez retourner
+        }
+        StringBuilder builder = new StringBuilder();
+        int i = 0;
+        while (i < texteEncodé.length()) {
+            if (texteEncodé.charAt(i) == '\\' && i + 1 < texteEncodé.length() && texteEncodé.charAt(i + 1) == 'u') {
+                String codeHex = texteEncodé.substring(i + 2, i + 6);
+                int codeDecimal = Integer.parseInt(codeHex, 16);
+                builder.append((char) codeDecimal);
+                i += 6;
+            } else {
+                builder.append(texteEncodé.charAt(i));
+                i++;
+            }
+        }
+        return builder.toString();
     }
 
     /**
@@ -53,11 +84,7 @@ public class StationAPI {
      * paramètre,
      * sous la forme d'une Map ou les clés sont les noms des carburants et les
      * valeurs sont les listes des prix associé.
-     * <p>
-     * exemple pour faire une moyenne :
-     * this.getPrixCarburants("Gazole").get("Gazole").stream().mapToDouble(Double::doubleValue)
-     * .average()
-     * <p>
+     * 
      * 
      * @param carburants : liste des noms de carburants où l'on veut les prix
      */
@@ -99,6 +126,8 @@ public class StationAPI {
         for (StationParCarb station : stationsParCarb) {
             nomsCarburant.add(station.getPrix_nom());
         }
+        nomsCarburant.remove(null);
+        System.out.println(nomsCarburant.toArray());
         return new ArrayList<>(nomsCarburant);
     }
 
@@ -112,6 +141,8 @@ public class StationAPI {
         for (StationParCarb station : stationsParCarb) {
             nomsRegion.add(station.getReg_name());
         }
+        nomsRegion.remove(null);
+        nomsRegion.remove("");
         return new ArrayList<>(nomsRegion);
     }
 
@@ -125,6 +156,8 @@ public class StationAPI {
         for (StationParCarb station : stationsParCarb) {
             nomsDepartement.add(station.getDep_name());
         }
+        nomsDepartement.remove("");
+        nomsDepartement.remove(null);
         return new ArrayList<>(nomsDepartement);
     }
 
