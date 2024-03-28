@@ -93,12 +93,12 @@ public class StationAPI {
      * 
      * @return liste de String
      */
-    public List<String> getNomsRegion() {
+    public ArrayList<String> getNomsRegion() {
         HashSet<String> nomsRegion = new HashSet<>();
         for (StationParCarb station : stationsParCarb) {
             nomsRegion.add(station.getReg_name());
         }
-        return nomsRegion.stream().collect(Collectors.toList());
+        return new ArrayList<>(nomsRegion);
     }
 
     /**
@@ -106,12 +106,12 @@ public class StationAPI {
      * 
      * @return liste de String
      */
-    public List<String> getNomsDepartement() {
+    public ArrayList<String> getNomsDepartement() {
         HashSet<String> nomsDepartement = new HashSet<>();
         for (StationParCarb station : stationsParCarb) {
             nomsDepartement.add(station.getDep_name());
         }
-        return nomsDepartement.stream().collect(Collectors.toList());
+        return new ArrayList<>(nomsDepartement);
     }
 
 }
