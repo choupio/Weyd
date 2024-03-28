@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.Interface;
 
 import javax.swing.*;
 
-public class CreationFenetre {
+public class CreationFenetre extends JFrame {
     private JFrame fenetre;
 
     public CreationFenetre(String nomFenetre) {
@@ -12,7 +12,11 @@ public class CreationFenetre {
         this.fenetre = frame;
     }
 
-    public JFrame getFenetre() {
-        return this.fenetre;
+    public void ajouterImage(String imagePath) {
+        // On charge l'image
+        ImageIcon imageDeFond = new ImageIcon(imagePath);
+        fenetre.add(new JLabel(imageDeFond));
+        fenetre.pack();
+        fenetre.setVisible(true);
     }
 }
