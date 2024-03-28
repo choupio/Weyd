@@ -13,6 +13,14 @@ public class CreationFenetre {
     }
 
     public JFrame getFenetre() {
-        return this.fenetre;
+        return fenetre;
+    }
+
+    public void ajouterImage(String imagePath) {
+        // On charge l'image
+        ImageIcon imageDeFond = new ImageIcon(imagePath);
+        fenetre.add(new JLabel(imageDeFond));
+        fenetre.pack();
+        fenetre.setVisible(true);
     }
 }

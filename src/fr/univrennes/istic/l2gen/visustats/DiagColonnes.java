@@ -17,6 +17,7 @@ public class DiagColonnes implements IDataVisualiseur {
     String nom;
     List<String> legendes, couleurs;
     Groupe donnees, legendeGroupe, diagGroupe;
+    double echelle_max;
 
     public DiagColonnes(String nom) {
         this.nom = nom;
@@ -115,13 +116,12 @@ public class DiagColonnes implements IDataVisualiseur {
                 axeY = forme.hauteur() * 0.01;
             }
         }
-        double axeX = 20;
+        double axeX = 50;
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
             f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, false);
             axeX += 120;
         }
-
 
         texteNom.deplacer(donnees.centre().x(),
                 donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
@@ -133,12 +133,32 @@ public class DiagColonnes implements IDataVisualiseur {
         legendeGroupe.alignerElements(Alignement.BAS,
                 donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);
-        System.out.println(donnees.centre().y()-donnees.hauteur()/2);
+
         // Echelle
-        diagGroupe.ajouter(new Ligne(donnees.centre().x()-donnees.largeur()/2, 
-                                    donnees.centre().y()+donnees.hauteur()/2, 
-                                    donnees.centre().x()+donnees.largeur()/2, 
-                                    donnees.centre().y()+donnees.hauteur()/2));
+        // Barre horizontale
+        diagGroupe.ajouter(new Ligne(donnees.centre().x() - donnees.largeur() / 2,
+                donnees.centre().y() + donnees.hauteur() / 2,
+                donnees.centre().x() + donnees.largeur() / 2,
+                donnees.centre().y() + donnees.hauteur() / 2));
+        // Barre verticale
+        diagGroupe.ajouter(new Ligne(donnees.centre().x() - donnees.largeur() / 2,
+                donnees.centre().y() - donnees.hauteur() / 2,
+                donnees.centre().x() - donnees.largeur() / 2,
+                donnees.centre().y() + donnees.hauteur() / 2));
+        // Valeurs
+        int tailleTxtLegende = 10;
+        for (int i = 0; i <= 5; i++) {
+            diagGroupe.ajouter(new Ligne(donnees.centre().x() - donnees.largeur() / 2 - 5,
+                    donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5,
+                    donnees.centre().x() - donnees.largeur() / 2 + 5,
+                    donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5));
+            Texte valeurTxt = new Texte(0, 0, tailleTxtLegende,
+                    Integer.toString((int) Math.round(echelle_max * (5 - i) / 5)));
+            valeurTxt.deplacer(
+                    donnees.centre().x() - donnees.largeur() / 2 - 5 - valeurTxt.largeur() / 2,
+                    donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5);
+            diagGroupe.ajouter(valeurTxt);
+        }
 
         return this;
     }
@@ -146,6 +166,15 @@ public class DiagColonnes implements IDataVisualiseur {
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
         donnees.ajouter(new Faisceau(str, doubles));
+        double d_max = doubles[0];
+        for (double d : doubles) {
+            if (d > d_max) {
+                d_max = d;
+            }
+        }
+        if (d_max > echelle_max) {
+            echelle_max = d_max;
+        }
         return this;
     }
 
