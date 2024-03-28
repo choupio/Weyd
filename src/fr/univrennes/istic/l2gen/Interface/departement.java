@@ -39,7 +39,7 @@ public class Departement {
     }
 
     public JPanel GetDept() {
-        return departements;
+        return this.departements;
     }
 
 }
