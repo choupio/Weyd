@@ -21,37 +21,33 @@ public class Onglet {
         onglets.addTab(titreOnglet1, onglet1);
 
         JPanel onglet2 = new JPanel();
-        // JPanel onglet21 = new JPanel(new GridLayout(1, 1));
-        // onglet21.setLayout(new FlowLayout(FlowLayout.LEFT));
-        // onglet21.setSize(onglet2.getWidth()*(25/100), onglet2.getHeight());
         onglet2.add(jLabel);
         onglet2.add(choixGranuralite);
-        // onglet21.add(new JSeparator(),BorderLayout.WEST);
         onglet2.add(button);
 
         Region Region = new Region();
         JPanel region = Region.GetRegion();
-
-        if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals(
-         "Région")){
-            region.setVisible(true);
-         }else region.setVisible(false);
-        
-
         Departement Departement = new Departement();
         JPanel dept = Departement.GetDept();
+        Carburant carb=new Carburant();
+        JPanel carburant = carb.Getcarburant();
 
         
-          if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals(
-          "Departement")){
-            dept.setVisible(true);
-          }else dept.setVisible(false);
+        if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals("Departement")){
+          region.setVisible(false);
+          dept.setVisible(true);
+        }else if(choixGranuralite.getItemAt(choixGranuralite.getSelectedIndex()).equals("Region")){
+          dept.setVisible(false);
+          region.setVisible(true);
+        }
          
         
         onglet2.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         // onglet2.add(onglet21,BorderLayout.WEST);
         onglets.addTab(titreOnglet2, onglet2);
 
+        onglet2.add(dept);
+        onglet2.add(region);
         onglet2.add(dept);
 
         panelOnglet.add(onglets);
