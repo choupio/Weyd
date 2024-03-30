@@ -8,8 +8,10 @@ import javax.swing.border.Border;
 
 public class Region {
     private JPanel region = new JPanel();
+    
 
     public Region() {
+        region.setLayout(new BoxLayout(region, BoxLayout.Y_AXIS));
         Border border = BorderFactory.createTitledBorder("région");
         this.region.setBorder(border);
 

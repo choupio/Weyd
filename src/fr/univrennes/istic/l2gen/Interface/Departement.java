@@ -10,6 +10,7 @@ public class Departement {
     private int tructest;
 
     public Departement() {
+        departements.setLayout(new BoxLayout(departements, BoxLayout.Y_AXIS));
         Border border2 = BorderFactory.createTitledBorder("Departement");
         this.departements.setBorder(border2);
 
