@@ -7,6 +7,9 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
+import fr.univrennes.istic.l2gen.geometrie.Point;
+
 public class DiagColonnesTest {
 
     DiagColonnes diagColonnes;
@@ -53,6 +56,8 @@ public class DiagColonnesTest {
 
     @Test
     public void testDeplacer() {
+        diagColonnes.deplacer(5, 5);
+        assertEquals(null, diagColonnes.centre());
     }
 
     @Test
@@ -61,6 +66,16 @@ public class DiagColonnesTest {
 
     @Test
     public void testDupliquer() {
+        DiagColonnes diagC2 = (DiagColonnes) diagColonnes.dupliquer();
+        assertEquals(diagC2.centre(), diagColonnes.centre());
+        assertEquals(diagC2.hauteur(), diagColonnes.hauteur(), 0.0001);
+        assertEquals(diagC2.largeur(), diagColonnes.largeur(), 0.0001);
+        assertEquals(diagC2.nom, diagColonnes.nom);
+        assertEquals(diagC2.couleurs, diagColonnes.couleurs);
+        assertEquals(diagC2.legendes, diagColonnes.legendes);
+        assertEquals(diagC2.legendeGroupe, diagColonnes.legendeGroupe);
+        assertEquals(diagC2.donnees, diagColonnes.donnees);
+        assertEquals(diagC2.diagGroupe, diagColonnes.diagGroupe);
     }
 
     @Test
