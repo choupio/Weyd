@@ -44,6 +44,8 @@ public class DiagColonnesTest {
 
     @Test
     public void testCentre() {
+        Point valeur1 = diagColonnes.centre();
+        assertEquals(valeur1, null);
     }
 
     @Test
