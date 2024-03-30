@@ -56,7 +56,13 @@ public class DiagColonnes implements IDataVisualiseur {
 
     @Override
     public IForme dupliquer() {
-        return diagGroupe.dupliquer();
+        DiagColonnes nouvelleForme = new DiagColonnes(nom);
+        nouvelleForme.legendes = this.legendes;
+        nouvelleForme.couleurs = this.couleurs;
+        nouvelleForme.donnees = this.donnees;
+        nouvelleForme.diagGroupe = this.diagGroupe;
+        nouvelleForme.legendeGroupe = this.legendeGroupe;
+        return nouvelleForme;
     }
 
     @Override

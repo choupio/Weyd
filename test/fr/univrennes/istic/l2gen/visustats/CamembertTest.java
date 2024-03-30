@@ -145,7 +145,7 @@ public class CamembertTest {
         camembert.ajouterSecteur("Secteur 2", 0.5);
         camembert.ajouterSecteur("Secteur 3", 0.25);
         // Appeler la méthode enSVG
-        String svg = camembert.enSVG();
+        //String svg = camembert.enSVG();
         // Définir la chaîne SVG attendue (c'est un exemple simple, vous devez ajuster
         // cela en fonction de votre implémentation réelle)
         // String expectedSVG =

@@ -1,10 +1,10 @@
 
-import fr.univrennes.istic.l2gen.geometrie.*;
+/*import fr.univrennes.istic.l2gen.geometrie.*;
 import fr.univrennes.istic.l2gen.station.Station;
-import fr.univrennes.istic.l2gen.station.StationParCarb;
+import fr.univrennes.istic.l2gen.station.StationParCarb;*/
 import fr.univrennes.istic.l2gen.visustats.*;
 
-import java.io.File;
+/*import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -12,13 +12,14 @@ import java.util.List;
 import javax.swing.*;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;*/
 
 /**
  * Cette classe représente l'application principale.
  * 
  * Pour tester et afficher des éléments d'autres classes, il suffit de
  * décommenter les lignes de code correspondantes.
+ * Ne pas oublier de remettre les imports sans les slashs pour pouvoir réaliser les autres tests.   
  */
 public class App {
 

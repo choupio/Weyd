@@ -22,6 +22,11 @@ public class Camembert implements IForme {
     private List<Secteur> secteurs;
     private double cmptAngle = 0;
     private String couleur = "white";
+    private double angle;
+
+    public double getAngle() {
+        return angle;
+    }
 
     public double getRayon() {
         return rayon;
