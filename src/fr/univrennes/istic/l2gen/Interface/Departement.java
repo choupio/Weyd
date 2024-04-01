@@ -1,6 +1,7 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
+import java.awt.Dimension;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -34,6 +35,8 @@ public class Departement {
                 }
             });
         }
+
+        this.departements.setSize(departements.getMinimumSize().width, departements.getMinimumSize().width);
 
     }
 
