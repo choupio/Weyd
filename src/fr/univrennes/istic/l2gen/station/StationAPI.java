@@ -3,7 +3,6 @@ package fr.univrennes.istic.l2gen.station;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -17,6 +16,7 @@ public class StationAPI {
     private List<StationParCarb> stationsParCarb;
     private HashMap<String, List<Station>> stationsParReg;
     private HashMap<String, List<Station>> stationsParDep;
+    private HashSet<String> services;
 
     public StationAPI() {
         // Créez un ObjectMapper
@@ -36,6 +36,7 @@ public class StationAPI {
             stationsMap = new HashMap<>();
             stationsParDep = new HashMap<>();
             stationsParReg = new HashMap<>();
+            services = new HashSet<>();
             for (StationParCarb station : stationsParCarb) {
                 // Change le String unicode en normal
                 station.setReg_name(decodeUnicode(station.getReg_name()));
@@ -63,10 +64,14 @@ public class StationAPI {
                     stationsParDep.get(station.getDep_name()).add(stationsMap.get(station.getId()));
                 }
 
-                // Des carburants de la station
+                // Ajout des carburants de la station
                 if (station.getPrix_nom() != "" || station.getPrix_nom() != null) {
                     stationsMap.get(station.getId()).ajoutCarburant(station.getPrix_nom(), station.getPrix_valeur());
                 }
+
+                // Ajout des services proposé
+                services.addAll(station.getServices_service());
+
 
             }
         } catch (IOException e) {
@@ -171,6 +176,12 @@ public class StationAPI {
         return new ArrayList<>(stationsParDep.keySet());
     }
 
+    public ArrayList<String> getServices(){
+        services.remove("");
+        services.remove(null);
+        return new ArrayList<>(services);
+    }
+
     /**
      * 
      * @param stationsParGranu soit stationParDep soit StatioParReg
@@ -216,13 +227,13 @@ public class StationAPI {
     }
 
     /**
-     * filtre les station selon les départements et selon les carburants
+     * filtre les stations selon les départements et selon les carburants
      * 
      * @param departement
      * @param carburants
      * @return
      */
-    public HashMap<String, List<Station>> filtre(List<String> departement, List<String> carburants) {
+    public HashMap<String, List<Station>> filtre(List<String> departement, List<String> carburants, List<String> serices) {
         HashMap<String, List<Station>> filtre = filtreGranu(stationsParDep, departement);
         if (filtre.isEmpty()) {
             return filtre;
