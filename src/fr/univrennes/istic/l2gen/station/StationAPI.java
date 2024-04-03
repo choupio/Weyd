@@ -176,7 +176,7 @@ public class StationAPI {
         return new ArrayList<>(stationsParDep.keySet());
     }
 
-    public ArrayList<String> getServices(){
+    public ArrayList<String> getNomsServices(){
         services.remove("");
         services.remove(null);
         return new ArrayList<>(services);
