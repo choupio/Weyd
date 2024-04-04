@@ -17,6 +17,8 @@ public class StationAPI {
     private HashMap<String, List<Station>> stationsParReg;
     private HashMap<String, List<Station>> stationsParDep;
     private HashSet<String> services;
+    private HashMap<String, List<Station>> filtre;
+    private List<String> filtre_dep, filtre_reg, filtre_carb, filtre_serv;
 
     public StationAPI() {
         // Créez un ObjectMapper
@@ -37,6 +39,9 @@ public class StationAPI {
             stationsParDep = new HashMap<>();
             stationsParReg = new HashMap<>();
             services = new HashSet<>();
+            filtre = new HashMap<>();
+            filtre_carb = new ArrayList<>();
+            
             for (StationParCarb station : stationsParCarb) {
                 // Change le String unicode en normal
                 station.setReg_name(decodeUnicode(station.getReg_name()));
@@ -70,8 +75,10 @@ public class StationAPI {
                 }
 
                 // Ajout des services proposé
-                services.addAll(station.getServices_service());
+                if (!station.getServices_service().isEmpty()) {
+                    services.addAll(station.getServices_service());
 
+                }
 
             }
         } catch (IOException e) {
@@ -87,7 +94,7 @@ public class StationAPI {
      * @param texteEncodé
      * @return
      */
-    public String decodeUnicode(String texteEncodé) {
+    private String decodeUnicode(String texteEncodé) {
         if (texteEncodé == null) {
             return ""; // ou toute autre valeur par défaut que vous voulez retourner
         }
@@ -110,37 +117,22 @@ public class StationAPI {
     /**
      * Cette méthode permet de récupérer la liste des prix des carburants, mis en
      * paramètre,
-     * sous la forme d'une Map ou les clés sont les noms des carburants et les
-     * valeurs sont les listes des prix associé.
+     * sous la forme d'une Map où les clés sont les noms des régions/départements et
+     * les valeurs
+     * sont des Map : comme clé les noms des carburants et les valeurs sont les
+     * listes des prix associé.
+     * ex : {"Bretagne" : {"Gazole":[1.89,187]}}
      * 
      * 
      * @param carburants : liste des noms de carburants où l'on veut les prix
      */
-    public HashMap<String, HashMap<String, List<Double>>> getPrixCarburants(List<String> carburants,
-            List<String> granularite) {
+    public HashMap<String, HashMap<String, List<Double>>> getPrixCarburants() {
         HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = new HashMap<>();
-        // ajout de toute les granularité demandé dans la Map
-        granularite.stream().forEach(x -> carburantsParGranularite.put(x, new HashMap<>()));
-        // Initialisation des listes
-        for (String granu : carburantsParGranularite.keySet()) {
-            carburants.stream().forEach(x -> carburantsParGranularite.get(granu).put(x, new ArrayList<>()));
+        if(filtre.isEmpty()){throw new IllegalStateException("le filtre est vide, appellez filtre()");}
+        for (String string : filtre.keySet()) {
+            carburantsParGranularite.put(string, new HashMap<>());
+            carburantsParGranularite.get(string).putAll(null);
         }
-
-        for (StationParCarb station : stationsParCarb) {
-            if (granularite.contains(station.getDep_name())) {
-                HashMap<String, List<Double>> granu = carburantsParGranularite.get(station.getDep_name());
-                if (carburants.contains(station.getPrix_nom())) {
-                    granu.get(station.getPrix_nom()).add(station.getPrix_valeur());
-                }
-            }
-            if (granularite.contains(station.getReg_name())) {
-                HashMap<String, List<Double>> granu = carburantsParGranularite.get(station.getReg_name());
-                if (carburants.contains(station.getPrix_nom())) {
-                    granu.get(station.getPrix_nom()).add(station.getPrix_valeur());
-                }
-            }
-        }
-
         return carburantsParGranularite;
     }
 
@@ -176,7 +168,7 @@ public class StationAPI {
         return new ArrayList<>(stationsParDep.keySet());
     }
 
-    public ArrayList<String> getNomsServices(){
+    public ArrayList<String> getNomsServices() {
         services.remove("");
         services.remove(null);
         return new ArrayList<>(services);
@@ -228,17 +220,20 @@ public class StationAPI {
 
     /**
      * filtre les stations selon les départements et selon les carburants
+     * Pour l'instant ne filtre pas les serivces.
      * 
      * @param departement
      * @param carburants
      * @return
      */
-    public HashMap<String, List<Station>> filtre(List<String> departement, List<String> carburants, List<String> serices) {
-        HashMap<String, List<Station>> filtre = filtreGranu(stationsParDep, departement);
+    public HashMap<String, List<Station>> filtre(List<String> departement, List<String> carburants,
+            List<String> services) {
+        filtre = filtreGranu(stationsParDep, departement);
         if (filtre.isEmpty()) {
             return filtre;
         }
-        return filtreCarb(filtre, carburants);
+        filtre = filtreCarb(filtre, carburants);
+        return filtre;
     }
 
 }
