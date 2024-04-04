@@ -2,13 +2,10 @@
 /*import fr.univrennes.istic.l2gen.geometrie.*;
 import fr.univrennes.istic.l2gen.station.Station;
 import fr.univrennes.istic.l2gen.station.StationParCarb;*/
-<<<<<<< HEAD
 import java.util.ArrayList;
 
-import fr.univrennes.istic.l2gen.station.StationAPI;
-=======
 import fr.univrennes.istic.l2gen.rapport.Fonction;
->>>>>>> 92c603ac811002aa6c77991b1340eba8faa59ba1
+import fr.univrennes.istic.l2gen.station.StationAPI;
 import fr.univrennes.istic.l2gen.visustats.*;
 
 /*import java.io.File;
@@ -43,7 +40,6 @@ public class App {
         s.filtreDep(d, c, c);
         System.out.println(s.getPrixMoyen());
 
-        
         DiagCamemberts visualiseur = new DiagCamemberts(" Emissions de CO2 ( en Mt ) ");
         visualiseur.legender(" Afrique ", " Amerique ", " Asie ", " Europe ", " Oceanie ");
         visualiseur.ajouterDonnees(" 2010 ", 1600, 6800, 16000, 4300, 300);
@@ -52,7 +48,7 @@ public class App {
         visualiseur.colorier(" Blue ", " Green ", " Red ", " Yellow ", " Maroon ");
         visualiseur.agencer().createSvgFile();
 
-        Fonction.createHTMLFile("Ouais", "TEst", "rapport");
+        Fonction.createHTMLFile( "diagCamenberts.svg","TESTEUR", "rapport");
 
         /*
          * Groupe tableau = new Groupe();
