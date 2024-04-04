@@ -48,7 +48,7 @@ public class App {
         visualiseur.colorier(" Blue ", " Green ", " Red ", " Yellow ", " Maroon ");
         visualiseur.agencer().createSvgFile();
 
-        Fonction.createHTMLFile( "Camembert.svg",
+        Fonction.createHTMLFile("diagCamenberts.svg",
                 "TEst", "rapport");
 
         /*

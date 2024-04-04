@@ -1,4 +1,5 @@
 package fr.univrennes.istic.l2gen.rapport;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,9 +10,10 @@ public class Fonction {
     /**
      * Crée un fichier HTML contenant le contenu SVG spécifié.
      * 
-     * @param svgFilePath   Le chemin vers le fichier SVG à inclure dans le fichier HTML.
-     * @param htmlTitle     Le titre de la page HTML.
-     * @param fileName      Le nom du fichier HTML à créer.
+     * @param svgFilePath Le chemin vers le fichier SVG à inclure dans le fichier
+     *                    HTML.
+     * @param htmlTitle   Le titre de la page HTML.
+     * @param fileName    Le nom du fichier HTML à créer.
      */
     public static void createHTMLFile(String svgFilePath, String htmlTitle, String fileName) {
         String svgContent = "";
@@ -24,9 +26,10 @@ public class Fonction {
         }
 
         String htmlTemplate = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n"
-                + "<meta charset=\"UTF-8\">\n" + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
-                + "<title>" + htmlTitle + "</title>\n" + "</head>\n" + "<body style=\"margin: 0;\">\n" 
-                + "<svg style=\"width: 50%; height: 50%;\" viewBox=\"0 0 1000 800\">\n" 
+                + "<meta charset=\"UTF-8\">\n"
+                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+                + "<title>" + htmlTitle + "</title>\n" + "</head>\n" + "<body style=\"margin: 0;\">\n"
+                + "<svg style=\"width: 50%; height: 50%;\" viewBox=\"0 0 1000 800\">\n"
                 + svgContent + "\n</svg>\n</body>\n" + "</html>";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".html"))) {
