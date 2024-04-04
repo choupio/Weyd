@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -18,7 +19,7 @@ public class StationAPI {
     private HashMap<String, List<Station>> stationsParDep;
     private HashSet<String> services;
     private HashMap<String, List<Station>> filtre;
-    private List<String> filtre_dep, filtre_reg, filtre_carb, filtre_serv;
+    private List<String> filtre_carb, filtre_serv;
 
     public StationAPI() {
         // Créez un ObjectMapper
@@ -243,6 +244,24 @@ public class StationAPI {
     }
 
     /**
+     * Rend les prix moyen par granularité
+     * 
+     * @return une HashMap de la forme {Granularité : {carburant : prix_moyen}}
+     */
+    public HashMap<String, HashMap<String, Double>> getPrixMoyen() {
+        HashMap<String, HashMap<String, Double>> prixMoyenParGranuParCarb = new HashMap<>();
+        HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = this.getPrixCarburants();
+        for (String granu : carburantsParGranularite.keySet()) {
+            prixMoyenParGranuParCarb.put(granu, new HashMap<>());
+            carburantsParGranularite.get(granu).keySet().stream()
+                    .forEach(carb -> prixMoyenParGranuParCarb.get(granu).put(carb,
+                            carburantsParGranularite.get(granu).get(carb).stream().mapToDouble(Double::doubleValue)
+                                    .average().orElseThrow(NoSuchElementException::new)));
+        }
+        return prixMoyenParGranuParCarb;
+    }
+
+    /**
      * filtre les stations selon les départements et selon les carburants
      * Pour l'instant ne filtre pas les serivces.
      * 
@@ -253,9 +272,28 @@ public class StationAPI {
     public HashMap<String, List<Station>> filtreDep(List<String> departement, List<String> carburants,
             List<String> services) {
         filtre_carb = carburants;
-        filtre_dep = departement;
         filtre_serv = services;
         filtre = filtreGranu(stationsParDep, departement);
+        if (filtre.isEmpty()) {
+            return filtre;
+        }
+        filtre = filtreCarb(filtre, carburants);
+        return filtre;
+    }
+
+    /**
+     * filtre les stations selon les régions et selon les carburants
+     * Pour l'instant ne filtre pas les serivces.
+     * 
+     * @param departement
+     * @param carburants
+     * @return
+     */
+    public HashMap<String, List<Station>> filtreReg(List<String> region, List<String> carburants,
+            List<String> services) {
+        filtre_carb = carburants;
+        filtre_serv = services;
+        filtre = filtreGranu(stationsParReg, region);
         if (filtre.isEmpty()) {
             return filtre;
         }
