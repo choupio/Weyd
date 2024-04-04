@@ -44,6 +44,7 @@ public class Onglet {
         JScrollPane scrollPaneDept = new JScrollPane(dept);
         scrollPaneDept.getVerticalScrollBar().setUnitIncrement(16); // Défilement plus rapide
         scrollPaneDept.setMaximumSize(new Dimension(230, HEIGTH - 500));
+        scrollPaneDept.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         ////// Conteneurs pour mieux gérer la position à l'affichage //////
         // Création d'un JPanel pour contenir scrollPaneDept
