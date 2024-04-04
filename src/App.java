@@ -48,7 +48,8 @@ public class App {
         visualiseur.colorier(" Blue ", " Green ", " Red ", " Yellow ", " Maroon ");
         visualiseur.agencer().createSvgFile();
 
-        Fonction.createHTMLFile("Ouais", visualiseur.enSVG(), "TEst", "rapport");
+        Fonction.createHTMLFile("Ouais", "/private/student/t/rt/etleport/l2gen_5_coupdumarteau/diagCamenberts.svg",
+                "TEst", "rapport");
 
         /*
          * Groupe tableau = new Groupe();
