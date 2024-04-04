@@ -8,6 +8,7 @@ import javax.swing.border.TitledBorder;
 
 public class Region {
     private JPanel region = new JPanel();
+    private Boolean[] isChecked;
 
     public Region() {
         region.setLayout(new BoxLayout(region, BoxLayout.Y_AXIS));
@@ -19,16 +20,21 @@ public class Region {
 
         JCheckBox[] Checkbox = new JCheckBox[tabRegion.size()];
 
+        // Liste booléenne pour savoir si la checkbox est cochée ou non
+        this.isChecked = new Boolean[tabRegion.size()];
+
         for (int i = 0; i < tabRegion.size(); i += 1) {
             Checkbox[i] = new JCheckBox(tabRegion.get(i));
             this.region.add(Checkbox[i]);
             int index = i;
             Checkbox[i].addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent e) {
-                    if (e.getStateChange() == ItemEvent.SELECTED) { // TODO à changer
-                        System.out.println("CheckBox" + index + "checked");
-                    } else if (e.getStateChange() == ItemEvent.DESELECTED) { // TODO à changer
-                        System.out.println("CheckBox" + index + " unchecked");
+                    if (e.getStateChange() == ItemEvent.SELECTED) {
+                        isChecked[index] = true;
+                        System.out.println("isChecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                    } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                        isChecked[index] = false;
+                        System.out.println("isUnchecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
                     }
                 }
             });
@@ -38,5 +44,9 @@ public class Region {
 
     public JPanel GetRegion() {
         return this.region;
+    }
+
+    public Boolean[] getIsCheckedReg() {
+        return this.isChecked;
     }
 }

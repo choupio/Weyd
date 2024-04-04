@@ -1,22 +1,16 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.awt.Font;
-
+import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 public class Diag {
     private JPanel panel;
-    private JCheckBox camembert;
-    private JCheckBox barre;
-    private JCheckBox colonne;
+    private Boolean[] isChecked;
 
     public Diag() {
-        // Initialisation des JCheckBox
-        camembert = new JCheckBox("Créer un diagramme en camembert");
-        barre = new JCheckBox("Créer un diagramme en barre");
-        colonne = new JCheckBox("Créer un diagramme en colonne");
-
         // Création du JPanel avec un BoxLayout vertical
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -24,13 +18,40 @@ public class Diag {
         border.setTitleFont(new Font("SansSerif", Font.BOLD, 18));
         panel.setBorder(border);
 
-        // Ajout des JCheckBox au JPanel
-        panel.add(camembert);
-        panel.add(barre);
-        panel.add(colonne);
+        ArrayList<String> tabDiag = new ArrayList<>();
+        tabDiag.add("Créer un diagramme en camembert");
+        tabDiag.add("Créer un diagramme en barre");
+        tabDiag.add("Créer un diagramme en colonne");
+
+        JCheckBox[] Checkbox = new JCheckBox[tabDiag.size()];
+
+        // Liste booléenne pour savoir si la checkbox est cochée ou non
+        this.isChecked = new Boolean[tabDiag.size()];
+
+        for (int i = 0; i < tabDiag.size(); i += 1) {
+            Checkbox[i] = new JCheckBox(tabDiag.get(i));
+            this.panel.add(Checkbox[i]);
+            int index = i;
+            Checkbox[i].addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    if (e.getStateChange() == ItemEvent.SELECTED) {
+                        isChecked[index] = true;
+                        System.out.println("isChecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                    } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                        isChecked[index] = false;
+                        System.out.println("isUnchecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                    }
+                }
+            });
+        }
+
     }
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    public Boolean[] getIsCheckedDiag() {
+        return this.isChecked;
     }
 }

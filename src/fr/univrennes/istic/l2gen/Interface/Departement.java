@@ -1,7 +1,6 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
@@ -9,7 +8,7 @@ import javax.swing.border.TitledBorder;
 
 public class Departement {
     private JPanel departements = new JPanel();
-    private int tructest;
+    private Boolean[] isChecked;
 
     public Departement() {
         departements.setLayout(new BoxLayout(departements, BoxLayout.Y_AXIS));
@@ -22,17 +21,21 @@ public class Departement {
 
         JCheckBox[] radioCheck = new JCheckBox[tabDepart.size()];
 
+        // Liste booléenne pour savoir si la checkbox est cochée ou non
+        this.isChecked = new Boolean[tabDepart.size()];
+
         for (int i = 0; i < tabDepart.size(); i += 1) {
             radioCheck[i] = new JCheckBox(tabDepart.get(i));
             this.departements.add(radioCheck[i]);
-            this.tructest = i;
-            // ajout de l'événement
+            int index = i;
             radioCheck[i].addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent e) {
-                    if (e.getStateChange() == ItemEvent.SELECTED) { // TODO à changer
-                        System.out.println("CheckBox" + tructest + "checked");
-                    } else if (e.getStateChange() == ItemEvent.DESELECTED) { // TODO à changer
-                        System.out.println("CheckBox" + tructest + " unchecked");
+                    if (e.getStateChange() == ItemEvent.SELECTED) {
+                        isChecked[index] = true;
+                        System.out.println("isChecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                    } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                        isChecked[index] = false;
+                        System.out.println("isUnchecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
                     }
                 }
             });
@@ -44,5 +47,9 @@ public class Departement {
 
     public JPanel GetDept() {
         return this.departements;
+    }
+
+    public Boolean[] getIsCheckedDept() {
+        return this.isChecked;
     }
 }
