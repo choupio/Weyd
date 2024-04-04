@@ -37,6 +37,8 @@ public class Onglet {
         JPanel stat = statistique.getPanel();
         Diag diagramme = new Diag();
         JPanel diag = diagramme.getPanel();
+        Services services = new Services();
+        JPanel serv = services.getPanel();
         Carburant carb = new Carburant();
         JPanel carburant = carb.Getcarburant();
         carburant.setLayout(new BoxLayout(carburant, BoxLayout.X_AXIS));
@@ -44,6 +46,7 @@ public class Onglet {
         JScrollPane scrollPaneDept = new JScrollPane(dept);
         scrollPaneDept.getVerticalScrollBar().setUnitIncrement(16); // Défilement plus rapide
         scrollPaneDept.setMaximumSize(new Dimension(230, HEIGTH - 500));
+        scrollPaneDept.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         ////// Conteneurs pour mieux gérer la position à l'affichage //////
         // Création d'un JPanel pour contenir scrollPaneDept
@@ -79,11 +82,16 @@ public class Onglet {
         southContainer.add(Box.createHorizontalStrut(WIDTH - 850));
         southContainer.add(diagContainer, BorderLayout.EAST);
         onglet21Container.add(southContainer, BorderLayout.SOUTH);
+        // Création d'un JPanel pour contenir les services
+        JPanel servContainer = new JPanel();
+        servContainer.setLayout(new BoxLayout(servContainer, BoxLayout.Y_AXIS));
+        servContainer.add(serv);
 
         // Ajout de ces panel à l'onglet 2
         onglet2.add(onglet21Container, BorderLayout.NORTH);
         onglet2.add(regionContainer, BorderLayout.WEST);
         onglet2.add(scrollPaneDeptContainer, BorderLayout.EAST);
+        onglet2.add(servContainer, BorderLayout.CENTER);
 
         // Gestion de la vision au démarrage
         region.setVisible(true);

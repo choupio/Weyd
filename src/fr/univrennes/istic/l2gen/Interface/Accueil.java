@@ -51,6 +51,8 @@ public class Accueil {
 
         fenetre.getFenetre().pack();
         fenetre.getFenetre().setVisible(true);
+
+        System.out.println(recup.getNomsServices());
     }
 
     public static StationAPI getRecup() {
