@@ -269,16 +269,15 @@ public class StationAPI {
      * @param carburants
      * @return
      */
-    public HashMap<String, List<Station>> filtreDep(List<String> departement, List<String> carburants,
+    public void filtreDep(List<String> departement, List<String> carburants,
             List<String> services) {
         filtre_carb = carburants;
         filtre_serv = services;
         filtre = filtreGranu(stationsParDep, departement);
-        if (filtre.isEmpty()) {
-            return filtre;
+        if (!filtre.isEmpty()) {
+            filtre = filtreCarb(filtre, carburants);
         }
-        filtre = filtreCarb(filtre, carburants);
-        return filtre;
+
     }
 
     /**
@@ -289,16 +288,15 @@ public class StationAPI {
      * @param carburants
      * @return
      */
-    public HashMap<String, List<Station>> filtreReg(List<String> region, List<String> carburants,
+    public void filtreReg(List<String> region, List<String> carburants,
             List<String> services) {
         filtre_carb = carburants;
         filtre_serv = services;
         filtre = filtreGranu(stationsParReg, region);
-        if (filtre.isEmpty()) {
-            return filtre;
+        if (!filtre.isEmpty()) {
+            filtre = filtreCarb(filtre, carburants);
         }
-        filtre = filtreCarb(filtre, carburants);
-        return filtre;
+
     }
 
 }
