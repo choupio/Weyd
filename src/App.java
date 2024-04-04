@@ -49,7 +49,7 @@ public class App {
         visualiseur.agencer().createSvgFile();
 
         Fonction.createHTMLFile("Ouais", "/private/student/t/rt/etleport/l2gen_5_coupdumarteau/diagCamenberts.svg",
-                "TEst", "rappot");
+                "TEst", "rapport");
 
         /*
          * Groupe tableau = new Groupe();
