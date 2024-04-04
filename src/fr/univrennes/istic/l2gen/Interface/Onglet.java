@@ -76,7 +76,7 @@ public class Onglet {
         JPanel southContainer = new JPanel();
         southContainer.setLayout(new BoxLayout(southContainer, BoxLayout.X_AXIS));
         southContainer.add(statContainer, BorderLayout.WEST);
-        southContainer.add(Box.createHorizontalStrut(WIDTH - 725));
+        southContainer.add(Box.createHorizontalStrut(WIDTH - 850));
         southContainer.add(diagContainer, BorderLayout.EAST);
         onglet21Container.add(southContainer, BorderLayout.SOUTH);
 
