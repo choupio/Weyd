@@ -244,7 +244,7 @@ public class StationAPI {
     }
 
     /**
-     * Rend les prix moyen par granularité
+     * Rend les prix moyen par granularité et par carburant
      * 
      * @return une HashMap de la forme {Granularité : {carburant : prix_moyen}}
      */
@@ -259,6 +259,36 @@ public class StationAPI {
                                     .average().orElseThrow(NoSuchElementException::new)));
         }
         return prixMoyenParGranuParCarb;
+    }
+
+    /**
+     * Rend les prix médian par granularité et par carburant
+     * 
+     * @return une HashMap de la forme {Granularité : {carburant : prix_médian}}
+     */
+    public HashMap<String, HashMap<String, Double>> getPrixMedian() {
+        HashMap<String, HashMap<String, Double>> prixMoyenParGranuParCarb = new HashMap<>();
+        HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = this.getPrixCarburants();
+        for (String granu : carburantsParGranularite.keySet()) {
+            prixMoyenParGranuParCarb.put(granu, new HashMap<>());
+            carburantsParGranularite.get(granu).keySet().stream()
+                    .forEach(carb -> {
+                        int millieu;
+                        int taille = carburantsParGranularite.get(granu).get(carb).size();
+                        carburantsParGranularite.get(granu).get(carb).sort(null);
+                        if (taille % 2 == 0) {
+                            millieu = taille / 2;
+                            prixMoyenParGranuParCarb.get(granu).put(carb,
+                                    (carburantsParGranularite.get(granu).get(carb).get(millieu - 1)
+                                            + carburantsParGranularite.get(granu).get(carb).get(millieu)) / 2);
+                        } else {
+                            millieu = taille / 2;
+                            carburantsParGranularite.get(granu).get(carb).get(millieu);
+                        }
+                    });
+        }
+        return prixMoyenParGranuParCarb;
+
     }
 
     /**
