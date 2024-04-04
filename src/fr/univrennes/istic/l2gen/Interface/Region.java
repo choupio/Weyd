@@ -39,5 +39,4 @@ public class Region {
     public JPanel GetRegion() {
         return this.region;
     }
-
 }
