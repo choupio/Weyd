@@ -215,19 +215,22 @@ public class StationAPI {
             List<String> carburantList) {
         HashMap<String, List<Station>> filtre = new HashMap<>();
         for (String granu : stationsParGranu.keySet()) {
-            List<Station> stationsFiltre = new ArrayList<>(stationsParGranu.get(granu)).stream().filter(x -> {
-                for (String carb : carburantList) {
-                    if (x.getCarburants() != null) {
-                        if (x.getCarburants().stream().map(y -> y.getNom()).collect(Collectors.toList())
-                                .contains(carb)) {
-                            return true;
+            if (stationsParGranu.get(granu) != null) {
+                List<Station> stationsFiltre = new ArrayList<>(stationsParGranu.get(granu)).stream().filter(x -> {
+                    for (String carb : carburantList) {
+                        if (x.getCarburants() != null) {
+                            if (x.getCarburants().stream().map(y -> y.getNom()).collect(Collectors.toList())
+                                    .contains(carb)) {
+                                return true;
+                            }
                         }
-                    }
 
-                }
-                return false;
-            }).collect(Collectors.toList());
-            filtre.put(granu, stationsFiltre);
+                    }
+                    return false;
+                }).collect(Collectors.toList());
+                filtre.put(granu, stationsFiltre);
+            }
+
         }
         return filtre;
     }
