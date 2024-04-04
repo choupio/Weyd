@@ -41,19 +41,5 @@ public class CreationFenetre {
         composant.add(imageLabel);
         composant.revalidate();
         composant.repaint();
-        /*
-         * // On charge l'image
-         * ImageIcon imageDeFond = new ImageIcon(cheminImage);
-         * // JLabel pour contenir l'image
-         * JLabel imageLabel = new JLabel(imageDeFond);
-         * // On définit l'emplacement et la taille du JLabel
-         * imageLabel.setBounds(x, y, width, height);
-         * // On désactive le LayoutManager
-         * composant.setLayout(null);
-         * // On ajoute le JLabel au composant
-         * composant.add(imageLabel);
-         * composant.revalidate();
-         * composant.repaint();
-         */
     }
 }

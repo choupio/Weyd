@@ -23,7 +23,6 @@ public class Departement {
 
         for (int i = 0; i < tabDepart.size(); i += 1) {
             radioCheck[i] = new JCheckBox(tabDepart.get(i));
-            // radioCheck[i].setFont(new Font("Serif", Font.PLAIN, 15));
             this.departements.add(radioCheck[i]);
             this.tructest = i;
             // ajout de l'événement
