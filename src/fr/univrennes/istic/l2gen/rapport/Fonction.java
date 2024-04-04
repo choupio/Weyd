@@ -29,7 +29,7 @@ public class Fonction {
                 + "<meta charset=\"UTF-8\">\n"
                 + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
                 + "<title>" + htmlTitle + "</title>\n" + "</head>\n" + "<body style=\"margin: 0;\">\n"
-                + "<svg style=\"width: 100%; height: 100%;\" viewBox=\"0 0 2000 2000\">\n"
+                + "<svg style=\"width: 90%; height: 90%;\" viewBox=\"0 0 2000 1000\">\n"
                 + svgContent + "\n</svg>\n</body>\n" + "</html>";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".html"))) {

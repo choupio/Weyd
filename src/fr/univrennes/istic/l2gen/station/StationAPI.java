@@ -267,10 +267,10 @@ public class StationAPI {
      * @return une HashMap de la forme {Granularité : {carburant : prix_médian}}
      */
     public HashMap<String, HashMap<String, Double>> getPrixMedian() {
-        HashMap<String, HashMap<String, Double>> prixMoyenParGranuParCarb = new HashMap<>();
+        HashMap<String, HashMap<String, Double>> prixMedianParGranuParCarb = new HashMap<>();
         HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = this.getPrixCarburants();
         for (String granu : carburantsParGranularite.keySet()) {
-            prixMoyenParGranuParCarb.put(granu, new HashMap<>());
+            prixMedianParGranuParCarb.put(granu, new HashMap<>());
             carburantsParGranularite.get(granu).keySet().stream()
                     .forEach(carb -> {
                         int millieu;
@@ -278,7 +278,7 @@ public class StationAPI {
                         carburantsParGranularite.get(granu).get(carb).sort(null);
                         if (taille % 2 == 0) {
                             millieu = taille / 2;
-                            prixMoyenParGranuParCarb.get(granu).put(carb,
+                            prixMedianParGranuParCarb.get(granu).put(carb,
                                     (carburantsParGranularite.get(granu).get(carb).get(millieu - 1)
                                             + carburantsParGranularite.get(granu).get(carb).get(millieu)) / 2);
                         } else {
@@ -287,8 +287,26 @@ public class StationAPI {
                         }
                     });
         }
-        return prixMoyenParGranuParCarb;
+        return prixMedianParGranuParCarb;
 
+    }
+
+    /**
+     * Rend les prix minimums par granularité et par carburant
+     * 
+     * @return une HashMap de la forme {Granularité : {carburant : prix_minimum}}
+     */
+    public HashMap<String, HashMap<String, Double>> getPrixMin() {
+        HashMap<String, HashMap<String, Double>> prixMinParGranuParCarb = new HashMap<>();
+        HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = this.getPrixCarburants();
+        for (String granu : carburantsParGranularite.keySet()) {
+            prixMinParGranuParCarb.put(granu, new HashMap<>());
+            carburantsParGranularite.get(granu).keySet().stream()
+                    .forEach(carb -> prixMinParGranuParCarb.get(granu).put(carb,
+                            carburantsParGranularite.get(granu).get(carb).stream().mapToDouble(Double::doubleValue)
+                                    .min().orElseThrow(NoSuchElementException::new)));
+        }
+        return prixMinParGranuParCarb;
     }
 
     /**
