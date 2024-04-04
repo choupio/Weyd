@@ -35,7 +35,7 @@ public class App {
         visualiseur.colorier(" Blue ", " Green ", " Red ", " Yellow ", " Maroon ");
         visualiseur.agencer().createSvgFile();
 
-        Fonction.createHTMLFile("Ouais", "TEst", "rapport");
+        Fonction.createHTMLFile("Ouais",visualiseur.enSVG(), "TEst", "rapport");
 
         /*
          * Groupe tableau = new Groupe();
