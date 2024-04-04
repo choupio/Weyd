@@ -8,14 +8,14 @@ import java.nio.file.Paths;
 
 public class Fonction {
     /**
-     * Crée un fichier HTML contenant le contenu HTML et SVG spécifiés.
+     * Crée un fichier HTML contenant le contenu SVG spécifié.
      * 
-     * @param htmlContent   Le contenu HTML à inclure dans le fichier.
-     * @param svgFilePath   Le chemin vers le fichier SVG à inclure dans le fichier HTML.
-     * @param htmlTitle     Le titre de la page HTML.
-     * @param fileName      Le nom du fichier HTML à créer.
+     * @param svgFilePath Le chemin vers le fichier SVG à inclure dans le fichier
+     *                    HTML.
+     * @param htmlTitle   Le titre de la page HTML.
+     * @param fileName    Le nom du fichier HTML à créer.
      */
-    public static void createHTMLFile(String htmlContent, String svgFilePath, String htmlTitle, String fileName) {
+    public static void createHTMLFile(String svgFilePath, String htmlTitle, String fileName) {
         String svgContent = "";
 
         try {
@@ -26,9 +26,11 @@ public class Fonction {
         }
 
         String htmlTemplate = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n"
-                + "<meta charset=\"UTF-8\">\n" + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-                + "<title>" + htmlTitle + "</title>\n" + "</head>\n" + "<body>\n" + htmlContent + "\n" + svgContent + "\n"
-                + "</body>\n" + "</html>";
+                + "<meta charset=\"UTF-8\">\n"
+                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+                + "<title>" + htmlTitle + "</title>\n" + "</head>\n" + "<body style=\"margin: 0;\">\n"
+                + "<svg style=\"width: 50%; height: 50%;\" viewBox=\"0 0 1000 1000\">\n"
+                + svgContent + "\n</svg>\n</body>\n" + "</html>";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".html"))) {
             writer.write(htmlTemplate);
