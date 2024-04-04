@@ -1,10 +1,10 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
-import java.awt.Dimension;
 import java.awt.event.*;
+import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 public class Departement {
     private JPanel departements = new JPanel();
@@ -12,7 +12,8 @@ public class Departement {
 
     public Departement() {
         departements.setLayout(new BoxLayout(departements, BoxLayout.Y_AXIS));
-        Border border2 = BorderFactory.createTitledBorder("Departement");
+        TitledBorder border2 = BorderFactory.createTitledBorder("Départements");
+        border2.setTitleFont(new Font("SansSerif", Font.BOLD, 18));
         this.departements.setBorder(border2);
 
         // Noms des départements en France
@@ -22,14 +23,15 @@ public class Departement {
 
         for (int i = 0; i < tabDepart.size(); i += 1) {
             radioCheck[i] = new JCheckBox(tabDepart.get(i));
+            // radioCheck[i].setFont(new Font("Serif", Font.PLAIN, 15));
             this.departements.add(radioCheck[i]);
             this.tructest = i;
             // ajout de l'événement
             radioCheck[i].addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent e) {
-                    if (e.getStateChange() == ItemEvent.SELECTED) {
+                    if (e.getStateChange() == ItemEvent.SELECTED) { // TODO à changer
                         System.out.println("CheckBox" + tructest + "checked");
-                    } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                    } else if (e.getStateChange() == ItemEvent.DESELECTED) { // TODO à changer
                         System.out.println("CheckBox" + tructest + " unchecked");
                     }
                 }

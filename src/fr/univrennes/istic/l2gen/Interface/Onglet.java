@@ -9,78 +9,133 @@ public class Onglet {
     private JPanel panelOnglet = new JPanel();
 
     public Onglet(String titreOnglet1, String titreOnglet2, int WIDTH, int HEIGTH) {
-        onglets = new JTabbedPane(SwingConstants.TOP);
-        
-        String[] Granularite = { "Région", "Département" };
-        JComboBox<String> choixGranuralite = new JComboBox<>(Granularite);
-        JButton button = new JButton("Rapport");
-        JLabel jLabel = new JLabel("Granularité");
+        // Initialisation des onglets
+        this.onglets = new JTabbedPane(SwingConstants.TOP);
 
-        choixGranuralite.setSize(choixGranuralite.getWidth(), choixGranuralite.getMinimumSize().height);
-
+        // Création onglet 1
         JPanel onglet1 = new JPanel();
         onglet1.setPreferredSize(new Dimension(WIDTH, HEIGTH));
-        onglets.addTab(titreOnglet1, onglet1);
+        this.onglets.addTab(titreOnglet1, onglet1);
 
+        // Création onglet 2
         JPanel onglet2 = new JPanel();
+        onglet2.setLayout(new BorderLayout());
+        onglet2.setPreferredSize(new Dimension(WIDTH, HEIGTH));
+        this.onglets.addTab(titreOnglet2, onglet2);
 
-        onglet2.setLayout(new BoxLayout(onglet2, BoxLayout.Y_AXIS));
-        JPanel onglet21=new JPanel();
-
-        onglet21.setSize(onglet21.getWidth(),choixGranuralite.getMinimumSize().height);
-
-        JCheckBox prix_moyen=new JCheckBox("prix moyen");
-        JCheckBox prix_Median=new JCheckBox("Prix médian");
-        JCheckBox prix_min=new JCheckBox("Prix minimal");
-        JCheckBox nombre_station_carburant=new JCheckBox("Nombre Station carburant");
-        JCheckBox nombre_station_services=new JCheckBox("Nombre Station services");
-
-        onglet21.add(jLabel);
-        onglet21.add(choixGranuralite);
-        onglet21.add(button);
-
+        // Création d'un sous panel pour l'onglet 2
+        JPanel onglet21 = new JPanel();
+        onglet21.setSize((int) onglet2.getPreferredSize().getWidth(), (int) onglet2.getPreferredSize().getHeight());
         onglet2.add(onglet21);
 
+        // Création des panneaux pour l'onglet 2
         Region Region = new Region();
         JPanel region = Region.GetRegion();
         Departement Departement = new Departement();
         JPanel dept = Departement.GetDept();
-        Carburant carb=new Carburant();
+        Statistique statistique = new Statistique();
+        JPanel stat = statistique.getPanel();
+        Diag diagramme = new Diag();
+        JPanel diag = diagramme.getPanel();
+        Carburant carb = new Carburant();
         JPanel carburant = carb.Getcarburant();
+        carburant.setLayout(new BoxLayout(carburant, BoxLayout.X_AXIS));
+        // Création d'un JScrollPane pour dept
+        JScrollPane scrollPaneDept = new JScrollPane(dept);
+        scrollPaneDept.getVerticalScrollBar().setUnitIncrement(16); // Défilement plus rapide
+        scrollPaneDept.setMaximumSize(new Dimension(230, HEIGTH - 500));
 
-        choixGranuralite.addItemListener(new ItemListener(){
-            boolean panelVisible = false;
+        ////// Conteneurs pour mieux gérer la position à l'affichage //////
+        // Création d'un JPanel pour contenir scrollPaneDept
+        JPanel scrollPaneDeptContainer = new JPanel();
+        scrollPaneDeptContainer.setLayout(new BoxLayout(scrollPaneDeptContainer, BoxLayout.X_AXIS));
+        scrollPaneDeptContainer.add(scrollPaneDept);
+        // Création d'un JPanel pour contenir region
+        JPanel regionContainer = new JPanel();
+        regionContainer.setLayout(new BoxLayout(regionContainer, BoxLayout.Y_AXIS));
+        regionContainer.add(region);
+        // Création d'un JPanel pour contenir carburant
+        JPanel carburantContainer = new JPanel();
+        carburantContainer.setLayout(new BoxLayout(carburantContainer, BoxLayout.X_AXIS));
+        carburantContainer.add(carburant);
+        // Création d'un JPanel pour contenir onglet21
+        JPanel onglet21Container = new JPanel();
+        onglet21Container.setLayout(new BoxLayout(onglet21Container, BoxLayout.Y_AXIS));
+        onglet21Container.add(onglet21);
+        onglet21Container.add(Box.createVerticalStrut(20));
+        onglet21Container.add(carburantContainer);
+        // Création d'un JPanel pour contenir les stats
+        JPanel statContainer = new JPanel();
+        statContainer.setLayout(new BoxLayout(statContainer, BoxLayout.Y_AXIS));
+        statContainer.add(stat);
+        // Création d'un JPanel pour contenir les diag
+        JPanel diagContainer = new JPanel();
+        diagContainer.setLayout(new BoxLayout(diagContainer, BoxLayout.Y_AXIS));
+        diagContainer.add(diag);
+        // Création d'un panel pour contenir les diag et stats
+        JPanel southContainer = new JPanel();
+        southContainer.setLayout(new BoxLayout(southContainer, BoxLayout.X_AXIS));
+        southContainer.add(statContainer, BorderLayout.WEST);
+        southContainer.add(Box.createHorizontalStrut(WIDTH - 725));
+        southContainer.add(diagContainer, BorderLayout.EAST);
+        onglet21Container.add(southContainer, BorderLayout.SOUTH);
+
+        // Ajout de ces panel à l'onglet 2
+        onglet2.add(onglet21Container, BorderLayout.NORTH);
+        onglet2.add(regionContainer, BorderLayout.WEST);
+        onglet2.add(scrollPaneDeptContainer, BorderLayout.EAST);
+
+        // Gestion de la vision au démarrage
+        region.setVisible(true);
+        scrollPaneDeptContainer.setVisible(false);
+        carburantContainer.setVisible(true);
+        southContainer.setVisible(true);
+
+        // Création des éléments de contrôle pour l'onglet 2
+        String[] Granularite = { "Régions", "Départements" };
+        JComboBox<String> choixGranuralite = new JComboBox<>(Granularite); // Déroulant Granularité
+        JLabel jLabel = new JLabel("Granularité");
+        choixGranuralite.setSize(choixGranuralite.getWidth(), choixGranuralite.getMinimumSize().height);
+        JButton button = new JButton("Rapport"); // Bouton pour le Rapport
+
+        // Ajout de ces éléments de contrôle à l'onglet 2
+        onglet21.add(jLabel);
+        onglet21.add(choixGranuralite);
+        onglet21.add(button);
+
+        // Gestion des événements pour le choix de la granularité
+        choixGranuralite.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 String selectedChoice = (String) choixGranuralite.getSelectedItem();
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    if (selectedChoice.equals("Département")) {
-                        dept.setVisible(!panelVisible);
-                        panelVisible = !panelVisible;
+                    if (selectedChoice.equals("Départements")) {
+                        scrollPaneDeptContainer.setVisible(true);
+                        region.setVisible(false);
+                    } else if (selectedChoice.equals("Régions")) {
+                        region.setVisible(true);
+                        scrollPaneDeptContainer.setVisible(false);
                     }
+                    onglet2.revalidate();
+                    onglet2.repaint();
                 }
             }
         });
-        /*else{
-            dept.setVisible(false);
-            region.setVisible(false);
-        }*/
-         
-        
-        onglet2.setPreferredSize(new Dimension(WIDTH, HEIGTH));
-        // onglet2.add(onglet21,BorderLayout.WEST);
-        onglets.addTab(titreOnglet2, onglet2);
-        onglet2.add(carburant);
-        onglet2.add(region);
-        
-        
-        onglet2.add(dept);
 
-        panelOnglet.add(onglets);
+        // Ajout des onglets au panel principal
+        panelOnglet.add(this.onglets);
 
     }
 
     public JPanel GetPanel() {
-        return panelOnglet;
+        return this.panelOnglet;
+    }
+
+    public JComponent GetOnglet1() {
+        return (JComponent) this.onglets.getComponent(0);
+    }
+
+    public JComponent GetOnglet2() {
+        return (JComponent) this.onglets.getComponent(1);
     }
 
 }
