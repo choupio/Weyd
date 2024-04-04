@@ -81,7 +81,7 @@ public class StationAPI {
 
                     }
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    // TODO modifer ça
                 }
 
             }
@@ -135,10 +135,18 @@ public class StationAPI {
         if (filtre.isEmpty()) {
             throw new IllegalStateException("le filtre est vide, appellez filtre()");
         }
-        for (String string : filtre.keySet()) {
-            carburantsParGranularite.put(string, new HashMap<>());
-            carburantsParGranularite.get(string).putAll(null);
+        for (String granu : filtre.keySet()) {
+            carburantsParGranularite.put(granu, new HashMap<>()); // Ajout de la granularité
+            filtre_carb.stream().forEach(x -> carburantsParGranularite.get(granu).put(x, new ArrayList<>())); // ajout
+                                                                                                              // des
+                                                                                                              // différents
+                                                                                                              // carburants
+                                                                                                              // dans la
+                                                                                                              // granularité
+            filtre.get(granu).stream().forEach(station -> station.getCarburants().stream()
+                    .forEach(carb -> carburantsParGranularite.get(granu).get(carb.getNom()).add(carb.getPrix())));
         }
+
         return carburantsParGranularite;
     }
 
@@ -234,6 +242,9 @@ public class StationAPI {
      */
     public HashMap<String, List<Station>> filtre(List<String> departement, List<String> carburants,
             List<String> services) {
+        filtre_carb = carburants;
+        filtre_dep = departement;
+        filtre_serv = services;
         filtre = filtreGranu(stationsParDep, departement);
         if (filtre.isEmpty()) {
             return filtre;
