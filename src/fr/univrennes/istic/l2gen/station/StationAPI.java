@@ -41,7 +41,7 @@ public class StationAPI {
             services = new HashSet<>();
             filtre = new HashMap<>();
             filtre_carb = new ArrayList<>();
-            
+
             for (StationParCarb station : stationsParCarb) {
                 // Change le String unicode en normal
                 station.setReg_name(decodeUnicode(station.getReg_name()));
@@ -75,9 +75,13 @@ public class StationAPI {
                 }
 
                 // Ajout des services proposé
-                if (!station.getServices_service().isEmpty()) {
-                    services.addAll(station.getServices_service());
+                try {
+                    if (!station.getServices_service().isEmpty()) {
+                        services.addAll(station.getServices_service());
 
+                    }
+                } catch (Exception e) {
+                    // TODO: handle exception
                 }
 
             }
@@ -128,7 +132,9 @@ public class StationAPI {
      */
     public HashMap<String, HashMap<String, List<Double>>> getPrixCarburants() {
         HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = new HashMap<>();
-        if(filtre.isEmpty()){throw new IllegalStateException("le filtre est vide, appellez filtre()");}
+        if (filtre.isEmpty()) {
+            throw new IllegalStateException("le filtre est vide, appellez filtre()");
+        }
         for (String string : filtre.keySet()) {
             carburantsParGranularite.put(string, new HashMap<>());
             carburantsParGranularite.get(string).putAll(null);
