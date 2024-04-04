@@ -1,6 +1,7 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
@@ -44,5 +45,4 @@ public class Departement {
     public JPanel GetDept() {
         return this.departements;
     }
-
 }
