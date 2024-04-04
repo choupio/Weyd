@@ -133,7 +133,7 @@ public class StationAPI {
     public HashMap<String, HashMap<String, List<Double>>> getPrixCarburants() {
         HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = new HashMap<>();
         if (filtre.isEmpty()) {
-            throw new IllegalStateException("le filtre est vide, appellez filtre()");
+            throw new IllegalStateException("le filtre est vide, appellez filtreDep() ou filtreReg");
         }
         for (String granu : filtre.keySet()) {
             carburantsParGranularite.put(granu, new HashMap<>()); // Ajout de la granularité
@@ -143,8 +143,15 @@ public class StationAPI {
                                                                                                               // carburants
                                                                                                               // dans la
                                                                                                               // granularité
-            filtre.get(granu).stream().forEach(station -> station.getCarburants().stream()
-                    .forEach(carb -> carburantsParGranularite.get(granu).get(carb.getNom()).add(carb.getPrix())));
+                                                                                                              // avec
+                                                                                                              // une
+                                                                                                              // liste
+                                                                                                              // vide
+            filtre.get(granu).stream().forEach(station -> station.getCarburants().stream().forEach(carb -> {
+                if (filtre_carb.contains(carb.getNom())) {
+                    carburantsParGranularite.get(granu).get(carb.getNom()).add(carb.getPrix());
+                }
+            })); // Ajout des prix des carburants
         }
 
         return carburantsParGranularite;
@@ -243,7 +250,7 @@ public class StationAPI {
      * @param carburants
      * @return
      */
-    public HashMap<String, List<Station>> filtre(List<String> departement, List<String> carburants,
+    public HashMap<String, List<Station>> filtreDep(List<String> departement, List<String> carburants,
             List<String> services) {
         filtre_carb = carburants;
         filtre_dep = departement;
