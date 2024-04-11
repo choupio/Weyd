@@ -17,6 +17,9 @@ public class Services {
         border2.setTitleFont(new Font("SansSerif", Font.BOLD, 18));
         this.services.setBorder(border2);
 
+        JCheckBox tousServices=new JCheckBox("Tout les services");
+        services.add(tousServices);
+
         // Noms des départements en France
         ArrayList<String> tabServ = Accueil.getRecup().getNomsServices();
 
@@ -40,6 +43,20 @@ public class Services {
                 }
             });
         }
+
+        tousServices.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e){
+                if(e.getStateChange()==ItemEvent.SELECTED){
+                    for(int i=0;i<tabServ.size();i++){
+                        radioCheck[i].setSelected(true);
+                    }
+                }else if (e.getStateChange()==ItemEvent.DESELECTED) {
+                    for(int i=0;i<tabServ.size();i++){
+                        radioCheck[i].setSelected(false);
+                    }
+                }
+            }
+        });
 
         this.services.setSize(services.getMinimumSize().width, services.getMinimumSize().width);
 
