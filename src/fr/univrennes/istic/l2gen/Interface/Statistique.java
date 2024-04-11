@@ -34,17 +34,34 @@ public class Statistique {
             Checkbox[i] = new JCheckBox(tabStat.get(i));
             this.panel.add(Checkbox[i]);
             int index = i;
-            Checkbox[i].addItemListener(new ItemListener() {
-                public void itemStateChanged(ItemEvent e) {
-                    if (e.getStateChange() == ItemEvent.SELECTED) {
-                        isChecked[index] = true;
-                        System.out.println("isChecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
-                    } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                        isChecked[index] = false;
-                        System.out.println("isUnchecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+            if (tabStat.get(index) == "Prix minimum") { // la case "Prix minimum" débloque les localisations
+                Checkbox[i].addItemListener(new ItemListener() {
+                    public void itemStateChanged(ItemEvent e) {
+                        if (e.getStateChange() == ItemEvent.SELECTED) {
+                            isChecked[index] = true;
+                            Onglet.getAfficheStation().setEnabled(true);
+                        } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                            isChecked[index] = false;
+                            Onglet.getAfficheStation().setEnabled(false);
+                        }
                     }
-                }
-            });
+                });
+            } else { // Autres cases
+                Checkbox[i].addItemListener(new ItemListener() {
+                    public void itemStateChanged(ItemEvent e) {
+                        if (e.getStateChange() == ItemEvent.SELECTED) {
+                            isChecked[index] = true;
+                            System.out.println("isChecked[" + index + "] = " + isChecked[index]); // TODO verif à
+                                                                                                  // enlever
+                        } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                            isChecked[index] = false;
+                            System.out.println("isUnchecked[" + index + "] = " + isChecked[index]); // TODO verif à
+                                                                                                    // enlever
+                        }
+                    }
+                });
+            }
+
         }
     }
 

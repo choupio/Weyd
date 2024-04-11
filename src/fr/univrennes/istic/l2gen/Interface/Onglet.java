@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Onglet {
+    private static JCheckBox afficheStation;
     private JTabbedPane onglets;
     private JPanel panelOnglet = new JPanel();
 
@@ -21,7 +22,7 @@ public class Onglet {
         JPanel onglet2 = new JPanel();
         onglet2.setLayout(new BorderLayout());
         onglet2.setPreferredSize(new Dimension(WIDTH, HEIGTH));
-        //onglet2.setLayout(new BoxLayout(onglet2,BoxLayout.X_AXIS));
+        // onglet2.setLayout(new BoxLayout(onglet2,BoxLayout.X_AXIS));
         this.onglets.addTab(titreOnglet2, onglet2);
 
         // Création d'un sous panel pour l'onglet 2
@@ -50,13 +51,11 @@ public class Onglet {
         scrollPaneDept.setMaximumSize(new Dimension(230, HEIGTH - 500));
         scrollPaneDept.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        //création d'un JscrollPane pour serv
-        JScrollPane scrollPaneServ =new JScrollPane(serv);
+        // création d'un JscrollPane pour serv
+        JScrollPane scrollPaneServ = new JScrollPane(serv);
         scrollPaneServ.getVerticalScrollBar().setUnitIncrement(18);
         scrollPaneServ.setMaximumSize(new Dimension(700, HEIGTH - 500));
         scrollPaneServ.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
-
 
         ////// Conteneurs pour mieux gérer la position à l'affichage //////
         // Création d'un JPanel pour contenir scrollPaneDept
@@ -78,7 +77,7 @@ public class Onglet {
         JPanel onglet21Container = new JPanel();
         onglet21Container.setLayout(new BoxLayout(onglet21Container, BoxLayout.Y_AXIS));
         onglet21Container.add(onglet21);
-        JCheckBox afficheStation=new JCheckBox("Afficher position des stations les moins chères");
+        afficheStation = new JCheckBox("Afficher position des stations les moins chères");
         afficheStation.setEnabled(false);
         onglet21Container.add(afficheStation);
         onglet21Container.add(Box.createVerticalStrut(10));
@@ -98,19 +97,18 @@ public class Onglet {
         JPanel southContainer = new JPanel();
         southContainer.setLayout(new BoxLayout(southContainer, BoxLayout.X_AXIS));
         southContainer.add(statContainer, BorderLayout.WEST);
-        southContainer.add(onglet21Container,BorderLayout.CENTER);
+        southContainer.add(onglet21Container, BorderLayout.CENTER);
         southContainer.add(diagContainer, BorderLayout.EAST);
-        
 
         // Création d'un JPanel pour contenir les services
         JPanel servContainer = new JPanel();
         servContainer.setLayout(new BoxLayout(servContainer, BoxLayout.X_AXIS));
         servContainer.add(scrollPaneServ);
-        
+
         // Ajout de ces panel à l'onglet 2
         onglet2.add(southContainer, BorderLayout.NORTH);
         onglet2.add(regionContainer, BorderLayout.WEST);
-        onglet2.add(scrollPaneDeptContainer,BorderLayout.CENTER);
+        onglet2.add(scrollPaneDeptContainer, BorderLayout.CENTER);
         onglet2.add(servContainer, BorderLayout.EAST);
 
         // Gestion de la vision au démarrage
@@ -167,4 +165,7 @@ public class Onglet {
         return (JComponent) this.onglets.getComponent(1);
     }
 
+    public static JCheckBox getAfficheStation() {
+        return afficheStation;
+    }
 }
