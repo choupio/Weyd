@@ -24,6 +24,7 @@ public class TraitementCases {
 
     // Traitement des services cochées
     public void traitementServices() {
+        
     }
 
     // Traitement des départements cochées

@@ -17,7 +17,7 @@ public class Services {
         border2.setTitleFont(new Font("SansSerif", Font.BOLD, 18));
         this.services.setBorder(border2);
 
-        JCheckBox tousServices=new JCheckBox("Tout les services");
+        JCheckBox tousServices=new JCheckBox("Tous les services");
         services.add(tousServices);
 
         // Noms des départements en France
