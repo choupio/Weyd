@@ -206,29 +206,31 @@ public class DiagCamemberts implements IDataVisualiseur {
         texteNom = new Texte(0, 0, 12, nom);
         double axeY = donnees.getListFormes().get(0).centre().y() * 0.01;
         double axeX = donnees.getListFormes().get(0).centre().x() * 0.01;
-        texteNom.deplacer(donnees.centre().x(), // pour la position du titre du diagramme
-                donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
-        diagGroupe.ajouter(donnees);
-        diagGroupe.ajouter(texteNom);
-        legendeGroupe.empilerElements(Alignement.GAUCHE, centre.x() * 1.5 - legendeGroupe.largeur(), 10); // pour
-                                                                                                          // l'espacement
-                                                                                                          // entre les
-                                                                                                          // légende de
-                                                                                                          // couleurs
-        legendeGroupe.alignerElements(Alignement.BAS,
-                centre.y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2 + 40); // pour mettre la légende des
-                                                                                        // couleurs en bas
-        diagGroupe.ajouter(legendeGroupe);
-        legendes.empilerElements(Alignement.GAUCHE, centre.x() + 30 - legendes.largeur(), 225); // pour espacer les
-                                                                                                // années
-        legendes.alignerElements(Alignement.BAS,
-                centre.y() + donnees.hauteur() / 2 + legendes.hauteur() * 2 + 10); // pour la position des années (en
-                                                                                   // bas)
-        diagGroupe.ajouter(legendes);
         for (IForme forme : donnees.getListFormes()) {
             forme.deplacer(axeX, axeY);
             axeX += 250; // pour espacer les camemberts
         }
+        System.out.println(donnees.getListFormes().get(0).centre().x());
+        texteNom.deplacer(donnees.centre().x() - texteNom.largeur() / 2, // pour la position du titre du diagramme
+                donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
+        diagGroupe.ajouter(donnees);
+        diagGroupe.ajouter(texteNom);
+        legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - donnees.largeur(), 10); // pour
+        // l'espacement
+        // entre les
+        // légende de
+        // couleurs
+        legendeGroupe.alignerElements(Alignement.BAS,
+                centre.y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2 + 40); // pour mettre la légende des
+                                                                                        // couleurs en bas
+        diagGroupe.ajouter(legendeGroupe);
+        legendes.empilerElements(Alignement.GAUCHE, donnees.centre().x() - donnees.largeur(), 225); // pour espacer les
+        // années
+        legendes.alignerElements(Alignement.BAS,
+                centre.y() + donnees.hauteur() / 2 + legendes.hauteur() * 2 + 10); // pour la position des années (en
+                                                                                   // bas)
+        diagGroupe.ajouter(legendes);
+
         return this;
     }
 

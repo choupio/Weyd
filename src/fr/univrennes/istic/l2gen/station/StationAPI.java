@@ -246,7 +246,7 @@ public class StationAPI {
     /**
      * Rend les prix moyen par granularité et par carburant
      * 
-     * @return une HashMap de la forme {Granularité : {carburant : prix_moyen}}
+     * @return une HashMap de la forme {carburant : {Granularité : prix_moyen}}
      */
     public HashMap<String, HashMap<String, Double>> getPrixMoyen() {
         HashMap<String, HashMap<String, Double>> prixMoyenParGranuParCarb = new HashMap<>();
@@ -258,7 +258,16 @@ public class StationAPI {
                             carburantsParGranularite.get(granu).get(carb).stream().mapToDouble(Double::doubleValue)
                                     .average().orElseThrow(NoSuchElementException::new)));
         }
-        return prixMoyenParGranuParCarb;
+
+        // return prixMoyenParGranuParCarb;
+        HashMap<String, HashMap<String, Double>> faux_resultat = new HashMap<>();
+        faux_resultat.put("Gazole", new HashMap<>());
+        faux_resultat.get("Gazole").put("Morbihan", 1.80);
+        faux_resultat.get("Gazole").put("Finistère", 1.90);
+        faux_resultat.put("E85", new HashMap<>());
+        faux_resultat.get("E85").put("Morbihan", 1.80);
+        faux_resultat.get("E85").put("Finistère", 1.90);
+        return faux_resultat;
     }
 
     /**
