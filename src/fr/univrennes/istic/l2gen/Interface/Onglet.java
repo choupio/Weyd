@@ -104,7 +104,7 @@ public class Onglet {
         diagContainer.setLayout(new BoxLayout(diagContainer, BoxLayout.Y_AXIS));
         diagContainer.add(diag);
 
-        JPanel westContainer =new JPanel();
+        JPanel westContainer = new JPanel();
         westContainer.setLayout(new BoxLayout(westContainer, BoxLayout.X_AXIS));
 
         // Création d'un panel pour contenir les diag et stats
@@ -183,7 +183,7 @@ public class Onglet {
         return afficheStation;
     }
 
-    public Boolean getIsSationsAffichees() {
-        return this.isSationsAffichees;
+    public static Boolean getIsSationsAffichees() {
+        return isSationsAffichees;
     }
 }
