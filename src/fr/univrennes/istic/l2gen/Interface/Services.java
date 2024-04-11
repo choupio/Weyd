@@ -1,6 +1,7 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
@@ -8,7 +9,7 @@ import javax.swing.border.TitledBorder;
 
 public class Services {
     private JPanel services = new JPanel();
-    private Boolean[] isChecked;
+    private HashMap<String, Boolean> isChecked;
 
     public Services() {
         services.setLayout(new BoxLayout(services, BoxLayout.Y_AXIS));
@@ -17,25 +18,24 @@ public class Services {
         this.services.setBorder(border2);
 
         // Noms des départements en France
-        ArrayList<String> tabDepart = Accueil.getRecup().getNomsServices();
+        ArrayList<String> tabServ = Accueil.getRecup().getNomsServices();
 
-        JCheckBox[] radioCheck = new JCheckBox[tabDepart.size()];
+        JCheckBox[] radioCheck = new JCheckBox[tabServ.size()];
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
-        this.isChecked = new Boolean[tabDepart.size()];
+        this.isChecked = new HashMap<String, Boolean>(tabServ.size());
 
-        for (int i = 0; i < tabDepart.size(); i += 1) {
-            radioCheck[i] = new JCheckBox(tabDepart.get(i));
+        for (int i = 0; i < tabServ.size(); i += 1) {
+            this.isChecked.put(tabServ.get(i), false);
+            radioCheck[i] = new JCheckBox(tabServ.get(i));
             this.services.add(radioCheck[i]);
             int index = i;
             radioCheck[i].addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent e) {
-                    if (e.getStateChange() == ItemEvent.SELECTED) { // TODO à changer
-                        isChecked[index] = true;
-                        System.out.println("isChecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
-                    } else if (e.getStateChange() == ItemEvent.DESELECTED) { // TODO à changer
-                        isChecked[index] = false;
-                        System.out.println("isUnchecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                    if (e.getStateChange() == ItemEvent.SELECTED) {
+                        isChecked.put(tabServ.get(index), true);
+                    } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                        isChecked.put(tabServ.get(index), false);
                     }
                 }
             });
@@ -49,7 +49,7 @@ public class Services {
         return this.services;
     }
 
-    public Boolean[] getIsCheckedServ() {
+    public HashMap<String, Boolean> getIsCheckedServ() {
         return this.isChecked;
     }
 }

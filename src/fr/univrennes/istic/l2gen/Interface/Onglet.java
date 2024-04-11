@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Onglet {
+    private Boolean isSationsAffichees = false;
     private static JCheckBox afficheStation;
     private JTabbedPane onglets;
     private JPanel panelOnglet = new JPanel();
@@ -78,6 +79,15 @@ public class Onglet {
         onglet21Container.setLayout(new BoxLayout(onglet21Container, BoxLayout.Y_AXIS));
         onglet21Container.add(onglet21);
         afficheStation = new JCheckBox("Afficher position des stations les moins chères");
+        afficheStation.addItemListener(new ItemListener() { // événement de l'affichage des stations
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    isSationsAffichees = true;
+                } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                    isSationsAffichees = false;
+                }
+            }
+        });
         afficheStation.setEnabled(false);
         onglet21Container.add(afficheStation);
         onglet21Container.add(Box.createVerticalStrut(10));
@@ -167,5 +177,9 @@ public class Onglet {
 
     public static JCheckBox getAfficheStation() {
         return afficheStation;
+    }
+
+    public Boolean getIsSationsAffichees() {
+        return this.isSationsAffichees;
     }
 }

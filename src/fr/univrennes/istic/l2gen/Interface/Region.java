@@ -1,6 +1,7 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
@@ -8,7 +9,7 @@ import javax.swing.border.TitledBorder;
 
 public class Region {
     private JPanel region = new JPanel();
-    private Boolean[] isChecked;
+    private HashMap<String, Boolean> isChecked;
 
     public Region() {
         region.setLayout(new BoxLayout(region, BoxLayout.Y_AXIS));
@@ -21,20 +22,19 @@ public class Region {
         JCheckBox[] Checkbox = new JCheckBox[tabRegion.size()];
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
-        this.isChecked = new Boolean[tabRegion.size()];
+        this.isChecked = new HashMap<String, Boolean>(tabRegion.size());
 
         for (int i = 0; i < tabRegion.size(); i += 1) {
+            this.isChecked.put(tabRegion.get(i), false);
             Checkbox[i] = new JCheckBox(tabRegion.get(i));
             this.region.add(Checkbox[i]);
             int index = i;
             Checkbox[i].addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent e) {
                     if (e.getStateChange() == ItemEvent.SELECTED) {
-                        isChecked[index] = true;
-                        System.out.println("isChecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                        isChecked.put(tabRegion.get(index), true);
                     } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                        isChecked[index] = false;
-                        System.out.println("isUnchecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                        isChecked.put(tabRegion.get(index), false);
                     }
                 }
             });
@@ -46,7 +46,7 @@ public class Region {
         return this.region;
     }
 
-    public Boolean[] getIsCheckedReg() {
+    public HashMap<String, Boolean> getIsCheckedReg() {
         return this.isChecked;
     }
 }

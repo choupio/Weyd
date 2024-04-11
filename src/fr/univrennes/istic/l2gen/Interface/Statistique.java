@@ -2,13 +2,14 @@ package fr.univrennes.istic.l2gen.Interface;
 
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 public class Statistique {
     private JPanel panel;
-    private Boolean[] isChecked;
+    private HashMap<String, Boolean> isChecked;
 
     public Statistique() {
         // Création du JPanel avec un BoxLayout vertical
@@ -28,9 +29,10 @@ public class Statistique {
         JCheckBox[] Checkbox = new JCheckBox[tabStat.size()];
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
-        this.isChecked = new Boolean[tabStat.size()];
+        this.isChecked = new HashMap<String, Boolean>(tabStat.size());
 
         for (int i = 0; i < tabStat.size(); i += 1) {
+            this.isChecked.put(tabStat.get(i), false);
             Checkbox[i] = new JCheckBox(tabStat.get(i));
             this.panel.add(Checkbox[i]);
             int index = i;
@@ -38,10 +40,10 @@ public class Statistique {
                 Checkbox[i].addItemListener(new ItemListener() {
                     public void itemStateChanged(ItemEvent e) {
                         if (e.getStateChange() == ItemEvent.SELECTED) {
-                            isChecked[index] = true;
+                            isChecked.put(tabStat.get(index), true);
                             Onglet.getAfficheStation().setEnabled(true);
                         } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                            isChecked[index] = false;
+                            isChecked.put(tabStat.get(index), false);
                             Onglet.getAfficheStation().setEnabled(false);
                         }
                     }
@@ -50,13 +52,9 @@ public class Statistique {
                 Checkbox[i].addItemListener(new ItemListener() {
                     public void itemStateChanged(ItemEvent e) {
                         if (e.getStateChange() == ItemEvent.SELECTED) {
-                            isChecked[index] = true;
-                            System.out.println("isChecked[" + index + "] = " + isChecked[index]); // TODO verif à
-                                                                                                  // enlever
+                            isChecked.put(tabStat.get(index), true);
                         } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                            isChecked[index] = false;
-                            System.out.println("isUnchecked[" + index + "] = " + isChecked[index]); // TODO verif à
-                                                                                                    // enlever
+                            isChecked.put(tabStat.get(index), false);
                         }
                     }
                 });
@@ -69,7 +67,7 @@ public class Statistique {
         return panel;
     }
 
-    public Boolean[] getIsCheckedStat() {
+    public HashMap<String, Boolean> getIsCheckedStat() {
         return this.isChecked;
     }
 }

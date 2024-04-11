@@ -3,12 +3,14 @@ package fr.univrennes.istic.l2gen.Interface;
 import java.awt.Font;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 public class Diag {
     private JPanel panel;
-    private Boolean[] isChecked;
+    private HashMap<String, Boolean> isChecked;
 
     public Diag() {
         // Création du JPanel avec un BoxLayout vertical
@@ -26,20 +28,19 @@ public class Diag {
         JCheckBox[] Checkbox = new JCheckBox[tabDiag.size()];
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
-        this.isChecked = new Boolean[tabDiag.size()];
+        this.isChecked = new HashMap<String, Boolean>(tabDiag.size());
 
         for (int i = 0; i < tabDiag.size(); i += 1) {
+            this.isChecked.put(tabDiag.get(i), false);
             Checkbox[i] = new JCheckBox(tabDiag.get(i));
             this.panel.add(Checkbox[i]);
             int index = i;
             Checkbox[i].addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent e) {
                     if (e.getStateChange() == ItemEvent.SELECTED) {
-                        isChecked[index] = true;
-                        System.out.println("isChecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                        isChecked.put(tabDiag.get(index), true);
                     } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                        isChecked[index] = false;
-                        System.out.println("isUnchecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                        isChecked.put(tabDiag.get(index), false);
                     }
                 }
             });
@@ -51,7 +52,7 @@ public class Diag {
         return panel;
     }
 
-    public Boolean[] getIsCheckedDiag() {
+    public HashMap<String, Boolean> getIsCheckedDiag() {
         return this.isChecked;
     }
 }

@@ -1,6 +1,7 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
@@ -8,7 +9,7 @@ import javax.swing.border.TitledBorder;
 
 public class Departement {
     private JPanel departements = new JPanel();
-    private Boolean[] isChecked;
+    private HashMap<String, Boolean> isChecked;
 
     public Departement() {
         departements.setLayout(new BoxLayout(departements, BoxLayout.Y_AXIS));
@@ -22,20 +23,19 @@ public class Departement {
         JCheckBox[] radioCheck = new JCheckBox[tabDepart.size()];
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
-        this.isChecked = new Boolean[tabDepart.size()];
+        this.isChecked = new HashMap<String, Boolean>(tabDepart.size());
 
         for (int i = 0; i < tabDepart.size(); i += 1) {
+            this.isChecked.put(tabDepart.get(i), false);
             radioCheck[i] = new JCheckBox(tabDepart.get(i));
             this.departements.add(radioCheck[i]);
             int index = i;
             radioCheck[i].addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent e) {
                     if (e.getStateChange() == ItemEvent.SELECTED) {
-                        isChecked[index] = true;
-                        System.out.println("isChecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                        isChecked.put(tabDepart.get(index), true);
                     } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                        isChecked[index] = false;
-                        System.out.println("isUnchecked[" + index + "] = " + isChecked[index]); // TODO verif à enlever
+                        isChecked.put(tabDepart.get(index), false);
                     }
                 }
             });
@@ -49,7 +49,7 @@ public class Departement {
         return this.departements;
     }
 
-    public Boolean[] getIsCheckedDept() {
+    public HashMap<String, Boolean> getIsCheckedDept() {
         return this.isChecked;
     }
 }
