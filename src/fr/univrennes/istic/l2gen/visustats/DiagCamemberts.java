@@ -206,7 +206,7 @@ public class DiagCamemberts implements IDataVisualiseur {
         texteNom = new Texte(0, 0, 12, nom);
         double axeY = donnees.getListFormes().get(0).centre().y() * 0.01;
         double axeX = donnees.getListFormes().get(0).centre().x() * 0.01;
-        texteNom.deplacer(centre.x() * 1.55, // pour la position du titre du diagramme
+        texteNom.deplacer(centre.x() - texteNom.largeur() / 2, // pour la position du titre du diagramme
                 centre.y() - donnees.hauteur() / 2 - texteNom.hauteur());
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
