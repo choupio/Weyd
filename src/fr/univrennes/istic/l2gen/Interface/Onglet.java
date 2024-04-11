@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Onglet {
-    private Boolean isSationsAffichees = false;
+    private static Boolean isSationsAffichees = false;
     private static JCheckBox afficheStation;
     private JTabbedPane onglets;
     private JPanel panelOnglet = new JPanel();
@@ -72,6 +72,7 @@ public class Onglet {
         // Création d'un JPanel pour contenir carburant
         JPanel carburantContainer = new JPanel();
         carburantContainer.setLayout(new BoxLayout(carburantContainer, BoxLayout.X_AXIS));
+        carburantContainer.add(Box.createHorizontalStrut(180));
         carburantContainer.add(carburant);
 
         // Création d'un JPanel pour contenir onglet21
@@ -102,6 +103,9 @@ public class Onglet {
         JPanel diagContainer = new JPanel();
         diagContainer.setLayout(new BoxLayout(diagContainer, BoxLayout.Y_AXIS));
         diagContainer.add(diag);
+
+        JPanel westContainer = new JPanel();
+        westContainer.setLayout(new BoxLayout(westContainer, BoxLayout.X_AXIS));
 
         // Création d'un panel pour contenir les diag et stats
         JPanel southContainer = new JPanel();
@@ -179,7 +183,7 @@ public class Onglet {
         return afficheStation;
     }
 
-    public Boolean getIsSationsAffichees() {
-        return this.isSationsAffichees;
+    public static Boolean getIsSationsAffichees() {
+        return isSationsAffichees;
     }
 }
