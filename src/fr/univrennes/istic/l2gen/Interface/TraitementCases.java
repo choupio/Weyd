@@ -10,8 +10,5 @@ public class TraitementCases {
     private HashMap<String, Boolean> isCheckedDiag = Diag.getIsCheckedDiag();
     private Boolean isCheckedPos = Onglet.getIsSationsAffichees();
     private HashMap<String, Boolean> isCheckedReg = Region.getIsCheckedReg();
-     
-   
-
-
+    
 }
