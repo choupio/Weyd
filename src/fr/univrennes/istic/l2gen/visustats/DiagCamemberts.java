@@ -206,8 +206,8 @@ public class DiagCamemberts implements IDataVisualiseur {
         texteNom = new Texte(0, 0, 12, nom);
         double axeY = donnees.getListFormes().get(0).centre().y() * 0.01;
         double axeX = donnees.getListFormes().get(0).centre().x() * 0.01;
-        texteNom.deplacer(centre.x() - texteNom.largeur() / 2, // pour la position du titre du diagramme
-                centre.y() - donnees.hauteur() / 2 - texteNom.hauteur());
+        texteNom.deplacer(donnees.centre().x(), // pour la position du titre du diagramme
+                donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
         diagGroupe.ajouter(donnees);
         diagGroupe.ajouter(texteNom);
         legendeGroupe.empilerElements(Alignement.GAUCHE, centre.x() * 1.5 - legendeGroupe.largeur(), 10); // pour
@@ -219,7 +219,6 @@ public class DiagCamemberts implements IDataVisualiseur {
                 centre.y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2 + 40); // pour mettre la légende des
                                                                                         // couleurs en bas
         diagGroupe.ajouter(legendeGroupe);
-        System.out.println(centre.y() - donnees.hauteur() / 2);
         legendes.empilerElements(Alignement.GAUCHE, centre.x() + 30 - legendes.largeur(), 225); // pour espacer les
                                                                                                 // années
         legendes.alignerElements(Alignement.BAS,
@@ -228,7 +227,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         diagGroupe.ajouter(legendes);
         for (IForme forme : donnees.getListFormes()) {
             forme.deplacer(axeX, axeY);
-            System.out.print(forme.description(0));
             axeX += 250; // pour espacer les camemberts
         }
         return this;
