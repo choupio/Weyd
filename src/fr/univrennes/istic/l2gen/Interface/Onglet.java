@@ -72,6 +72,7 @@ public class Onglet {
         // Création d'un JPanel pour contenir carburant
         JPanel carburantContainer = new JPanel();
         carburantContainer.setLayout(new BoxLayout(carburantContainer, BoxLayout.X_AXIS));
+        carburantContainer.add(Box.createHorizontalStrut(180));
         carburantContainer.add(carburant);
 
         // Création d'un JPanel pour contenir onglet21
