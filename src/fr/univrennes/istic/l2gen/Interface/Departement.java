@@ -17,6 +17,9 @@ public class Departement {
         border2.setTitleFont(new Font("SansSerif", Font.BOLD, 18));
         this.departements.setBorder(border2);
 
+        JCheckBox tous=new JCheckBox("Tout les départements");
+        departements.add(tous);
+
         // Noms des départements en France
         ArrayList<String> tabDepart = Accueil.getRecup().getNomsDepartement();
 
@@ -41,6 +44,21 @@ public class Departement {
             });
         }
 
+        tous.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e){
+                if(e.getStateChange()==ItemEvent.SELECTED){
+                    for(int i=0;i<tabDepart.size();i+=1){
+                        radioCheck[i].setSelected(true);
+                    }
+                }else if(e.getStateChange() == ItemEvent.DESELECTED){
+                    for(int i=0;i<tabDepart.size();i+=1){
+                        radioCheck[i].setSelected(false);
+                    }
+
+                }
+            }
+        });
+        
         this.departements.setSize(departements.getMinimumSize().width, departements.getMinimumSize().width);
 
     }
