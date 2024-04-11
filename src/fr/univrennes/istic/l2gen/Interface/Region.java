@@ -17,12 +17,12 @@ public class Region {
         border.setTitleFont(new Font("SansSerif", Font.BOLD, 18));
         this.region.setBorder(border);
 
-        JCheckBox tous=new JCheckBox("Toutes les régions");
-        region.add(tous);
-
         ArrayList<String> tabRegion = Accueil.getRecup().getNomsRegion();
 
         JCheckBox[] Checkbox = new JCheckBox[tabRegion.size()];
+
+        JCheckBox tous = new JCheckBox("Toutes les régions");
+        region.add(tous);
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
         isChecked = new HashMap<String, Boolean>(tabRegion.size());
@@ -44,20 +44,19 @@ public class Region {
         }
 
         tous.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e){
-                if(e.getStateChange()==ItemEvent.SELECTED){
-                    for(int i=0;i<tabRegion.size();i+=1){
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    for (int i = 0; i < tabRegion.size(); i += 1) {
                         Checkbox[i].setSelected(true);
                     }
-                }else if(e.getStateChange() == ItemEvent.DESELECTED){
-                    for(int i=0;i<tabRegion.size();i+=1){
+                } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                    for (int i = 0; i < tabRegion.size(); i += 1) {
                         Checkbox[i].setSelected(false);
                     }
-        
+
                 }
             }
         });
-
 
     }
 
