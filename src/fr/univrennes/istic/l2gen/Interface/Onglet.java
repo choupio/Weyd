@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Onglet {
-    private Boolean isSationsAffichees = false;
+    private static Boolean isSationsAffichees = false;
     private static JCheckBox afficheStation;
     private JTabbedPane onglets;
     private JPanel panelOnglet = new JPanel();
@@ -179,7 +179,7 @@ public class Onglet {
         return afficheStation;
     }
 
-    public Boolean getIsSationsAffichees() {
-        return this.isSationsAffichees;
+    public static Boolean getIsSationsAffichees() {
+        return isSationsAffichees;
     }
 }

@@ -9,7 +9,7 @@ import javax.swing.border.TitledBorder;
 
 public class Region {
     private JPanel region = new JPanel();
-    private HashMap<String, Boolean> isChecked;
+    private static HashMap<String, Boolean> isChecked;
 
     public Region() {
         region.setLayout(new BoxLayout(region, BoxLayout.Y_AXIS));
@@ -25,10 +25,10 @@ public class Region {
         JCheckBox[] Checkbox = new JCheckBox[tabRegion.size()];
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
-        this.isChecked = new HashMap<String, Boolean>(tabRegion.size());
+        isChecked = new HashMap<String, Boolean>(tabRegion.size());
 
         for (int i = 0; i < tabRegion.size(); i += 1) {
-            this.isChecked.put(tabRegion.get(i), false);
+            isChecked.put(tabRegion.get(i), false);
             Checkbox[i] = new JCheckBox(tabRegion.get(i));
             this.region.add(Checkbox[i]);
             int index = i;
@@ -65,7 +65,7 @@ public class Region {
         return this.region;
     }
 
-    public HashMap<String, Boolean> getIsCheckedReg() {
-        return this.isChecked;
+    public static HashMap<String, Boolean> getIsCheckedReg() {
+        return isChecked;
     }
 }

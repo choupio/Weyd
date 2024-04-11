@@ -10,7 +10,7 @@ import javax.swing.border.TitledBorder;
 
 public class Diag {
     private JPanel panel;
-    private HashMap<String, Boolean> isChecked;
+    private static HashMap<String, Boolean> isChecked;
 
     public Diag() {
         // Création du JPanel avec un BoxLayout vertical
@@ -28,10 +28,10 @@ public class Diag {
         JCheckBox[] Checkbox = new JCheckBox[tabDiag.size()];
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
-        this.isChecked = new HashMap<String, Boolean>(tabDiag.size());
+        isChecked = new HashMap<String, Boolean>(tabDiag.size());
 
         for (int i = 0; i < tabDiag.size(); i += 1) {
-            this.isChecked.put(tabDiag.get(i), false);
+            isChecked.put(tabDiag.get(i), false);
             Checkbox[i] = new JCheckBox(tabDiag.get(i));
             this.panel.add(Checkbox[i]);
             int index = i;
@@ -52,7 +52,7 @@ public class Diag {
         return panel;
     }
 
-    public HashMap<String, Boolean> getIsCheckedDiag() {
-        return this.isChecked;
+    public static HashMap<String, Boolean> getIsCheckedDiag() {
+        return isChecked;
     }
 }

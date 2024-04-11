@@ -9,7 +9,7 @@ import javax.swing.border.TitledBorder;
 
 public class Services {
     private JPanel services = new JPanel();
-    private HashMap<String, Boolean> isChecked;
+    private static HashMap<String, Boolean> isChecked;
 
     public Services() {
         services.setLayout(new BoxLayout(services, BoxLayout.Y_AXIS));
@@ -26,10 +26,10 @@ public class Services {
         JCheckBox[] radioCheck = new JCheckBox[tabServ.size()];
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
-        this.isChecked = new HashMap<String, Boolean>(tabServ.size());
+        isChecked = new HashMap<String, Boolean>(tabServ.size());
 
         for (int i = 0; i < tabServ.size(); i += 1) {
-            this.isChecked.put(tabServ.get(i), false);
+            isChecked.put(tabServ.get(i), false);
             radioCheck[i] = new JCheckBox(tabServ.get(i));
             this.services.add(radioCheck[i]);
             int index = i;
@@ -66,7 +66,7 @@ public class Services {
         return this.services;
     }
 
-    public HashMap<String, Boolean> getIsCheckedServ() {
-        return this.isChecked;
+    public static HashMap<String, Boolean> getIsCheckedServ() {
+        return isChecked;
     }
 }

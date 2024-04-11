@@ -9,7 +9,7 @@ import javax.swing.border.TitledBorder;
 
 public class Carburant {
     private JPanel carburant = new JPanel(new GridLayout(1, 0));
-    private HashMap<String, Boolean> isChecked;
+    private static HashMap<String, Boolean> isChecked;
 
     public Carburant() {
         // carburant.setLayout(new BoxLayout(carburant, BoxLayout.Y_AXIS));
@@ -22,10 +22,10 @@ public class Carburant {
         JCheckBox[] Checkbox = new JCheckBox[tabcarburant.size()];
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
-        this.isChecked = new HashMap<String, Boolean>(tabcarburant.size());
+        isChecked = new HashMap<String, Boolean>(tabcarburant.size());
 
         for (int i = 0; i < tabcarburant.size(); i += 1) {
-            this.isChecked.put(tabcarburant.get(i), false);
+            isChecked.put(tabcarburant.get(i), false);
             Checkbox[i] = new JCheckBox(tabcarburant.get(i));
             this.carburant.add(Checkbox[i]);
             int index = i;
@@ -48,7 +48,7 @@ public class Carburant {
         return this.carburant;
     }
 
-    public HashMap<String, Boolean> getIsCheckedCarb() {
-        return this.isChecked;
+    public static HashMap<String, Boolean> getIsCheckedCarb() {
+        return isChecked;
     }
 }
