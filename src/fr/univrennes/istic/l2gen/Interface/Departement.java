@@ -17,13 +17,13 @@ public class Departement {
         border2.setTitleFont(new Font("SansSerif", Font.BOLD, 18));
         this.departements.setBorder(border2);
 
-        JCheckBox tous=new JCheckBox("Tout les départements");
-        departements.add(tous);
-
         // Noms des départements en France
         ArrayList<String> tabDepart = Accueil.getRecup().getNomsDepartement();
 
         JCheckBox[] radioCheck = new JCheckBox[tabDepart.size()];
+
+        JCheckBox tous = new JCheckBox("Tous les départements");
+        departements.add(tous);
 
         // Liste booléenne pour savoir si la checkbox est cochée ou non
         this.isChecked = new HashMap<String, Boolean>(tabDepart.size());
@@ -45,20 +45,22 @@ public class Departement {
         }
 
         tous.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e){
-                if(e.getStateChange()==ItemEvent.SELECTED){
-                    for(int i=0;i<tabDepart.size();i+=1){
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    for (int i = 0; i < tabDepart.size(); i += 1) {
                         radioCheck[i].setSelected(true);
+                        System.out.println(isChecked.toString());
                     }
-                }else if(e.getStateChange() == ItemEvent.DESELECTED){
-                    for(int i=0;i<tabDepart.size();i+=1){
+                } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                    for (int i = 0; i < tabDepart.size(); i += 1) {
                         radioCheck[i].setSelected(false);
+                        System.out.println(isChecked.toString());
                     }
 
                 }
             }
         });
-        
+
         this.departements.setSize(departements.getMinimumSize().width, departements.getMinimumSize().width);
 
     }
