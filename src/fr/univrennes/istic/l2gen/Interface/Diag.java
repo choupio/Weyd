@@ -15,7 +15,29 @@ public class Diag {
     public Diag() {
         // Création du JPanel avec un BoxLayout vertical
         panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        String[] diagrammes = { "camembert", "barre","colonne" };
+        JComboBox<String> choixdiagramme = new JComboBox<>(diagrammes);
+
+        panel.add(choixdiagramme);
+        choixdiagramme.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                String selectedChoice = (String) choixdiagramme.getSelectedItem();
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    if (selectedChoice.equals("camembert")) {
+                        //TODO
+                    } else if (selectedChoice.equals("barre")) {
+                        //TODO
+                    }else if(selectedChoice.equals("colonne")){
+                        //TODO
+                    }
+
+                }
+            }
+        });
+
+
+        /* panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         TitledBorder border = BorderFactory.createTitledBorder("Type de diagramme");
         border.setTitleFont(new Font("SansSerif", Font.BOLD, 18));
         panel.setBorder(border);
@@ -44,7 +66,7 @@ public class Diag {
                     }
                 }
             });
-        }
+        } */
 
     }
 

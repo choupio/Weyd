@@ -9,6 +9,8 @@ public class Onglet {
     private static JCheckBox afficheStation;
     private JTabbedPane onglets;
     private JPanel panelOnglet = new JPanel();
+    private static JPanel [] diag=new JPanel[5];
+    private Diag [] diagramme =new Diag[5];
 
     public Onglet(String titreOnglet1, String titreOnglet2, int WIDTH, int HEIGTH) {
         // Initialisation des onglets
@@ -38,8 +40,6 @@ public class Onglet {
         JPanel dept = Departement.GetDept();
         Statistique statistique = new Statistique();
         JPanel stat = statistique.getPanel();
-        Diag diagramme = new Diag();
-        JPanel diag = diagramme.getPanel();
         Services services = new Services();
         JPanel serv = services.getPanel();
         Carburant carb = new Carburant();
@@ -102,7 +102,14 @@ public class Onglet {
         // Création d'un JPanel pour contenir les diag
         JPanel diagContainer = new JPanel();
         diagContainer.setLayout(new BoxLayout(diagContainer, BoxLayout.Y_AXIS));
-        diagContainer.add(diag);
+
+        for(int i=0;i<diag.length;i++){
+            diagramme[i]=new Diag();
+            diag[i]=diagramme[i].getPanel();
+            diag[i].setVisible(false);
+            diagContainer.add(diag[i]);
+        }
+
 
         JPanel westContainer = new JPanel();
         westContainer.setLayout(new BoxLayout(westContainer, BoxLayout.X_AXIS));
@@ -110,9 +117,9 @@ public class Onglet {
         // Création d'un panel pour contenir les diag et stats
         JPanel southContainer = new JPanel();
         southContainer.setLayout(new BoxLayout(southContainer, BoxLayout.X_AXIS));
-        southContainer.add(statContainer, BorderLayout.WEST);
-        southContainer.add(onglet21Container, BorderLayout.CENTER);
-        southContainer.add(diagContainer, BorderLayout.EAST);
+        southContainer.add(statContainer);
+        southContainer.add(diagContainer);
+        southContainer.add(onglet21Container);
 
         // Création d'un JPanel pour contenir les services
         JPanel servContainer = new JPanel();
@@ -181,6 +188,10 @@ public class Onglet {
 
     public static JCheckBox getAfficheStation() {
         return afficheStation;
+    }
+
+    public static JPanel[] getDiag(){
+        return diag;
     }
 
     public static Boolean getIsSationsAffichees() {

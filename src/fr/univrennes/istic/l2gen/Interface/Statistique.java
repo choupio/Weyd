@@ -42,20 +42,28 @@ public class Statistique {
                         if (e.getStateChange() == ItemEvent.SELECTED) {
                             isChecked.put(tabStat.get(index), true);
                             Onglet.getAfficheStation().setEnabled(true);
+                            Onglet.getDiag()[index].setVisible(true);
                         } else if (e.getStateChange() == ItemEvent.DESELECTED) {
                             isChecked.put(tabStat.get(index), false);
                             Onglet.getAfficheStation().setEnabled(false);
+                            Onglet.getDiag()[index].setVisible(false);
                         }
+                        Onglet.getDiag()[index].revalidate();
+                        Onglet.getDiag()[index].repaint();
                     }
                 });
             } else { // Autres cases
                 Checkbox[i].addItemListener(new ItemListener() {
                     public void itemStateChanged(ItemEvent e) {
                         if (e.getStateChange() == ItemEvent.SELECTED) {
+                            Onglet.getDiag()[index].setVisible(true);
                             isChecked.put(tabStat.get(index), true);
                         } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                            Onglet.getDiag()[index].setVisible(false);
                             isChecked.put(tabStat.get(index), false);
                         }
+                        Onglet.getDiag()[index].revalidate();
+                        Onglet.getDiag()[index].repaint();
                     }
                 });
             }
