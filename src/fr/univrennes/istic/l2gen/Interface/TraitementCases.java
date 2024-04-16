@@ -22,27 +22,28 @@ public class TraitementCases {
         traitementStatistiques();
     }
 
-    // Traitement des regions cochées
+    // Traitement des services cochées
     public void traitementServices() {
+        
     }
 
-    // Traitement des regions cochées
+    // Traitement des départements cochées
     public void traitementDepartements() {
     }
 
-    // Traitement des regions cochées
+    // Traitement des carburants cochées
     public void traitementCarburants() {
     }
 
-    // Traitement des regions cochées
+    // Traitement des statistiques cochées
     public void traitementStatistiques() {
     }
 
-    // Traitement des regions cochées
+    // Traitement des diagrammes cochées
     public void traitementDiagrammes() {
     }
 
-    // Traitement des regions cochées
+    // Traitement de position coché
     public void traitementPosition() {
     }
 
