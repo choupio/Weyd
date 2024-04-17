@@ -3,6 +3,7 @@ package fr.univrennes.istic.l2gen.station;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +19,9 @@ public class StationAPI {
     private HashMap<String, List<Station>> stationsParReg;
     private HashMap<String, List<Station>> stationsParDep;
     private HashSet<String> services;
-    private HashMap<String, List<Station>> filtre;
+    private HashMap<String, HashMap<String, List<Double>>> filtre; /*
+                                                                    * de la forme {Carburant : Granularité : List<Prix>}
+                                                                    */
     private List<String> filtre_carb, filtre_serv;
 
     public StationAPI() {
@@ -120,42 +123,18 @@ public class StationAPI {
     }
 
     /**
-     * Cette méthode permet de récupérer la liste des prix des carburants, mis en
-     * paramètre,
+     * Cette méthode permet de récupérer la liste des prix des carburants
      * sous la forme d'une Map où les clés sont les noms des régions/départements et
      * les valeurs
      * sont des Map : comme clé les noms des carburants et les valeurs sont les
      * listes des prix associé.
-     * ex : {"Bretagne" : {"Gazole":[1.89,187]}}
+     * ex : {"Gazole" : {"Bretagne":[1.89,187]}}
      * 
      * 
      * @param carburants : liste des noms de carburants où l'on veut les prix
      */
     public HashMap<String, HashMap<String, List<Double>>> getPrixCarburants() {
-        HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = new HashMap<>();
-        if (filtre.isEmpty()) {
-            throw new IllegalStateException("le filtre est vide, appellez filtreDep() ou filtreReg");
-        }
-        for (String granu : filtre.keySet()) {
-            carburantsParGranularite.put(granu, new HashMap<>()); // Ajout de la granularité
-            filtre_carb.stream().forEach(x -> carburantsParGranularite.get(granu).put(x, new ArrayList<>())); // ajout
-                                                                                                              // des
-                                                                                                              // différents
-                                                                                                              // carburants
-                                                                                                              // dans la
-                                                                                                              // granularité
-                                                                                                              // avec
-                                                                                                              // une
-                                                                                                              // liste
-                                                                                                              // vide
-            filtre.get(granu).stream().forEach(station -> station.getCarburants().stream().forEach(carb -> {
-                if (filtre_carb.contains(carb.getNom())) {
-                    carburantsParGranularite.get(granu).get(carb.getNom()).add(carb.getPrix());
-                }
-            })); // Ajout des prix des carburants
-        }
-
-        return carburantsParGranularite;
+        return filtre;
     }
 
     /**
@@ -197,125 +176,69 @@ public class StationAPI {
     }
 
     /**
-     * 
-     * @param stationsParGranu soit stationParDep soit StatioParReg
-     * @param granuList        liste des départements ou régions
-     * @return soit stationParDep soit StatioParReg avec le filtre granuList
-     */
-    private HashMap<String, List<Station>> filtreGranu(HashMap<String, List<Station>> stationsParGranu,
-            List<String> granuList) {
-        HashMap<String, List<Station>> filtre = new HashMap<>();
-        for (String granu : granuList) {
-            filtre.put(granu, stationsParGranu.get(granu));
-        }
-        return filtre;
-    }
-
-    /**
-     * Filtre toute les stations qui ne propose pas un des carburant dans la listes
-     * entrée en paramètre
-     * 
-     * @param stationsParGranu soit stationParDep soit StatioParReg
-     * @param carburantList    liste des carburant
-     * @return
-     */
-    private HashMap<String, List<Station>> filtreCarb(HashMap<String, List<Station>> stationsParGranu,
-            List<String> carburantList) {
-        HashMap<String, List<Station>> filtre = new HashMap<>();
-        for (String granu : stationsParGranu.keySet()) {
-            if (stationsParGranu.get(granu) != null) {
-                List<Station> stationsFiltre = new ArrayList<>(stationsParGranu.get(granu)).stream().filter(x -> {
-                    for (String carb : carburantList) {
-                        if (x.getCarburants() != null) {
-                            if (x.getCarburants().stream().map(y -> y.getNom()).collect(Collectors.toList())
-                                    .contains(carb)) {
-                                return true;
-                            }
-                        }
-
-                    }
-                    return false;
-                }).collect(Collectors.toList());
-                filtre.put(granu, stationsFiltre);
-            }
-
-        }
-        return filtre;
-    }
-
-    /**
      * Rend les prix moyen par granularité et par carburant
      * 
      * @return une HashMap de la forme {carburant : {Granularité : prix_moyen}}
      */
     public HashMap<String, HashMap<String, Double>> getPrixMoyen() {
-        HashMap<String, HashMap<String, Double>> prixMoyenParGranuParCarb = new HashMap<>();
-        HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = this.getPrixCarburants();
-        for (String granu : carburantsParGranularite.keySet()) {
-            prixMoyenParGranuParCarb.put(granu, new HashMap<>());
-            carburantsParGranularite.get(granu).keySet().stream()
-                    .forEach(carb -> prixMoyenParGranuParCarb.get(granu).put(carb,
-                            carburantsParGranularite.get(granu).get(carb).stream().mapToDouble(Double::doubleValue)
-                                    .average().orElseThrow(NoSuchElementException::new)));
+        HashMap<String, HashMap<String, Double>> prixMoyenParCarbParGranu = new HashMap<>();
+        for (String carb : filtre.keySet()) {
+            prixMoyenParCarbParGranu.put(carb, new HashMap<>());
+            for (String granu : filtre.get(carb).keySet()) {
+                prixMoyenParCarbParGranu.get(carb).put(granu,
+                        filtre.get(carb).get(granu).stream().mapToDouble(Double::doubleValue).average().orElse(0.0));
+            }
         }
 
-        // return prixMoyenParGranuParCarb;
-        HashMap<String, HashMap<String, Double>> faux_resultat = new HashMap<>();
-        faux_resultat.put("Gazole", new HashMap<>());
-        faux_resultat.get("Gazole").put("Morbihan", 1.80);
-        faux_resultat.get("Gazole").put("Finistère", 1.90);
-        faux_resultat.put("E85", new HashMap<>());
-        faux_resultat.get("E85").put("Morbihan", 1.80);
-        faux_resultat.get("E85").put("Finistère", 1.90);
-        return faux_resultat;
+        return prixMoyenParCarbParGranu;
     }
 
     /**
      * Rend les prix médian par granularité et par carburant
      * 
-     * @return une HashMap de la forme {Granularité : {carburant : prix_médian}}
+     * @return une HashMap de la forme {carburant : {Granularité : prix_médian}}
      */
     public HashMap<String, HashMap<String, Double>> getPrixMedian() {
-        HashMap<String, HashMap<String, Double>> prixMedianParGranuParCarb = new HashMap<>();
-        HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = this.getPrixCarburants();
-        for (String granu : carburantsParGranularite.keySet()) {
-            prixMedianParGranuParCarb.put(granu, new HashMap<>());
-            carburantsParGranularite.get(granu).keySet().stream()
-                    .forEach(carb -> {
-                        int millieu;
-                        int taille = carburantsParGranularite.get(granu).get(carb).size();
-                        carburantsParGranularite.get(granu).get(carb).sort(null);
-                        if (taille % 2 == 0) {
-                            millieu = taille / 2;
-                            prixMedianParGranuParCarb.get(granu).put(carb,
-                                    (carburantsParGranularite.get(granu).get(carb).get(millieu - 1)
-                                            + carburantsParGranularite.get(granu).get(carb).get(millieu)) / 2);
-                        } else {
-                            millieu = taille / 2;
-                            carburantsParGranularite.get(granu).get(carb).get(millieu);
-                        }
-                    });
-        }
-        return prixMedianParGranuParCarb;
 
+        HashMap<String, HashMap<String, Double>> prixMedianParCarbParGranu = new HashMap<>();
+        for (String carb : filtre.keySet()) {
+            prixMedianParCarbParGranu.put(carb, new HashMap<>());
+            for (String granu : filtre.get(carb).keySet()) {
+                List<Double> prixList = filtre.get(carb).get(granu);
+                int taille = prixList.size();
+                Double prixMedian;
+                Collections.sort(prixList);
+                if (taille % 2 != 0) {
+                    prixMedian = prixList.get(taille / 2);
+                } else {
+                    // Si la taille de la liste est paire, calculer la moyenne des deux valeurs au
+                    // milieu
+                    double valeur1 = prixList.get((taille - 1) / 2);
+                    double valeur2 = prixList.get(taille / 2);
+                    prixMedian = (valeur1 + valeur2) / 2.0;
+                }
+                prixMedianParCarbParGranu.get(carb).put(granu, prixMedian);
+            }
+        }
+        return prixMedianParCarbParGranu;
     }
 
     /**
-     * Rend les prix minimums par granularité et par carburant
+     * Rend les prix minimums par carburant et par granularité
      * 
-     * @return une HashMap de la forme {Granularité : {carburant : prix_minimum}}
+     * @return une HashMap de la forme {carburant : {Granularité : prix_minimum}}
      */
     public HashMap<String, HashMap<String, Double>> getPrixMin() {
-        HashMap<String, HashMap<String, Double>> prixMinParGranuParCarb = new HashMap<>();
-        HashMap<String, HashMap<String, List<Double>>> carburantsParGranularite = this.getPrixCarburants();
-        for (String granu : carburantsParGranularite.keySet()) {
-            prixMinParGranuParCarb.put(granu, new HashMap<>());
-            carburantsParGranularite.get(granu).keySet().stream()
-                    .forEach(carb -> prixMinParGranuParCarb.get(granu).put(carb,
-                            carburantsParGranularite.get(granu).get(carb).stream().mapToDouble(Double::doubleValue)
-                                    .min().orElseThrow(NoSuchElementException::new)));
+        HashMap<String, HashMap<String, Double>> prixMinParCarbParGranu = new HashMap<>();
+
+        for (String carb : filtre.keySet()) {
+            prixMinParCarbParGranu.put(carb, new HashMap<>());
+            for (String granu : filtre.get(carb).keySet()) {
+                prixMinParCarbParGranu.get(carb).put(granu,
+                        filtre.get(carb).get(granu).stream().mapToDouble(Double::doubleValue).min().orElse(0.0));
+            }
         }
-        return prixMinParGranuParCarb;
+        return prixMinParCarbParGranu;
     }
 
     /**
@@ -330,9 +253,22 @@ public class StationAPI {
             List<String> services) {
         filtre_carb = carburants;
         filtre_serv = services;
-        filtre = filtreGranu(stationsParDep, departement);
-        if (!filtre.isEmpty()) {
-            filtre = filtreCarb(filtre, carburants);
+
+        filtre = new HashMap<>();
+        for (StationParCarb station : stationsParCarb) {
+            String nomCarb = station.getPrix_nom();
+            String nomDep = station.getDep_name();
+            if (nomCarb != "" && nomCarb != null && nomDep != "" && nomDep != null && carburants.contains(nomCarb)
+                    && departement.contains(nomDep)) {
+                if (!filtre.keySet().contains(nomCarb)) {
+                    filtre.put(nomCarb, new HashMap<>());
+                }
+
+                if (!filtre.get(nomCarb).keySet().contains(nomDep)) {
+                    filtre.get(nomCarb).put(nomDep, new ArrayList<>());
+                }
+                filtre.get(nomCarb).get(nomDep).add(station.getPrix_valeur());
+            }
         }
 
     }
@@ -349,9 +285,22 @@ public class StationAPI {
             List<String> services) {
         filtre_carb = carburants;
         filtre_serv = services;
-        filtre = filtreGranu(stationsParReg, region);
-        if (!filtre.isEmpty()) {
-            filtre = filtreCarb(filtre, carburants);
+
+        filtre = new HashMap<>();
+        for (StationParCarb station : stationsParCarb) {
+            String nomCarb = station.getPrix_nom();
+            String nomReg = station.getReg_name();
+            if (nomCarb != "" && nomCarb != null && nomReg != "" && nomReg != null && carburants.contains(nomCarb)
+                    && region.contains(nomReg)) {
+                if (!filtre.keySet().contains(nomCarb)) {
+                    filtre.put(nomCarb, new HashMap<>());
+                }
+
+                if (!filtre.get(nomCarb).keySet().contains(nomReg)) {
+                    filtre.get(nomCarb).put(nomReg, new ArrayList<>());
+                }
+                filtre.get(nomCarb).get(nomReg).add(station.getPrix_valeur());
+            }
         }
 
     }
