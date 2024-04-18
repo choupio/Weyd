@@ -7,10 +7,25 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Cette classe représente un panneau contenant des cases à cocher pour les statistiques.
+ */
 public class Statistique {
+
+    /**
+     * Panneau pour les statistiques.
+     */
     private JPanel panel;
+
+    /**
+     * HashMap pour stocker l'état de sélection des statistiques.
+     */
     private static HashMap<String, Boolean> isChecked;
 
+    /**
+     * Constructeur de la classe Statistique.
+     * Initialise le panneau avec des cases à cocher pour les statistiques.
+     */
     public Statistique() {
         // Création du JPanel avec un BoxLayout vertical
         panel = new JPanel();
@@ -85,10 +100,18 @@ public class Statistique {
         }
     }
 
+    /**
+     * Méthode pour récupérer le panneau des statistiques.
+     * @return Le panneau des statistiques.
+     */
     public JPanel getPanel() {
         return panel;
     }
 
+    /**
+     * Méthode pour récupérer l'état de sélection des statistiques.
+     * @return L'état de sélection des statistiques.
+     */
     public static HashMap<String, Boolean> getIsCheckedStat() {
         return isChecked;
     }
