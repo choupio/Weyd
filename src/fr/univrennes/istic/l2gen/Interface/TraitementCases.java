@@ -42,35 +42,6 @@ public class TraitementCases {
 
     // Traitement des carburants cochées et voir le diag qui va avec
     public void traitementCarburants() {
-        isCheckedCarb.forEach((key, value) -> {
-            isCheckedDiagPrixMoy.forEach((nom, checked) -> {
-                if (nom.equals("Diag en camembert prix moyen") && checked == true) {
-                    // faire le diag en camembert prix moyen
-                } else if (nom.equals("Diag en barres prix moyen") && checked == true) {
-                    // faire le diag en barres prix moyen
-                } else if (nom.equals("Diag en colonne prix moyen") && checked == true) {
-                    // faire le diag en colonne prix moyen
-                }
-            });
-            isCheckedDiagPrixMed.forEach((nom, checked) -> {
-                if (nom.equals("Diag en camembert prix médian") && checked == true) {
-                    // faire le diag en camembert prix médian
-                } else if (nom.equals("Diag en barres prix médian") && checked == true) {
-                    // faire le diag en barres prix médian
-                } else if (nom.equals("Diag en colonne prix médian") && checked == true) {
-                    // faire le diag en colonne prix médian
-                }
-            });
-            isCheckedDiagPrixMin.forEach((nom, checked) -> {
-                if (nom.equals("Diag en camembert prix minimum") && checked == true) {
-                    // faire le diag en camembert prix minimum
-                } else if (nom.equals("Diag en barres prix minimum") && checked == true) {
-                    // faire le diag en barres prix minimum
-                } else if (nom.equals("Diag en colonne prix minimum") && checked == true) {
-                    // faire le diag en colonne prix minimum
-                }
-            });
-        });
     }
     // TODO par carb faire le graphique sélectionné, ajouter les calculs des stats
 
