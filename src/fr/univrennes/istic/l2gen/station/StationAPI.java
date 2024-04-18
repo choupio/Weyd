@@ -150,26 +150,36 @@ public class StationAPI {
 
     /**
      * Renvoie une liste de String, chaque éléments est un nom de région
+     * <p>
+     * (La liste est triée)
      * 
      * @return liste de String
      */
     public ArrayList<String> getNomsRegion() {
-        return new ArrayList<>(stationsParReg.keySet());
+        ArrayList<String> nomsRegion = new ArrayList<>(stationsParReg.keySet());
+        nomsRegion.sort(null);
+        return nomsRegion;
     }
 
     /**
      * Renvoie une liste de String, chaque éléments est un nom de région
+     * <p>
+     * (La liste est triée)
      * 
      * @return liste de String
      */
     public ArrayList<String> getNomsDepartement() {
-        return new ArrayList<>(stationsParDep.keySet());
+        ArrayList<String> nomsDep = new ArrayList<>(stationsParDep.keySet());
+        nomsDep.sort(null);
+        return nomsDep;
     }
 
     public ArrayList<String> getNomsServices() {
         services.remove("");
         services.remove(null);
-        return new ArrayList<>(services);
+        ArrayList<String> nomsServices = new ArrayList<>(services);
+        nomsServices.sort(null);
+        return nomsServices;
     }
 
     /**
