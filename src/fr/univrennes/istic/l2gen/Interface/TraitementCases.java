@@ -2,10 +2,7 @@ package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.HashMap;
 
-import fr.univrennes.istic.l2gen.station.StationAPI;
-
 public class TraitementCases {
-    private StationAPI json = Accueil.getRecup();
     private HashMap<String, Boolean> isCheckedServ = Services.getIsCheckedServ();
     private HashMap<String, Boolean> isCheckedDept = Departement.getIsCheckedDept();
     private HashMap<String, Boolean> isCheckedCarb = Carburant.getIsCheckedCarb();

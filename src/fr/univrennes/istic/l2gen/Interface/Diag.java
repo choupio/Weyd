@@ -4,16 +4,49 @@ import java.awt.event.*;
 import java.util.HashMap;
 import javax.swing.*;
 
+/**
+ * Cette classe représente un panneau permettant de sélectionner différents types de diagrammes.
+ */
 public class Diag {
+
+    /**
+     * Panneau contenant les composants de sélection des diagrammes.
+     */
     private JPanel panel;
+    
+
+    /**
+     * Tableau de JComboBox pour les choix de diagrammes.
+     */
     @SuppressWarnings("unchecked")
     private static JComboBox<String>[] choixdiagramme = new JComboBox[3];
+
+    /**
+     * Tableau de HashMap pour les états de sélection des diagrammes.
+     */
     @SuppressWarnings("unchecked")
     private static HashMap<String, Boolean>[] isChecked = new HashMap[3];
+
+    /**
+     * Map pour l'état de sélection du diagramme de prix moyen.
+     */
     private static HashMap<String, Boolean> isCheckedPrixMoy;
+
+    /**
+     * Map pour l'état de sélection du diagramme de prix médian.
+     */
     private static HashMap<String, Boolean> isCheckedPrixMed;
+
+    /**
+     * Map pour l'état de sélection du diagramme de prix minimum.
+     */
     private static HashMap<String, Boolean> isCheckedPrixMin;
 
+    /**
+     * Constructeur de la classe Diag.
+     * Initialise le panneau contenant les composants de sélection des diagrammes.
+     * Crée des JComboBox pour chaque type de diagramme et les associe à des écouteurs d'événements.
+     */
     public Diag() {
         // Création du JPanel avec un BoxLayout vertical
         panel = new JPanel();
@@ -82,14 +115,29 @@ public class Diag {
 
     }
 
+    /**
+     * Méthode pour récupérer le panneau contenant les composants de sélection des diagrammes.
+     *
+     * @return Le panneau contenant les composants de sélection des diagrammes.
+     */
     public JPanel getPanel() {
         return panel;
     }
 
+    /**
+     * Méthode statique pour récupérer le tableau de JComboBox pour les choix de diagrammes.
+     *
+     * @return Le tableau de JComboBox pour les choix de diagrammes.
+     */
     public static JComboBox<String>[] getDiag() {
         return choixdiagramme;
     }
 
+    /**
+     * Méthode statique pour récupérer le tableau de HashMap pour les états de sélection des diagrammes.
+     *
+     * @return Le tableau de HashMap pour les états de sélection des diagrammes.
+     */
     public static HashMap<String, Boolean>[] getIsCheckedDiag() {
         return isChecked;
     }
