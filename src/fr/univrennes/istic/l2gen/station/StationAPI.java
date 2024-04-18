@@ -259,7 +259,8 @@ public class StationAPI {
             String nomCarb = station.getPrix_nom();
             String nomDep = station.getDep_name();
             if (nomCarb != "" && nomCarb != null && nomDep != "" && nomDep != null && carburants.contains(nomCarb)
-                    && departement.contains(nomDep)) {
+                    && departement.contains(nomDep) && services.stream()
+                            .map(x -> station.getServices_service().contains(x)).allMatch(Boolean::booleanValue)) {
                 if (!filtre.keySet().contains(nomCarb)) {
                     filtre.put(nomCarb, new HashMap<>());
                 }
@@ -291,7 +292,8 @@ public class StationAPI {
             String nomCarb = station.getPrix_nom();
             String nomReg = station.getReg_name();
             if (nomCarb != "" && nomCarb != null && nomReg != "" && nomReg != null && carburants.contains(nomCarb)
-                    && region.contains(nomReg)) {
+                    && region.contains(nomReg) && services.stream().map(x -> station.getServices_service().contains(x))
+                            .allMatch(Boolean::booleanValue)) {
                 if (!filtre.keySet().contains(nomCarb)) {
                     filtre.put(nomCarb, new HashMap<>());
                 }
