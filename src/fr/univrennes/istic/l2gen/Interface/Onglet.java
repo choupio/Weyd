@@ -1,7 +1,13 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.*;
+
+import fr.univrennes.istic.l2gen.rapport.Fonction;
+
 import java.awt.*;
 
 public class Onglet {
@@ -142,6 +148,26 @@ public class Onglet {
         JLabel jLabel = new JLabel("Granularité");
         choixGranuralite.setSize(choixGranuralite.getWidth(), choixGranuralite.getMinimumSize().height);
         JButton button = new JButton("Rapport"); // Bouton pour le Rapport
+        // Action bouton
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Fonction.createHTMLFile("diagCamenberts.svg", "TESTEUR", "rapport");
+                String filePath = "rapport.html";
+                try {
+                    // Créer un objet File à partir du chemin du fichier HTML
+                    File file = new File(filePath);
+                    // Vérifier si le fichier existe avant de l'ouvrir
+                    if (file.exists()) {
+                        // Lancer le navigateur par défaut avec le fichier HTML
+                        Desktop.getDesktop().browse(file.toURI());
+                    } else {
+                        System.out.println("Le fichier HTML spécifié n'existe pas.");
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         // Ajout de ces éléments de contrôle à l'onglet 2
         onglet21.add(jLabel);

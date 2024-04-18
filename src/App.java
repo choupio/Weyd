@@ -48,7 +48,7 @@ public class App {
         visualiseur.colorier(" Blue ", " Green ", " Red ", " Yellow ", " Maroon ");
         visualiseur.agencer().createSvgFile();
 
-        Fonction.createHTMLFile( "diagCamenberts.svg","TESTEUR", "rapport");
+        Fonction.createHTMLFile("diagCamenberts.svg", "TESTEUR", "rapport");
 
         /*
          * Groupe tableau = new Groupe();

@@ -74,14 +74,10 @@ public class Statistique {
                 Checkbox[i].addItemListener(new ItemListener() {
                     public void itemStateChanged(ItemEvent e) {
                         if (e.getStateChange() == ItemEvent.SELECTED) {
-                            Onglet.getDiag()[index].setVisible(true);
                             isChecked.put(tabStat.get(index), true);
                         } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                            Onglet.getDiag()[index].setVisible(false);
                             isChecked.put(tabStat.get(index), false);
                         }
-                        Onglet.getDiag()[index].revalidate();
-                        Onglet.getDiag()[index].repaint();
                     }
                 });
             }
