@@ -2,13 +2,24 @@ package fr.univrennes.istic.l2gen.Interface;
 
 import fr.univrennes.istic.l2gen.station.StationAPI;
 import java.awt.*;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class Accueil {
     private static StationAPI recup = new StationAPI();
 
     public Accueil() {
+
+        FlatLightLaf.setup();
+
+        try {
+            UIManager.setLookAndFeel("Dark Purple");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
 
         ///////// Création police de toute l'interface /////////
         Font style1 = new Font("SansSerif", Font.PLAIN, 18);
