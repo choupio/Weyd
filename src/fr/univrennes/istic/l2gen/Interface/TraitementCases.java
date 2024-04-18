@@ -18,7 +18,6 @@ public class TraitementCases {
     private HashMap<String, Boolean> isCheckedReg = Region.getIsCheckedReg();
 
     public TraitementCases() {
-        json.
         // Traitement des cases cochées
         traitementRegions();
         traitementDepartements();
@@ -46,8 +45,22 @@ public class TraitementCases {
 
     // Traitement des carburants cochées et voir le diag qui va avec
     public void traitementCarburants() {
+        isCheckedCarb.forEach((key, value) -> {
+            isCheckedDiagPrixMoy.forEach((nom, checked) -> {
+                if (nom.equals("Diag en camembert prix moyen") && checked == true) {
+                    // faire le diag en camembert prix moyen
+                }
+                else if (nom.equals("Diag en barres prix moyen") && checked == true) {
+                    // faire le diag en barres prix moyen
+                }
+                else if (nom.equals("Diag en colonne prix moyen") && checked == true) {
+                    // faire le diag en colonne prix moyen
+                }
+            });
+        });
         // regarder quel carburant est coché et quel est son diagramme
     }
+    // par carb faire le graphique sélectionné, ajouter les calculs des stats
 
     // Traitement des statistiques cochées
     public void traitementStatistiques() {
