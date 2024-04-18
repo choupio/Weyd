@@ -7,10 +7,25 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Cette classe représente un panneau contenant des cases à cocher pour les régions.
+ */
 public class Region {
+
+    /**
+     * Panneau pour les régions.
+     */
     private JPanel region = new JPanel();
+
+    /**
+     * HashMap pour stocker l'état de sélection des régions.
+     */
     private static HashMap<String, Boolean> isChecked;
 
+    /**
+     * Constructeur de la classe Region.
+     * Initialise le panneau avec des cases à cocher pour les régions.
+     */
     public Region() {
         region.setLayout(new BoxLayout(region, BoxLayout.Y_AXIS));
         TitledBorder border = BorderFactory.createTitledBorder("Régions");
@@ -60,10 +75,18 @@ public class Region {
 
     }
 
+    /**
+     * Méthode pour récupérer le panneau des régions.
+     * @return Le panneau des régions.
+     */
     public JPanel GetRegion() {
         return this.region;
     }
 
+    /**
+     * Méthode pour récupérer l'état de sélection des régions.
+     * @return L'état de sélection des régions.
+     */
     public static HashMap<String, Boolean> getIsCheckedReg() {
         return isChecked;
     }
