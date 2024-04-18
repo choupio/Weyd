@@ -46,8 +46,9 @@ public class Accueil {
         fenetre.getFenetre().add(onglets.GetPanel());
 
         ///////// Ajout Image /////////
-        fenetre.ajouterImage(onglets.GetOnglet1(), "ressources/ImagesInterface/ImageTest.png",
-                1000, 743);
+        // fenetre.ajouterImage(onglets.GetOnglet1(),
+        ///////// "ressources/ImagesInterface/ImageTest.png",
+        // 1000, 743);
 
         fenetre.getFenetre().pack();
         fenetre.getFenetre().setVisible(true);
