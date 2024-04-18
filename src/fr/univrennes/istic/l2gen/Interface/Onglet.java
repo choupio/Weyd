@@ -10,14 +10,50 @@ import fr.univrennes.istic.l2gen.rapport.Fonction;
 
 import java.awt.*;
 
+/**
+ * Cette classe représente un ensemble d'onglets dans une interface graphique.
+ */
 public class Onglet {
+
+    /**
+     * Boolean pour indiquer si les stations sont affichées.
+     */
     private static Boolean isSationsAffichees = false;
+
+    /**
+     * CheckBox pour afficher les stations.
+     */
     private static JCheckBox afficheStation;
+
+    /**
+     * Panneau d'onglets.
+     */
     private JTabbedPane onglets;
+
+    /**
+     * Panneau principal contenant les onglets.
+     */
     private JPanel panelOnglet = new JPanel();
+
+    /**
+     * Tableau de panneaux pour les diagrammes.
+     */
     private static JPanel[] diag = new JPanel[5];
+
+    /**
+     * Tableau d'objets Diag pour les diagrammes.
+     */
     private Diag[] diagramme = new Diag[5];
 
+    /**
+     * Constructeur de la classe Onglet.
+     * Initialise les onglets avec les titres spécifiés et les composants associés.
+     * @param titreOnglet1 Titre du premier onglet.
+     * @param titreOnglet2 Titre du deuxième onglet.
+     * @param titreOnglet3 Titre du troisième onglet.
+     * @param WIDTH Largeur des composants.
+     * @param HEIGTH Hauteur des composants.
+     */
     public Onglet(String titreOnglet1, String titreOnglet2, String titreOnglet3, int WIDTH, int HEIGTH) {
         // Initialisation des onglets
         this.onglets = new JTabbedPane(SwingConstants.TOP);
@@ -202,30 +238,58 @@ public class Onglet {
 
     }
 
+    /**
+     * Méthode pour récupérer le panneau principal contenant les onglets.
+     * @return Le panneau principal contenant les onglets.
+     */
     public JPanel GetPanel() {
         return this.panelOnglet;
     }
 
+    /**
+     * Méthode pour récupérer le premier onglet.
+     * @return Le premier onglet.
+     */
     public JComponent GetOnglet1() {
         return (JComponent) this.onglets.getComponent(0);
     }
 
+    /**
+     * Méthode pour récupérer le deuxième onglet.
+     * @return Le deuxième onglet.
+     */
     public JComponent GetOnglet2() {
         return (JComponent) this.onglets.getComponent(1);
     }
 
+    /**
+     * Méthode pour récupérer le troisième onglet.
+     * @return Le troisième onglet.
+     */
     public JComponent GetOnglet3() {
         return (JComponent) this.onglets.getComponent(2);
     }
 
+    /**
+     * Méthode pour récupérer la case à cocher pour afficher les stations.
+     * @return La case à cocher pour afficher les stations.
+     */
     public static JCheckBox getAfficheStation() {
         return afficheStation;
     }
 
+    /**
+     * Méthode pour récupérer les panneaux de diagrammes.
+     * @return Les panneaux de diagrammes.
+     */
     public static JPanel[] getDiag() {
         return diag;
     }
 
+    /**
+     * Méthode pour récupérer l'état d'affichage des stations.
+     * @return L'état d'affichage des stations.
+     */
     public static Boolean getIsSationsAffichees() {
         return isSationsAffichees;
     }
