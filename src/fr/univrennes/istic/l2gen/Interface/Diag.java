@@ -62,17 +62,14 @@ public class Diag {
                             isChecked[index].put(diagrammes[0], true);
                             isChecked[index].put(diagrammes[1], false);
                             isChecked[index].put(diagrammes[2], false);
-                            System.out.println(isChecked[index].toString());
                         } else if (selectedChoice.equals(diagrammes[1])) {
                             isChecked[index].put(diagrammes[0], false);
                             isChecked[index].put(diagrammes[1], true);
                             isChecked[index].put(diagrammes[2], false);
-                            System.out.println(isChecked[index].toString());
                         } else if (selectedChoice.equals(diagrammes[2])) {
                             isChecked[index].put(diagrammes[0], false);
                             isChecked[index].put(diagrammes[1], false);
                             isChecked[index].put(diagrammes[2], true);
-                            System.out.println(isChecked[index].toString());
                         }
                     }
                 }
