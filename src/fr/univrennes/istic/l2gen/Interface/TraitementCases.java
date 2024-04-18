@@ -16,12 +16,28 @@ public class TraitementCases {
 
     public TraitementCases() {
         // Traitement des cases cochées
-        traitementCarburants();
-        traitementDepartements();
-        traitementPosition();
         traitementRegions();
-        traitementServices();
+        traitementDepartements();
+        traitementCarburants();
         traitementStatistiques();
+        traitementServices();
+        traitementPosition();
+        // TODO comment on fait pour les couleurs?
+    }
+
+    // Traitement des regions cochées
+    public void traitementRegions() {
+        // filtrer les stations par région
+    }
+
+    // Traitement des départements cochées
+    public void traitementDepartements() {
+        // filtrer les stations par département
+    }
+
+    // Traitement des services cochées
+    public void traitementServices() {
+        // filtrer les stations par services
     }
 
     // Traitement des carburants cochées et voir le diag qui va avec
@@ -29,24 +45,13 @@ public class TraitementCases {
         // regarder quel carburant est coché et quel est son diagramme
     }
 
-    // Traitement des services cochées
-    public void traitementServices() {
-
-    }
-
-    // Traitement des départements cochées
-    public void traitementDepartements() {
-    }
-
     // Traitement des statistiques cochées
     public void traitementStatistiques() {
+        // appliquer le calcul des statistiques sélectionnée
     }
 
     // Traitement de position coché
     public void traitementPosition() {
-    }
-
-    // Traitement des regions cochées
-    public void traitementRegions() {
+        // afficher les position des stations
     }
 }
