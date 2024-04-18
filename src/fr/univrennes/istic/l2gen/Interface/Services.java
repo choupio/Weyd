@@ -7,10 +7,25 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Cette classe représente un panneau contenant des cases à cocher pour les services proposés.
+ */
 public class Services {
+
+    /**
+     * Panneau pour les services proposés.
+     */
     private JPanel services = new JPanel();
+
+    /**
+     * HashMap pour stocker l'état de sélection des services.
+     */
     private static HashMap<String, Boolean> isChecked;
 
+    /**
+     * Constructeur de la classe Services.
+     * Initialise le panneau avec des cases à cocher pour les services proposés.
+     */
     public Services() {
         services.setLayout(new BoxLayout(services, BoxLayout.Y_AXIS));
         TitledBorder border2 = BorderFactory.createTitledBorder("Services proposés");
@@ -62,10 +77,18 @@ public class Services {
 
     }
 
+    /**
+     * Méthode pour récupérer le panneau des services proposés.
+     * @return Le panneau des services proposés.
+     */
     public JPanel getPanel() {
         return this.services;
     }
 
+    /**
+     * Méthode pour récupérer l'état de sélection des services.
+     * @return L'état de sélection des services.
+     */
     public static HashMap<String, Boolean> getIsCheckedServ() {
         return isChecked;
     }
