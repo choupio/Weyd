@@ -5,10 +5,19 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 
 import fr.univrennes.istic.l2gen.rapport.Fonction;
 
 import java.awt.*;
+
+import org.apache.batik.transcoder.TranscoderInput;
+import org.apache.batik.transcoder.TranscoderOutput;
+import org.apache.batik.transcoder.image.PNGTranscoder;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 
 /**
  * Cette classe représente un ensemble d'onglets dans une interface graphique.
@@ -170,10 +179,43 @@ public class Onglet {
         servContainer.setLayout(new BoxLayout(servContainer, BoxLayout.X_AXIS));
         servContainer.add(scrollPaneServ);
 
+        //Prévisualisation
+        JButton previsua=new JButton("Prévisualisation");
+        JPanel previ=new JPanel();
+        TitledBorder border = BorderFactory.createTitledBorder("prévisualisation");
+        previ.setBorder(border);
+        //previ.setVisible(false);
+        previsua.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                try {
+                    // Charger le fichier SVG
+                    FileInputStream svgFile = new FileInputStream("Camembert.svg");
+                    TranscoderInput input = new TranscoderInput(svgFile);
+                    // Définir le fichier de sortie (image PNG)
+                    FileOutputStream pngFile = new FileOutputStream("rapport.png");
+                    TranscoderOutput output = new TranscoderOutput(pngFile);
+                    // Créer un transcodeur pour convertir le SVG en PNG
+                    PNGTranscoder transcoder = new PNGTranscoder();
+                    transcoder.transcode(input, output);
+                    // Fermer les flux
+                    svgFile.close();
+                    pngFile.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        //Container prévisualisation et scrollPaneDeptContainer
+        JPanel prevDeptContainer = new JPanel();
+        prevDeptContainer.setLayout(new BoxLayout(prevDeptContainer, BoxLayout.X_AXIS));
+        prevDeptContainer.add(scrollPaneDeptContainer);
+        prevDeptContainer.add(previ);
+
         // Ajout de ces panel à l'onglet 2
         onglet2.add(southContainer, BorderLayout.NORTH);
         onglet2.add(regionContainer, BorderLayout.WEST);
-        onglet2.add(scrollPaneDeptContainer, BorderLayout.CENTER);
+        onglet2.add(prevDeptContainer, BorderLayout.CENTER);
         onglet2.add(servContainer, BorderLayout.EAST);
 
         // Gestion de la vision au démarrage
@@ -214,6 +256,7 @@ public class Onglet {
         onglet21.add(jLabel);
         onglet21.add(choixGranuralite);
         onglet21.add(button);
+        onglet21.add(previsua);
 
         // Gestion des événements pour le choix de la granularité
         choixGranuralite.addItemListener(new ItemListener() {
