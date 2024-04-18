@@ -1,10 +1,14 @@
 
-import fr.univrennes.istic.l2gen.geometrie.*;
+/*import fr.univrennes.istic.l2gen.geometrie.*;
 import fr.univrennes.istic.l2gen.station.Station;
-import fr.univrennes.istic.l2gen.station.StationParCarb;
+import fr.univrennes.istic.l2gen.station.StationParCarb;*/
+import java.util.ArrayList;
+
+import fr.univrennes.istic.l2gen.rapport.Fonction;
+import fr.univrennes.istic.l2gen.station.StationAPI;
 import fr.univrennes.istic.l2gen.visustats.*;
 
-import java.io.File;
+/*import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -12,18 +16,21 @@ import java.util.List;
 import javax.swing.*;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;*/
 
 /**
  * Cette classe représente l'application principale.
  * 
  * Pour tester et afficher des éléments d'autres classes, il suffit de
  * décommenter les lignes de code correspondantes.
+ * Ne pas oublier de remettre les imports sans les slashs pour pouvoir réaliser
+ * les autres tests.
  */
 public class App {
 
     public static void main(String[] args) throws Exception {
 
+<<<<<<< HEAD
       DiagCamemberts visualiseur = new DiagCamemberts( " Emissions de CO2 ( en Mt ) " );
       visualiseur . legender ( " Afrique " , " Amerique " , " Asie " , " Europe " , " Oceanie " );
       visualiseur . ajouterDonnees ( " 2010 " , 1600 , 6800 , 16000 , 4300 , 300);
@@ -34,6 +41,27 @@ public class App {
       //visualiseur . ajouterDonnees ( " 2035 " , 2700 , 8000 , 13000 , 2300 , 600);
       visualiseur . colorier ( " Blue " , " Green " , " Red " , " Yellow " , " Maroon " );
       visualiseur . agencer (). createSvgFile();
+=======
+        StationAPI s = new StationAPI();
+        ArrayList<String> d = new ArrayList<>();
+        d.add("Morbihan");
+        ArrayList<String> c = new ArrayList<>();
+        c.add("Gazole");
+        ArrayList<String> sv = new ArrayList<>();
+        sv.add("");
+        s.filtreDep(d, c, c);
+        System.out.println(s.getPrixMoyen());
+
+        DiagCamemberts visualiseur = new DiagCamemberts(" Emissions de CO2 ( en Mt ) ");
+        visualiseur.legender(" Afrique ", " Amerique ", " Asie ", " Europe ", " Oceanie ");
+        visualiseur.ajouterDonnees(" 2010 ", 1600, 6800, 16000, 4300, 300);
+        visualiseur.ajouterDonnees(" 2015 ", 1900, 6600, 17500, 3800, 330);
+        visualiseur.ajouterDonnees(" 2020 ", 2100, 6200, 17800, 3600, 340);
+        visualiseur.colorier(" Blue ", " Green ", " Red ", " Yellow ", " Maroon ");
+        visualiseur.agencer().createSvgFile();
+
+        Fonction.createHTMLFile("diagCamenberts.svg", "TESTEUR", "rapport");
+>>>>>>> 64e133a013f28e5d43377456d42ebf6770f88e64
 
         /*
          * Groupe tableau = new Groupe();
@@ -113,47 +141,53 @@ public class App {
 
         // Création d'un camembert
 
-        /*Camembert camembert = new Camembert(110, 110, 100);
-        camembert.ajouterSecteur("red", 0.15);
-        camembert.ajouterSecteur("blue", 0.2);
-        camembert.ajouterSecteur("green", 0.65);
-        System.out.println(camembert.description(0));
-        camembert.createSvgFile();
-
-        // Créez un ObjectMapper
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        // Spécifiez le chemin vers votre fichier JSON
-        String cheminFichier = "ressources/prix-carburants-fichier-quotidien-test-ods.json";
-
-        // Essayez d'ouvrir et de mapper le fichier JSON en un objet Java
-        try {
-            // Utilisez la méthode readValue() de l'ObjectMapper pour mapper le fichier JSON
-            // en un objet Java.
-            List<StationParCarb> stations = objectMapper.readValue(new File(cheminFichier),
-                    new TypeReference<List<StationParCarb>>() {
-                    });
-
-            // Faites ce que vous voulez avec votre objet ici
-            HashMap<String, Station> stations2 = new HashMap<>();
-            for (StationParCarb station : stations) {
-                if (!stations2.containsKey(station.getId())) {
-                    stations2.put(station.getId(),
-                            new Station(station.getServices_service(), station.getDep_name(), station.getVille(),
-                                    station.getAdresse(),
-                                    station.getReg_name(), station.getDep_code(), station.getReg_code()));
-                }
-
-                stations2.get(station.getId()).ajoutCarburant(station.getPrix_nom(), station.getPrix_valeur());
-            }
-
-        } catch (IOException e) {
-            // Gérez les erreurs d'entrée/sortie ici
-            e.printStackTrace();
-        }
-
-        // Autre manière de faire le camembert
         /*
+         * Camembert camembert = new Camembert(110, 110, 100);
+         * camembert.ajouterSecteur("red", 0.15);
+         * camembert.ajouterSecteur("blue", 0.2);
+         * camembert.ajouterSecteur("green", 0.65);
+         * System.out.println(camembert.description(0));
+         * camembert.createSvgFile();
+         * 
+         * // Créez un ObjectMapper
+         * ObjectMapper objectMapper = new ObjectMapper();
+         * 
+         * // Spécifiez le chemin vers votre fichier JSON
+         * String cheminFichier =
+         * "ressources/prix-carburants-fichier-quotidien-test-ods.json";
+         * 
+         * // Essayez d'ouvrir et de mapper le fichier JSON en un objet Java
+         * try {
+         * // Utilisez la méthode readValue() de l'ObjectMapper pour mapper le fichier
+         * JSON
+         * // en un objet Java.
+         * List<StationParCarb> stations = objectMapper.readValue(new
+         * File(cheminFichier),
+         * new TypeReference<List<StationParCarb>>() {
+         * });
+         * 
+         * // Faites ce que vous voulez avec votre objet ici
+         * HashMap<String, Station> stations2 = new HashMap<>();
+         * for (StationParCarb station : stations) {
+         * if (!stations2.containsKey(station.getId())) {
+         * stations2.put(station.getId(),
+         * new Station(station.getServices_service(), station.getDep_name(),
+         * station.getVille(),
+         * station.getAdresse(),
+         * station.getReg_name(), station.getDep_code(), station.getReg_code()));
+         * }
+         * 
+         * stations2.get(station.getId()).ajoutCarburant(station.getPrix_nom(),
+         * station.getPrix_valeur());
+         * }
+         * 
+         * } catch (IOException e) {
+         * // Gérez les erreurs d'entrée/sortie ici
+         * e.printStackTrace();
+         * }
+         * 
+         * // Autre manière de faire le camembert
+         * /*
          * Groupe secteurs = new Groupe();
          * secteurs.ajouter(new Secteur(new Point(256, 256), 128, 0,
          * 60).colorier("red").deplacer(800, 0.0));

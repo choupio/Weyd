@@ -1,16 +1,20 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.awt.event.*;
+import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 public class Departement {
     private JPanel departements = new JPanel();
-    private int tructest;
+    private static HashMap<String, Boolean> isChecked;
 
     public Departement() {
-        Border border2 = BorderFactory.createTitledBorder("Departement");
+        departements.setLayout(new BoxLayout(departements, BoxLayout.Y_AXIS));
+        TitledBorder border2 = BorderFactory.createTitledBorder("Départements");
+        border2.setTitleFont(new Font("SansSerif", Font.BOLD, 18));
         this.departements.setBorder(border2);
 
         // Noms des départements en France
@@ -18,21 +22,44 @@ public class Departement {
 
         JCheckBox[] radioCheck = new JCheckBox[tabDepart.size()];
 
+        JCheckBox tous = new JCheckBox("Tous les départements");
+        departements.add(tous);
+
+        // Liste booléenne pour savoir si la checkbox est cochée ou non
+        isChecked = new HashMap<String, Boolean>(tabDepart.size());
+
         for (int i = 0; i < tabDepart.size(); i += 1) {
+            isChecked.put(tabDepart.get(i), false);
             radioCheck[i] = new JCheckBox(tabDepart.get(i));
             this.departements.add(radioCheck[i]);
-            this.tructest = i;
-            // ajout de l'événement
+            int index = i;
             radioCheck[i].addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent e) {
                     if (e.getStateChange() == ItemEvent.SELECTED) {
-                        System.out.println("CheckBox" + tructest + "checked");
+                        isChecked.put(tabDepart.get(index), true);
                     } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                        System.out.println("CheckBox" + tructest + " unchecked");
+                        isChecked.put(tabDepart.get(index), false);
                     }
                 }
             });
         }
+
+        tous.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    for (int i = 0; i < tabDepart.size(); i += 1) {
+                        radioCheck[i].setSelected(true);
+                    }
+                } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                    for (int i = 0; i < tabDepart.size(); i += 1) {
+                        radioCheck[i].setSelected(false);
+                    }
+
+                }
+            }
+        });
+
+        this.departements.setSize(departements.getMinimumSize().width, departements.getMinimumSize().width);
 
     }
 
@@ -40,4 +67,7 @@ public class Departement {
         return this.departements;
     }
 
+    public static HashMap<String, Boolean> getIsCheckedDept() {
+        return isChecked;
+    }
 }
