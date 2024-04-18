@@ -9,8 +9,8 @@ public class Onglet {
     private static JCheckBox afficheStation;
     private JTabbedPane onglets;
     private JPanel panelOnglet = new JPanel();
-    private static JPanel [] diag=new JPanel[5];
-    private Diag [] diagramme =new Diag[5];
+    private static JPanel[] diag = new JPanel[5];
+    private Diag[] diagramme = new Diag[5];
 
     public Onglet(String titreOnglet1, String titreOnglet2, int WIDTH, int HEIGTH) {
         // Initialisation des onglets
@@ -102,14 +102,11 @@ public class Onglet {
         // Création d'un JPanel pour contenir les diag
         JPanel diagContainer = new JPanel();
         diagContainer.setLayout(new BoxLayout(diagContainer, BoxLayout.Y_AXIS));
-
-        for(int i=0;i<diag.length;i++){
-            diagramme[i]=new Diag();
-            diag[i]=diagramme[i].getPanel();
-            diag[i].setVisible(false);
-            diagContainer.add(diag[i]);
-        }
-
+        Diag diagramme = new Diag();
+        diagContainer.add(diagramme.getPanel());
+        diagContainer.setVisible(true);
+        // Définir une taille maximale pour diagContainer
+        diagContainer.setMaximumSize(new Dimension(220, Integer.MAX_VALUE));
 
         JPanel westContainer = new JPanel();
         westContainer.setLayout(new BoxLayout(westContainer, BoxLayout.X_AXIS));
@@ -190,7 +187,7 @@ public class Onglet {
         return afficheStation;
     }
 
-    public static JPanel[] getDiag(){
+    public static JPanel[] getDiag() {
         return diag;
     }
 
