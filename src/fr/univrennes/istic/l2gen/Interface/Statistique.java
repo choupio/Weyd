@@ -24,6 +24,7 @@ public class Statistique {
         tabStat.add("Prix médian");
         tabStat.add("Prix minimum");
         tabStat.add("Nombre de stations proposant ce carburant");
+        tabStat.add("Nombre de stations proposant ces services");
 
         JCheckBox[] Checkbox = new JCheckBox[tabStat.size()];
 
