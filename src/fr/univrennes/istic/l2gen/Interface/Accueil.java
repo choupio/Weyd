@@ -3,7 +3,6 @@ package fr.univrennes.istic.l2gen.Interface;
 import fr.univrennes.istic.l2gen.station.StationAPI;
 import java.awt.*;
 import com.formdev.flatlaf.FlatLightLaf;
-
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
