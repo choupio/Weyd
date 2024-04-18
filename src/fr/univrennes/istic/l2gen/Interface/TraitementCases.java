@@ -8,6 +8,9 @@ public class TraitementCases {
     private HashMap<String, Boolean> isCheckedCarb = Carburant.getIsCheckedCarb();
     private HashMap<String, Boolean> isCheckedStat = Statistique.getIsCheckedStat();
     private HashMap<String, Boolean>[] isCheckedDiag = Diag.getIsCheckedDiag();
+    private HashMap<String, Boolean> isCheckedDiagPrixMoy = isCheckedDiag[0];
+    private HashMap<String, Boolean> isCheckedDiagPrixMed = isCheckedDiag[1];
+    private HashMap<String, Boolean> isCheckedDiagPrixMin = isCheckedDiag[2];
     private Boolean isCheckedPos = Onglet.getIsSationsAffichees();
     private HashMap<String, Boolean> isCheckedReg = Region.getIsCheckedReg();
 

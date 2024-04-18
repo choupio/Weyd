@@ -49,12 +49,10 @@ public class Departement {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     for (int i = 0; i < tabDepart.size(); i += 1) {
                         radioCheck[i].setSelected(true);
-                        System.out.println(isChecked.toString());
                     }
                 } else if (e.getStateChange() == ItemEvent.DESELECTED) {
                     for (int i = 0; i < tabDepart.size(); i += 1) {
                         radioCheck[i].setSelected(false);
-                        System.out.println(isChecked.toString());
                     }
 
                 }
