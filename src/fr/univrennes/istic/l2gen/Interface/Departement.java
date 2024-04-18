@@ -7,10 +7,28 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Cette classe représente un panneau affichant les options de départements.
+ * Elle permet à l'utilisateur de sélectionner les départements qu'il souhaite visualiser.
+ */
 public class Departement {
+
+    /**
+     * Panneau affichant les options de départements.
+     */
     private JPanel departements = new JPanel();
+
+    /**
+     * Map des départements et de leurs états de sélection.
+     */
     private static HashMap<String, Boolean> isChecked;
 
+    /**
+     * Constructeur de la classe Departement.
+     * Ce constructeur initialise le panneau affichant les options de départements.
+     * Il crée des cases à cocher pour chaque département et les ajoute au panneau.
+     * Il associe également des écouteurs d'événements aux cases à cocher pour mettre à jour l'état de sélection.
+     */
     public Departement() {
         departements.setLayout(new BoxLayout(departements, BoxLayout.Y_AXIS));
         TitledBorder border2 = BorderFactory.createTitledBorder("Départements");
@@ -63,10 +81,20 @@ public class Departement {
 
     }
 
+    /**
+     * Méthode pour récupérer le panneau affichant les options de départements.
+     *
+     * @return Le panneau affichant les options de départements.
+     */
     public JPanel GetDept() {
         return this.departements;
     }
 
+    /**
+     * Méthode statique pour récupérer la map des départements et de leurs états de sélection.
+     *
+     * @return La map des départements et de leurs états de sélection.
+     */
     public static HashMap<String, Boolean> getIsCheckedDept() {
         return isChecked;
     }

@@ -7,9 +7,24 @@ import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+/**
+ * Cette classe représente l'interface d'accueil de l'application.
+ * Elle permet de gérer l'interface utilisateur principale de l'application.
+ */
 public class Accueil {
+
+     /**
+     * Instance de StationAPI utilisée pour récupérer des données sur les stations.
+     */
     private static StationAPI recup = new StationAPI();
 
+     /**
+     * Constructeur de la classe Accueil.
+     * Ce constructeur initialise l'interface d'accueil de l'application.
+     * Il configure la police de tous les composants de l'interface et crée une fenêtre avec des onglets.
+     * La taille de la fenêtre est définie pour occuper tout l'écran.
+     * Un onglet "Accueil" est ajouté à la fenêtre avec une image.
+     */
     public Accueil() {
 
         FlatLightLaf.setup();
@@ -68,6 +83,11 @@ public class Accueil {
         fenetre.getFenetre().setVisible(true);
     }
 
+    /**
+     * Méthode statique pour récupérer l'instance de StationAPI utilisée par l'interface d'accueil.
+     *
+     * @return L'instance de StationAPI utilisée par l'interface d'accueil.
+     */
     public static StationAPI getRecup() {
         return recup;
     }
