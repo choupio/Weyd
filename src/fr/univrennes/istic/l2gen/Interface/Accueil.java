@@ -13,15 +13,16 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Accueil {
 
-     /**
+    /**
      * Instance de StationAPI utilisée pour récupérer des données sur les stations.
      */
     private static StationAPI recup = new StationAPI();
 
-     /**
+    /**
      * Constructeur de la classe Accueil.
      * Ce constructeur initialise l'interface d'accueil de l'application.
-     * Il configure la police de tous les composants de l'interface et crée une fenêtre avec des onglets.
+     * Il configure la police de tous les composants de l'interface et crée une
+     * fenêtre avec des onglets.
      * La taille de la fenêtre est définie pour occuper tout l'écran.
      * Un onglet "Accueil" est ajouté à la fenêtre avec une image.
      */
@@ -30,7 +31,7 @@ public class Accueil {
         FlatLightLaf.setup();
 
         try {
-            UIManager.setLookAndFeel("Dark Purple");
+            UIManager.setLookAndFeel("com.formdev.flatlaf.themes.FlatMacDarkLaf");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
                 | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
@@ -84,7 +85,8 @@ public class Accueil {
     }
 
     /**
-     * Méthode statique pour récupérer l'instance de StationAPI utilisée par l'interface d'accueil.
+     * Méthode statique pour récupérer l'instance de StationAPI utilisée par
+     * l'interface d'accueil.
      *
      * @return L'instance de StationAPI utilisée par l'interface d'accueil.
      */
