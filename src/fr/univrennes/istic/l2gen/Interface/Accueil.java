@@ -2,8 +2,10 @@ package fr.univrennes.istic.l2gen.Interface;
 
 import fr.univrennes.istic.l2gen.station.StationAPI;
 import java.awt.*;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Cette classe représente l'interface d'accueil de l'application.
@@ -24,6 +26,15 @@ public class Accueil {
      * Un onglet "Accueil" est ajouté à la fenêtre avec une image.
      */
     public Accueil() {
+
+        FlatLightLaf.setup();
+
+        try {
+            UIManager.setLookAndFeel("Dark Purple");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
 
         ///////// Création police de toute l'interface /////////
         Font style1 = new Font("SansSerif", Font.PLAIN, 18);
