@@ -36,20 +36,38 @@ public class Statistique {
             Checkbox[i] = new JCheckBox(tabStat.get(i));
             this.panel.add(Checkbox[i]);
             int index = i;
-            if (tabStat.get(index) == "Prix minimum") { // la case "Prix minimum" débloque les localisations
+            if (tabStat.get(index).equals("Prix minimum")) { // débloque les localisations et le choix du diag
                 Checkbox[i].addItemListener(new ItemListener() {
                     public void itemStateChanged(ItemEvent e) {
                         if (e.getStateChange() == ItemEvent.SELECTED) {
                             isChecked.put(tabStat.get(index), true);
                             Onglet.getAfficheStation().setEnabled(true);
-                            Onglet.getDiag()[index].setVisible(true);
+                            Diag.getDiag()[2].setEnabled(true);
                         } else if (e.getStateChange() == ItemEvent.DESELECTED) {
                             isChecked.put(tabStat.get(index), false);
                             Onglet.getAfficheStation().setEnabled(false);
-                            Onglet.getDiag()[index].setVisible(false);
+                            Diag.getDiag()[2].setEnabled(false);
                         }
-                        Onglet.getDiag()[index].revalidate();
-                        Onglet.getDiag()[index].repaint();
+                    }
+                });
+            } else if (tabStat.get(index).equals("Prix médian") || tabStat.get(index).equals("Prix moyen")) { // choix
+                Checkbox[i].addItemListener(new ItemListener() {
+                    public void itemStateChanged(ItemEvent e) {
+                        if (e.getStateChange() == ItemEvent.SELECTED) {
+                            isChecked.put(tabStat.get(index), true);
+                            if (tabStat.get(index) == "Prix moyen") {
+                                Diag.getDiag()[0].setEnabled(true);
+                            } else {
+                                Diag.getDiag()[1].setEnabled(true);
+                            }
+                        } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                            isChecked.put(tabStat.get(index), false);
+                            if (tabStat.get(index) == "Prix moyen") {
+                                Diag.getDiag()[0].setEnabled(false);
+                            } else {
+                                Diag.getDiag()[1].setEnabled(false);
+                            }
+                        }
                     }
                 });
             } else { // Autres cases

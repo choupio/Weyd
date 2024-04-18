@@ -7,7 +7,7 @@ import javax.swing.*;
 public class Diag {
     private JPanel panel;
     @SuppressWarnings("unchecked")
-    private JComboBox<String>[] choixdiagramme = new JComboBox[3];
+    private static JComboBox<String>[] choixdiagramme = new JComboBox[3];
     @SuppressWarnings("unchecked")
     private static HashMap<String, Boolean>[] isChecked = new HashMap[3];
     private static HashMap<String, Boolean> isCheckedPrixMoy;
@@ -28,6 +28,7 @@ public class Diag {
                 JComboBox<String> choixdiagrammePrixMoy = new JComboBox<>(diagrammes);
                 // Liste booléenne pour savoir si le comboBox est sélectionné ou non
                 isCheckedPrixMoy = new HashMap<String, Boolean>(diagrammes.length);
+                choixdiagrammePrixMoy.setEnabled(false);
                 choixdiagramme[i] = choixdiagrammePrixMoy;
                 isChecked[i] = isCheckedPrixMoy;
             } else if (i == 1) {
@@ -36,6 +37,7 @@ public class Diag {
                 JComboBox<String> choixdiagrammePrixMed = new JComboBox<>(diagrammes);
                 // Liste booléenne pour savoir si le comboBox est sélectionné ou non
                 isCheckedPrixMed = new HashMap<String, Boolean>(diagrammes.length);
+                choixdiagrammePrixMed.setEnabled(false);
                 choixdiagramme[i] = choixdiagrammePrixMed;
                 isChecked[i] = isCheckedPrixMed;
             } else {
@@ -44,6 +46,7 @@ public class Diag {
                 JComboBox<String> choixdiagrammePrixMin = new JComboBox<>(diagrammes);
                 // Liste booléenne pour savoir si le comboBox est sélectionné ou non
                 isCheckedPrixMin = new HashMap<String, Boolean>(diagrammes.length);
+                choixdiagrammePrixMin.setEnabled(false);
                 choixdiagramme[i] = choixdiagrammePrixMin;
                 isChecked[i] = isCheckedPrixMin;
             }
@@ -81,6 +84,10 @@ public class Diag {
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    public static JComboBox<String>[] getDiag() {
+        return choixdiagramme;
     }
 
     public static HashMap<String, Boolean>[] getIsCheckedDiag() {
