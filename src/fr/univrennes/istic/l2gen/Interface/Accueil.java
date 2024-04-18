@@ -56,13 +56,17 @@ public class Accueil {
         fenetre.getFenetre().setSize((int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
 
         ///////// Ajout Onglets /////////
-        Onglet onglets = new Onglet("Accueil", "Statistiques", (int) tailleUtilisable.getWidth(),
+        Onglet onglets = new Onglet("Accueil", "Statistiques", "Exemples", (int) tailleUtilisable.getWidth(),
                 (int) tailleUtilisable.getHeight());
         fenetre.getFenetre().add(onglets.GetPanel());
 
         ///////// Ajout Image /////////
-        fenetre.ajouterImage(onglets.GetOnglet1(), "ressources/ImagesInterface/ImageTest.png",
-                1000, 743);
+        fenetre.ajouterImage(onglets.GetOnglet1(),
+                "ressources/ImagesInterface/imaccueil.jpg",
+                (int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
+
+        fenetre.ajouterImage(onglets.GetOnglet3(), "ressources/ImagesInterface/ImageTest.png",
+                1000, (int) 700);
 
         fenetre.getFenetre().pack();
         fenetre.getFenetre().setVisible(true);
