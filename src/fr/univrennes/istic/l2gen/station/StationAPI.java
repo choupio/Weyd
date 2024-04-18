@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +20,7 @@ public class StationAPI {
     private HashMap<String, HashMap<String, List<Double>>> filtre; /*
                                                                     * de la forme {Carburant : Granularité : List<Prix>}
                                                                     */
-    private List<String> filtre_carb, filtre_serv;
+    private HashMap<String, HashMap<String, HashMap<String, Integer>>> NbStationProposeServices;
 
     public StationAPI() {
         // Créez un ObjectMapper
@@ -44,7 +42,6 @@ public class StationAPI {
             stationsParReg = new HashMap<>();
             services = new HashSet<>();
             filtre = new HashMap<>();
-            filtre_carb = new ArrayList<>();
 
             for (StationParCarb station : stationsParCarb) {
                 // Change le String unicode en normal
@@ -241,34 +238,51 @@ public class StationAPI {
         return prixMinParCarbParGranu;
     }
 
+    /*
+     * Rend le nombre de station qui proposes des services spécifques par carburant
+     * et par granularité
+     * 
+     * @return hashmap de la forme {carburant : {Granularité : {service :
+     * nombre_de_station_qui_propose_le_serice}}}
+     */
+    public HashMap<String, HashMap<String, HashMap<String, Integer>>> getNbStationProposeServices() {
+        return NbStationProposeServices;
+    }
+
     /**
      * filtre les stations selon les départements et selon les carburants
-     * Pour l'instant ne filtre pas les serivces.
-     * 
+     *
      * @param departement
      * @param carburants
      * @return
      */
     public void filtreDep(List<String> departement, List<String> carburants,
             List<String> services) {
-        filtre_carb = carburants;
-        filtre_serv = services;
+
+        NbStationProposeServices = new HashMap<>();
 
         filtre = new HashMap<>();
         for (StationParCarb station : stationsParCarb) {
             String nomCarb = station.getPrix_nom();
             String nomDep = station.getDep_name();
             if (nomCarb != "" && nomCarb != null && nomDep != "" && nomDep != null && carburants.contains(nomCarb)
-                    && departement.contains(nomDep) && services.stream()
-                            .map(x -> station.getServices_service().contains(x)).allMatch(Boolean::booleanValue)) {
+                    && departement.contains(nomDep)) {
                 if (!filtre.keySet().contains(nomCarb)) {
                     filtre.put(nomCarb, new HashMap<>());
+                    NbStationProposeServices.put(nomDep, new HashMap<>());
                 }
 
-                if (!filtre.get(nomCarb).keySet().contains(nomDep)) {
-                    filtre.get(nomCarb).put(nomDep, new ArrayList<>());
-                }
+                if (!NbStationProposeServices.keySet().contains(nomCarb))
+
+                    if (!filtre.get(nomCarb).keySet().contains(nomDep)) {
+                        filtre.get(nomCarb).put(nomDep, new ArrayList<>());
+                        NbStationProposeServices.get(nomCarb).put(nomDep, new HashMap<>());
+                        services.stream().forEach(x -> NbStationProposeServices.get(nomCarb).get(nomDep).put(x, 0));
+                    }
                 filtre.get(nomCarb).get(nomDep).add(station.getPrix_valeur());
+                station.getServices_service().stream().forEach(service -> NbStationProposeServices.get(nomCarb)
+                        .get(nomDep).put(service, NbStationProposeServices.get(nomCarb).get(nomDep).get(service) + 1));
+
             }
         }
 
@@ -284,24 +298,25 @@ public class StationAPI {
      */
     public void filtreReg(List<String> region, List<String> carburants,
             List<String> services) {
-        filtre_carb = carburants;
-        filtre_serv = services;
 
         filtre = new HashMap<>();
         for (StationParCarb station : stationsParCarb) {
             String nomCarb = station.getPrix_nom();
             String nomReg = station.getReg_name();
             if (nomCarb != "" && nomCarb != null && nomReg != "" && nomReg != null && carburants.contains(nomCarb)
-                    && region.contains(nomReg) && services.stream().map(x -> station.getServices_service().contains(x))
-                            .allMatch(Boolean::booleanValue)) {
+                    && region.contains(nomReg)) {
                 if (!filtre.keySet().contains(nomCarb)) {
                     filtre.put(nomCarb, new HashMap<>());
+                    NbStationProposeServices.get(nomCarb).put(nomReg, new HashMap<>());
+                    services.stream().forEach(x -> NbStationProposeServices.get(nomCarb).get(nomReg).put(x, 0));
                 }
 
                 if (!filtre.get(nomCarb).keySet().contains(nomReg)) {
                     filtre.get(nomCarb).put(nomReg, new ArrayList<>());
                 }
                 filtre.get(nomCarb).get(nomReg).add(station.getPrix_valeur());
+                station.getServices_service().stream().forEach(service -> NbStationProposeServices.get(nomCarb)
+                        .get(nomReg).put(service, NbStationProposeServices.get(nomCarb).get(nomReg).get(service) + 1));
             }
         }
 
