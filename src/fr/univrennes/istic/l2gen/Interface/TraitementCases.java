@@ -1,6 +1,15 @@
 package fr.univrennes.istic.l2gen.Interface;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.databind.ser.impl.StringArraySerializer;
+
+import fr.univrennes.istic.l2gen.station.StationAPI;
+import fr.univrennes.istic.l2gen.visustats.DiagColonnes;
+import fr.univrennes.istic.l2gen.visustats.IDataVisualiseur;
 
 public class TraitementCases {
     private HashMap<String, Boolean> isCheckedServ = Services.getIsCheckedServ();
@@ -20,7 +29,6 @@ public class TraitementCases {
         traitementDepartements();
         traitementCarburants();
         traitementStatistiques();
-        traitementServices();
         traitementPosition();
         // TODO comment on fait pour les couleurs?
     }
@@ -53,5 +61,45 @@ public class TraitementCases {
     // Traitement de position coché
     public void traitementPosition() {
         // afficher les position des stations
+    }
+
+    public void traitement() {
+        ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(Map.Entry::getValue)
+                .map(Map.Entry::getKey).collect(Collectors.toList()));
+        ArrayList<String> regListe = new ArrayList<>(isCheckedReg.entrySet().stream().filter(Map.Entry::getValue)
+                .map(Map.Entry::getKey).collect(Collectors.toList()));
+        ArrayList<String> carbListe = new ArrayList<>(isCheckedCarb.entrySet().stream().filter(Map.Entry::getValue)
+                .map(Map.Entry::getKey).collect(Collectors.toList()));
+        ArrayList<String> servListe = new ArrayList<>(isCheckedServ.entrySet().stream().filter(Map.Entry::getValue)
+                .map(Map.Entry::getKey).collect(Collectors.toList()));
+        StationAPI api = new StationAPI();
+        Boolean depOuReg = true; // TODO il faudrait mettre une variable qui dit si on a choisit département ou
+                                 // région
+
+        if (depOuReg) { // département
+            api.filtreDep(depListe, carbListe, servListe);
+        } else { // région
+            api.filtreReg(regListe, carbListe, servListe);
+        }
+
+        for (int i = 0; i < isCheckedDiag.length; i++) {
+            HashMap<String, HashMap<String, Double>> donnes;
+            if (i == 0) { // Prix moyen
+                donnes = api.getPrixMoyen();
+            } else if (i == 1) { // Prix médian
+                donnes = api.getPrixMedian();
+            } else { // Prix min
+                donnes = api.getPrixMin();
+            }
+            for (String carburant : donnes.keySet()) {
+                IDataVisualiseur diagramme = new DiagColonnes("Titre"); // TODO créer le bon diagramme
+                for (String granularite : donnes.get(carburant).keySet()) {
+                    diagramme.legender(granularite);
+                }
+                diagramme.ajouterDonnees(carburant,
+                        donnes.get(carburant).values().stream().mapToDouble(Double::doubleValue).toArray());
+                // TODO à finir
+            }
+        }
     }
 }
