@@ -18,7 +18,7 @@ public class Onglet {
     private static JPanel[] diag = new JPanel[5];
     private Diag[] diagramme = new Diag[5];
 
-    public Onglet(String titreOnglet1, String titreOnglet2, int WIDTH, int HEIGTH) {
+    public Onglet(String titreOnglet1, String titreOnglet2, String titreOnglet3, int WIDTH, int HEIGTH) {
         // Initialisation des onglets
         this.onglets = new JTabbedPane(SwingConstants.TOP);
 
@@ -33,6 +33,11 @@ public class Onglet {
         onglet2.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         // onglet2.setLayout(new BoxLayout(onglet2,BoxLayout.X_AXIS));
         this.onglets.addTab(titreOnglet2, onglet2);
+
+        // Création onglet 3
+        JPanel onglet3 = new JPanel();
+        onglet3.setPreferredSize(new Dimension(WIDTH, HEIGTH));
+        this.onglets.addTab(titreOnglet3, onglet3);
 
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
@@ -207,6 +212,10 @@ public class Onglet {
 
     public JComponent GetOnglet2() {
         return (JComponent) this.onglets.getComponent(1);
+    }
+
+    public JComponent GetOnglet3() {
+        return (JComponent) this.onglets.getComponent(2);
     }
 
     public static JCheckBox getAfficheStation() {
