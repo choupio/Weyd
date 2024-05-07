@@ -88,7 +88,12 @@ public class Onglet {
         JPanel onglet11 = new JPanel();
         onglet11.setSize ((int) onglet1.getPreferredSize().getWidth(), (int) onglet1.getPreferredSize().getHeight());
         onglet1.add(onglet11);
-        
+
+        JButton button11 = new JButton("Commencer"); // Bouton pour le aller à l'onglet 2
+        button11.addActionListener(new ActionListener() {
+            ???
+        })
+
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
         onglet21.setSize((int) onglet2.getPreferredSize().getWidth(), (int) onglet2.getPreferredSize().getHeight());
