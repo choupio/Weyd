@@ -97,6 +97,9 @@ public class Onglet {
             }
         });
 
+        // Ajout du bouton à l'onglet "Accueil"
+        onglet11.add(button11);
+
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
         onglet21.setSize((int) onglet2.getPreferredSize().getWidth(), (int) onglet2.getPreferredSize().getHeight());
