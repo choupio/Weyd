@@ -97,8 +97,16 @@ public class Onglet {
             }
         });
 
+        onglet11.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
         // Ajout du bouton à l'onglet "Accueil"
-        onglet11.add(button11);
+        onglet11.add(button11, gbc);
 
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
