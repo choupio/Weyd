@@ -84,29 +84,16 @@ public class Onglet {
         onglet3.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         this.onglets.addTab(titreOnglet3, onglet3);
 
-        // Création d'un sous panel pour l'onglet 1
-        JPanel onglet11 = new JPanel();
-        onglet11.setSize ((int) onglet1.getPreferredSize().getWidth(), (int) onglet1.getPreferredSize().getHeight());
-        onglet1.add(onglet11);
-
-        JButton button11 = new JButton("Commencer"); // Bouton pour le aller à l'onglet 2
+        // Bientôt disponible
+        // Bouton pour le aller à l'onglet 2
+        /*JButton button11 = new JButton("Commencer"); 
         button11.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Changer l'onglet sélectionné à "Statistiques"
                 onglets.setSelectedIndex(1); // L'index commence à 0, donc 1 est l'onglet "Statistiques"
             }
         });
-
-        onglet11.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
-        // Ajout du bouton à l'onglet "Accueil"
-        onglet11.add(button11, gbc);
+        
+        onglet1.add(button11);*/
 
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
