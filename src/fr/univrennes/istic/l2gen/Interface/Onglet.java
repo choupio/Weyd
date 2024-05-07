@@ -91,7 +91,10 @@ public class Onglet {
 
         JButton button11 = new JButton("Commencer"); // Bouton pour le aller à l'onglet 2
         button11.addActionListener(new ActionListener() {
-            ???
+            public void actionPerformed(ActionEvent e) {
+                // Changer l'onglet sélectionné à "Statistiques"
+                onglets.setSelectedIndex(1); // L'index commence à 0, donc 1 est l'onglet "Statistiques"
+            }
         });
 
         // Création d'un sous panel pour l'onglet 2
