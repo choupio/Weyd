@@ -84,6 +84,11 @@ public class Onglet {
         onglet3.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         this.onglets.addTab(titreOnglet3, onglet3);
 
+        // Création d'un sous panel pour l'onglet 1
+        JPanel onglet11 = new JPanel();
+        onglet11.setSize ((int) onglet1.getPreferredSize().getWidth(), (int) onglet1.getPreferredSize().getHeight());
+        onglet1.add(onglet11);
+        
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
         onglet21.setSize((int) onglet2.getPreferredSize().getWidth(), (int) onglet2.getPreferredSize().getHeight());
