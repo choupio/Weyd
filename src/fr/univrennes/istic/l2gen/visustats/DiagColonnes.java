@@ -28,32 +28,53 @@ public class DiagColonnes implements IDataVisualiseur {
         legendeGroupe = new Groupe();
     }
 
+    /**
+     * Retourne le centre du diagramme.
+     */
     @Override
     public Point centre() {
         return diagGroupe.centre();
     }
 
+    /**
+     * Retourne une description du diagramme.
+     * @param indentation L'indentation de la description.
+     */
     @Override
     public String description(int indentation) {
         return diagGroupe.description(indentation);
     }
 
+    /**
+     * Retourne la hauteur du diagramme.
+     */
     @Override
     public double hauteur() {
         return diagGroupe.hauteur();
     }
 
+    /**
+     * Retourne la largeur du diagramme.
+     */
     @Override
     public double largeur() {
         return diagGroupe.largeur();
     }
 
+    /**
+     * Déplace le diagramme selon les valeurs spécifiées.
+     * @param dx La distance de déplacement en x.
+     * @param dy La distance de déplacement en y.
+     */
     @Override
     public IForme deplacer(double dx, double dy) {
         diagGroupe.deplacer(dx, dy);
         return diagGroupe;
     }
 
+    /**
+     * Duplique le diagramme.
+     */
     @Override
     public IForme dupliquer() {
         DiagColonnes nouvelleForme = new DiagColonnes(nom);
@@ -65,16 +86,28 @@ public class DiagColonnes implements IDataVisualiseur {
         return nouvelleForme;
     }
 
+    /**
+     * Redimensionne le diagramme.
+     * @param h La nouvelle hauteur.
+     * @param l La nouvelle largeur.
+     */
     @Override
     public IForme redimmensioner(double h, double l) {
         return diagGroupe.redimmensioner(h, l);
     }
 
+    /**
+     * Convertit le diagramme en SVG.
+     */
     @Override
     public String enSVG() {
         return diagGroupe.enSVG();
     }
 
+    /**
+     * Colorie le diagramme avec les couleurs spécifiées.
+     * @param couleurs Les couleurs à appliquer.
+     */
     @Override
     public IForme colorier(String... couleurs) {
         for (IForme faisceau : donnees.getListFormes()) {
@@ -96,21 +129,37 @@ public class DiagColonnes implements IDataVisualiseur {
         return this;
     }
 
+    /**
+     * Fait tourner le diagramme selon l'angle spécifié.
+     * @param angle L'angle de rotation.
+     */
     @Override
     public IForme tourner(int angle) {
         return diagGroupe.tourner(angle);
     }
 
+    /**
+     * Aligne le diagramme selon l'alignement et la cible spécifiés.
+     * @param alignement L'alignement.
+     * @param cible La cible.
+     */
     @Override
     public IForme aligner(Alignement alignement, double cible) {
         return diagGroupe.aligner(alignement, cible);
     }
 
+    /**
+     * Crée un fichier SVG pour le diagramme.
+     */
     @Override
     public void createSvgFile() {
         SVGFile.createSvgFile(this, "diagColonnes");
     }
 
+    /**
+     * Agence le diagramme.
+     * @return L'instance de IDataVisualiseur agencée.
+     */
     @Override
     public IDataVisualiseur agencer() {
         // Titre
@@ -169,6 +218,12 @@ public class DiagColonnes implements IDataVisualiseur {
         return this;
     }
 
+    /**
+     * Ajoute des données au diagramme.
+     * @param str La chaîne de données.
+     * @param doubles Les valeurs des données.
+     * @return L'instance de IDataVisualiseur avec les données ajoutées.
+     */
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
         donnees.ajouter(new Faisceau(str, doubles));
@@ -184,6 +239,11 @@ public class DiagColonnes implements IDataVisualiseur {
         return this;
     }
 
+    /**
+     * Ajoute une légende au diagramme.
+     * @param strings Les éléments de la légende.
+     * @return L'instance de IDataVisualiseur avec la légende ajoutée.
+     */
     @Override
     public IDataVisualiseur legender(String... strings) {
         for (String string : strings) {
@@ -194,10 +254,31 @@ public class DiagColonnes implements IDataVisualiseur {
         return this;
     }
 
+    /**
+     * Définit des options pour le diagramme.
+     * @param strings Les options à définir.
+     * @return L'instance de IDataVisualiseur avec les options définies.
+     */
     @Override
-    public IDataVisualiseur setOption(String... strings) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setOption'");
+    public IDataVisualiseur setOption(String... options) {
+        for (String option : options) {
+            // Traitez chaque option individuellement
+            if (option.equals("Colonne supplémentaire")) {
+                // Ajouter une colonne supplémentaire avec une couleur et une taille spécifiques
+                double[] valeurs = {10, 20, 30}; // Exemple de valeurs arbitraires pour la colonne supplémentaire
+                donnees.ajouter(new Faisceau("Supplémentaire", valeurs)); // Ajout d'une colonne supplémentaire
+            } else if (option.equals("Ajouter une légende supplémentaire à la colonne")) {
+                // Ajouter une légende supplémentaire à la colonne
+                legendeGroupe.ajouter(new Rectangle(0, 0, 20, 7));
+                legendeGroupe.ajouter(new Texte(0, 0, 10, "Légende supplémentaire"));
+            } else if (option.equals("Supprimer une colonne")) {
+                // Supprimer la première colonne de la liste des données
+                if (!donnees.getListFormes().isEmpty()) {
+                    donnees.getListFormes().remove(0);
+                }
+            }
+        }
+        return this;
     }
 
 }
