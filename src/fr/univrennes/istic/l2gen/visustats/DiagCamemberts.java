@@ -263,7 +263,6 @@ public class DiagCamemberts implements IDataVisualiseur {
      * @param strings Les chaînes de caractères représentant les légendes à ajouter.
      * @return Une instance de IDataVisualiseur avec la légende ajoutée.
      */
-
     @Override
     public IDataVisualiseur legender(String... strings) {
         for (String string : strings) {
@@ -278,7 +277,6 @@ public class DiagCamemberts implements IDataVisualiseur {
      * L'interface IDataVisualiseur définit les méthodes nécessaires pour visualiser
      * les données.
      */
-
     @Override
     public IDataVisualiseur setOption(String... options) {
 
