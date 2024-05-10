@@ -83,6 +83,7 @@ public class TraitementCases {
             api.filtreReg(regListe, carbListe, servListe);
         }
 
+        // Génération des diagrammes de prix moyen, médians et minimum
         for (int i = 0; i < isCheckedDiag.length; i++) {
             HashMap<String, HashMap<String, Double>> donnes = new HashMap<>();
             if (i == 0 && isCheckedStat.get("Prix moyen")) { // Prix moyen
@@ -111,7 +112,7 @@ public class TraitementCases {
                     }
                     diagramme.ajouterDonnees(carburant,
                             donnes.get(carburant).values().stream().mapToDouble(Double::doubleValue).toArray());
-                    diagramme.createSvgFile();
+                    diagramme.createSvgFile(); // TODO faire en sorte que la fonction rende un string de SVG
                 }
             }
 
