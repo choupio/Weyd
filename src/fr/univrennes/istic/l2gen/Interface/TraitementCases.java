@@ -98,7 +98,7 @@ public class TraitementCases {
                 }
                 diagramme.ajouterDonnees(carburant,
                         donnes.get(carburant).values().stream().mapToDouble(Double::doubleValue).toArray());
-                // TODO à finir
+                diagramme.createSvgFile();
             }
         }
     }
