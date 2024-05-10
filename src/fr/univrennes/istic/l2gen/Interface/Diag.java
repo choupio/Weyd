@@ -5,7 +5,8 @@ import java.util.HashMap;
 import javax.swing.*;
 
 /**
- * Cette classe représente un panneau permettant de sélectionner différents types de diagrammes.
+ * Cette classe représente un panneau permettant de sélectionner différents
+ * types de diagrammes.
  */
 public class Diag {
 
@@ -13,7 +14,6 @@ public class Diag {
      * Panneau contenant les composants de sélection des diagrammes.
      */
     private JPanel panel;
-    
 
     /**
      * Tableau de JComboBox pour les choix de diagrammes.
@@ -45,7 +45,8 @@ public class Diag {
     /**
      * Constructeur de la classe Diag.
      * Initialise le panneau contenant les composants de sélection des diagrammes.
-     * Crée des JComboBox pour chaque type de diagramme et les associe à des écouteurs d'événements.
+     * Crée des JComboBox pour chaque type de diagramme et les associe à des
+     * écouteurs d'événements.
      */
     public Diag() {
         // Création du JPanel avec un BoxLayout vertical
@@ -53,11 +54,10 @@ public class Diag {
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
         for (int i = 0; i < 3; i += 1) {
-            String[] diagrammes;
+            String[] diagrammes = new String[] { "camembert", "barres", "colonnes" };
             int index = i;
-            if (i == 0) {
-                diagrammes = new String[] { "Diag en camembert prix moyen", "Diag en barres prix moyen",
-                        "Diag en colonne prix moyen" };
+            if (i == 0) { // Prix moyen
+
                 JComboBox<String> choixdiagrammePrixMoy = new JComboBox<>(diagrammes);
                 // Liste booléenne pour savoir si le comboBox est sélectionné ou non
                 isCheckedPrixMoy = new HashMap<String, Boolean>(diagrammes.length);
@@ -65,8 +65,6 @@ public class Diag {
                 choixdiagramme[i] = choixdiagrammePrixMoy;
                 isChecked[i] = isCheckedPrixMoy;
             } else if (i == 1) {
-                diagrammes = new String[] { "Diag en camembert prix médian", "Diag en barres prix médian",
-                        "Diag en colonne prix médian" };
                 JComboBox<String> choixdiagrammePrixMed = new JComboBox<>(diagrammes);
                 // Liste booléenne pour savoir si le comboBox est sélectionné ou non
                 isCheckedPrixMed = new HashMap<String, Boolean>(diagrammes.length);
@@ -74,8 +72,6 @@ public class Diag {
                 choixdiagramme[i] = choixdiagrammePrixMed;
                 isChecked[i] = isCheckedPrixMed;
             } else {
-                diagrammes = new String[] { "Diag en camembert prix minimum", "Diag en barres prix minimum",
-                        "Diag en colonne prix minimum" };
                 JComboBox<String> choixdiagrammePrixMin = new JComboBox<>(diagrammes);
                 // Liste booléenne pour savoir si le comboBox est sélectionné ou non
                 isCheckedPrixMin = new HashMap<String, Boolean>(diagrammes.length);
@@ -116,7 +112,8 @@ public class Diag {
     }
 
     /**
-     * Méthode pour récupérer le panneau contenant les composants de sélection des diagrammes.
+     * Méthode pour récupérer le panneau contenant les composants de sélection des
+     * diagrammes.
      *
      * @return Le panneau contenant les composants de sélection des diagrammes.
      */
@@ -125,7 +122,8 @@ public class Diag {
     }
 
     /**
-     * Méthode statique pour récupérer le tableau de JComboBox pour les choix de diagrammes.
+     * Méthode statique pour récupérer le tableau de JComboBox pour les choix de
+     * diagrammes.
      *
      * @return Le tableau de JComboBox pour les choix de diagrammes.
      */
@@ -134,7 +132,8 @@ public class Diag {
     }
 
     /**
-     * Méthode statique pour récupérer le tableau de HashMap pour les états de sélection des diagrammes.
+     * Méthode statique pour récupérer le tableau de HashMap pour les états de
+     * sélection des diagrammes.
      *
      * @return Le tableau de HashMap pour les états de sélection des diagrammes.
      */
