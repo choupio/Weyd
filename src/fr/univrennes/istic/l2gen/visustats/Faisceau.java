@@ -86,7 +86,7 @@ public class Faisceau extends Groupe {
         axes.setY(axeY);
         this.largeur = largeur;
         if (largeur <= 0 || echelle <= 0 || axeX < 0 || axeY < 0) {
-            throw new IllegalArgumentException("Les coordonée, l'echelle et la largeur ne peuvent pas être négatif.");
+            throw new IllegalArgumentException("Les coordonnées, l'echelle et la largeur ne peuvent pas être négatif.");
         } else if (verticalement) {
             for (IForme rect : listFormes) {
                 rect.redimmensioner(echelle, largeur);
