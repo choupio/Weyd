@@ -46,7 +46,7 @@ public class TraitementCases {
         ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(entry -> entry.getValue())
                     .map(entry -> entry.getKey()).collect(Collectors.toList()));
         StationAPI api = new StationAPI();
-        api.filtreDep(depListe, null, null); // Assuming null for other filters if not selected
+        api.filtreDep(depListe, null, null); 
         // filtrer les stations par département
     }
 
