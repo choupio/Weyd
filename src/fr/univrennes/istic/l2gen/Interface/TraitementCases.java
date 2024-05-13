@@ -72,6 +72,7 @@ public class TraitementCases {
 
     // Traitement de position coché
     public void traitementPosition() {
+    
         // afficher les position des stations
     }
 
