@@ -2,10 +2,10 @@
 /*import fr.univrennes.istic.l2gen.geometrie.*;
 import fr.univrennes.istic.l2gen.station.Station;
 import fr.univrennes.istic.l2gen.station.StationParCarb;*/
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
-import fr.univrennes.istic.l2gen.rapport.Fonction;
-import fr.univrennes.istic.l2gen.station.StationAPI;
+//import fr.univrennes.istic.l2gen.rapport.Fonction;
+//import fr.univrennes.istic.l2gen.station.StationAPI;
 import fr.univrennes.istic.l2gen.visustats.*;
 
 /*import java.io.File;
@@ -30,16 +30,14 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-      DiagCamemberts visualiseur = new DiagCamemberts( " Emissions de CO2 ( en Mt ) " );
+      DiagCamemberts visualiseur = new DiagCamemberts( " Emissions de CO2 ( en Mt ) ",3);
       visualiseur . legender ( " Afrique " , " Amerique " , " Asie " , " Europe " , " Oceanie " );
       visualiseur . ajouterDonnees ( " 2010 " , 1600 , 6800 , 16000 , 4300 , 300);
       visualiseur . ajouterDonnees ( " 2015 " , 1900 , 6600 , 17500 , 3800 , 330);
       visualiseur . ajouterDonnees ( " 2020 " , 2100 , 6200 , 17800 , 3600 , 340);
-      //visualiseur . ajouterDonnees ( " 2025 " , 2300 , 6500 , 19000 , 3200 , 400);
-      //visualiseur . ajouterDonnees ( " 2030 " , 2500 , 7000 , 15000 , 2500 , 500);
-      //visualiseur . ajouterDonnees ( " 2035 " , 2700 , 8000 , 13000 , 2300 , 600);
       visualiseur . colorier ( " Blue " , " Green " , " Red " , " Yellow " , " Maroon " );
-      visualiseur . agencer (). createSvgFile();
+      visualiseur.agencer().createSvgFile();
+      visualiseur.description(0);
 
         /*
          * Groupe tableau = new Groupe();
