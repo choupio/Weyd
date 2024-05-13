@@ -52,11 +52,15 @@ public class TraitementCases {
 
     // Traitement des services cochées
     public void traitementServices() {
-        ArrayList<String> servListe = new ArrayList<>(
-                isCheckedServ.entrySet().stream().filter(entry -> entry.getValue())
-                        .map(entry -> entry.getKey()).collect(Collectors.toList()));
+        ArrayList<String> servListe = new ArrayList<>(isCheckedServ.entrySet().stream().filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey()).collect(Collectors.toList()));
+        ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey()).collect(Collectors.toList()));
+        ArrayList<String> regListe = new ArrayList<>(isCheckedReg.entrySet().stream().filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey()).collect(Collectors.toList()));
         StationAPI api = new StationAPI();
-        api.filtreReg(null, null, servListe);
+        api.filtreReg(regListe, null, servListe);
+        api.filtreDep(depListe, null, servListe);
         // filtrer les stations par services
     }
 
