@@ -34,16 +34,29 @@ public class TraitementCases {
 
     // Traitement des regions cochées
     public void traitementRegions() {
+        ArrayList<String> regListe = new ArrayList<>(isCheckedReg.entrySet().stream().filter(entry -> entry.getValue())
+                    .map(entry -> entry.getKey()).collect(Collectors.toList()));
+        StationAPI api = new StationAPI();
+        api.filtreReg(regListe, null, null);
         // filtrer les stations par région
     }
 
     // Traitement des départements cochées
     public void traitementDepartements() {
+        ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(entry -> entry.getValue())
+                    .map(entry -> entry.getKey()).collect(Collectors.toList()));
+        StationAPI api = new StationAPI();
+        api.filtreDep(depListe, null, null); // Assuming null for other filters if not selected
         // filtrer les stations par département
     }
 
     // Traitement des services cochées
     public void traitementServices() {
+        ArrayList<String> servListe = new ArrayList<>(
+                isCheckedServ.entrySet().stream().filter(entry -> entry.getValue())
+                        .map(entry -> entry.getKey()).collect(Collectors.toList()));
+        StationAPI api = new StationAPI();
+        api.filtreReg(null, null, servListe);
         // filtrer les stations par services
     }
 
