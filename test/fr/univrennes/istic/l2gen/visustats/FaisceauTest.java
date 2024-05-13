@@ -22,12 +22,12 @@ public class FaisceauTest {
         // Créer un groupe de formes
         Faisceau faisceau = new Faisceau("Faisceau", 10, 20, 30);
         // Ajouter des formes au groupe
-        faisceau.ajouter(new Rectangle(10.0, 25.0, 18.0, 120.0));
+        faisceau.ajouter(new Rectangle(10.0, 25.0, 18.0, 20.0));
         // Appeler la méthode agencer avec orientation verticale
-        faisceau.agencer(25.0, 130.0, 20.0, 30.0, true);
+        faisceau.agencer(25.0, 2400.0, 50.0, 30.0, true);
         // Vérifier que les éléments ont été alignés correctement
-        assertEquals(130.0, faisceau.centre().x(), 0.0001);
-        assertEquals(10.0, faisceau.centre().y(), 0.0001);
+        assertEquals(475.0, faisceau.centre().x(), 0.0001);
+        assertEquals(1200.0, faisceau.centre().y(), 0.0001);
 
     }
 
