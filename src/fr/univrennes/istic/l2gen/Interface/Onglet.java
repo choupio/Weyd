@@ -43,6 +43,7 @@ public class Onglet {
      * Panneau principal contenant les onglets.
      */
     private JPanel panelOnglet = new JPanel();
+    private JPanel previ=new JPanel();
 
     /**
      * Tableau de panneaux pour les diagrammes.
@@ -192,9 +193,9 @@ public class Onglet {
 
         //Prévisualisation
         JButton previsua=new JButton("Prévisualisation");
-        JPanel previ=new JPanel();
         TitledBorder border = BorderFactory.createTitledBorder("prévisualisation");
         previ.setBorder(border);
+        previ.add(new Panel_Image("rapport.png"));
         //previ.setVisible(false);
         previsua.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
@@ -214,6 +215,8 @@ public class Onglet {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+                previ.add(new Panel_Image("rapport.png"));
+                //previ.setVisible(true);
             }
         });
 
@@ -314,6 +317,10 @@ public class Onglet {
      */
     public JComponent GetOnglet2() {
         return (JComponent) this.onglets.getComponent(1);
+    }
+
+    public JPanel GetPanelPrevi(){
+        return this.previ; 
     }
 
     /**
