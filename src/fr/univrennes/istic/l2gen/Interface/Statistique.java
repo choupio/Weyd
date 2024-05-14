@@ -8,7 +8,8 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 /**
- * Cette classe représente un panneau contenant des cases à cocher pour les statistiques.
+ * Cette classe représente un panneau contenant des cases à cocher pour les
+ * statistiques.
  */
 public class Statistique {
 
@@ -65,33 +66,31 @@ public class Statistique {
                         }
                     }
                 });
-            } else if (tabStat.get(index).equals("Prix médian") || tabStat.get(index).equals("Prix moyen")) { // choix
+            } else { // choix
                 Checkbox[i].addItemListener(new ItemListener() {
                     public void itemStateChanged(ItemEvent e) {
                         if (e.getStateChange() == ItemEvent.SELECTED) {
                             isChecked.put(tabStat.get(index), true);
                             if (tabStat.get(index) == "Prix moyen") {
                                 Diag.getDiag()[0].setEnabled(true);
-                            } else {
+                            } else if (tabStat.get(index) == "Prix médian") {
                                 Diag.getDiag()[1].setEnabled(true);
+                            } else if (tabStat.get(index) == "Nombre de stations proposant ce carburant") {
+                                Diag.getDiag()[3].setEnabled(true);
+                            } else {
+                                Diag.getDiag()[4].setEnabled(true);
                             }
                         } else if (e.getStateChange() == ItemEvent.DESELECTED) {
                             isChecked.put(tabStat.get(index), false);
                             if (tabStat.get(index) == "Prix moyen") {
                                 Diag.getDiag()[0].setEnabled(false);
-                            } else {
+                            } else if (tabStat.get(index) == "Prix médian") {
                                 Diag.getDiag()[1].setEnabled(false);
+                            } else if (tabStat.get(index) == "Nombre de stations proposant ce carburant") {
+                                Diag.getDiag()[3].setEnabled(false);
+                            } else {
+                                Diag.getDiag()[4].setEnabled(false);
                             }
-                        }
-                    }
-                });
-            } else { // Autres cases
-                Checkbox[i].addItemListener(new ItemListener() {
-                    public void itemStateChanged(ItemEvent e) {
-                        if (e.getStateChange() == ItemEvent.SELECTED) {
-                            isChecked.put(tabStat.get(index), true);
-                        } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                            isChecked.put(tabStat.get(index), false);
                         }
                     }
                 });
@@ -102,6 +101,7 @@ public class Statistique {
 
     /**
      * Méthode pour récupérer le panneau des statistiques.
+     * 
      * @return Le panneau des statistiques.
      */
     public JPanel getPanel() {
@@ -110,6 +110,7 @@ public class Statistique {
 
     /**
      * Méthode pour récupérer l'état de sélection des statistiques.
+     * 
      * @return L'état de sélection des statistiques.
      */
     public static HashMap<String, Boolean> getIsCheckedStat() {

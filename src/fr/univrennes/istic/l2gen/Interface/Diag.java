@@ -19,13 +19,13 @@ public class Diag {
      * Tableau de JComboBox pour les choix de diagrammes.
      */
     @SuppressWarnings("unchecked")
-    private static JComboBox<String>[] choixdiagramme = new JComboBox[3];
+    private static JComboBox<String>[] choixdiagramme = new JComboBox[5];
 
     /**
      * Tableau de HashMap pour les états de sélection des diagrammes.
      */
     @SuppressWarnings("unchecked")
-    private static HashMap<String, Boolean>[] isChecked = new HashMap[3];
+    private static HashMap<String, Boolean>[] isChecked = new HashMap[5];
 
     /**
      * Map pour l'état de sélection du diagramme de prix moyen.
@@ -43,6 +43,18 @@ public class Diag {
     private static HashMap<String, Boolean> isCheckedPrixMin;
 
     /**
+     * Map pour l'état de sélection du diagramme du nombre de station qui proposent
+     * le carburant.
+     */
+    private static HashMap<String, Boolean> isCheckedStationCarb;
+
+    /**
+     * Map pour l'état de sélection du diagramme du nombre de station qui proposent
+     * le service.
+     */
+    private static HashMap<String, Boolean> isCheckedStationServ;
+
+    /**
      * Constructeur de la classe Diag.
      * Initialise le panneau contenant les composants de sélection des diagrammes.
      * Crée des JComboBox pour chaque type de diagramme et les associe à des
@@ -53,31 +65,44 @@ public class Diag {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-        for (int i = 0; i < 3; i += 1) {
+        for (int i = 0; i < 5; i += 1) {
             String[] diagrammes = new String[] { "camembert", "barres", "colonnes" };
             int index = i;
             if (i == 0) { // Prix moyen
-
                 JComboBox<String> choixdiagrammePrixMoy = new JComboBox<>(diagrammes);
                 // Liste booléenne pour savoir si le comboBox est sélectionné ou non
                 isCheckedPrixMoy = new HashMap<String, Boolean>(diagrammes.length);
                 choixdiagrammePrixMoy.setEnabled(false);
                 choixdiagramme[i] = choixdiagrammePrixMoy;
                 isChecked[i] = isCheckedPrixMoy;
-            } else if (i == 1) {
+            } else if (i == 1) { // Prix médian
                 JComboBox<String> choixdiagrammePrixMed = new JComboBox<>(diagrammes);
                 // Liste booléenne pour savoir si le comboBox est sélectionné ou non
                 isCheckedPrixMed = new HashMap<String, Boolean>(diagrammes.length);
                 choixdiagrammePrixMed.setEnabled(false);
                 choixdiagramme[i] = choixdiagrammePrixMed;
                 isChecked[i] = isCheckedPrixMed;
-            } else {
+            } else if (i == 2) { // Prix minimum
                 JComboBox<String> choixdiagrammePrixMin = new JComboBox<>(diagrammes);
                 // Liste booléenne pour savoir si le comboBox est sélectionné ou non
                 isCheckedPrixMin = new HashMap<String, Boolean>(diagrammes.length);
                 choixdiagrammePrixMin.setEnabled(false);
                 choixdiagramme[i] = choixdiagrammePrixMin;
                 isChecked[i] = isCheckedPrixMin;
+            } else if (i == 3) { // Nombre de station qui proposent le carburant
+                JComboBox<String> choixdiagrammeStationCarb = new JComboBox<>(diagrammes);
+                // Liste booléenne pour savoir si le comboBox est sélectionné ou non
+                isCheckedStationCarb = new HashMap<String, Boolean>(diagrammes.length);
+                choixdiagrammeStationCarb.setEnabled(false);
+                choixdiagramme[i] = choixdiagrammeStationCarb;
+                isChecked[i] = isCheckedStationCarb;
+            } else { // Nombre de station qui proposent le service
+                JComboBox<String> choixdiagrammeStationServ = new JComboBox<>(diagrammes);
+                // Liste booléenne pour savoir si le comboBox est sélectionné ou non
+                isCheckedStationServ = new HashMap<String, Boolean>(diagrammes.length);
+                choixdiagrammeStationServ.setEnabled(false);
+                choixdiagramme[i] = choixdiagrammeStationServ;
+                isChecked[i] = isCheckedStationServ;
             }
 
             // Initialisation des booléens à false
@@ -94,15 +119,19 @@ public class Diag {
                             isChecked[index].put(diagrammes[0], true);
                             isChecked[index].put(diagrammes[1], false);
                             isChecked[index].put(diagrammes[2], false);
+                            System.out.println(isChecked[index].toString()); // TODO test à enlever
                         } else if (selectedChoice.equals(diagrammes[1])) {
                             isChecked[index].put(diagrammes[0], false);
                             isChecked[index].put(diagrammes[1], true);
                             isChecked[index].put(diagrammes[2], false);
+                            System.out.println(isChecked[index].toString()); // TODO test à enlever
                         } else if (selectedChoice.equals(diagrammes[2])) {
                             isChecked[index].put(diagrammes[0], false);
                             isChecked[index].put(diagrammes[1], false);
                             isChecked[index].put(diagrammes[2], true);
+                            System.out.println(isChecked[index].toString()); // TODO test à enlever
                         }
+
                     }
                 }
             });
