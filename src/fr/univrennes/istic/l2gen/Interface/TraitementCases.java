@@ -22,64 +22,7 @@ public class TraitementCases {
     private Boolean isCheckedPos = Onglet.getIsSationsAffichees();
     private HashMap<String, Boolean> isCheckedReg = Region.getIsCheckedReg();
 
-    public TraitementCases() {
-        // Traitement des cases cochées
-        traitementRegions();
-        traitementDepartements();
-        traitementCarburants();
-        traitementStatistiques();
-        traitementPosition();
-        // TODO comment on fait pour les couleurs?
-    }
-
-    // Traitement des regions cochées
-    public void traitementRegions() {
-        ArrayList<String> regListe = new ArrayList<>(isCheckedReg.entrySet().stream().filter(entry -> entry.getValue())
-                    .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        StationAPI api = new StationAPI();
-        api.filtreReg(regListe, null, null);
-        // filtrer les stations par région
-    }
-
-    // Traitement des départements cochées
-    public void traitementDepartements() {
-        ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(entry -> entry.getValue())
-                    .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        StationAPI api = new StationAPI();
-        api.filtreDep(depListe, null, null); 
-        // filtrer les stations par département
-    }
-
-    // Traitement des services cochées
-    public void traitementServices() {
-        ArrayList<String> servListe = new ArrayList<>(isCheckedServ.entrySet().stream().filter(entry -> entry.getValue())
-                .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(entry -> entry.getValue())
-                .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        ArrayList<String> regListe = new ArrayList<>(isCheckedReg.entrySet().stream().filter(entry -> entry.getValue())
-                .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        StationAPI api = new StationAPI();
-        api.filtreReg(regListe, null, servListe);
-        api.filtreDep(depListe, null, servListe);
-        // filtrer les stations par services
-    }
-
-    // Traitement des carburants cochées et voir le diag qui va avec
-    public void traitementCarburants() {
-    }
-    // TODO par carb faire le graphique sélectionné, ajouter les calculs des stats
-
-    // Traitement des statistiques cochées
-    public void traitementStatistiques() {
-        // appliquer le calcul des statistiques sélectionnée
-    }
-
-    // Traitement de position coché
-    public void traitementPosition() {
     
-        // afficher les position des stations
-    }
-
     public void traitement() {
         ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(entry -> entry.getValue())
                 .map(entry -> entry.getKey()).collect(Collectors.toList()));
