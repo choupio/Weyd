@@ -195,7 +195,6 @@ public class Onglet {
         JButton previsua=new JButton("Prévisualisation");
         TitledBorder border = BorderFactory.createTitledBorder("prévisualisation");
         previ.setBorder(border);
-        previ.add(new Panel_Image("rapport.png"));
         //previ.setVisible(false);
         previsua.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
@@ -215,7 +214,6 @@ public class Onglet {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-                previ.add(new Panel_Image("rapport.png"));
                 //previ.setVisible(true);
             }
         });
