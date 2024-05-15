@@ -279,19 +279,27 @@ public class StationAPI {
                     && departement.contains(nomDep)) {
                 if (!filtre.keySet().contains(nomCarb)) {
                     filtre.put(nomCarb, new HashMap<>());
-                    NbStationProposeServices.put(nomDep, new HashMap<>());
+                    NbStationProposeServices.put(nomCarb, new HashMap<>());
                 }
 
-                if (!NbStationProposeServices.keySet().contains(nomCarb))
-
-                    if (!filtre.get(nomCarb).keySet().contains(nomDep)) {
-                        filtre.get(nomCarb).put(nomDep, new ArrayList<>());
-                        NbStationProposeServices.get(nomCarb).put(nomDep, new HashMap<>());
-                        services.stream().forEach(x -> NbStationProposeServices.get(nomCarb).get(nomDep).put(x, 0));
-                    }
+                if (!filtre.get(nomCarb).keySet().contains(nomDep)) {
+                    filtre.get(nomCarb).put(nomDep, new ArrayList<>());
+                    NbStationProposeServices.get(nomCarb).put(nomDep, new HashMap<>());
+                    services.stream().forEach(x -> NbStationProposeServices.get(nomCarb).get(nomDep).put(x, 0));
+                }
                 filtre.get(nomCarb).get(nomDep).add(station.getPrix_valeur());
-                station.getServices_service().stream().forEach(service -> NbStationProposeServices.get(nomCarb)
-                        .get(nomDep).put(service, NbStationProposeServices.get(nomCarb).get(nomDep).get(service) + 1));
+                try {
+                    station.getServices_service().stream().forEach(service -> {
+                        if (services.contains(service)) {
+                            NbStationProposeServices.get(nomCarb)
+                                    .get(nomDep)
+                                    .put(service, NbStationProposeServices.get(nomCarb).get(nomDep).get(service) + 1);
+                        }
+                    });
+                } catch (Exception e) {
+                    // TODO corriger ça pour enlever le try-catch (erreur sur
+                    // station.getServices_service() quand vide)
+                }
 
             }
         }
@@ -325,8 +333,19 @@ public class StationAPI {
                     filtre.get(nomCarb).put(nomReg, new ArrayList<>());
                 }
                 filtre.get(nomCarb).get(nomReg).add(station.getPrix_valeur());
-                station.getServices_service().stream().forEach(service -> NbStationProposeServices.get(nomCarb)
-                        .get(nomReg).put(service, NbStationProposeServices.get(nomCarb).get(nomReg).get(service) + 1));
+
+                try {
+                    station.getServices_service().stream().forEach(service -> {
+                        if (services.contains(service)) {
+                            NbStationProposeServices.get(nomCarb)
+                                    .get(nomReg)
+                                    .put(service, NbStationProposeServices.get(nomCarb).get(nomReg).get(service) + 1);
+                        }
+                    });
+                } catch (Exception e) {
+                    // TODO corriger ça pour enlever le try-catch (erreur sur
+                    // station.getServices_service() quand vide)
+                }
             }
         }
 

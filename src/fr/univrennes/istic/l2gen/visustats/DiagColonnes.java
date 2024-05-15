@@ -38,6 +38,7 @@ public class DiagColonnes implements IDataVisualiseur {
 
     /**
      * Retourne une description du diagramme.
+     * 
      * @param indentation L'indentation de la description.
      */
     @Override
@@ -63,6 +64,7 @@ public class DiagColonnes implements IDataVisualiseur {
 
     /**
      * Déplace le diagramme selon les valeurs spécifiées.
+     * 
      * @param dx La distance de déplacement en x.
      * @param dy La distance de déplacement en y.
      */
@@ -88,6 +90,7 @@ public class DiagColonnes implements IDataVisualiseur {
 
     /**
      * Redimensionne le diagramme.
+     * 
      * @param h La nouvelle hauteur.
      * @param l La nouvelle largeur.
      */
@@ -106,6 +109,7 @@ public class DiagColonnes implements IDataVisualiseur {
 
     /**
      * Colorie le diagramme avec les couleurs spécifiées.
+     * 
      * @param couleurs Les couleurs à appliquer.
      */
     @Override
@@ -131,6 +135,7 @@ public class DiagColonnes implements IDataVisualiseur {
 
     /**
      * Fait tourner le diagramme selon l'angle spécifié.
+     * 
      * @param angle L'angle de rotation.
      */
     @Override
@@ -140,8 +145,9 @@ public class DiagColonnes implements IDataVisualiseur {
 
     /**
      * Aligne le diagramme selon l'alignement et la cible spécifiés.
+     * 
      * @param alignement L'alignement.
-     * @param cible La cible.
+     * @param cible      La cible.
      */
     @Override
     public IForme aligner(Alignement alignement, double cible) {
@@ -158,6 +164,7 @@ public class DiagColonnes implements IDataVisualiseur {
 
     /**
      * Agence le diagramme.
+     * 
      * @return L'instance de IDataVisualiseur agencée.
      */
     @Override
@@ -165,16 +172,16 @@ public class DiagColonnes implements IDataVisualiseur {
         // Titre
         texteNom = new Texte(0, 0, 20, nom);
 
-        double axeY = donnees.getListFormes().get(0).hauteur() * 0.01;
+        double axeY = donnees.getListFormes().get(0).hauteur() * 100 / echelle_max;
         for (IForme forme : donnees.getListFormes()) {
-            if (axeY < forme.hauteur() * 0.01) {
-                axeY = forme.hauteur() * 0.01;
+            if (axeY < forme.hauteur() * 100 / echelle_max) {
+                axeY = forme.hauteur() * 100 / echelle_max;
             }
         }
         double axeX = 50;
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
-            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, false);
+            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 100 / echelle_max, false);
             axeX += 120;
         }
 
@@ -220,7 +227,8 @@ public class DiagColonnes implements IDataVisualiseur {
 
     /**
      * Ajoute des données au diagramme.
-     * @param str La chaîne de données.
+     * 
+     * @param str     La chaîne de données.
      * @param doubles Les valeurs des données.
      * @return L'instance de IDataVisualiseur avec les données ajoutées.
      */
@@ -241,6 +249,7 @@ public class DiagColonnes implements IDataVisualiseur {
 
     /**
      * Ajoute une légende au diagramme.
+     * 
      * @param strings Les éléments de la légende.
      * @return L'instance de IDataVisualiseur avec la légende ajoutée.
      */
@@ -256,6 +265,7 @@ public class DiagColonnes implements IDataVisualiseur {
 
     /**
      * Définit des options pour le diagramme.
+     * 
      * @param strings Les options à définir.
      * @return L'instance de IDataVisualiseur avec les options définies.
      */
@@ -265,7 +275,7 @@ public class DiagColonnes implements IDataVisualiseur {
             // Traitez chaque option individuellement
             if (option.equals("Colonne supplémentaire")) {
                 // Ajouter une colonne supplémentaire avec une couleur et une taille spécifiques
-                double[] valeurs = {10, 20, 30}; // Exemple de valeurs arbitraires pour la colonne supplémentaire
+                double[] valeurs = { 10, 20, 30 }; // Exemple de valeurs arbitraires pour la colonne supplémentaire
                 donnees.ajouter(new Faisceau("Supplémentaire", valeurs)); // Ajout d'une colonne supplémentaire
             } else if (option.equals("Ajouter une légende supplémentaire à la colonne")) {
                 // Ajouter une légende supplémentaire à la colonne

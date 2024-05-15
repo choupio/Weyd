@@ -2,8 +2,13 @@ package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.stream.Collectors;
 
+import javax.swing.GroupLayout.Group;
+
+import fr.univrennes.istic.l2gen.geometrie.Alignement;
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.station.StationAPI;
 import fr.univrennes.istic.l2gen.visustats.DiagBarres;
 import fr.univrennes.istic.l2gen.visustats.DiagCamemberts;
@@ -22,7 +27,10 @@ public class TraitementCases {
     private Boolean isCheckedPos = Onglet.getIsSationsAffichees();
     private HashMap<String, Boolean> isCheckedReg = Region.getIsCheckedReg();
 
-    
+    public TraitementCases() {
+
+    }
+
     public void traitement() {
         ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(entry -> entry.getValue())
                 .map(entry -> entry.getKey()).collect(Collectors.toList()));
@@ -44,39 +52,87 @@ public class TraitementCases {
             api.filtreReg(regListe, carbListe, servListe);
         }
 
+        // Groupe pour accueuillir les statistiques
+        Groupe statistiques = new Groupe();
+
         // Génération des diagrammes de prix moyen, médians et minimum
-        for (int i = 0; i < isCheckedDiag.length; i++) {
+        for (int i = 0; i < 3; i++) {
             HashMap<String, HashMap<String, Double>> donnes = new HashMap<>();
+
+            // Initialisation du titre du diagramme
+            String titre = "";
+
+            // Bloc pour choisir les statistques à représenter
             if (i == 0 && isCheckedStat.get("Prix moyen")) { // Prix moyen
                 donnes = api.getPrixMoyen();
+                titre = "Prix moyen";
             } else if (i == 1 && isCheckedStat.get("Prix médian")) { // Prix médian
                 donnes = api.getPrixMedian();
-            } else if (i == 3 && isCheckedStat.get("Prix minimum")) { // Prix min
+                titre = "Prix médian";
+            } else if (i == 2 && isCheckedStat.get("Prix minimum")) { // Prix min
                 donnes = api.getPrixMin();
+                titre = "Prix minimum";
             }
+
             if (!donnes.isEmpty()) {
-                for (String carburant : donnes.keySet()) {
-                    IDataVisualiseur diagramme = new DiagBarres(null); // juste pour l'initialiser
-                    for (String type_diag : isCheckedDiag[i].keySet()) {
-                        if (isCheckedDiag[i].get(type_diag)) {
-                            if (type_diag.equals("camembert")) {
-                                diagramme = new DiagCamemberts("Titre", 1); // TODO changer le titre
-                            } else if (type_diag.equals("barres")) {
-                                diagramme = new DiagBarres("Titre"); // TODO changer le titre
-                            } else if (type_diag.equals("colonnes")) {
-                                diagramme = new DiagColonnes("Titre"); // TODO changer le titre
-                            }
+
+                IDataVisualiseur diagramme = new DiagBarres(null); // juste pour l'initialiser
+                for (String type_diag : isCheckedDiag[i].keySet()) {
+                    if (isCheckedDiag[i].get(type_diag)) {
+                        if (type_diag.equals("camembert")) {
+                            diagramme = new DiagCamemberts(titre, 1);
+                        } else if (type_diag.equals("barres")) {
+                            diagramme = new DiagBarres(titre);
+                        } else if (type_diag.equals("colonnes")) {
+                            diagramme = new DiagColonnes(titre);
                         }
                     }
-                    for (String granularite : donnes.get(carburant).keySet()) {
-                        diagramme.legender(granularite);
-                    }
+                }
+                if (depOuReg) {
+                    diagramme.legender(depListe.toArray(new String[0]));
+                } else {
+                    diagramme.legender(regListe.toArray(new String[0]));
+                }
+                for (String carburant : carbListe) {
                     diagramme.ajouterDonnees(carburant,
                             donnes.get(carburant).values().stream().mapToDouble(Double::doubleValue).toArray());
-                    diagramme.createSvgFile(); // TODO faire en sorte que la fonction rende un string de SVG
                 }
+
+                if (depOuReg) {
+                    diagramme.colorier(generationCouleur(depListe).toArray(new String[0]));
+                } else {
+                    diagramme.colorier(generationCouleur(regListe).toArray(new String[0]));
+                }
+                diagramme.agencer();
+                statistiques.ajouter(diagramme);
             }
 
         }
+
+        // Gestion du nombre de stations qui proposent chaque carburants
+        if (isCheckedStat.get("Nombre de stations proposant ce carburant")) {
+
+        }
+        statistiques.empilerElements(Alignement.HAUT, 100, 50);
+        statistiques.createSvgFile();
+    }
+
+    private ArrayList<String> generationCouleur(ArrayList<String> granularite) {
+        ArrayList<String> couleurs = new ArrayList<>();
+
+        // Bloc pour ajouter les couleurs correspondant au carburant
+        for (int i = 0; i < granularite.size(); i++) {
+            // Génération de valeurs aléatoires pour les composantes R, G et B
+            Random random = new Random();
+            int red = random.nextInt(256); // Valeur entre 0 et 255
+            int green = random.nextInt(256);
+            int blue = random.nextInt(256);
+
+            // Construction de la couleur hexadécimale
+            String couleurHex = String.format("#%02x%02x%02x", red, green, blue);
+            couleurs.add(couleurHex);
+        }
+
+        return couleurs;
     }
 }

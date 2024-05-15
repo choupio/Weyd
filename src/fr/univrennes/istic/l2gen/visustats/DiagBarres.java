@@ -34,7 +34,7 @@ public class DiagBarres implements IDataVisualiseur {
         echelle_max = 0;
     }
 
-     /**
+    /**
      * Retourne le centre du diagramme.
      */
     @Override
@@ -44,6 +44,7 @@ public class DiagBarres implements IDataVisualiseur {
 
     /**
      * Retourne une description du diagramme.
+     * 
      * @param indentation L'indentation de la description.
      */
     @Override
@@ -58,7 +59,7 @@ public class DiagBarres implements IDataVisualiseur {
     public double hauteur() {
         return diagGroupe.hauteur();
     }
-    
+
     /**
      * Retourne la largeur du diagramme.
      */
@@ -69,6 +70,7 @@ public class DiagBarres implements IDataVisualiseur {
 
     /**
      * Déplace le diagramme selon les valeurs spécifiées.
+     * 
      * @param dx La distance de déplacement en x.
      * @param dy La distance de déplacement en y.
      */
@@ -88,6 +90,7 @@ public class DiagBarres implements IDataVisualiseur {
 
     /**
      * Redimensionne le diagramme.
+     * 
      * @param h La nouvelle hauteur.
      * @param l La nouvelle largeur.
      */
@@ -106,6 +109,7 @@ public class DiagBarres implements IDataVisualiseur {
 
     /**
      * Colorie le diagramme avec les couleurs spécifiées.
+     * 
      * @param couleurs Les couleurs à appliquer.
      */
     @Override
@@ -131,6 +135,7 @@ public class DiagBarres implements IDataVisualiseur {
 
     /**
      * Fait tourner le diagramme selon l'angle spécifié.
+     * 
      * @param angle L'angle de rotation.
      */
     @Override
@@ -140,8 +145,9 @@ public class DiagBarres implements IDataVisualiseur {
 
     /**
      * Aligne le diagramme selon l'alignement et la cible spécifiés.
+     * 
      * @param alignement L'alignement.
-     * @param cible La cible.
+     * @param cible      La cible.
      */
     @Override
     public IForme aligner(Alignement alignement, double cible) {
@@ -158,6 +164,7 @@ public class DiagBarres implements IDataVisualiseur {
 
     /**
      * Agence le diagramme.
+     * 
      * @return L'instance de IDataVisualiseur agencée.
      */
     @Override
@@ -169,7 +176,7 @@ public class DiagBarres implements IDataVisualiseur {
             Faisceau faisceau = (Faisceau) donnee;
             double hauteur = 0;
             for (IForme barre : faisceau.getListFormes()) {
-                hauteur += barre.hauteur() * 0.01;
+                hauteur += barre.hauteur() * 100 / echelle_max;
             }
             if (axeY < hauteur) {
                 axeY = hauteur;
@@ -180,7 +187,7 @@ public class DiagBarres implements IDataVisualiseur {
 
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
-            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, true);
+            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 100 / echelle_max, true);
             axeX += 120;
         }
         texteNom.deplacer(donnees.centre().x(),
@@ -225,7 +232,8 @@ public class DiagBarres implements IDataVisualiseur {
 
     /**
      * Ajoute des données au diagramme.
-     * @param str La chaîne de données.
+     * 
+     * @param str     La chaîne de données.
      * @param doubles Les valeurs des données.
      * @return L'instance de IDataVisualiseur avec les données ajoutées.
      */
@@ -246,6 +254,7 @@ public class DiagBarres implements IDataVisualiseur {
 
     /**
      * Ajoute une légende au diagramme.
+     * 
      * @param strings Les éléments de la légende.
      * @return L'instance de IDataVisualiseur avec la légende ajoutée.
      */
@@ -261,6 +270,7 @@ public class DiagBarres implements IDataVisualiseur {
 
     /**
      * Définit des options pour le diagramme.
+     * 
      * @param strings Les options à définir.
      * @return L'instance de IDataVisualiseur avec les options définies.
      */
@@ -270,7 +280,7 @@ public class DiagBarres implements IDataVisualiseur {
             // Traitez chaque option individuellement
             if (option.equals("Barre supplémentaire")) {
                 // Ajouter une barre supplémentaire avec une couleur et une taille spécifiques
-                double[] valeurs = {10, 20, 30}; // Exemple de valeurs arbitraires pour la barre supplémentaire
+                double[] valeurs = { 10, 20, 30 }; // Exemple de valeurs arbitraires pour la barre supplémentaire
                 donnees.ajouter(new Faisceau("Supplémentaire", valeurs)); // Ajout d'une barre supplémentaire
             } else if (option.equals("Ajouter une légende supplémentaire à la barre")) {
                 // Ajouter une légende supplémentaire à la barre

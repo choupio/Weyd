@@ -18,7 +18,6 @@ import org.apache.batik.transcoder.image.PNGTranscoder;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-
 /**
  * Cette classe représente un ensemble d'onglets dans une interface graphique.
  */
@@ -43,7 +42,7 @@ public class Onglet {
      * Panneau principal contenant les onglets.
      */
     private JPanel panelOnglet = new JPanel();
-    private JPanel previ=new JPanel();
+    private JPanel previ = new JPanel();
 
     /**
      * Tableau de panneaux pour les diagrammes.
@@ -58,11 +57,12 @@ public class Onglet {
     /**
      * Constructeur de la classe Onglet.
      * Initialise les onglets avec les titres spécifiés et les composants associés.
+     * 
      * @param titreOnglet1 Titre du premier onglet.
      * @param titreOnglet2 Titre du deuxième onglet.
      * @param titreOnglet3 Titre du troisième onglet.
-     * @param WIDTH Largeur des composants.
-     * @param HEIGTH Hauteur des composants.
+     * @param WIDTH        Largeur des composants.
+     * @param HEIGTH       Hauteur des composants.
      */
     public Onglet(String titreOnglet1, String titreOnglet2, String titreOnglet3, int WIDTH, int HEIGTH) {
         // Initialisation des onglets
@@ -87,14 +87,17 @@ public class Onglet {
 
         // Bientôt disponible
         // Bouton pour le aller à l'onglet 2
-        /*JButton button11 = new JButton("Commencer"); 
-        button11.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onglets.setSelectedIndex(1); // L'index commence à 0, donc 1 est l'onglet "Statistiques"
-            }
-        });
-        
-        onglet1.add(button11);*/
+        /*
+         * JButton button11 = new JButton("Commencer");
+         * button11.addActionListener(new ActionListener() {
+         * public void actionPerformed(ActionEvent e) {
+         * onglets.setSelectedIndex(1); // L'index commence à 0, donc 1 est l'onglet
+         * "Statistiques"
+         * }
+         * });
+         * 
+         * onglet1.add(button11);
+         */
 
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
@@ -191,13 +194,13 @@ public class Onglet {
         servContainer.setLayout(new BoxLayout(servContainer, BoxLayout.X_AXIS));
         servContainer.add(scrollPaneServ);
 
-        //Prévisualisation
-        JButton previsua=new JButton("Prévisualisation");
+        // Prévisualisation
+        JButton previsua = new JButton("Prévisualisation");
         TitledBorder border = BorderFactory.createTitledBorder("prévisualisation");
         previ.setBorder(border);
-        //previ.setVisible(false);
+        // previ.setVisible(false);
         previsua.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 try {
                     // Charger le fichier SVG
                     FileInputStream svgFile = new FileInputStream("Camembert.svg");
@@ -214,11 +217,11 @@ public class Onglet {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-                //previ.setVisible(true);
+                // previ.setVisible(true);
             }
         });
 
-        //Container prévisualisation et scrollPaneDeptContainer
+        // Container prévisualisation et scrollPaneDeptContainer
         JPanel prevDeptContainer = new JPanel();
         prevDeptContainer.setLayout(new BoxLayout(prevDeptContainer, BoxLayout.X_AXIS));
         prevDeptContainer.add(scrollPaneDeptContainer);
@@ -246,7 +249,9 @@ public class Onglet {
         // Action bouton
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Fonction.createHTMLFile("diagCamenberts.svg", "TESTEUR", "rapport");
+                TraitementCases test = new TraitementCases();
+                test.traitement();
+                Fonction.createHTMLFile("Groupe.svg", "TESTEUR", "rapport");
                 String filePath = "rapport.html";
                 try {
                     // Créer un objet File à partir du chemin du fichier HTML
@@ -295,6 +300,7 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer le panneau principal contenant les onglets.
+     * 
      * @return Le panneau principal contenant les onglets.
      */
     public JPanel GetPanel() {
@@ -303,6 +309,7 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer le premier onglet.
+     * 
      * @return Le premier onglet.
      */
     public JComponent GetOnglet1() {
@@ -311,18 +318,20 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer le deuxième onglet.
+     * 
      * @return Le deuxième onglet.
      */
     public JComponent GetOnglet2() {
         return (JComponent) this.onglets.getComponent(1);
     }
 
-    public JPanel GetPanelPrevi(){
-        return this.previ; 
+    public JPanel GetPanelPrevi() {
+        return this.previ;
     }
 
     /**
      * Méthode pour récupérer le troisième onglet.
+     * 
      * @return Le troisième onglet.
      */
     public JComponent GetOnglet3() {
@@ -331,6 +340,7 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer la case à cocher pour afficher les stations.
+     * 
      * @return La case à cocher pour afficher les stations.
      */
     public static JCheckBox getAfficheStation() {
@@ -339,6 +349,7 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer les panneaux de diagrammes.
+     * 
      * @return Les panneaux de diagrammes.
      */
     public static JPanel[] getDiag() {
@@ -347,6 +358,7 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer l'état d'affichage des stations.
+     * 
      * @return L'état d'affichage des stations.
      */
     public static Boolean getIsSationsAffichees() {
