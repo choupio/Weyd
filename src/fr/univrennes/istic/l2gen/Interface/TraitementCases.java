@@ -113,7 +113,7 @@ public class TraitementCases {
         if (isCheckedStat.get("Nombre de stations proposant ce carburant")) {
 
         }
-        statistiques.empilerElements(Alignement.HAUT, 100, 50);
+        statistiques.empilerElements(Alignement.HAUT, 350, 50);
         statistiques.createSvgFile();
     }
 
