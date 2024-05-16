@@ -1,5 +1,6 @@
 package fr.univrennes.istic.l2gen.visustats;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -219,8 +220,9 @@ public class DiagColonnes implements IDataVisualiseur {
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5,
                     donnees.centre().x() - donnees.largeur() / 2 + 5,
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5));
+            DecimalFormat df = new DecimalFormat("#.##");
             Texte valeurTxt = new Texte(0, 0, tailleTxtLegende,
-                    Integer.toString((int) Math.round(echelle_max * (5 - i) / 5)));
+                    df.format(echelle_max * (5 - i) / 5));
             valeurTxt.deplacer(
                     donnees.centre().x() - donnees.largeur() / 2 - 5 - valeurTxt.largeur() / 2,
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5);
