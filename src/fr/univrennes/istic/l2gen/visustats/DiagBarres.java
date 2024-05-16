@@ -171,12 +171,13 @@ public class DiagBarres implements IDataVisualiseur {
     public IDataVisualiseur agencer() {
         // Titre
         texteNom = new Texte(0, 0, 20, nom);
+
         double axeY = 0;
         for (IForme donnee : donnees.getListFormes()) {
             Faisceau faisceau = (Faisceau) donnee;
             double hauteur = 0;
             for (IForme barre : faisceau.getListFormes()) {
-                hauteur += barre.hauteur() * 100 / echelle_max;
+                hauteur += barre.hauteur();
             }
             if (axeY < hauteur) {
                 axeY = hauteur;
@@ -187,7 +188,7 @@ public class DiagBarres implements IDataVisualiseur {
 
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
-            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 100 / echelle_max, true);
+            f.agencer(axeX, 300 + texteNom.hauteur() * 2, 100, 300 / axeY, true);
             axeX += 120;
         }
         texteNom.deplacer(donnees.centre().x(),

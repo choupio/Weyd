@@ -317,6 +317,7 @@ public class StationAPI {
     public void filtreReg(List<String> region, List<String> carburants,
             List<String> services) {
 
+        NbStationProposeServices = new HashMap<>(); // initialisation
         filtre = new HashMap<>();
         for (StationParCarb station : stationsParCarb) {
             String nomCarb = station.getPrix_nom();
@@ -325,12 +326,13 @@ public class StationAPI {
                     && region.contains(nomReg)) {
                 if (!filtre.keySet().contains(nomCarb)) {
                     filtre.put(nomCarb, new HashMap<>());
-                    NbStationProposeServices.get(nomCarb).put(nomReg, new HashMap<>());
-                    services.stream().forEach(x -> NbStationProposeServices.get(nomCarb).get(nomReg).put(x, 0));
+                    NbStationProposeServices.put(nomCarb, new HashMap<>());
                 }
 
                 if (!filtre.get(nomCarb).keySet().contains(nomReg)) {
                     filtre.get(nomCarb).put(nomReg, new ArrayList<>());
+                    NbStationProposeServices.get(nomCarb).put(nomReg, new HashMap<>());
+                    services.stream().forEach(x -> NbStationProposeServices.get(nomCarb).get(nomReg).put(x, 0));
                 }
                 filtre.get(nomCarb).get(nomReg).add(station.getPrix_valeur());
 
