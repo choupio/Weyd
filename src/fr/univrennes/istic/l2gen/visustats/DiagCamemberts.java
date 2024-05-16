@@ -438,12 +438,12 @@ public class DiagCamemberts implements IDataVisualiseur {
         double axeY = 390;
         double axeX = 200;
         for(int i = 0; i < strings.length; i++){
-            Texte texte = new Texte(axeX, axeY, 14, strings[i]);
+            Texte texte = new Texte(axeX + 20, axeY + 10, 14, strings[i]);
             Rectangle rectangle = new Rectangle(axeX - 40, axeY - 10, 20, 10);
             getLegendes().add(texte.enSVG());
             getRectangles().add(rectangle);
-            // axeY += 20; afficher les légendes de façon verticale si l'on veut être originale
-            axeX += 100;
+            axeY += 50; //afficher les légendes de façon verticale si l'on veut être originale
+            //axeX += 100;
         }
         return this;
     }
