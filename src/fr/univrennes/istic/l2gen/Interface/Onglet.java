@@ -26,7 +26,7 @@ public class Onglet {
     /**
      * Boolean pour indiquer si on a sélectionné Région ou Département.
      */
-    private static Boolean granChecked = true; // True = Région / False = Département
+    private static Boolean granChecked = false; // True = Département / False = Région
 
     /**
      * Boolean pour indiquer si les stations sont affichées.
@@ -288,11 +288,11 @@ public class Onglet {
                     if (selectedChoice.equals("Départements")) {
                         scrollPaneDeptContainer.setVisible(true);
                         region.setVisible(false);
-                        granChecked = false;
+                        granChecked = true;
                     } else if (selectedChoice.equals("Régions")) {
                         region.setVisible(true);
                         scrollPaneDeptContainer.setVisible(false);
-                        granChecked = true;
+                        granChecked = false;
                     }
                     onglet2.revalidate();
                     onglet2.repaint();
@@ -375,7 +375,8 @@ public class Onglet {
     /**
      * Méthode pour récupérer l'état de la granularité.
      * 
-     * @return L'état de la granularité.
+     * @return L'état de la granularité. (true pour département et false pour
+     *         régions)
      */
     public static Boolean getGranChecked() {
         return granChecked;

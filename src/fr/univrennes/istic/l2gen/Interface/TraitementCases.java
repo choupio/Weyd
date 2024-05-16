@@ -43,8 +43,13 @@ public class TraitementCases {
                 isCheckedServ.entrySet().stream().filter(entry -> entry.getValue())
                         .map(entry -> entry.getKey()).collect(Collectors.toList()));
         StationAPI api = new StationAPI();
-        Boolean depOuReg = false; // TODO il faudrait mettre une variable qui dit si on a choisit département ou
-                                  // région
+
+        /**
+         * Donne létat de séléction entre département et région : true si départements,
+         * false si régions.
+         */
+        Boolean depOuReg;
+        depOuReg = Onglet.getGranChecked();
 
         if (depOuReg) { // département
             api.filtreDep(depListe, carbListe, servListe);

@@ -172,17 +172,18 @@ public class DiagColonnes implements IDataVisualiseur {
         // Titre
         texteNom = new Texte(0, 0, 20, nom);
 
-        double axeY = donnees.getListFormes().get(0).hauteur() * 100 / echelle_max;
+        double axeY = donnees.getListFormes().get(0).hauteur() * 200 / echelle_max;
         for (IForme forme : donnees.getListFormes()) {
-            if (axeY < forme.hauteur() * 100 / echelle_max) {
-                axeY = forme.hauteur() * 100 / echelle_max;
+            if (axeY < forme.hauteur() * 200 / echelle_max) {
+                axeY = forme.hauteur() * 200 / echelle_max;
             }
         }
         double axeX = 50;
+        System.out.println(legendes.size());
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
-            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 100 / echelle_max, false);
-            axeX += 120;
+            f.agencer(axeX, axeY + texteNom.hauteur() * 2, legendes.size() * 30, 200 / echelle_max, false);
+            axeX += legendes.size() * 30 + 40;
         }
 
         texteNom.deplacer(donnees.centre().x(),
@@ -258,6 +259,7 @@ public class DiagColonnes implements IDataVisualiseur {
         for (String string : strings) {
             legendeGroupe.ajouter(new Rectangle(0, 0, 20, 7));
             legendeGroupe.ajouter(new Texte(0, 0, 10, string));
+            legendes.add(string);
         }
 
         return this;
