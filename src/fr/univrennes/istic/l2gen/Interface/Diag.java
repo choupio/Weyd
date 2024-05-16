@@ -105,9 +105,13 @@ public class Diag {
                 isChecked[i] = isCheckedStationServ;
             }
 
-            // Initialisation des booléens à false
+            // Initialisation des booléens à false, sauf camembert
             for (String diag : diagrammes) {
-                isChecked[i].put(diag, false);
+                if (diag.equals("camembert")) {
+                    isChecked[i].put(diag, true);
+                } else {
+                    isChecked[i].put(diag, false);
+                }
             }
 
             // Gestion des événements
