@@ -6,7 +6,7 @@ import fr.univrennes.istic.l2gen.station.StationParCarb;*/
 
 //import fr.univrennes.istic.l2gen.rapport.Fonction;
 //import fr.univrennes.istic.l2gen.station.StationAPI;
-//import fr.univrennes.istic.l2gen.visustats.*;
+import fr.univrennes.istic.l2gen.visustats.*;
 
 /*import java.io.File;
 import java.io.IOException;
@@ -29,8 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;*/
 public class App {
 
     public static void main(String[] args) throws Exception {
-
-      
+        // Création d'un diagramme en camemberts
 
       /*DiagCamemberts visualiseur = new DiagCamemberts( " Emissions de CO2 ( en Mt ) ",3);
       visualiseur . legender ( " Afrique " , " Amerique " , " Asie " , " Europe " , " Oceanie " );
@@ -39,7 +38,7 @@ public class App {
       visualiseur . ajouterDonnees ( " 2020 " , 2100 , 6200 , 17800 , 3600 , 340);
       visualiseur . colorier ( " Blue " , " Green " , " Red " , " Yellow " , " Maroon " );
       visualiseur.agencer().createSvgFile();
-      visualiseur.description(0); */
+      visualiseur.description(0);*/ 
 
         /*
          * Groupe tableau = new Groupe();
