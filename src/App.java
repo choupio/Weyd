@@ -6,7 +6,7 @@ import fr.univrennes.istic.l2gen.station.StationParCarb;*/
 
 //import fr.univrennes.istic.l2gen.rapport.Fonction;
 //import fr.univrennes.istic.l2gen.station.StationAPI;
-import fr.univrennes.istic.l2gen.visustats.*;
+//import fr.univrennes.istic.l2gen.visustats.*;
 
 /*import java.io.File;
 import java.io.IOException;
