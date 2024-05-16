@@ -25,12 +25,49 @@ public class Fonction {
             System.err.println("Erreur lors de la lecture du fichier SVG : " + e.getMessage());
         }
 
-        String htmlTemplate = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n"
-                + "<meta charset=\"UTF-8\">\n"
-                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
-                + "<title>" + htmlTitle + "</title>\n" + "</head>\n" + "<body style=\"margin: 0;\">\n"
-                + "<svg style=\"width: 90%; height: 90%;\" viewBox=\"0 0 2000 10000\">\n"
-                + svgContent + "\n</svg>\n</body>\n" + "</html>";
+        String htmlTemplate = "<!DOCTYPE html>\n" + 
+        "<html lang=\"en\">\n" + 
+        "<head>\n"+
+        "<meta charset=\"UTF-8\">\n"+
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"+
+        "<title>" + htmlTitle + "</title>\n" + 
+        "<style>\n" +
+        "  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');\n" +
+        "  body {\n" +
+        "    background-color: #f0f0f0;\n" +
+        "    font-family: 'Roboto', sans-serif;\n" +
+        "    display: flex;\n" +
+        "    justify-content: center;\n" +
+        "    align-items: center;\n" +
+        "    height: 100vh;\n" +
+        "    margin: 0;\n" +
+        "    padding: 0;\n" +
+        "  }\n" +
+        "  .container {\n" +
+        "    text-align: center;\n" +
+        "  }\n" +
+        "  svg {\n" +
+        "    display: block;\n" +
+        "    margin: auto;\n" +
+        "    width: 90%;\n" +
+        "    height: 90%;\n" +
+        "    border: 1px solid #ccc;\n" +
+        "    opacity: 0;\n" +
+        "    animation: fadeIn 2s ease-in forwards;\n" +
+        "  }\n" +
+        "  @keyframes fadeIn {\n" +
+        "    to {\n" +
+        "      opacity: 1;\n" +
+        "    }\n" +
+        "  }\n" +
+        "</style>\n" +
+        "</head>\n" + 
+        "<body>\n"+
+        "<div class=\"container\">\n"+
+        "<svg viewBox=\"0 0 2000 10000\">\n"+
+        svgContent +
+        "\n</svg>\n</div>\n</body>\n" +
+        "</html>";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".html"))) {
             writer.write(htmlTemplate);
