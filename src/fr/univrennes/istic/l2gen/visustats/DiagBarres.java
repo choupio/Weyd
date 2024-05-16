@@ -190,6 +190,10 @@ public class DiagBarres implements IDataVisualiseur {
             Faisceau f = (Faisceau) faisceau;
             f.agencer(axeX, 300 + texteNom.hauteur() * 2, 100, 300 / axeY, true);
             axeX += 120;
+
+            // Ajout des noms des faisceaux
+            Texte nomFaisceau = new Texte(f.centre().x(), f.centre().y() - f.hauteur() / 2 - 10, 10, f.getNom());
+            diagGroupe.ajouter(nomFaisceau);
         }
         texteNom.deplacer(donnees.centre().x(),
                 donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
