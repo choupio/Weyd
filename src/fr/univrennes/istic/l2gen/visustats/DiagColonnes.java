@@ -184,6 +184,10 @@ public class DiagColonnes implements IDataVisualiseur {
             Faisceau f = (Faisceau) faisceau;
             f.agencer(axeX, axeY + texteNom.hauteur() * 2, legendes.size() * 30, 200 / echelle_max, false);
             axeX += legendes.size() * 30 + 40;
+
+            // Ajout des noms des faisceaux
+            Texte nomFaisceau = new Texte(f.centre().x(), f.centre().y() - f.hauteur() / 2 - 10, 10, f.getNom());
+            diagGroupe.ajouter(nomFaisceau);
         }
 
         texteNom.deplacer(donnees.centre().x(),
