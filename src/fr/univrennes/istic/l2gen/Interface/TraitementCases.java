@@ -43,8 +43,8 @@ public class TraitementCases {
                 isCheckedServ.entrySet().stream().filter(entry -> entry.getValue())
                         .map(entry -> entry.getKey()).collect(Collectors.toList()));
         StationAPI api = new StationAPI();
-        Boolean depOuReg = true; // TODO il faudrait mettre une variable qui dit si on a choisit département ou
-                                 // région
+        Boolean depOuReg = false; // TODO il faudrait mettre une variable qui dit si on a choisit département ou
+                                  // région
 
         if (depOuReg) { // département
             api.filtreDep(depListe, carbListe, servListe);
@@ -54,6 +54,14 @@ public class TraitementCases {
 
         // Groupe pour accueuillir les statistiques
         Groupe statistiques = new Groupe();
+
+        ArrayList<String> couleurs = new ArrayList<>();
+
+        if (depOuReg) {
+            couleurs = generationCouleur(depListe);
+        } else {
+            couleurs = generationCouleur(regListe);
+        }
 
         // Génération des diagrammes de prix moyen, médians et minimum
         for (int i = 0; i < 3; i++) {
@@ -98,11 +106,7 @@ public class TraitementCases {
                             donnes.get(carburant).values().stream().mapToDouble(Double::doubleValue).toArray());
                 }
 
-                if (depOuReg) {
-                    diagramme.colorier(generationCouleur(depListe).toArray(new String[0]));
-                } else {
-                    diagramme.colorier(generationCouleur(regListe).toArray(new String[0]));
-                }
+                diagramme.colorier(couleurs.toArray(new String[0]));
                 diagramme.agencer();
                 statistiques.ajouter(diagramme);
             }
