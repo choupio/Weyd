@@ -93,7 +93,7 @@ public class TraitementCases {
                 for (String type_diag : isCheckedDiag[i].keySet()) {
                     if (isCheckedDiag[i].get(type_diag)) {
                         if (type_diag.equals("camembert")) {
-                            diagramme = new DiagCamemberts(titre, 1);
+                            diagramme = new DiagCamemberts(titre, donnes.size());
                         } else if (type_diag.equals("barres")) {
                             diagramme = new DiagBarres(titre);
                         } else if (type_diag.equals("colonnes")) {
