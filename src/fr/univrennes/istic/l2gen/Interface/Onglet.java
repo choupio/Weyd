@@ -54,11 +54,7 @@ public class Onglet {
      */
     private static JPanel[] diag = new JPanel[5];
 
-    /**
-     * Tableau d'objets Diag pour les diagrammes.
-     */
-    private Diag[] diagramme = new Diag[5];
-
+   
     /**
      * Constructeur de la classe Onglet.
      * Initialise les onglets avec les titres spécifiés et les composants associés.
@@ -90,20 +86,7 @@ public class Onglet {
         onglet3.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         this.onglets.addTab(titreOnglet3, onglet3);
 
-        // Bientôt disponible
-        // Bouton pour le aller à l'onglet 2
-        /*
-         * JButton button11 = new JButton("Commencer");
-         * button11.addActionListener(new ActionListener() {
-         * public void actionPerformed(ActionEvent e) {
-         * onglets.setSelectedIndex(1); // L'index commence à 0, donc 1 est l'onglet
-         * "Statistiques"
-         * }
-         * });
-         * 
-         * onglet1.add(button11);
-         */
-
+        
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
         onglet21.setSize((int) onglet2.getPreferredSize().getWidth(), (int) onglet2.getPreferredSize().getHeight());
