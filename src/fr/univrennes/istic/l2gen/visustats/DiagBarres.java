@@ -1,5 +1,10 @@
 package fr.univrennes.istic.l2gen.visustats;
 
+/**
+ * La classe DiagBarres est une implémentation de l'interface IDataVisualiseur
+ * permettant de générer un diagramme à barres.
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,47 +34,84 @@ public class DiagBarres implements IDataVisualiseur {
         echelle_max = 0;
     }
 
+    /**
+     * Retourne le centre du diagramme.
+     */
     @Override
     public Point centre() {
         return diagGroupe.centre();
     }
 
+    /**
+     * Retourne une description du diagramme.
+     * 
+     * @param indentation L'indentation de la description.
+     */
     @Override
     public String description(int indentation) {
         return diagGroupe.description(indentation);
     }
 
+    /**
+     * Retourne la hauteur du diagramme.
+     */
     @Override
     public double hauteur() {
         return diagGroupe.hauteur();
     }
 
+    /**
+     * Retourne la largeur du diagramme.
+     */
     @Override
     public double largeur() {
         return diagGroupe.largeur();
     }
 
+    /**
+     * Déplace le diagramme selon les valeurs spécifiées.
+     * 
+     * @param dx La distance de déplacement en x.
+     * @param dy La distance de déplacement en y.
+     */
     @Override
     public IForme deplacer(double dx, double dy) {
         diagGroupe.deplacer(dx, dy);
         return diagGroupe;
     }
 
+    /**
+     * Duplique le diagramme.
+     */
     @Override
     public IForme dupliquer() {
         return diagGroupe.dupliquer();
     }
 
+    /**
+     * Redimensionne le diagramme.
+     * 
+     * @param h La nouvelle hauteur.
+     * @param l La nouvelle largeur.
+     */
     @Override
     public IForme redimmensioner(double h, double l) {
         return diagGroupe.redimmensioner(h, l);
     }
 
+    /**
+     * Convertit le diagramme en SVG.
+     */
     @Override
     public String enSVG() {
         return diagGroupe.enSVG();
     }
 
+    /**
+     * Colorie le diagramme avec les couleurs spécifiées.
+     * 
+     * @param couleurs Les couleurs à appliquer.
+     */
     @Override
     public IForme colorier(String... couleurs) {
         for (IForme faisceau : donnees.getListFormes()) {
@@ -91,21 +133,40 @@ public class DiagBarres implements IDataVisualiseur {
         return this;
     }
 
+    /**
+     * Fait tourner le diagramme selon l'angle spécifié.
+     * 
+     * @param angle L'angle de rotation.
+     */
     @Override
     public IForme tourner(int angle) {
         return diagGroupe.tourner(angle);
     }
 
+    /**
+     * Aligne le diagramme selon l'alignement et la cible spécifiés.
+     * 
+     * @param alignement L'alignement.
+     * @param cible      La cible.
+     */
     @Override
     public IForme aligner(Alignement alignement, double cible) {
         return diagGroupe.aligner(alignement, cible);
     }
 
+    /**
+     * Crée un fichier SVG pour le diagramme.
+     */
     @Override
     public void createSvgFile() {
         SVGFile.createSvgFile(this, "DiagBarres");
     }
 
+    /**
+     * Agence le diagramme.
+     * 
+     * @return L'instance de IDataVisualiseur agencée.
+     */
     @Override
     public IDataVisualiseur agencer() {
         // Titre
@@ -115,7 +176,7 @@ public class DiagBarres implements IDataVisualiseur {
             Faisceau faisceau = (Faisceau) donnee;
             double hauteur = 0;
             for (IForme barre : faisceau.getListFormes()) {
-                hauteur += barre.hauteur() * 0.01;
+                hauteur += barre.hauteur() * 100 / echelle_max;
             }
             if (axeY < hauteur) {
                 axeY = hauteur;
@@ -126,7 +187,7 @@ public class DiagBarres implements IDataVisualiseur {
 
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
-            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 0.01, true);
+            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 100 / echelle_max, true);
             axeX += 120;
         }
         texteNom.deplacer(donnees.centre().x(),
@@ -169,6 +230,13 @@ public class DiagBarres implements IDataVisualiseur {
         return this;
     }
 
+    /**
+     * Ajoute des données au diagramme.
+     * 
+     * @param str     La chaîne de données.
+     * @param doubles Les valeurs des données.
+     * @return L'instance de IDataVisualiseur avec les données ajoutées.
+     */
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
         donnees.ajouter(new Faisceau(str, doubles));
@@ -184,6 +252,12 @@ public class DiagBarres implements IDataVisualiseur {
         return this;
     }
 
+    /**
+     * Ajoute une légende au diagramme.
+     * 
+     * @param strings Les éléments de la légende.
+     * @return L'instance de IDataVisualiseur avec la légende ajoutée.
+     */
     @Override
     public IDataVisualiseur legender(String... strings) {
         for (String string : strings) {
@@ -194,10 +268,32 @@ public class DiagBarres implements IDataVisualiseur {
         return this;
     }
 
+    /**
+     * Définit des options pour le diagramme.
+     * 
+     * @param strings Les options à définir.
+     * @return L'instance de IDataVisualiseur avec les options définies.
+     */
     @Override
-    public IDataVisualiseur setOption(String... strings) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setOption'");
+    public IDataVisualiseur setOption(String... options) {
+        for (String option : options) {
+            // Traitez chaque option individuellement
+            if (option.equals("Barre supplémentaire")) {
+                // Ajouter une barre supplémentaire avec une couleur et une taille spécifiques
+                double[] valeurs = { 10, 20, 30 }; // Exemple de valeurs arbitraires pour la barre supplémentaire
+                donnees.ajouter(new Faisceau("Supplémentaire", valeurs)); // Ajout d'une barre supplémentaire
+            } else if (option.equals("Ajouter une légende supplémentaire à la barre")) {
+                // Ajouter une légende supplémentaire à la barre
+                legendeGroupe.ajouter(new Rectangle(0, 0, 20, 7));
+                legendeGroupe.ajouter(new Texte(0, 0, 10, "Légende supplémentaire"));
+            } else if (option.equals("Supprimer une barre")) {
+                // Supprimer la première barre de la liste des données
+                if (!donnees.getListFormes().isEmpty()) {
+                    donnees.getListFormes().remove(0);
+                }
+            }
+        }
+        return this;
     }
 
 }

@@ -343,4 +343,13 @@ public class Camembert implements IForme {
         return secteurs.size();
     }
 
+    
+    public Point getCentre() {
+        return centre;
+    }
+
+    public void setCentre(Point centre) {
+        this.centre = centre;
+    }
+
 }

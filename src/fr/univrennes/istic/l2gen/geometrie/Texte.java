@@ -21,6 +21,72 @@ public class Texte implements IForme {
 	private int taille;
 	private int angle;
 
+	// Getters and Setters
+
+	public String getCouleur() {
+		return couleur;
+	}
+
+	public void setCouleur(String couleur) {
+		this.couleur = couleur;
+	}
+
+	public String getTexte() {
+		return texte;
+	}
+
+	public void setTexte(String texte) {
+		this.texte = texte;
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public double getHauteur() {
+		return hauteur;
+	}
+
+	public void setHauteur(double hauteur) {
+		this.hauteur = hauteur;
+	}
+
+	public double getLargeur() {
+		return largeur;
+	}
+
+	public void setLargeur(double largeur) {
+		this.largeur = largeur;
+	}
+
+	public int getTaille() {
+		return taille;
+	}
+
+	public void setTaille(int taille) {
+		this.taille = taille;
+	}
+
+	public int getAngle() {
+		return angle;
+	}
+
+	public void setAngle(int angle) {
+		this.angle = angle;
+	}
+
 	// Bloc d'initialisation
 	{
 		couleur = "black";
@@ -82,6 +148,11 @@ public class Texte implements IForme {
 	@Override
 	public Point centre() {
 		return new Point(x, y);
+	}
+
+	public void setCentre(Point centre) {
+		this.x = centre.x();
+		this.y = centre.y();
 	}
 
 	@Override

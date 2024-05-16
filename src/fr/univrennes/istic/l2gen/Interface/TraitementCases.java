@@ -1,6 +1,19 @@
 package fr.univrennes.istic.l2gen.Interface;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.stream.Collectors;
+
+import javax.swing.GroupLayout.Group;
+
+import fr.univrennes.istic.l2gen.geometrie.Alignement;
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
+import fr.univrennes.istic.l2gen.station.StationAPI;
+import fr.univrennes.istic.l2gen.visustats.DiagBarres;
+import fr.univrennes.istic.l2gen.visustats.DiagCamemberts;
+import fr.univrennes.istic.l2gen.visustats.DiagColonnes;
+import fr.univrennes.istic.l2gen.visustats.IDataVisualiseur;
 
 public class TraitementCases {
     private HashMap<String, Boolean> isCheckedServ = Services.getIsCheckedServ();
@@ -15,72 +28,111 @@ public class TraitementCases {
     private HashMap<String, Boolean> isCheckedReg = Region.getIsCheckedReg();
 
     public TraitementCases() {
-        // Traitement des cases cochées
-        traitementRegions();
-        traitementDepartements();
-        traitementCarburants();
-        traitementStatistiques();
-        traitementServices();
-        traitementPosition();
-        // TODO comment on fait pour les couleurs?
+
     }
 
-    // Traitement des regions cochées
-    public void traitementRegions() {
-        // filtrer les stations par région
-    }
+    public void traitement() {
+        ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey()).collect(Collectors.toList()));
+        ArrayList<String> regListe = new ArrayList<>(isCheckedReg.entrySet().stream().filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey()).collect(Collectors.toList()));
+        ArrayList<String> carbListe = new ArrayList<>(
+                isCheckedCarb.entrySet().stream().filter(entry -> entry.getValue())
+                        .map(entry -> entry.getKey()).collect(Collectors.toList()));
+        ArrayList<String> servListe = new ArrayList<>(
+                isCheckedServ.entrySet().stream().filter(entry -> entry.getValue())
+                        .map(entry -> entry.getKey()).collect(Collectors.toList()));
+        StationAPI api = new StationAPI();
+        Boolean depOuReg = true; // TODO il faudrait mettre une variable qui dit si on a choisit département ou
+                                 // région
 
-    // Traitement des départements cochées
-    public void traitementDepartements() {
-        // filtrer les stations par département
-    }
+        if (depOuReg) { // département
+            api.filtreDep(depListe, carbListe, servListe);
+        } else { // région
+            api.filtreReg(regListe, carbListe, servListe);
+        }
 
-    // Traitement des services cochées
-    public void traitementServices() {
-        // filtrer les stations par services
-    }
+        // Groupe pour accueuillir les statistiques
+        Groupe statistiques = new Groupe();
 
-    // Traitement des carburants cochées et voir le diag qui va avec
-    public void traitementCarburants() {
-        isCheckedCarb.forEach((key, value) -> {
-            isCheckedDiagPrixMoy.forEach((nom, checked) -> {
-                if (nom.equals("Diag en camembert prix moyen") && checked == true) {
-                    // faire le diag en camembert prix moyen
-                } else if (nom.equals("Diag en barres prix moyen") && checked == true) {
-                    // faire le diag en barres prix moyen
-                } else if (nom.equals("Diag en colonne prix moyen") && checked == true) {
-                    // faire le diag en colonne prix moyen
+        // Génération des diagrammes de prix moyen, médians et minimum
+        for (int i = 0; i < 3; i++) {
+            HashMap<String, HashMap<String, Double>> donnes = new HashMap<>();
+
+            // Initialisation du titre du diagramme
+            String titre = "";
+
+            // Bloc pour choisir les statistques à représenter
+            if (i == 0 && isCheckedStat.get("Prix moyen")) { // Prix moyen
+                donnes = api.getPrixMoyen();
+                titre = "Prix moyen";
+            } else if (i == 1 && isCheckedStat.get("Prix médian")) { // Prix médian
+                donnes = api.getPrixMedian();
+                titre = "Prix médian";
+            } else if (i == 2 && isCheckedStat.get("Prix minimum")) { // Prix min
+                donnes = api.getPrixMin();
+                titre = "Prix minimum";
+            }
+
+            if (!donnes.isEmpty()) {
+
+                IDataVisualiseur diagramme = new DiagBarres(null); // juste pour l'initialiser
+                for (String type_diag : isCheckedDiag[i].keySet()) {
+                    if (isCheckedDiag[i].get(type_diag)) {
+                        if (type_diag.equals("camembert")) {
+                            diagramme = new DiagCamemberts(titre, 1);
+                        } else if (type_diag.equals("barres")) {
+                            diagramme = new DiagBarres(titre);
+                        } else if (type_diag.equals("colonnes")) {
+                            diagramme = new DiagColonnes(titre);
+                        }
+                    }
                 }
-            });
-            isCheckedDiagPrixMed.forEach((nom, checked) -> {
-                if (nom.equals("Diag en camembert prix médian") && checked == true) {
-                    // faire le diag en camembert prix médian
-                } else if (nom.equals("Diag en barres prix médian") && checked == true) {
-                    // faire le diag en barres prix médian
-                } else if (nom.equals("Diag en colonne prix médian") && checked == true) {
-                    // faire le diag en colonne prix médian
+                if (depOuReg) {
+                    diagramme.legender(depListe.toArray(new String[0]));
+                } else {
+                    diagramme.legender(regListe.toArray(new String[0]));
                 }
-            });
-            isCheckedDiagPrixMin.forEach((nom, checked) -> {
-                if (nom.equals("Diag en camembert prix minimum") && checked == true) {
-                    // faire le diag en camembert prix minimum
-                } else if (nom.equals("Diag en barres prix minimum") && checked == true) {
-                    // faire le diag en barres prix minimum
-                } else if (nom.equals("Diag en colonne prix minimum") && checked == true) {
-                    // faire le diag en colonne prix minimum
+                for (String carburant : carbListe) {
+                    diagramme.ajouterDonnees(carburant,
+                            donnes.get(carburant).values().stream().mapToDouble(Double::doubleValue).toArray());
                 }
-            });
-        });
-    }
-    // TODO par carb faire le graphique sélectionné, ajouter les calculs des stats
 
-    // Traitement des statistiques cochées
-    public void traitementStatistiques() {
-        // appliquer le calcul des statistiques sélectionnée
+                if (depOuReg) {
+                    diagramme.colorier(generationCouleur(depListe).toArray(new String[0]));
+                } else {
+                    diagramme.colorier(generationCouleur(regListe).toArray(new String[0]));
+                }
+                diagramme.agencer();
+                statistiques.ajouter(diagramme);
+            }
+
+        }
+
+        // Gestion du nombre de stations qui proposent chaque carburants
+        if (isCheckedStat.get("Nombre de stations proposant ce carburant")) {
+
+        }
+        statistiques.empilerElements(Alignement.HAUT, 350, 50); // TODO changer le 350
+        statistiques.createSvgFile();
     }
 
-    // Traitement de position coché
-    public void traitementPosition() {
-        // afficher les position des stations
+    private ArrayList<String> generationCouleur(ArrayList<String> granularite) {
+        ArrayList<String> couleurs = new ArrayList<>();
+
+        // Bloc pour ajouter les couleurs correspondant au carburant
+        for (int i = 0; i < granularite.size(); i++) {
+            // Génération de valeurs aléatoires pour les composantes R, G et B
+            Random random = new Random();
+            int red = random.nextInt(256); // Valeur entre 0 et 255
+            int green = random.nextInt(256);
+            int blue = random.nextInt(256);
+
+            // Construction de la couleur hexadécimale
+            String couleurHex = String.format("#%02x%02x%02x", red, green, blue);
+            couleurs.add(couleurHex);
+        }
+
+        return couleurs;
     }
 }

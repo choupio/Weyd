@@ -5,10 +5,18 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 
 import fr.univrennes.istic.l2gen.rapport.Fonction;
 
 import java.awt.*;
+
+import org.apache.batik.transcoder.TranscoderInput;
+import org.apache.batik.transcoder.TranscoderOutput;
+import org.apache.batik.transcoder.image.PNGTranscoder;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 /**
  * Cette classe représente un ensemble d'onglets dans une interface graphique.
@@ -34,6 +42,7 @@ public class Onglet {
      * Panneau principal contenant les onglets.
      */
     private JPanel panelOnglet = new JPanel();
+    private JPanel previ = new JPanel();
 
     /**
      * Tableau de panneaux pour les diagrammes.
@@ -48,11 +57,12 @@ public class Onglet {
     /**
      * Constructeur de la classe Onglet.
      * Initialise les onglets avec les titres spécifiés et les composants associés.
+     * 
      * @param titreOnglet1 Titre du premier onglet.
      * @param titreOnglet2 Titre du deuxième onglet.
      * @param titreOnglet3 Titre du troisième onglet.
-     * @param WIDTH Largeur des composants.
-     * @param HEIGTH Hauteur des composants.
+     * @param WIDTH        Largeur des composants.
+     * @param HEIGTH       Hauteur des composants.
      */
     public Onglet(String titreOnglet1, String titreOnglet2, String titreOnglet3, int WIDTH, int HEIGTH) {
         // Initialisation des onglets
@@ -74,6 +84,20 @@ public class Onglet {
         JPanel onglet3 = new JPanel();
         onglet3.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         this.onglets.addTab(titreOnglet3, onglet3);
+
+        // Bientôt disponible
+        // Bouton pour le aller à l'onglet 2
+        /*
+         * JButton button11 = new JButton("Commencer");
+         * button11.addActionListener(new ActionListener() {
+         * public void actionPerformed(ActionEvent e) {
+         * onglets.setSelectedIndex(1); // L'index commence à 0, donc 1 est l'onglet
+         * "Statistiques"
+         * }
+         * });
+         * 
+         * onglet1.add(button11);
+         */
 
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
@@ -170,10 +194,43 @@ public class Onglet {
         servContainer.setLayout(new BoxLayout(servContainer, BoxLayout.X_AXIS));
         servContainer.add(scrollPaneServ);
 
+        // Prévisualisation
+        JButton previsua = new JButton("Prévisualisation");
+        TitledBorder border = BorderFactory.createTitledBorder("prévisualisation");
+        previ.setBorder(border);
+        // previ.setVisible(false);
+        previsua.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Charger le fichier SVG
+                    FileInputStream svgFile = new FileInputStream("Camembert.svg");
+                    TranscoderInput input = new TranscoderInput(svgFile);
+                    // Définir le fichier de sortie (image PNG)
+                    FileOutputStream pngFile = new FileOutputStream("rapport.png");
+                    TranscoderOutput output = new TranscoderOutput(pngFile);
+                    // Créer un transcodeur pour convertir le SVG en PNG
+                    PNGTranscoder transcoder = new PNGTranscoder();
+                    transcoder.transcode(input, output);
+                    // Fermer les flux
+                    svgFile.close();
+                    pngFile.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                // previ.setVisible(true);
+            }
+        });
+
+        // Container prévisualisation et scrollPaneDeptContainer
+        JPanel prevDeptContainer = new JPanel();
+        prevDeptContainer.setLayout(new BoxLayout(prevDeptContainer, BoxLayout.X_AXIS));
+        prevDeptContainer.add(scrollPaneDeptContainer);
+        prevDeptContainer.add(previ);
+
         // Ajout de ces panel à l'onglet 2
         onglet2.add(southContainer, BorderLayout.NORTH);
         onglet2.add(regionContainer, BorderLayout.WEST);
-        onglet2.add(scrollPaneDeptContainer, BorderLayout.CENTER);
+        onglet2.add(prevDeptContainer, BorderLayout.CENTER);
         onglet2.add(servContainer, BorderLayout.EAST);
 
         // Gestion de la vision au démarrage
@@ -192,7 +249,9 @@ public class Onglet {
         // Action bouton
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Fonction.createHTMLFile("diagCamenberts.svg", "TESTEUR", "rapport");
+                TraitementCases test = new TraitementCases();
+                test.traitement();
+                Fonction.createHTMLFile("Groupe.svg", "TESTEUR", "rapport");
                 String filePath = "rapport.html";
                 try {
                     // Créer un objet File à partir du chemin du fichier HTML
@@ -214,6 +273,7 @@ public class Onglet {
         onglet21.add(jLabel);
         onglet21.add(choixGranuralite);
         onglet21.add(button);
+        onglet21.add(previsua);
 
         // Gestion des événements pour le choix de la granularité
         choixGranuralite.addItemListener(new ItemListener() {
@@ -240,6 +300,7 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer le panneau principal contenant les onglets.
+     * 
      * @return Le panneau principal contenant les onglets.
      */
     public JPanel GetPanel() {
@@ -248,6 +309,7 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer le premier onglet.
+     * 
      * @return Le premier onglet.
      */
     public JComponent GetOnglet1() {
@@ -256,14 +318,20 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer le deuxième onglet.
+     * 
      * @return Le deuxième onglet.
      */
     public JComponent GetOnglet2() {
         return (JComponent) this.onglets.getComponent(1);
     }
 
+    public JPanel GetPanelPrevi() {
+        return this.previ;
+    }
+
     /**
      * Méthode pour récupérer le troisième onglet.
+     * 
      * @return Le troisième onglet.
      */
     public JComponent GetOnglet3() {
@@ -272,6 +340,7 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer la case à cocher pour afficher les stations.
+     * 
      * @return La case à cocher pour afficher les stations.
      */
     public static JCheckBox getAfficheStation() {
@@ -280,6 +349,7 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer les panneaux de diagrammes.
+     * 
      * @return Les panneaux de diagrammes.
      */
     public static JPanel[] getDiag() {
@@ -288,6 +358,7 @@ public class Onglet {
 
     /**
      * Méthode pour récupérer l'état d'affichage des stations.
+     * 
      * @return L'état d'affichage des stations.
      */
     public static Boolean getIsSationsAffichees() {

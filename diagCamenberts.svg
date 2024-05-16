@@ -1,60 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <g>
-<path d="M 505.0 405.0 A 100.0 100.0 0 0 0 471.0243015231202 410.9486740497076 L 505.0 505.0 Z"
+<path d="M 160.0 100.0 A 100.0 100.0 0 0 0 126.02430152312016 105.94867404970759 L 160.0 200.0 Z"
 	fill=" Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 471.0243015231202 410.9486740497076 A 100.0 100.0 0 0 0 408.08802972699795 529.6590757694762 L 505.0 505.0 Z"
+<path d="M 126.02430152312016 105.94867404970759 A 100.0 100.0 0 0 0 63.08802972699796 224.6590757694762 L 160.0 200.0 Z"
 	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 408.08802972699795 529.6590757694762 A 100.0 100.0 0 1 0 588.9652553298511 450.68760825195676 L 505.0 505.0 Z"
+<path d="M 63.08802972699796 224.6590757694762 A 100.0 100.0 0 1 0 243.96525532985106 145.68760825195676 L 160.0 200.0 Z"
 	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 588.9652553298511 450.68760825195676 A 100.0 100.0 0 0 0 511.49527107634117 405.21116568651155 L 505.0 505.0 Z"
+<path d="M 243.96525532985106 145.68760825195676 A 100.0 100.0 0 0 0 166.4952710763412 100.21116568651158 L 160.0 200.0 Z"
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 511.49527107634117 405.21116568651155 A 100.0 100.0 0 0 0 505.0000000000002 405.0 L 505.0 505.0 Z"
+<path d="M 166.4952710763412 100.21116568651158 A 100.0 100.0 0 0 0 160.0000000000001 100.0 L 160.0 200.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<g>
-<path d="M 755.0 405.0 A 100.0 100.0 0 0 0 716.4067772466728 412.74728644905844 L 755.0 505.0 Z"
+</g><g>
+<path d="M 410.0 100.0 A 100.0 100.0 0 0 0 371.4067772466729 107.74728644905845 L 410.0 200.0 Z"
 	fill=" Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 716.4067772466728 412.74728644905844 A 100.0 100.0 0 0 0 657.028428523065 525.0392410619718 L 755.0 505.0 Z"
+<path d="M 371.4067772466729 107.74728644905845 A 100.0 100.0 0 0 0 312.02842852306503 220.0392410619718 L 410.0 200.0 Z"
 	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 657.028428523065 525.0392410619718 A 100.0 100.0 0 1 0 830.8659524432863 439.85126816373923 L 755.0 505.0 Z"
+<path d="M 312.02842852306503 220.0392410619718 A 100.0 100.0 0 1 0 485.86595244328635 134.85126816373923 L 410.0 200.0 Z"
 	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 830.8659524432863 439.85126816373923 A 100.0 100.0 0 0 0 761.8762528341283 405.23669438635693 L 755.0 505.0 Z"
+<path d="M 485.86595244328635 134.85126816373923 A 100.0 100.0 0 0 0 416.8762528341282 100.23669438635694 L 410.0 200.0 Z"
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 761.8762528341283 405.23669438635693 A 100.0 100.0 0 0 0 755.0 405.0 L 755.0 505.0 Z"
+<path d="M 416.8762528341282 100.23669438635694 A 100.0 100.0 0 0 0 410.00000000000006 100.0 L 410.0 200.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<g>
-<path d="M 1005.0 405.0 A 100.0 100.0 0 0 0 962.4750693170944 414.4923745178669 L 1005.0 505.0 Z"
+</g><g>
+<path d="M 660.0 100.0 A 100.0 100.0 0 0 0 617.4750693170944 109.4923745178669 L 660.0 200.0 Z"
 	fill=" Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 962.4750693170944 414.4923745178669 A 100.0 100.0 0 0 0 906.3620583253925 521.44860061515 L 1005.0 505.0 Z"
+<path d="M 617.4750693170944 109.4923745178669 A 100.0 100.0 0 0 0 561.3620583253925 216.44860061515 L 660.0 200.0 Z"
 	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 906.3620583253925 521.44860061515 A 100.0 100.0 0 1 0 1078.3931947407834 437.07769905442365 L 1005.0 505.0 Z"
+<path d="M 561.3620583253925 216.44860061515 A 100.0 100.0 0 1 0 733.3931947407834 132.07769905442365 L 660.0 200.0 Z"
 	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 1078.3931947407834 437.07769905442365 A 100.0 100.0 0 0 0 1012.1054687966707 405.25275786679845 L 1005.0 505.0 Z"
+<path d="M 733.3931947407834 132.07769905442365 A 100.0 100.0 0 0 0 667.1054687966706 100.25275786679843 L 660.0 200.0 Z"
 	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 1012.1054687966707 405.25275786679845 A 100.0 100.0 0 0 0 1005.0 405.0 L 1005.0 505.0 Z"
+<path d="M 667.1054687966706 100.25275786679843 A 100.0 100.0 0 0 0 660.0 100.0 L 660.0 200.0 Z"
 	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-
-<text x="775.0" y="385.0" font-size="12" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Emissions de CO2 ( en Mt ) </text>
-<rect x="697.0" y="659.0" height="7.0" width="20.0"
-	fill=" Blue " stroke="black" transform="rotate(0)"/>
-<text x="727.0" y="656.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Afrique </text>
-<rect x="778.0" y="659.0" height="7.0" width="20.0"
-	fill=" Green " stroke="black" transform="rotate(0)"/>
-<text x="808.0" y="656.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Amerique </text>
-<rect x="871.0" y="659.0" height="7.0" width="20.0"
-	fill=" Red " stroke="black" transform="rotate(0)"/>
-<text x="901.0" y="656.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Asie </text>
-<rect x="937.0" y="659.0" height="7.0" width="20.0"
-	fill=" Yellow " stroke="black" transform="rotate(0)"/>
-<text x="967.0" y="656.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Europe </text>
-<rect x="1018.0" y="659.0" height="7.0" width="20.0"
-	fill=" Maroon " stroke="black" transform="rotate(0)"/>
-<text x="1048.0" y="656.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Oceanie </text>
-
-<text x="500.0" y="626.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> 2010 </text>
-<text x="755.0" y="626.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> 2015 </text>
-<text x="1010.0" y="626.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> 2020 </text>
-
-</svg>
+</g><g>
+<path d="M 910.0 100.0 A 100.0 100.0 0 0 0 863.4703636277866 111.48450452565044 L 910.0 200.0 Z"
+	fill=" Blue " stroke="black" transform="rotate(0.0)"/>
+<path d="M 863.4703636277866 111.48450452565044 A 100.0 100.0 0 0 0 810.8913563089195 213.32203984810366 L 910.0 200.0 Z"
+	fill=" Green " stroke="black" transform="rotate(0.0)"/>
+<path d="M 810.8913563089195 213.32203984810366 A 100.0 100.0 0 1 0 981.1186657247902 129.6996772018395 L 910.0 200.0 Z"
+	fill=" Red " stroke="black" transform="rotate(0.0)"/>
+<path d="M 981.1186657247902 129.6996772018395 A 100.0 100.0 0 0 0 917.5679304543737 100.28677906798035 L 910.0 200.0 Z"
+	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
+<path d="M 917.5679304543737 100.28677906798035 A 100.0 100.0 0 0 0 910.0 100.0 L 910.0 200.0 Z"
+	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
+</g><text x="200.0" y="390.0" font-size="14" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Afrique </text><text x="300.0" y="390.0" font-size="14" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Amerique </text><text x="400.0" y="390.0" font-size="14" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Asie </text><text x="500.0" y="390.0" font-size="14" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Europe </text><text x="600.0" y="390.0" font-size="14" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Oceanie </text><rect x="150.0" y="375.0" height="10.0" width="20.0"
+	fill=" Blue " stroke="black" transform="rotate(0)"/><rect x="250.0" y="375.0" height="10.0" width="20.0"
+	fill=" Green " stroke="black" transform="rotate(0)"/><rect x="350.0" y="375.0" height="10.0" width="20.0"
+	fill=" Red " stroke="black" transform="rotate(0)"/><rect x="450.0" y="375.0" height="10.0" width="20.0"
+	fill=" Yellow " stroke="black" transform="rotate(0)"/><rect x="550.0" y="375.0" height="10.0" width="20.0"
+	fill=" Maroon " stroke="black" transform="rotate(0)"/><text x="160.0" y="324.8" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> 2010 </text><text x="410.0" y="324.8" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> 2015 </text><text x="660.0" y="324.8" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> 2020 </text><text x="910.0" y="324.8" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> 2025 </text><text x="535.0" y="50.0" font-size="30" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)"> Emissions de CO2 ( en Mt ) </text></svg>
