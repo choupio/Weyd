@@ -239,7 +239,7 @@ public class Onglet {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
                 test.traitement();
-                Fonction.createHTMLFile("Groupe.svg", "Rapport des données sélectionnées", "rapport");
+                Fonction.createHTMLFile("Groupe.svg", "Rapport des selections", "rapport");
                 String filePath = "rapport.html";
                 try {
                     // Créer un objet File à partir du chemin du fichier HTML
