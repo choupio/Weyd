@@ -1,140 +1,155 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-<g>
-<path d="M 256.0 156.0 A 100.0 100.0 0 0 0 222.02430152312016 161.9486740497076 L 256.0 256.0 Z"
-	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 222.02430152312016 161.9486740497076 A 100.0 100.0 0 0 0 159.08802972699795 280.6590757694762 L 256.0 256.0 Z"
-	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 159.08802972699795 280.6590757694762 A 100.0 100.0 0 1 0 339.96525532985106 201.68760825195676 L 256.0 256.0 Z"
-	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 339.96525532985106 201.68760825195676 A 100.0 100.0 0 0 0 262.49527107634117 156.21116568651158 L 256.0 256.0 Z"
-	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 262.49527107634117 156.21116568651158 A 100.0 100.0 0 0 0 256.0000000000002 156.0 L 256.0 256.0 Z"
-	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<g>
-<path d="M 506.0 156.0 A 100.0 100.0 0 0 0 472.0243015231202 161.9486740497076 L 506.0 256.0 Z"
-	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 472.0243015231202 161.9486740497076 A 100.0 100.0 0 0 0 409.08802972699795 280.6590757694762 L 506.0 256.0 Z"
-	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 409.08802972699795 280.6590757694762 A 100.0 100.0 0 1 0 589.9652553298511 201.68760825195676 L 506.0 256.0 Z"
-	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 589.9652553298511 201.68760825195676 A 100.0 100.0 0 0 0 512.4952710763412 156.21116568651158 L 506.0 256.0 Z"
-	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 512.4952710763412 156.21116568651158 A 100.0 100.0 0 0 0 506.0000000000002 156.0 L 506.0 256.0 Z"
-	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<g>
-<path d="M 756.0 156.0 A 100.0 100.0 0 0 0 722.0243015231201 161.9486740497076 L 756.0 256.0 Z"
-	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 722.0243015231201 161.9486740497076 A 100.0 100.0 0 0 0 659.088029726998 280.6590757694762 L 756.0 256.0 Z"
-	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 659.088029726998 280.6590757694762 A 100.0 100.0 0 1 0 839.9652553298511 201.68760825195676 L 756.0 256.0 Z"
-	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 839.9652553298511 201.68760825195676 A 100.0 100.0 0 0 0 762.4952710763412 156.21116568651158 L 756.0 256.0 Z"
-	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 762.4952710763412 156.21116568651158 A 100.0 100.0 0 0 0 756.0000000000002 156.0 L 756.0 256.0 Z"
-	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<g>
-<path d="M 256.0 156.0 A 100.0 100.0 0 0 0 159.6271899647158 282.688602172145 L 256.0 256.0 Z"
-	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 159.6271899647158 282.688602172145 A 100.0 100.0 0 0 0 307.44111174486807 341.75437028193954 L 256.0 256.0 Z"
-	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 307.44111174486807 341.75437028193954 A 100.0 100.0 0 0 0 324.9149827022515 183.53811236830512 L 256.0 256.0 Z"
-	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 324.9149827022514 183.538112368305 A 100.0 100.0 0 0 0 262.07142090203945 156.1844809249069 L 256.0 256.0 Z"
-	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 262.07142090203945 156.1844809249069 A 100.0 100.0 0 0 0 256.00000000000006 156.0 L 256.0 256.0 Z"
-	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<g>
-<path d="M 506.0 156.0 A 100.0 100.0 0 0 0 409.6271899647158 282.688602172145 L 506.0 256.0 Z"
-	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 409.6271899647158 282.688602172145 A 100.0 100.0 0 0 0 557.4411117448681 341.75437028193954 L 506.0 256.0 Z"
-	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 557.4411117448681 341.75437028193954 A 100.0 100.0 0 0 0 574.9149827022516 183.53811236830512 L 506.0 256.0 Z"
-	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 574.9149827022513 183.538112368305 A 100.0 100.0 0 0 0 512.0714209020394 156.1844809249069 L 506.0 256.0 Z"
-	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 512.0714209020394 156.1844809249069 A 100.0 100.0 0 0 0 506.00000000000006 156.0 L 506.0 256.0 Z"
-	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<g>
-<path d="M 756.0 156.0 A 100.0 100.0 0 0 0 659.6271899647159 282.688602172145 L 756.0 256.0 Z"
-	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 659.6271899647159 282.688602172145 A 100.0 100.0 0 0 0 807.4411117448681 341.75437028193954 L 756.0 256.0 Z"
-	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 807.4411117448681 341.75437028193954 A 100.0 100.0 0 0 0 824.9149827022516 183.53811236830512 L 756.0 256.0 Z"
-	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 824.9149827022513 183.538112368305 A 100.0 100.0 0 0 0 762.0714209020394 156.1844809249069 L 756.0 256.0 Z"
-	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 762.0714209020394 156.1844809249069 A 100.0 100.0 0 0 0 756.0 156.0 L 756.0 256.0 Z"
-	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<g>
-<path d="M 256.0 156.0 A 100.0 100.0 0 0 0 213.47506931709432 165.4923745178669 L 256.0 256.0 Z"
-	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 213.47506931709432 165.4923745178669 A 100.0 100.0 0 0 0 157.3620583253924 272.44860061515004 L 256.0 256.0 Z"
-	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 157.3620583253924 272.44860061515004 A 100.0 100.0 0 1 0 329.39319474078343 188.07769905442365 L 256.0 256.0 Z"
-	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 329.39319474078343 188.07769905442365 A 100.0 100.0 0 0 0 263.10546879667066 156.25275786679845 L 256.0 256.0 Z"
-	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 263.10546879667066 156.25275786679845 A 100.0 100.0 0 0 0 256.00000000000006 156.0 L 256.0 256.0 Z"
-	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<g>
-<path d="M 506.0 156.0 A 100.0 100.0 0 0 0 463.4750693170943 165.4923745178669 L 506.0 256.0 Z"
-	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 463.4750693170943 165.4923745178669 A 100.0 100.0 0 0 0 407.3620583253924 272.44860061515004 L 506.0 256.0 Z"
-	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 407.3620583253924 272.44860061515004 A 100.0 100.0 0 1 0 579.3931947407834 188.07769905442365 L 506.0 256.0 Z"
-	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 579.3931947407834 188.07769905442365 A 100.0 100.0 0 0 0 513.1054687966707 156.25275786679845 L 506.0 256.0 Z"
-	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 513.1054687966707 156.25275786679845 A 100.0 100.0 0 0 0 506.00000000000006 156.0 L 506.0 256.0 Z"
-	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<g>
-<path d="M 756.0 156.0 A 100.0 100.0 0 0 0 713.4750693170944 165.4923745178669 L 756.0 256.0 Z"
-	fill="Blue " stroke="black" transform="rotate(0.0)"/>
-<path d="M 713.4750693170944 165.4923745178669 A 100.0 100.0 0 0 0 657.3620583253925 272.44860061515004 L 756.0 256.0 Z"
-	fill=" Green " stroke="black" transform="rotate(0.0)"/>
-<path d="M 657.3620583253925 272.44860061515004 A 100.0 100.0 0 1 0 829.3931947407834 188.07769905442365 L 756.0 256.0 Z"
-	fill=" Red " stroke="black" transform="rotate(0.0)"/>
-<path d="M 829.3931947407834 188.07769905442365 A 100.0 100.0 0 0 0 763.1054687966707 156.25275786679845 L 756.0 256.0 Z"
-	fill=" Yellow " stroke="black" transform="rotate(0.0)"/>
-<path d="M 763.1054687966707 156.25275786679845 A 100.0 100.0 0 0 0 756.0 156.0 L 756.0 256.0 Z"
-	fill=" Maroon " stroke="black" transform="rotate(0.0)"/>
-</g>
-<rect x="231.0" y="408.5" height="15.0" width="50.0"
-	fill="20200" stroke="black" transform="rotate(0)"/>
-<rect x="231.0" y="408.5" height="15.0" width="50.0"
-	fill="20200" stroke="black" transform="rotate(0)"/>
-<rect x="481.0" y="408.5" height="15.0" width="50.0"
-	fill="20201" stroke="black" transform="rotate(0)"/>
-<rect x="231.0" y="408.5" height="15.0" width="50.0"
-	fill="20200" stroke="black" transform="rotate(0)"/>
-<rect x="481.0" y="408.5" height="15.0" width="50.0"
-	fill="20201" stroke="black" transform="rotate(0)"/>
-<rect x="731.0" y="408.5" height="15.0" width="50.0"
-	fill="20202" stroke="black" transform="rotate(0)"/>
-<rect x="231.0" y="408.5" height="15.0" width="50.0"
-	fill="20200" stroke="black" transform="rotate(0)"/>
-<rect x="481.0" y="408.5" height="15.0" width="50.0"
-	fill="20201" stroke="black" transform="rotate(0)"/>
-<rect x="731.0" y="408.5" height="15.0" width="50.0"
-	fill="20202" stroke="black" transform="rotate(0)"/>
-<rect x="981.0" y="408.5" height="15.0" width="50.0"
-	fill="20203" stroke="black" transform="rotate(0)"/>
-<rect x="231.0" y="408.5" height="15.0" width="50.0"
-	fill="20200" stroke="black" transform="rotate(0)"/>
-<rect x="481.0" y="408.5" height="15.0" width="50.0"
-	fill="20201" stroke="black" transform="rotate(0)"/>
-<rect x="731.0" y="408.5" height="15.0" width="50.0"
-	fill="20202" stroke="black" transform="rotate(0)"/>
-<rect x="981.0" y="408.5" height="15.0" width="50.0"
-	fill="20203" stroke="black" transform="rotate(0)"/>
-<rect x="1231.0" y="408.5" height="15.0" width="50.0"
-	fill="20204" stroke="black" transform="rotate(0)"/>
+<text x="90.0" y="220.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Gazole</text>
+<text x="220.0" y="309.02192795506073" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">GPLc</text>
+<text x="350.0" y="320.5367201798754" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E85</text>
+<rect x="50.0" y="230.03121812131496" height="199.96878187868504" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<rect x="80.0" y="233.04991922339116" height="196.95008077660884" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<rect x="110.0" y="230.0" height="200.0" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+
+<rect x="180.0" y="320.1168297956748" height="109.8831702043252" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<rect x="210.0" y="323.1456785724796" height="106.85432142752038" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<rect x="240.0" y="319.02192795506073" height="110.9780720449393" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+
+<rect x="310.0" y="330.5367201798754" height="99.46327982012464" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<rect x="340.0" y="332.16278748548166" height="97.83721251451834" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<rect x="370.0" y="332.5939551248013" height="97.40604487519869" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+
+
+<text x="220.0" y="206.0" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Prix moyen</text>
+<rect x="125.0" y="449.0" height="7.0" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<text x="155.0" y="446.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Bretagne</text>
+<rect x="210.0" y="449.0" height="7.0" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<text x="240.0" y="446.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Centre-Val de Loire</text>
+<rect x="345.0" y="449.0" height="7.0" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+<text x="375.0" y="446.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Grand Est</text>
+
+<polyline points="50.0 430.0 50.0 430.0 390.0 430.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="50.0 230.0 50.0 230.0 50.0 430.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="45.0 230.0 45.0 230.0 55.0 230.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="230.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,81</text>
+<polyline points="45.0 270.0 45.0 270.0 55.0 270.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="270.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,45</text>
+<polyline points="45.0 310.0 45.0 310.0 55.0 310.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="310.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,09</text>
+<polyline points="45.0 350.0 45.0 350.0 55.0 350.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="350.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,72</text>
+<polyline points="45.0 390.0 45.0 390.0 55.0 390.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="390.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,36</text>
+<polyline points="45.0 430.0 45.0 430.0 55.0 430.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="42.0" y="430.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0</text>
+
+<text x="90.0" y="606.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Gazole</text>
+<text x="220.0" y="695.4972067039106" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">GPLc</text>
+<text x="350.0" y="705.5530726256983" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E85</text>
+<rect x="50.0" y="616.0" height="200.0" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<rect x="80.0" y="619.463687150838" height="196.536312849162" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<rect x="110.0" y="616.5586592178771" height="199.4413407821229" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+
+<rect x="180.0" y="705.9441340782123" height="110.0558659217877" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<rect x="210.0" y="707.731843575419" height="108.268156424581" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<rect x="240.0" y="705.4972067039106" height="110.50279329608938" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+
+<rect x="310.0" y="715.5530726256983" height="100.44692737430168" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<rect x="340.0" y="717.7877094972067" height="98.2122905027933" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<rect x="370.0" y="721.1396648044692" height="94.86033519553072" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+
+
+<text x="220.0" y="592.0" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Prix médian</text>
+<rect x="125.0" y="835.0" height="7.0" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<text x="155.0" y="832.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Bretagne</text>
+<rect x="210.0" y="835.0" height="7.0" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<text x="240.0" y="832.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Centre-Val de Loire</text>
+<rect x="345.0" y="835.0" height="7.0" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+<text x="375.0" y="832.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Grand Est</text>
+
+<polyline points="50.0 816.0 50.0 816.0 390.0 816.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="50.0 616.0 50.0 616.0 50.0 816.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="45.0 616.0 45.0 616.0 55.0 616.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="616.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,79</text>
+<polyline points="45.0 656.0 45.0 656.0 55.0 656.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="656.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,43</text>
+<polyline points="45.0 696.0 45.0 696.0 55.0 696.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="696.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,07</text>
+<polyline points="45.0 736.0 45.0 736.0 55.0 736.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="736.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,72</text>
+<polyline points="45.0 776.0 45.0 776.0 55.0 776.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="776.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,36</text>
+<polyline points="45.0 816.0 45.0 816.0 55.0 816.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="42.0" y="816.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0</text>
+
+<text x="90.0" y="992.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Gazole</text>
+<text x="220.0" y="1087.773016792125" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">GPLc</text>
+<text x="350.0" y="1099.3537927041111" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E85</text>
+<rect x="50.0" y="1024.8141285466127" height="177.18587145338736" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<rect x="80.0" y="1004.547770700637" height="197.45222929936304" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<rect x="110.0" y="1002.0" height="200.0" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+
+<rect x="180.0" y="1132.5153445280835" height="69.48465547191661" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<rect x="210.0" y="1105.9953676896353" height="96.00463231036478" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<rect x="240.0" y="1097.773016792125" height="104.22698320787492" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+
+<rect x="310.0" y="1109.3537927041111" height="92.64620729588881" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<rect x="340.0" y="1111.206716850029" height="90.79328314997105" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<rect x="370.0" y="1109.469600463231" height="92.53039953676895" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+
+
+<text x="220.0" y="978.0" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Prix minimum</text>
+<rect x="125.0" y="1221.0" height="7.0" width="20.0"
+	fill="#53006b" stroke="black" transform="rotate(0)"/>
+<text x="155.0" y="1218.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Bretagne</text>
+<rect x="210.0" y="1221.0" height="7.0" width="20.0"
+	fill="#8927fa" stroke="black" transform="rotate(0)"/>
+<text x="240.0" y="1218.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Centre-Val de Loire</text>
+<rect x="345.0" y="1221.0" height="7.0" width="20.0"
+	fill="#8c6624" stroke="black" transform="rotate(0)"/>
+<text x="375.0" y="1218.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Grand Est</text>
+
+<polyline points="50.0 1202.0 50.0 1202.0 390.0 1202.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="50.0 1002.0 50.0 1002.0 50.0 1202.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="45.0 1002.0 45.0 1002.0 55.0 1002.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="1002.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,73</text>
+<polyline points="45.0 1042.0 45.0 1042.0 55.0 1042.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="1042.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,38</text>
+<polyline points="45.0 1082.0 45.0 1082.0 55.0 1082.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="1082.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,04</text>
+<polyline points="45.0 1122.0 45.0 1122.0 55.0 1122.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="1122.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,69</text>
+<polyline points="45.0 1162.0 45.0 1162.0 55.0 1162.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="1162.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,35</text>
+<polyline points="45.0 1202.0 45.0 1202.0 55.0 1202.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="42.0" y="1202.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0</text>
+
 </svg>
