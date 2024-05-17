@@ -189,12 +189,14 @@ public class Onglet {
         // previ.setVisible(false);
         previsua.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                TraitementCases test = new TraitementCases();
+                test.traitement();
                 try {
                     // Charger le fichier SVG
-                    FileInputStream svgFile = new FileInputStream("Camembert.svg");
+                    FileInputStream svgFile = new FileInputStream("Groupe.svg");
                     TranscoderInput input = new TranscoderInput(svgFile);
                     // Définir le fichier de sortie (image PNG)
-                    FileOutputStream pngFile = new FileOutputStream("rapport.png");
+                    FileOutputStream pngFile = new FileOutputStream("prévisua.png");
                     TranscoderOutput output = new TranscoderOutput(pngFile);
                     // Créer un transcodeur pour convertir le SVG en PNG
                     PNGTranscoder transcoder = new PNGTranscoder();

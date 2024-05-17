@@ -302,7 +302,10 @@ public class StationAPI {
     public HashMap<String, HashMap<String, Integer>> getNbStationProposeCarb() {
         HashMap<String, HashMap<String, Integer>> nbStationProposeCarb = new HashMap<>();
         for (String carb : filtre.keySet()) {
-
+            nbStationProposeCarb.put(carb, new HashMap<>());
+            for (String granularite : filtre.get(carb).keySet()) {
+                nbStationProposeCarb.get(carb).put(granularite, filtre.get(carb).get(granularite).size());
+            }
         }
         return nbStationProposeCarb;
     }
