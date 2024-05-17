@@ -54,7 +54,6 @@ public class Onglet {
      */
     private static JPanel[] diag = new JPanel[5];
 
-   
     /**
      * Constructeur de la classe Onglet.
      * Initialise les onglets avec les titres spécifiés et les composants associés.
@@ -86,7 +85,6 @@ public class Onglet {
         onglet3.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         this.onglets.addTab(titreOnglet3, onglet3);
 
-        
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
         onglet21.setSize((int) onglet2.getPreferredSize().getWidth(), (int) onglet2.getPreferredSize().getHeight());
@@ -240,8 +238,9 @@ public class Onglet {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
-                //mettre ici la fonction crée pour verifier si y'a au moins une case selectionner
-                if (test.isAnyChecked()== true){
+                // mettre ici la fonction crée pour verifier si y'a au moins une case
+                // selectionner
+                if (test.isAnyChecked() == true) {
                     test.traitement();
                     Fonction.createHTMLFile("Groupe.svg", "Rapport des selections", "rapport");
                     String filePath = "rapport.html";
@@ -258,8 +257,7 @@ public class Onglet {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                }
-                else{
+                } else {
                     CreationFenetre message = new CreationFenetre("Erreur");
                     message.getFenetre().setSize(700, 225);
                     // Calcule les coordonnées x et y pour centrer la fenêtre
@@ -267,12 +265,20 @@ public class Onglet {
                     int x = (screenSize.width - message.getFenetre().getWidth()) / 2;
                     int y = (screenSize.height - message.getFenetre().getHeight()) / 2;
                     message.getFenetre().setLocation(x, y);
-                    // Crée un label avec le texte désiré
-                    JLabel label = new JLabel("Vous devez sélectionner au moins une statistique, un carburant, un département ou une région pour pouvoir générer un rapport");
-                    // Ajoute le label à la fenêtre
-                    message.getFenetre().getContentPane().add(label);
-                    
-                    label.setBounds(1, 2, 700-100, 225-150);
+                    // Créer un JPanel avec un BorderLayout
+                    JPanel panel = new JPanel(new BorderLayout());
+                    // Créer un autre JPanel avec FlowLayout pour centrer horizontalement le JLabel
+                    JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                    // Créer le JLabel avec du texte et utiliser HTML pour les retours à la ligne
+                    JLabel label = new JLabel(
+                            "<html><div style='text-align: center;'>Vous devez sélectionner au moins une statistique, un carburant, <br> département ou une région pour pouvoir générer un rapport.</div></html>",
+                            SwingConstants.CENTER);
+                    // Ajouter le JLabel au topPanel
+                    topPanel.add(label);
+                    // Ajouter le topPanel à la position nord du panel principal
+                    panel.add(topPanel, BorderLayout.NORTH);
+                    // Ajouter le panel principal à la fenêtre
+                    message.getFenetre().add(panel);
                 }
             }
         });

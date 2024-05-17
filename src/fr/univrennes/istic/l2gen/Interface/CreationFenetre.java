@@ -7,7 +7,8 @@ import javax.swing.*;
 
 /**
  * Cette classe représente un créateur de fenêtre pour l'interface utilisateur.
- * Elle permet de créer une fenêtre avec un titre spécifié et d'y ajouter une image.
+ * Elle permet de créer une fenêtre avec un titre spécifié et d'y ajouter une
+ * image.
  */
 public class CreationFenetre {
 
@@ -25,7 +26,7 @@ public class CreationFenetre {
      */
     public CreationFenetre(String nomFenetre) {
         JFrame frame = new JFrame(nomFenetre);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
         this.fenetre = frame;
     }
