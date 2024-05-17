@@ -160,4 +160,15 @@ public class TraitementCases {
 
         return couleurs;
     }
+
+    public boolean isAnyChecked() {
+        if (isCheckedStat.values().stream().anyMatch(Boolean::booleanValue)) {
+            if (isCheckedCarb.values().stream().anyMatch(Boolean::booleanValue)) {
+                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue) || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

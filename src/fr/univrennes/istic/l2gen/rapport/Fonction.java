@@ -34,7 +34,7 @@ public class Fonction {
             "<style>\n" +
             "  body {\n" +
             "    background-color: #f0f0f0;\n" +
-            "    font-family: Arial, sans-serif;\n" +
+            "    font-family: 'Times New Roman', serif;\n" + // Change the font here
             "  }\n" +
             "  svg {\n" +
             "    display: block;\n" +
@@ -67,7 +67,7 @@ public class Fonction {
             "\n</svg>\n"+
             "<h2>Laissez Nous votre avis</h2>\n" +
             "<form>\n" +
-            "  <label for=\"name\">Nom:</label><br>\n" +
+            "  <label for=\"name\">Mail:</label><br>\n" +
             "  <input type=\"text\" id=\"name\" name=\"name\"><br>\n" +
             "  <label for=\"review\">Votre avis</label><br>\n" +
             "  <textarea id=\"review\" name=\"review\"></textarea><br>\n" +

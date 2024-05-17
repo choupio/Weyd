@@ -240,21 +240,39 @@ public class Onglet {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
-                test.traitement();
-                Fonction.createHTMLFile("Groupe.svg", "Rapport des selections", "rapport");
-                String filePath = "rapport.html";
-                try {
-                    // Créer un objet File à partir du chemin du fichier HTML
-                    File file = new File(filePath);
-                    // Vérifier si le fichier existe avant de l'ouvrir
-                    if (file.exists()) {
-                        // Lancer le navigateur par défaut avec le fichier HTML
-                        Desktop.getDesktop().browse(file.toURI());
-                    } else {
-                        System.out.println("Le fichier HTML spécifié n'existe pas.");
+                //mettre ici la fonction crée pour verifier si y'a au moins une case selectionner
+                if (test.isAnyChecked()== true){
+                    test.traitement();
+                    Fonction.createHTMLFile("Groupe.svg", "Rapport des selections", "rapport");
+                    String filePath = "rapport.html";
+                    try {
+                        // Créer un objet File à partir du chemin du fichier HTML
+                        File file = new File(filePath);
+                        // Vérifier si le fichier existe avant de l'ouvrir
+                        if (file.exists()) {
+                            // Lancer le navigateur par défaut avec le fichier HTML
+                            Desktop.getDesktop().browse(file.toURI());
+                        } else {
+                            System.out.println("Le fichier HTML spécifié n'existe pas.");
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
                     }
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                }
+                else{
+                    CreationFenetre message = new CreationFenetre("Erreur");
+                    message.getFenetre().setSize(700, 225);
+                    // Calcule les coordonnées x et y pour centrer la fenêtre
+                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                    int x = (screenSize.width - message.getFenetre().getWidth()) / 2;
+                    int y = (screenSize.height - message.getFenetre().getHeight()) / 2;
+                    message.getFenetre().setLocation(x, y);
+                    // Crée un label avec le texte désiré
+                    JLabel label = new JLabel("Vous devez sélectionner au moins une statistique, un carburant, un département ou une région pour pouvoir générer un rapport");
+                    // Ajoute le label à la fenêtre
+                    message.getFenetre().getContentPane().add(label);
+                    
+                    label.setBounds(1, 2, 700-100, 225-150);
                 }
             }
         });
