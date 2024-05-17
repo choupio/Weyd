@@ -137,11 +137,11 @@ public class DiagCamembertsTest {
     public void testLegender() {
         diagCamembert.legender("Afrique", "Amerique", "Asie", "Europe", "Oceanie");
         ArrayList<String> legendes = diagCamembert.getLegendes();
-        assertEquals("<text x=\"200.0\" y=\"390.0\" font-size=\"14\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\" transform=\"rotate(0)\">Afrique</text>", legendes.get(0));
-        assertEquals("<text x=\"300.0\" y=\"390.0\" font-size=\"14\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\" transform=\"rotate(0)\">Amerique</text>", legendes.get(1));
-        assertEquals("<text x=\"400.0\" y=\"390.0\" font-size=\"14\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\" transform=\"rotate(0)\">Asie</text>", legendes.get(2));
-        assertEquals("<text x=\"500.0\" y=\"390.0\" font-size=\"14\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\" transform=\"rotate(0)\">Europe</text>", legendes.get(3));
-        assertEquals("<text x=\"600.0\" y=\"390.0\" font-size=\"14\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\" transform=\"rotate(0)\">Oceanie</text>", legendes.get(4));
+        assertEquals("<text x=\"220.0\" y=\"400.0\" font-size=\"14\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\" transform=\"rotate(0)\">Afrique</text>", legendes.get(0));
+        assertEquals("<text x=\"220.0\" y=\"450.0\" font-size=\"14\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\" transform=\"rotate(0)\">Amerique</text>", legendes.get(1));
+        assertEquals("<text x=\"220.0\" y=\"500.0\" font-size=\"14\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\" transform=\"rotate(0)\">Asie</text>", legendes.get(2));
+        assertEquals("<text x=\"220.0\" y=\"550.0\" font-size=\"14\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\" transform=\"rotate(0)\">Europe</text>", legendes.get(3));
+        assertEquals("<text x=\"220.0\" y=\"600.0\" font-size=\"14\" text-anchor=\"middle\" fill=\"black\" stroke=\"black\" transform=\"rotate(0)\">Oceanie</text>", legendes.get(4));
     }
 
 
