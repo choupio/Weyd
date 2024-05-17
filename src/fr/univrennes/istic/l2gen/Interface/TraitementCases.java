@@ -21,14 +21,17 @@ public class TraitementCases {
     private HashMap<String, Boolean> isCheckedCarb = Carburant.getIsCheckedCarb();
     private HashMap<String, Boolean> isCheckedStat = Statistique.getIsCheckedStat();
     private HashMap<String, Boolean>[] isCheckedDiag = Diag.getIsCheckedDiag();
-    private Boolean isCheckedPos = Onglet.getIsSationsAffichees();
+    private Boolean isCheckedPos = Onglet.getIsStationsAffichees();
     private HashMap<String, Boolean> isCheckedReg = Region.getIsCheckedReg();
 
     public TraitementCases() {
 
     }
 
-    public void traitement() {
+    public ArrayList<String> traitement() {
+        // Liste qui contiendra les chaine de caractère des différents svg
+        ArrayList<String> svgContent = new ArrayList<>();
+
         ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue())
@@ -140,6 +143,7 @@ public class TraitementCases {
 
         statistiques.empilerElements(Alignement.HAUT, 350, 50); // TODO changer le 350
         statistiques.createSvgFile();
+        return svgContent;
     }
 
     private ArrayList<String> generationCouleur(ArrayList<String> granularite) {
