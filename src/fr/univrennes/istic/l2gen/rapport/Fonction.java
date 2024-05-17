@@ -55,7 +55,7 @@ public class Fonction {
             "</style>\n" +
             "</head>\n" + 
             "<body>\n"+
-            "<svg id=\"mysvg\" viewBox=\"0 0 2000 10000\">\n"+
+            "<svg id=\"mysvg\" viewBox=\"0 0 2500 2000\">\n"+
             svgContent +
             "\n</svg>\n"+
             "</body>\n" +

@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
@@ -208,12 +209,23 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public double hauteur() {
+        Groupe groupe = new Groupe(); // initialisation du groupe
+
+        // Ajout des camemberts dans groupe
         for (Camembert camembert : groupecamembert) {
-            if (camembert.hauteur() > 0) {
-                hauteur = camembert.hauteur();
-            }
+            groupe.ajouter(camembert);
         }
-        return hauteur;
+
+        // Ajout des légendes
+        Texte legende = new Texte(390 + 20, 200+15 , 14, "test");
+        groupe.ajouter(legende);
+
+        // Ajout du titre
+        double titley = 50;
+        double titlex = this.centre().x();
+        Texte titre = new Texte(titlex, titley, 30, getNom());
+        groupe.ajouter(titre);
+        return groupe.hauteur();
     }
 
     /**
@@ -429,12 +441,12 @@ public class DiagCamemberts implements IDataVisualiseur {
         double axeY = 390;
         double axeX = 200;
         for (int i = 0; i < strings.length; i++) {
-            Texte texte = new Texte(axeX + 20, axeY + 10, 14, strings[i]);
+            Texte texte = new Texte(axeX + 20, axeY+15 , 14, strings[i]);
             Rectangle rectangle = new Rectangle(axeX - 40, axeY - 10, 20, 10);
             getLegendes().add(texte.enSVG());
             getRectangles().add(rectangle);
-            axeY += 50; // afficher les légendes de façon verticale si l'on veut être originale
-            // axeX += 100;
+            //axeY += 50; // afficher les légendes de façon verticale si l'on veut être originale
+            axeX += 200;
         }
         return this;
     }
