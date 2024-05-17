@@ -57,7 +57,7 @@ public class Accueil {
         UIManager.put("OptionPane.font", style2);
 
         ///////// Création de la fenêtre /////////
-        CreationFenetre fenetre = new CreationFenetre("LES COURS DU CARBURANT EN FRANCE");
+        CreationFenetre fenetre = new CreationFenetre("Weyd");
 
         ///////// Taille de la fenêtre /////////
         // On récupère la taille de l'écran
@@ -79,7 +79,8 @@ public class Accueil {
         fenetre.ajouterImage(onglets.GetOnglet3(), "ressources/ImagesInterface/ImageTest.png",
                 1000, (int) 700);
 
-        fenetre.ajouterImage(onglets.GetPanelPrevi(), "prévisua.png",onglets.GetPanelPrevi().getWidth(), onglets.GetPanelPrevi().getHeight());
+        fenetre.ajouterImage(onglets.GetPanelPrevi(), "prévisua.png", onglets.GetPanelPrevi().getWidth(),
+                onglets.GetPanelPrevi().getHeight());
 
         fenetre.getFenetre().pack();
         fenetre.getFenetre().setVisible(true);
