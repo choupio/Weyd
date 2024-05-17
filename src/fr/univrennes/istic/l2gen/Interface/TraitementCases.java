@@ -28,7 +28,10 @@ public class TraitementCases {
 
     }
 
-    public void traitement() {
+    public ArrayList<String> traitement() {
+        // Liste qui contiendra les chaine de caractère des différents svg
+        ArrayList<String> svgContent = new ArrayList<>();
+
         ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue())
@@ -140,6 +143,7 @@ public class TraitementCases {
 
         statistiques.empilerElements(Alignement.HAUT, 350, 50); // TODO changer le 350
         statistiques.createSvgFile();
+        return svgContent;
     }
 
     private ArrayList<String> generationCouleur(ArrayList<String> granularite) {
@@ -164,7 +168,8 @@ public class TraitementCases {
     public boolean isAnyChecked() {
         if (isCheckedStat.values().stream().anyMatch(Boolean::booleanValue)) {
             if (isCheckedCarb.values().stream().anyMatch(Boolean::booleanValue)) {
-                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue) || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
+                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
+                        || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
                     return true;
                 }
             }
