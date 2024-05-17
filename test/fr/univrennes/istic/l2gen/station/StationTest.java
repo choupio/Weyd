@@ -44,4 +44,40 @@ public class StationTest {
         assertEquals("service3", station.getServices_service().get(2));
     }
 
+    @Test
+    public void testGetNomDep() {
+        SetUp();
+        assertEquals("nom_dep", station.getNom_dep());
+    }
+
+    @Test
+    public void testGetNomVille() {
+        SetUp();
+        assertEquals("nom_ville", station.getNom_ville());
+    }
+
+    @Test
+    public void testGetAdresse() {
+        SetUp();
+        assertEquals("adresse", station.getAdresse());
+    }
+
+    @Test
+    public void testGetNomReg() {
+        SetUp();
+        assertEquals("nom_reg", station.getNom_reg());
+    }
+
+    @Test
+    public void testGetCodeDep() {
+        SetUp();
+        assertEquals("code_dep", station.getCode_dep());
+    }
+
+    @Test
+    public void testGetCodeReg() {
+        SetUp();
+        assertEquals("code_reg", station.getCode_reg());
+    }
+
 }
