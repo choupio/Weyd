@@ -29,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;*/
 public class App {
 
     public static void main(String[] args) throws Exception {
+        // Création d'un diagramme en camemberts
 
         /*
          * DiagCamemberts visualiseur = new DiagCamemberts(

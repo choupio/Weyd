@@ -25,12 +25,41 @@ public class Fonction {
             System.err.println("Erreur lors de la lecture du fichier SVG : " + e.getMessage());
         }
 
-        String htmlTemplate = "<!DOCTYPE html>\n" + "<html lang=\"en\">\n" + "<head>\n"
-                + "<meta charset=\"UTF-8\">\n"
-                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
-                + "<title>" + htmlTitle + "</title>\n" + "</head>\n" + "<body style=\"margin: 0;\">\n"
-                + "<svg style=\"width: 90%; height: 90%;\" viewBox=\"0 0 2000 10000\">\n"
-                + svgContent + "\n</svg>\n</body>\n" + "</html>";
+        String htmlTemplate = "<!DOCTYPE html>\n" + 
+            "<html lang=\"en\">\n" + 
+            "<head>\n"+
+            "<meta charset=\"UTF-8\">\n"+
+            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"+
+            "<title>" + htmlTitle + "</title>\n" + 
+            "<style>\n" +
+            "  body {\n" +
+            "    background-color: #f0f0f0;\n" +
+            "    font-family: Arial, sans-serif;\n" +
+            "  }\n" +
+            "  svg {\n" +
+            "    display: block;\n" +
+            "    margin: 0;\n" +
+            "    width:  120%;\n" +
+            "    height: 100%;\n" +
+            "    background-color: white; \n" +
+            "  }\n" +
+            "  form {\n" +
+            "    display: flex;\n" +
+            "    flex-direction: column;\n" +
+            "    width: 300px;\n" +
+            "    margin: auto;\n" +
+            "  }\n" +
+            "  input, textarea {\n" +
+            "    margin-bottom: 10px;\n" +
+            "  }\n" +
+            "</style>\n" +
+            "</head>\n" + 
+            "<body>\n"+
+            "<svg id=\"mysvg\" viewBox=\"0 0 2000 10000\">\n"+
+            svgContent +
+            "\n</svg>\n"+
+            "</body>\n" +
+            "</html>";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".html"))) {
             writer.write(htmlTemplate);

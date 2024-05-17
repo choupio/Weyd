@@ -1,5 +1,7 @@
 package fr.univrennes.istic.l2gen.visustats;
 
+import java.text.DecimalFormat;
+
 /**
  * La classe DiagBarres est une implémentation de l'interface IDataVisualiseur
  * permettant de générer un diagramme à barres.
@@ -190,6 +192,10 @@ public class DiagBarres implements IDataVisualiseur {
             Faisceau f = (Faisceau) faisceau;
             f.agencer(axeX, 300 + texteNom.hauteur() * 2, 100, 300 / axeY, true);
             axeX += 120;
+
+            // Ajout des noms des faisceaux
+            Texte nomFaisceau = new Texte(f.centre().x(), f.centre().y() - f.hauteur() / 2 - 10, 10, f.getNom());
+            diagGroupe.ajouter(nomFaisceau);
         }
         texteNom.deplacer(donnees.centre().x(),
                 donnees.centre().y() - donnees.hauteur() / 2 - texteNom.hauteur());
@@ -220,8 +226,9 @@ public class DiagBarres implements IDataVisualiseur {
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5,
                     donnees.centre().x() - donnees.largeur() / 2 + 5,
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5));
+            DecimalFormat df = new DecimalFormat("#.##"); // Pour faire l'arrondi à 2 chiffres après la virgule
             Texte valeurTxt = new Texte(0, 0, tailleTxtLegende,
-                    Integer.toString((int) Math.round(echelle_max * (5 - i) / 5)));
+                    df.format(echelle_max * (5 - i) / 5));
             valeurTxt.deplacer(
                     donnees.centre().x() - donnees.largeur() / 2 - 5 - valeurTxt.largeur() / 2,
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5);

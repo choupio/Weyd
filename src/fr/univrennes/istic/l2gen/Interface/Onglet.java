@@ -24,6 +24,11 @@ import java.io.FileOutputStream;
 public class Onglet {
 
     /**
+     * Boolean pour indiquer si on a sélectionné Région ou Département.
+     */
+    private static Boolean granChecked = false; // True = Département / False = Région
+
+    /**
      * Boolean pour indiquer si les stations sont affichées.
      */
     private static Boolean isSationsAffichees = false;
@@ -49,11 +54,7 @@ public class Onglet {
      */
     private static JPanel[] diag = new JPanel[5];
 
-    /**
-     * Tableau d'objets Diag pour les diagrammes.
-     */
-    private Diag[] diagramme = new Diag[5];
-
+   
     /**
      * Constructeur de la classe Onglet.
      * Initialise les onglets avec les titres spécifiés et les composants associés.
@@ -85,20 +86,7 @@ public class Onglet {
         onglet3.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         this.onglets.addTab(titreOnglet3, onglet3);
 
-        // Bientôt disponible
-        // Bouton pour le aller à l'onglet 2
-        /*
-         * JButton button11 = new JButton("Commencer");
-         * button11.addActionListener(new ActionListener() {
-         * public void actionPerformed(ActionEvent e) {
-         * onglets.setSelectedIndex(1); // L'index commence à 0, donc 1 est l'onglet
-         * "Statistiques"
-         * }
-         * });
-         * 
-         * onglet1.add(button11);
-         */
-
+        
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
         onglet21.setSize((int) onglet2.getPreferredSize().getWidth(), (int) onglet2.getPreferredSize().getHeight());
@@ -251,7 +239,7 @@ public class Onglet {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
                 test.traitement();
-                Fonction.createHTMLFile("Groupe.svg", "TESTEUR", "rapport");
+                Fonction.createHTMLFile("Groupe.svg", "Rapport des selections", "rapport");
                 String filePath = "rapport.html";
                 try {
                     // Créer un objet File à partir du chemin du fichier HTML
@@ -283,9 +271,11 @@ public class Onglet {
                     if (selectedChoice.equals("Départements")) {
                         scrollPaneDeptContainer.setVisible(true);
                         region.setVisible(false);
+                        granChecked = true;
                     } else if (selectedChoice.equals("Régions")) {
                         region.setVisible(true);
                         scrollPaneDeptContainer.setVisible(false);
+                        granChecked = false;
                     }
                     onglet2.revalidate();
                     onglet2.repaint();
@@ -363,5 +353,15 @@ public class Onglet {
      */
     public static Boolean getIsSationsAffichees() {
         return isSationsAffichees;
+    }
+
+    /**
+     * Méthode pour récupérer l'état de la granularité.
+     * 
+     * @return L'état de la granularité. (true pour département et false pour
+     *         régions)
+     */
+    public static Boolean getGranChecked() {
+        return granChecked;
     }
 }

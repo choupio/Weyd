@@ -1,5 +1,6 @@
 package fr.univrennes.istic.l2gen.visustats;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -172,17 +173,22 @@ public class DiagColonnes implements IDataVisualiseur {
         // Titre
         texteNom = new Texte(0, 0, 20, nom);
 
-        double axeY = donnees.getListFormes().get(0).hauteur() * 100 / echelle_max;
+        double axeY = donnees.getListFormes().get(0).hauteur() * 200 / echelle_max;
         for (IForme forme : donnees.getListFormes()) {
-            if (axeY < forme.hauteur() * 100 / echelle_max) {
-                axeY = forme.hauteur() * 100 / echelle_max;
+            if (axeY < forme.hauteur() * 200 / echelle_max) {
+                axeY = forme.hauteur() * 200 / echelle_max;
             }
         }
         double axeX = 50;
+        System.out.println(legendes.size());
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
-            f.agencer(axeX, axeY + texteNom.hauteur() * 2, 100, 100 / echelle_max, false);
-            axeX += 120;
+            f.agencer(axeX, axeY + texteNom.hauteur() * 2, legendes.size() * 30, 200 / echelle_max, false);
+            axeX += legendes.size() * 30 + 40;
+
+            // Ajout des noms des faisceaux
+            Texte nomFaisceau = new Texte(f.centre().x(), f.centre().y() - f.hauteur() / 2 - 10, 10, f.getNom());
+            diagGroupe.ajouter(nomFaisceau);
         }
 
         texteNom.deplacer(donnees.centre().x(),
@@ -214,8 +220,9 @@ public class DiagColonnes implements IDataVisualiseur {
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5,
                     donnees.centre().x() - donnees.largeur() / 2 + 5,
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5));
+            DecimalFormat df = new DecimalFormat("#.##");
             Texte valeurTxt = new Texte(0, 0, tailleTxtLegende,
-                    Integer.toString((int) Math.round(echelle_max * (5 - i) / 5)));
+                    df.format(echelle_max * (5 - i) / 5));
             valeurTxt.deplacer(
                     donnees.centre().x() - donnees.largeur() / 2 - 5 - valeurTxt.largeur() / 2,
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5);
@@ -258,6 +265,7 @@ public class DiagColonnes implements IDataVisualiseur {
         for (String string : strings) {
             legendeGroupe.ajouter(new Rectangle(0, 0, 20, 7));
             legendeGroupe.ajouter(new Texte(0, 0, 10, string));
+            legendes.add(string);
         }
 
         return this;

@@ -7,6 +7,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,6 +29,37 @@ public class StationAPI {
     public StationAPI() {
         // Créez un ObjectMapper
         ObjectMapper objectMapper = new ObjectMapper();
+
+        /*
+         * try {
+         * // URL de l'API
+         * URL url = new URL(
+         * "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/prix-des-carburants-en-france-flux-instantane-v2/records?limit=20"
+         * );
+         * 
+         * // Ouvrir une connexion HTTP
+         * HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+         * 
+         * // Configurer la requête
+         * conn.setRequestMethod("GET");
+         * 
+         * // Lire la réponse
+         * BufferedReader rd = new BufferedReader(new
+         * InputStreamReader(conn.getInputStream()));
+         * StringBuilder response = new StringBuilder();
+         * String line;
+         * while ((line = rd.readLine()) != null) {
+         * response.append(line);
+         * }
+         * rd.close();
+         * 
+         * // Traitement de la réponse (par exemple, affichage)
+         * System.out.println(response.toString());
+         * 
+         * } catch (Exception e) {
+         * e.printStackTrace();
+         * }
+         */
 
         // Spécifiez le chemin vers votre fichier JSON
         String cheminFichier = "ressources/prix-carburants-fichier-quotidien-test-ods.json";
