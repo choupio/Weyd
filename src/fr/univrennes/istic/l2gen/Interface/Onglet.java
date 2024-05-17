@@ -11,6 +11,7 @@ import fr.univrennes.istic.l2gen.rapport.Fonction;
 
 import java.awt.*;
 
+import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
@@ -199,11 +200,12 @@ public class Onglet {
                     TranscoderOutput output = new TranscoderOutput(pngFile);
                     // Créer un transcodeur pour convertir le SVG en PNG
                     PNGTranscoder transcoder = new PNGTranscoder();
+                    //effectue la conversion
                     transcoder.transcode(input, output);
                     // Fermer les flux
                     svgFile.close();
                     pngFile.close();
-                } catch (Exception ex) {
+                } catch (IOException | TranscoderException ex ) {
                     ex.printStackTrace();
                 }
                 Panel_Image previm =new Panel_Image("prévisua.png");
