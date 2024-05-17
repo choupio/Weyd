@@ -295,6 +295,19 @@ public class StationAPI {
     }
 
     /**
+     * donne le nombre de station qui propose un carburant par granularité
+     * 
+     * @return une HashMap de type {Carburant : {Granularité : nombre}}
+     */
+    public HashMap<String, HashMap<String, Integer>> getNbStationProposeCarb() {
+        HashMap<String, HashMap<String, Integer>> nbStationProposeCarb = new HashMap<>();
+        for (String carb : filtre.keySet()) {
+
+        }
+        return nbStationProposeCarb;
+    }
+
+    /**
      * filtre les stations selon les départements et selon les carburants
      *
      * @param departement
