@@ -191,6 +191,7 @@ public class Onglet {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
                 test.traitement();
+
                 try {
                     // Charger le fichier SVG
                     FileInputStream svgFile = new FileInputStream("Groupe.svg");
@@ -207,6 +208,8 @@ public class Onglet {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+                Panel_Image previm =new Panel_Image("prévisua.png");
+                previ.add(previm);
                 // previ.setVisible(true);
             }
         });
