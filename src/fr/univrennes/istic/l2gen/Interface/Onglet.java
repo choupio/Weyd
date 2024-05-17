@@ -32,7 +32,7 @@ public class Onglet {
     /**
      * Boolean pour indiquer si les stations sont affichées.
      */
-    private static Boolean isSationsAffichees = false;
+    private static Boolean isStationsAffichees = false;
 
     /**
      * CheckBox pour afficher les stations.
@@ -141,9 +141,9 @@ public class Onglet {
         afficheStation.addItemListener(new ItemListener() { // événement de l'affichage des stations
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    isSationsAffichees = true;
+                    isStationsAffichees = true;
                 } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                    isSationsAffichees = false;
+                    isStationsAffichees = false;
                 }
             }
         });
@@ -190,6 +190,7 @@ public class Onglet {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
                 test.traitement();
+
                 try {
                     // Charger le fichier SVG
                     FileInputStream svgFile = new FileInputStream("Groupe.svg");
@@ -206,6 +207,8 @@ public class Onglet {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+                Panel_Image previm =new Panel_Image("prévisua.png");
+                previ.add(previm);
                 // previ.setVisible(true);
             }
         });
@@ -266,32 +269,13 @@ public class Onglet {
                     int x = (screenSize.width - message.getFenetre().getWidth()) / 2;
                     int y = (screenSize.height - message.getFenetre().getHeight()) / 2;
                     message.getFenetre().setLocation(x, y);
-                    // Créer un JPanel avec un BorderLayout
-                    JPanel panel = new JPanel(new BorderLayout());
-                    // Créer un autre JPanel avec FlowLayout pour centrer horizontalement le JLabel
-                    JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                    // Créer le JLabel avec du texte et utiliser HTML pour les retours à la ligne
+                    // Crée un label avec le texte désiré
                     JLabel label = new JLabel(
-                            "<html><div style='text-align: center;'>Vous devez sélectionner au moins une statistique, un carburant, <br> département ou une région pour pouvoir générer un rapport.</div></html>",
-                            SwingConstants.CENTER);
-                    // Ajouter le JLabel au topPanel
-                    topPanel.add(label);
-                    // Ajouter le topPanel à la position nord du panel principal
-                    panel.add(topPanel, BorderLayout.NORTH);
-                    JPanel closePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                    // bouton pour fermer la fenêtre
-                    JButton close = new JButton("Fermer");
-                    closePanel.setPreferredSize(new Dimension(150, 50));
-                    close.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            message.getFenetre().dispose();
-                        }
-                    });
-                    closePanel.add(close);
-                    panel.add(closePanel, BorderLayout.SOUTH);
+                            "Vous devez sélectionner au moins une statistique, un carburant, un département ou une région pour pouvoir générer un rapport");
+                    // Ajoute le label à la fenêtre
+                    message.getFenetre().getContentPane().add(label);
 
-                    // Ajouter le panel principal à la fenêtre
-                    message.getFenetre().add(panel);
+                    label.setBounds(1, 2, 700 - 100, 225 - 150);
                 }
             }
         });
@@ -390,8 +374,8 @@ public class Onglet {
      * 
      * @return L'état d'affichage des stations.
      */
-    public static Boolean getIsSationsAffichees() {
-        return isSationsAffichees;
+    public static Boolean getIsStationsAffichees() {
+        return isStationsAffichees;
     }
 
     /**
