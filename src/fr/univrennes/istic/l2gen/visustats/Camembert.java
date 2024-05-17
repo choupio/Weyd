@@ -107,9 +107,6 @@ public class Camembert implements IForme {
         if (proportion <= 0 || proportion > 1) {
             throw new IllegalArgumentException(
                     "La proportion doit être strictement supérieure à 0 et inférieur ou égale à 1.");
-        } else if (proportion == 1) {
-            Cercle cercle = new Cercle(centre().x(), centre().y(), rayon);
-            return cercle;
         } else {
             double angleSecteur = 360 * proportion;
             Secteur secteur = new Secteur(centre, rayon, cmptAngle, angleSecteur);
