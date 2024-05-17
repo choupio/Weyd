@@ -29,16 +29,28 @@ public class TraitementCases {
     }
 
     public void traitement() {
-        ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(entry -> entry.getValue())
+        ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList()));
+
+        ArrayList<String> regListe = new ArrayList<>(isCheckedReg.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList()));
+
+        ArrayList<String> carbListe = new ArrayList<>(isCheckedCarb.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue())
                 .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        ArrayList<String> regListe = new ArrayList<>(isCheckedReg.entrySet().stream().filter(entry -> entry.getValue())
-                .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        ArrayList<String> carbListe = new ArrayList<>(
-                isCheckedCarb.entrySet().stream().filter(entry -> entry.getValue())
-                        .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        ArrayList<String> servListe = new ArrayList<>(
-                isCheckedServ.entrySet().stream().filter(entry -> entry.getValue())
-                        .map(entry -> entry.getKey()).collect(Collectors.toList()));
+
+        ArrayList<String> servListe = new ArrayList<>(isCheckedServ.entrySet()
+                .stream().filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList()));
+
         StationAPI api = new StationAPI();
 
         /**
@@ -66,7 +78,7 @@ public class TraitementCases {
         }
 
         // Génération des diagrammes de prix moyen, médians et minimum
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             HashMap<String, HashMap<String, Double>> donnes = new HashMap<>();
 
             // Initialisation du titre du diagramme
@@ -82,6 +94,12 @@ public class TraitementCases {
             } else if (i == 2 && isCheckedStat.get("Prix minimum")) { // Prix min
                 donnes = api.getPrixMin();
                 titre = "Prix minimum";
+            } else if (i == 3 && isCheckedStat.get("Nombre de stations proposant ce carburant")) {
+                donnes = api.getNbStationProposeCarb();
+                titre = "Nombre de stations proposant ce carburant";
+            } else if (i == 4 && isCheckedStat.get("Nombre de stations proposant ces services")) {
+                donnes = api.getNbStationProposeServices();
+                titre = "Nombre de stations proposant ces services";
             }
 
             if (!donnes.isEmpty()) {

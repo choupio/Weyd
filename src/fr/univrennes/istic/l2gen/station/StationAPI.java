@@ -24,7 +24,7 @@ public class StationAPI {
     private HashMap<String, HashMap<String, List<Double>>> filtre; /*
                                                                     * de la forme {Carburant : Granularité : List<Prix>}
                                                                     */
-    private HashMap<String, HashMap<String, HashMap<String, Integer>>> NbStationProposeServices;
+    private HashMap<String, HashMap<String, Integer>> NbStationProposeServices;
 
     public StationAPI() {
         // Créez un ObjectMapper
@@ -283,15 +283,23 @@ public class StationAPI {
         return prixMinParCarbParGranu;
     }
 
-    /*
+    /**
      * Rend le nombre de station qui proposes des services spécifques par carburant
      * et par granularité
      * 
-     * @return hashmap de la forme {carburant : {Granularité : {service :
-     * nombre_de_station_qui_propose_le_serice}}}
+     * @return hashmap de la forme {Granularité : {service :
+     *         nombre_de_station_qui_propose_le_serice}}
      */
-    public HashMap<String, HashMap<String, HashMap<String, Integer>>> getNbStationProposeServices() {
-        return NbStationProposeServices;
+    public HashMap<String, HashMap<String, Double>> getNbStationProposeServices() {
+        HashMap<String, HashMap<String, Double>> nouveau = new HashMap<>();
+        for (String granularite : NbStationProposeServices.keySet()) {
+            nouveau.put(granularite, new HashMap<>());
+            for (String service : NbStationProposeServices.get(granularite).keySet()) {
+                nouveau.get(granularite).put(service,
+                        Double.valueOf(NbStationProposeServices.get(granularite).get(service)));
+            }
+        }
+        return nouveau;
     }
 
     /**
@@ -299,10 +307,14 @@ public class StationAPI {
      * 
      * @return une HashMap de type {Carburant : {Granularité : nombre}}
      */
-    public HashMap<String, HashMap<String, Integer>> getNbStationProposeCarb() {
-        HashMap<String, HashMap<String, Integer>> nbStationProposeCarb = new HashMap<>();
+    public HashMap<String, HashMap<String, Double>> getNbStationProposeCarb() {
+        HashMap<String, HashMap<String, Double>> nbStationProposeCarb = new HashMap<>();
         for (String carb : filtre.keySet()) {
-
+            nbStationProposeCarb.put(carb, new HashMap<>());
+            for (String granularite : filtre.get(carb).keySet()) {
+                nbStationProposeCarb.get(carb).put(granularite,
+                        Double.valueOf(filtre.get(carb).get(granularite).size()));
+            }
         }
         return nbStationProposeCarb;
     }
@@ -327,21 +339,25 @@ public class StationAPI {
                     && departement.contains(nomDep)) {
                 if (!filtre.keySet().contains(nomCarb)) {
                     filtre.put(nomCarb, new HashMap<>());
-                    NbStationProposeServices.put(nomCarb, new HashMap<>());
                 }
 
                 if (!filtre.get(nomCarb).keySet().contains(nomDep)) {
                     filtre.get(nomCarb).put(nomDep, new ArrayList<>());
-                    NbStationProposeServices.get(nomCarb).put(nomDep, new HashMap<>());
-                    services.stream().forEach(x -> NbStationProposeServices.get(nomCarb).get(nomDep).put(x, 0));
                 }
+                if (!NbStationProposeServices.containsKey(nomDep)) {
+                    NbStationProposeServices.put(nomDep, new HashMap<>());
+                    services.stream().forEach(x -> NbStationProposeServices.get(nomDep).put(x, 0));
+                }
+
                 filtre.get(nomCarb).get(nomDep).add(station.getPrix_valeur());
                 try {
                     station.getServices_service().stream().forEach(service -> {
                         if (services.contains(service)) {
-                            NbStationProposeServices.get(nomCarb)
+                            NbStationProposeServices
                                     .get(nomDep)
-                                    .put(service, NbStationProposeServices.get(nomCarb).get(nomDep).get(service) + 1);
+                                    .put(service, NbStationProposeServices
+                                            .get(nomDep)
+                                            .get(service) + 1);
                         }
                     });
                 } catch (Exception e) {
@@ -374,22 +390,26 @@ public class StationAPI {
                     && region.contains(nomReg)) {
                 if (!filtre.keySet().contains(nomCarb)) {
                     filtre.put(nomCarb, new HashMap<>());
-                    NbStationProposeServices.put(nomCarb, new HashMap<>());
+                }
+
+                if (!NbStationProposeServices.containsKey(nomReg)) {
+                    NbStationProposeServices.put(nomReg, new HashMap<>());
+                    services.stream().forEach(x -> NbStationProposeServices.get(nomReg).put(x, 0));
                 }
 
                 if (!filtre.get(nomCarb).keySet().contains(nomReg)) {
                     filtre.get(nomCarb).put(nomReg, new ArrayList<>());
-                    NbStationProposeServices.get(nomCarb).put(nomReg, new HashMap<>());
-                    services.stream().forEach(x -> NbStationProposeServices.get(nomCarb).get(nomReg).put(x, 0));
                 }
                 filtre.get(nomCarb).get(nomReg).add(station.getPrix_valeur());
 
                 try {
                     station.getServices_service().stream().forEach(service -> {
                         if (services.contains(service)) {
-                            NbStationProposeServices.get(nomCarb)
+                            NbStationProposeServices
                                     .get(nomReg)
-                                    .put(service, NbStationProposeServices.get(nomCarb).get(nomReg).get(service) + 1);
+                                    .put(service, NbStationProposeServices
+                                            .get(nomReg)
+                                            .get(service) + 1);
                         }
                     });
                 } catch (Exception e) {

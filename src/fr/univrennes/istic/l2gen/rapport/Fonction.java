@@ -34,7 +34,7 @@ public class Fonction {
             "<style>\n" +
             "  body {\n" +
             "    background-color: #f0f0f0;\n" +
-            "    font-family: Arial, sans-serif;\n" +
+            "    font-family: 'Times New Roman', serif;\n" + // Change the font here
             "  }\n" +
             "  svg {\n" +
             "    display: block;\n" +
@@ -43,11 +43,18 @@ public class Fonction {
             "    height: 100%;\n" +
             "    background-color: white; \n" +
             "  }\n" +
+            "  h2 {\n" +
+            "    position: down;\n" +
+            "    bottom: 150px;\n" +
+            "    left: 10px;\n" +
+            "  }\n" +
             "  form {\n" +
             "    display: flex;\n" +
             "    flex-direction: column;\n" +
-            "    width: 300px;\n" +
-            "    margin: auto;\n" +
+            "    width: 200px;\n" +
+            "    position: down; \n" +
+            "    bottom: 10px; \n"+
+            "    left: 10px; \n"+
             "  }\n" +
             "  input, textarea {\n" +
             "    margin-bottom: 10px;\n" +
@@ -55,9 +62,17 @@ public class Fonction {
             "</style>\n" +
             "</head>\n" + 
             "<body>\n"+
-            "<svg id=\"mysvg\" viewBox=\"0 0 2000 10000\">\n"+
+            "<svg id=\"mysvg\" viewBox=\"0 0 2500 2000\">\n"+
             svgContent +
             "\n</svg>\n"+
+            "<h2>Laissez Nous votre avis</h2>\n" +
+            "<form>\n" +
+            "  <label for=\"name\">Mail:</label><br>\n" +
+            "  <input type=\"text\" id=\"name\" name=\"name\"><br>\n" +
+            "  <label for=\"review\">Votre avis</label><br>\n" +
+            "  <textarea id=\"review\" name=\"review\"></textarea><br>\n" +
+            "  <input type=\"submit\" value=\"Soumettre\">\n" +
+            "</form>\n" +
             "</body>\n" +
             "</html>";
 
