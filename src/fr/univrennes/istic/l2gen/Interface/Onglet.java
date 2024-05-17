@@ -31,7 +31,7 @@ public class Onglet {
     /**
      * Boolean pour indiquer si les stations sont affichées.
      */
-    private static Boolean isSationsAffichees = false;
+    private static Boolean isStationsAffichees = false;
 
     /**
      * CheckBox pour afficher les stations.
@@ -54,7 +54,6 @@ public class Onglet {
      */
     private static JPanel[] diag = new JPanel[5];
 
-   
     /**
      * Constructeur de la classe Onglet.
      * Initialise les onglets avec les titres spécifiés et les composants associés.
@@ -86,7 +85,6 @@ public class Onglet {
         onglet3.setPreferredSize(new Dimension(WIDTH, HEIGTH));
         this.onglets.addTab(titreOnglet3, onglet3);
 
-        
         // Création d'un sous panel pour l'onglet 2
         JPanel onglet21 = new JPanel();
         onglet21.setSize((int) onglet2.getPreferredSize().getWidth(), (int) onglet2.getPreferredSize().getHeight());
@@ -142,9 +140,9 @@ public class Onglet {
         afficheStation.addItemListener(new ItemListener() { // événement de l'affichage des stations
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    isSationsAffichees = true;
+                    isStationsAffichees = true;
                 } else if (e.getStateChange() == ItemEvent.DESELECTED) {
-                    isSationsAffichees = false;
+                    isStationsAffichees = false;
                 }
             }
         });
@@ -240,8 +238,9 @@ public class Onglet {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
-                //mettre ici la fonction crée pour verifier si y'a au moins une case selectionner
-                if (test.isAnyChecked()== true){
+                // mettre ici la fonction crée pour verifier si y'a au moins une case
+                // selectionner
+                if (test.isAnyChecked() == true) {
                     test.traitement();
                     Fonction.createHTMLFile("Groupe.svg", "Rapport des selections", "rapport");
                     String filePath = "rapport.html";
@@ -258,8 +257,7 @@ public class Onglet {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                }
-                else{
+                } else {
                     CreationFenetre message = new CreationFenetre("Erreur");
                     message.getFenetre().setSize(700, 225);
                     // Calcule les coordonnées x et y pour centrer la fenêtre
@@ -268,11 +266,12 @@ public class Onglet {
                     int y = (screenSize.height - message.getFenetre().getHeight()) / 2;
                     message.getFenetre().setLocation(x, y);
                     // Crée un label avec le texte désiré
-                    JLabel label = new JLabel("Vous devez sélectionner au moins une statistique, un carburant, un département ou une région pour pouvoir générer un rapport");
+                    JLabel label = new JLabel(
+                            "Vous devez sélectionner au moins une statistique, un carburant, un département ou une région pour pouvoir générer un rapport");
                     // Ajoute le label à la fenêtre
                     message.getFenetre().getContentPane().add(label);
-                    
-                    label.setBounds(1, 2, 700-100, 225-150);
+
+                    label.setBounds(1, 2, 700 - 100, 225 - 150);
                 }
             }
         });
@@ -371,8 +370,8 @@ public class Onglet {
      * 
      * @return L'état d'affichage des stations.
      */
-    public static Boolean getIsSationsAffichees() {
-        return isSationsAffichees;
+    public static Boolean getIsStationsAffichees() {
+        return isStationsAffichees;
     }
 
     /**

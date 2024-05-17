@@ -21,7 +21,7 @@ public class TraitementCases {
     private HashMap<String, Boolean> isCheckedCarb = Carburant.getIsCheckedCarb();
     private HashMap<String, Boolean> isCheckedStat = Statistique.getIsCheckedStat();
     private HashMap<String, Boolean>[] isCheckedDiag = Diag.getIsCheckedDiag();
-    private Boolean isCheckedPos = Onglet.getIsSationsAffichees();
+    private Boolean isCheckedPos = Onglet.getIsStationsAffichees();
     private HashMap<String, Boolean> isCheckedReg = Region.getIsCheckedReg();
 
     public TraitementCases() {
@@ -164,7 +164,8 @@ public class TraitementCases {
     public boolean isAnyChecked() {
         if (isCheckedStat.values().stream().anyMatch(Boolean::booleanValue)) {
             if (isCheckedCarb.values().stream().anyMatch(Boolean::booleanValue)) {
-                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue) || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
+                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
+                        || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
                     return true;
                 }
             }
