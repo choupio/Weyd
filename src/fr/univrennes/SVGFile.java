@@ -31,8 +31,9 @@ public class SVGFile {
      * @param nomFigure le nom du fichier sans ".svg", ex : si nomFigure = "Cercle"
      *                  alors le fichier sera "Cercle.svg"
      */
-    public static String contentSvgFile(IForme forme, String nomFigure) {
-        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n";
+    public static String contentSvgFile(IForme forme) {
+        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\" ";
+        svgContent += "viewBox=\"0 0 " + forme.largeur() + " " + forme.hauteur() + "\" >\n";
         svgContent += forme.enSVG();
         svgContent += "</svg>";
         return svgContent;
