@@ -3,6 +3,7 @@ package fr.univrennes.istic.l2gen.Interface;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -189,6 +190,7 @@ public class Onglet {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
                 test.traitement();
+
                 try {
                     // Charger le fichier SVG
                     FileInputStream svgFile = new FileInputStream("Groupe.svg");
@@ -205,6 +207,8 @@ public class Onglet {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+                Panel_Image previm =new Panel_Image("prévisua.png");
+                previ.add(previm);
                 // previ.setVisible(true);
             }
         });
@@ -237,12 +241,12 @@ public class Onglet {
         // Action bouton
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                TraitementCases test = new TraitementCases();
+                TraitementCases traitement = new TraitementCases();
                 // mettre ici la fonction crée pour verifier si y'a au moins une case
                 // selectionner
-                if (test.isAnyChecked() == true) {
-                    test.traitement();
-                    Fonction.createHTMLFile("Groupe.svg", "Rapport des selections", "rapport");
+                if (traitement.isAnyChecked() == true) {
+                    ArrayList<String> listeSVG = traitement.traitement();
+                    Fonction.createHTMLFile(listeSVG, "Rapport des selections", "rapport");
                     String filePath = "rapport.html";
                     try {
                         // Créer un objet File à partir du chemin du fichier HTML
