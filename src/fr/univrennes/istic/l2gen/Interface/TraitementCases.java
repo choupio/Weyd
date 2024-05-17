@@ -162,7 +162,7 @@ public class TraitementCases {
     }
 
     public boolean isAnyChecked() {
-        if (isCheckedStat.containsKey("Nombre de stations proposant ces services")) {
+        if (isCheckedStat.get("Nombre de stations proposant ces services").equals(true)) {
             if (isCheckedServ.values().stream().anyMatch(Boolean::booleanValue)) {
                 if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
                         || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
