@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
@@ -208,12 +209,23 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public double hauteur() {
+        Groupe groupe = new Groupe(); // initialisation du groupe
+
+        // Ajout des camemberts dans groupe
         for (Camembert camembert : groupecamembert) {
-            if (camembert.hauteur() > 0) {
-                hauteur = camembert.hauteur();
-            }
+            groupe.ajouter(camembert);
         }
-        return hauteur;
+
+        // Ajout des légendes
+        Texte legende = new Texte(390 + 20, 200+15 , 14, "test");
+        groupe.ajouter(legende);
+
+        // Ajout du titre
+        double titley = 50;
+        double titlex = this.centre().x();
+        Texte titre = new Texte(titlex, titley, 30, getNom());
+        groupe.ajouter(titre);
+        return groupe.hauteur();
     }
 
     /**
