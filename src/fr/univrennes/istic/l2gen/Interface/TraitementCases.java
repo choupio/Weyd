@@ -121,7 +121,7 @@ public class TraitementCases {
                 } else {
                     diagramme.legender(regListe.toArray(new String[0]));
                 }
-                for (String carburant : carbListe) {
+                for (String carburant : donnes.keySet()) {
                     diagramme.ajouterDonnees(carburant,
                             donnes.get(carburant).values().stream().mapToDouble(Double::doubleValue).toArray());
                 }
