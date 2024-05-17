@@ -10,6 +10,10 @@ public class Panel_Image extends JPanel {
     private BufferedImage image;
 
     public Panel_Image(String chemin) {
+        /* setLayout(new BorderLayout());
+        ImageIcon icon =new ImageIcon(chemin);
+        JLabel label = new JLabel(icon);
+        add(label,BorderLayout.CENTER); */
         try {
             image = ImageIO.read(new File(chemin));
         } catch (IOException ex) {
