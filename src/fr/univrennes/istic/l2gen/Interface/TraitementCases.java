@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.GroupLayout.Group;
 
+import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.station.StationAPI;
@@ -132,8 +133,9 @@ public class TraitementCases {
                 diagramme.colorier(couleurs.toArray(new String[0]));
                 diagramme.agencer();
                 statistiques.ajouter(diagramme);
+                svgContent.add(SVGFile.contentSvgFile(diagramme));
+                System.out.println(SVGFile.contentSvgFile(diagramme));
             }
-
         }
 
         // Gestion du nombre de stations qui proposent chaque carburants
