@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
+import fr.univrennes.istic.l2gen.geometrie.Cercle;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Secteur;
@@ -102,10 +103,13 @@ public class Camembert implements IForme {
      * @return Une référence à l'instance de la forme géométrique, pour permettre
      *         les opérations en chaîne.
      */
-    public Camembert ajouterSecteur(String description, double proportion) {
+    public IForme ajouterSecteur(String description, double proportion) {
         if (proportion <= 0 || proportion > 1) {
             throw new IllegalArgumentException(
                     "La proportion doit être strictement supérieure à 0 et inférieur ou égale à 1.");
+        } else if (proportion == 1) {
+            Cercle cercle = new Cercle(centre().x(), centre().y(), rayon);
+            return cercle;
         } else {
             double angleSecteur = 360 * proportion;
             Secteur secteur = new Secteur(centre, rayon, cmptAngle, angleSecteur);
@@ -195,7 +199,7 @@ public class Camembert implements IForme {
     @Override
     public IForme deplacer(double dx, double dy) {
         this.centre.plus(dx, dy);
-        for(Secteur secteur : secteurs){
+        for (Secteur secteur : secteurs) {
             secteur.deplacer(dx, dy);
         }
         return this;
@@ -343,7 +347,6 @@ public class Camembert implements IForme {
         return secteurs.size();
     }
 
-    
     public Point getCentre() {
         return centre;
     }
