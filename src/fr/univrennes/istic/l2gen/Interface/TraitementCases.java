@@ -166,7 +166,14 @@ public class TraitementCases {
     }
 
     public boolean isAnyChecked() {
-        if (isCheckedStat.values().stream().anyMatch(Boolean::booleanValue)) {
+        if (isCheckedStat.containsKey("Nombre de stations proposant ces services")) {
+            if (isCheckedServ.values().stream().anyMatch(Boolean::booleanValue)) {
+                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
+                        || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
+                    return true;
+                }
+            }
+        } else if (isCheckedStat.values().stream().anyMatch(Boolean::booleanValue)) {
             if (isCheckedCarb.values().stream().anyMatch(Boolean::booleanValue)) {
                 if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
                         || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
