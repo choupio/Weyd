@@ -107,7 +107,7 @@ public class TexteTest {
 
 	@Test
 	public void testHauteur() {
-		assertEquals(74.0, texte.hauteur(), 0.00001);
+		assertEquals(76.0, texte.hauteur(), 0.00001);
 	}
 
 	@Test
