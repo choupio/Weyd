@@ -277,6 +277,18 @@ public class Onglet {
                     topPanel.add(label);
                     // Ajouter le topPanel à la position nord du panel principal
                     panel.add(topPanel, BorderLayout.NORTH);
+                    JPanel closePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                    // bouton pour fermer la fenêtre
+                    JButton close = new JButton("Fermer");
+                    closePanel.setPreferredSize(new Dimension(150, 50));
+                    close.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            message.getFenetre().dispose();
+                        }
+                    });
+                    closePanel.add(close);
+                    panel.add(closePanel, BorderLayout.SOUTH);
+
                     // Ajouter le panel principal à la fenêtre
                     message.getFenetre().add(panel);
                 }
