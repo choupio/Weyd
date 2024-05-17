@@ -35,8 +35,7 @@ public class Fonction {
                 "  svg {\n" +
                 "    display: block;\n" +
                 "    margin: 0;\n" +
-                "    width:  120%;\n" +
-                "    height: 100%;\n" +
+                "    width:  25%;\n" +
                 "    background-color: white; \n" +
                 "  }\n" +
                 "  h2 {\n" +
