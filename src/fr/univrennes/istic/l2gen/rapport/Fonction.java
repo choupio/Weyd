@@ -62,8 +62,8 @@ public class Fonction {
                 "    position: fixed;\n" +
                 "    bottom: 0;\n" +
                 "    right: 0;\n" +
-                "    width: 100px;\n" +
-                "    height: 100px;\n" +
+                "    width: 140px;\n" +
+                "    height: 140px;\n" +
                 "  }\n" +
                 "</style>\n" +
                 "</head>\n" +
