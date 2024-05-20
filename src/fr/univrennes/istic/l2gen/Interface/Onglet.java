@@ -371,7 +371,7 @@ public class Onglet {
     }
 
     /**
-     * Méthode pour récupérer l'état d'affichage des stations.
+     * Méthode pour récupérer l'état d'affichage des stations les moins chère.
      * 
      * @return L'état d'affichage des stations.
      */
