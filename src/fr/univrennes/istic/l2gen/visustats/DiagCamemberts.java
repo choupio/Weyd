@@ -221,13 +221,15 @@ public class DiagCamemberts implements IDataVisualiseur {
         // Ajout des légendes
         Texte legende = new Texte(390 + 20, 200 + 15, 14, "test");
         groupe.ajouter(legende);
+        Rectangle rectangle = new Rectangle(200 - 40, 390 - 10, 20, 10);
+        groupe.ajouter(rectangle);
 
         // Ajout du titre
         double titley = 50;
         double titlex = this.centre().x();
         Texte titre = new Texte(titlex, titley, 30, getNom());
         groupe.ajouter(titre);
-        return groupe.hauteur();
+        return groupe.hauteur() + 110;
     }
 
     /**
@@ -238,10 +240,25 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public double largeur() {
-        for (Camembert camembert : groupecamembert) {
-            largeur += camembert.largeur();
+        Groupe groupe = new Groupe(); // initialisation du groupe
+
+        // Ajout des légendes
+        for (IForme forme : diagrammeGroupe.getListFormes()) {
+            groupe.ajouter(forme);
         }
-        return largeur;
+
+        // Ajout des camemberts dans groupe
+        for (Camembert camembert : groupecamembert) {
+            groupe.ajouter(camembert);
+        }
+
+        // Ajout du titre
+        double titley = 50;
+        double titlex = this.centre().x();
+        Texte titre = new Texte(titlex, titley, 30, getNom());
+        groupe.ajouter(titre);
+
+        return groupe.largeur() + 110;
     }
 
     /**
