@@ -17,10 +17,11 @@ public class StationAPI {
     private HashMap<String, List<Station>> stationsParReg;
     private HashMap<String, List<Station>> stationsParDep;
     private HashSet<String> services;
-    private HashMap<String, HashMap<String, List<Double>>> filtre; /*
-                                                                    * de la forme {Carburant : Granularité : List<Prix>}
-                                                                    */
+    private HashMap<String, HashMap<String, List<Double>>> filtre; // de la forme {Carburant : Granularité : List<Prix>}
     private HashMap<String, HashMap<String, Integer>> NbStationProposeServices;
+    private HashMap<String, HashMap<String, StationParCarb>> stationMoinsChere; // pour répertorier les stations les
+                                                                                // moins chère de la forme {Granularité
+                                                                                // : Carburant : stationParCarb}
 
     public StationAPI() {
         // Créez un ObjectMapper
@@ -78,6 +79,8 @@ public class StationAPI {
                 // Change le String unicode en normal
                 station.setReg_name(decodeUnicode(station.getReg_name()));
                 station.setDep_name(decodeUnicode(station.getDep_name()));
+                station.setAdresse(decodeUnicode(station.getAdresse()));
+                station.setVille(decodeUnicode(station.getVille()));
 
                 if (!stationsMap.containsKey(station.getId())) {
                     stationsMap.put(station.getId(),
@@ -280,6 +283,24 @@ public class StationAPI {
     }
 
     /**
+     * Donne une hashMap pour avoir les adresses des stations qui propose le
+     * carburant le moins chère par granularité.
+     * 
+     * @return une HashMap de la forme {Granularité : {carburant : adresse}}
+     */
+    public HashMap<String, HashMap<String, String>> getAdresseStationMoinsChere() {
+        HashMap<String, HashMap<String, String>> adresseStationMoinsChere = new HashMap<>();
+        for (String granu : stationMoinsChere.keySet()) {
+            adresseStationMoinsChere.put(granu, new HashMap<>());
+            for (String carburant : stationMoinsChere.get(granu).keySet()) {
+                StationParCarb station = stationMoinsChere.get(granu).get(carburant);
+                adresseStationMoinsChere.get(granu).put(carburant, station.getAdresse() + " " + station.getVille());
+            }
+        }
+        return adresseStationMoinsChere;
+    }
+
+    /**
      * Rend le nombre de station qui proposes des services spécifques par carburant
      * et par granularité
      * 
@@ -326,6 +347,7 @@ public class StationAPI {
             List<String> services) {
 
         NbStationProposeServices = new HashMap<>();
+        stationMoinsChere = new HashMap<>();
 
         filtre = new HashMap<>();
         for (StationParCarb station : stationsParCarb) {
@@ -343,6 +365,15 @@ public class StationAPI {
                 if (!NbStationProposeServices.containsKey(nomDep)) {
                     NbStationProposeServices.put(nomDep, new HashMap<>());
                     services.stream().forEach(x -> NbStationProposeServices.get(nomDep).put(x, 0));
+
+                    stationMoinsChere.put(nomDep, new HashMap<>());
+                }
+
+                if (!stationMoinsChere.get(nomDep).containsKey(nomCarb)) {
+                    stationMoinsChere.get(nomDep).put(nomCarb, station);
+                }
+                if (station.getPrix_valeur() < stationMoinsChere.get(nomDep).get(nomCarb).getPrix_valeur()) {
+                    stationMoinsChere.get(nomDep).put(nomCarb, station);
                 }
 
                 filtre.get(nomCarb).get(nomDep).add(station.getPrix_valeur());
@@ -377,6 +408,8 @@ public class StationAPI {
             List<String> services) {
 
         NbStationProposeServices = new HashMap<>(); // initialisation
+        stationMoinsChere = new HashMap<>();
+
         filtre = new HashMap<>();
         for (StationParCarb station : stationsParCarb) {
             String nomCarb = station.getPrix_nom();
@@ -390,8 +423,16 @@ public class StationAPI {
                 if (!NbStationProposeServices.containsKey(nomReg)) {
                     NbStationProposeServices.put(nomReg, new HashMap<>());
                     services.stream().forEach(x -> NbStationProposeServices.get(nomReg).put(x, 0));
+
+                    stationMoinsChere.put(nomReg, new HashMap<>());
                 }
 
+                if (!stationMoinsChere.get(nomReg).containsKey(nomCarb)) {
+                    stationMoinsChere.get(nomReg).put(nomCarb, station);
+                }
+                if (station.getPrix_valeur() < stationMoinsChere.get(nomReg).get(nomCarb).getPrix_valeur()) {
+                    stationMoinsChere.get(nomReg).put(nomCarb, station);
+                }
                 if (!filtre.get(nomCarb).keySet().contains(nomReg)) {
                     filtre.get(nomCarb).put(nomReg, new ArrayList<>());
                 }

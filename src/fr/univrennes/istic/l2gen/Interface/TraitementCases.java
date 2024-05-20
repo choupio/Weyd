@@ -87,6 +87,9 @@ public class TraitementCases {
             // Initialisation du titre du diagramme
             String titre = "";
 
+            // Pour ajouter ou non les positions des stations les moins chères
+            Boolean stationMoinChere = false;
+
             // Bloc pour choisir les statistques à représenter
             if (i == 0 && isCheckedStat.get("Prix moyen")) { // Prix moyen
                 donnes = api.getPrixMoyen();
@@ -97,6 +100,7 @@ public class TraitementCases {
             } else if (i == 2 && isCheckedStat.get("Prix minimum")) { // Prix min
                 donnes = api.getPrixMin();
                 titre = "Prix minimum";
+                stationMoinChere = Onglet.getIsStationsAffichees();
             } else if (i == 3 && isCheckedStat.get("Nombre de stations proposant ce carburant")) {
                 donnes = api.getNbStationProposeCarb();
                 titre = "Nombre de stations proposant ce carburant";
@@ -135,16 +139,23 @@ public class TraitementCases {
                 diagramme.agencer();
                 statistiques.ajouter(diagramme);
                 svgContent.add(SVGFile.contentSvgFile(diagramme));
+
+                if (stationMoinChere) {
+                    HashMap<String, HashMap<String, String>> adresseStationMoinsChere = api
+                            .getAdresseStationMoinsChere();
+
+                    for (String granu : adresseStationMoinsChere.keySet()) {
+                        for (String carburant : adresseStationMoinsChere.get(granu).keySet()) {
+                            String adresse = adresseStationMoinsChere.get(granu).get(carburant);
+                            String lien = "https://www.google.com/maps/place/" + adresse.replace(" ", "+");
+                            svgContent.add("<a href=\"" + lien + "\" >" + adresse + "</a></br>");
+                        }
+
+                    }
+                }
             }
         }
 
-        // Gestion du nombre de stations qui proposent chaque carburants
-        if (isCheckedStat.get("Nombre de stations proposant ce carburant")) {
-
-        }
-
-        statistiques.empilerElements(Alignement.HAUT, 350, 50);
-        statistiques.createSvgFile();
         return svgContent;
     }
 
