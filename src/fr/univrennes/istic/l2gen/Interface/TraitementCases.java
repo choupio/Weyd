@@ -2,6 +2,7 @@ package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -118,11 +119,13 @@ public class TraitementCases {
                         }
                     }
                 }
-                if (depOuReg) {
-                    diagramme.legender(depListe.toArray(new String[0]));
-                } else {
-                    diagramme.legender(regListe.toArray(new String[0]));
+
+                HashSet<String> legendes = new HashSet<>();
+                for (String string : donnes.keySet()) {
+                    legendes.addAll(donnes.get(string).keySet());
                 }
+                diagramme.legender(legendes.toArray(new String[0]));
+
                 for (String carburant : donnes.keySet()) {
                     diagramme.ajouterDonnees(carburant,
                             donnes.get(carburant).values().stream().mapToDouble(Double::doubleValue).toArray());
