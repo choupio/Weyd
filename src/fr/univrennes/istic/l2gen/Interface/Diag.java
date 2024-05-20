@@ -1,8 +1,10 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import java.awt.event.*;
+import java.awt.*;
 import java.util.HashMap;
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 
 /**
  * Cette classe représente un panneau permettant de sélectionner différents
@@ -64,6 +66,9 @@ public class Diag {
         // Création du JPanel avec un BoxLayout vertical
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        TitledBorder border = BorderFactory.createTitledBorder("Diagrammes");
+        border.setTitleFont(new Font("SansSerif", Font.BOLD, 18));
+        this.panel.setBorder(border);
 
         for (int i = 0; i < 5; i += 1) {
             String[] diagrammes = new String[] { "camembert", "barres", "colonnes" };

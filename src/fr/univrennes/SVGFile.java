@@ -24,4 +24,19 @@ public class SVGFile {
             System.err.println("Erreur lors de la création du fichier : " + e.getMessage());
         }
     }
+
+    /**
+     * 
+     * @param forme     la forme a créer en svg
+     * @param nomFigure le nom du fichier sans ".svg", ex : si nomFigure = "Cercle"
+     *                  alors le fichier sera "Cercle.svg"
+     */
+    public static String contentSvgFile(IForme forme) {
+        String svgContent = "<svg xmlns=\"http://www.w3.org/2000/svg\" ";
+        svgContent += "viewBox=\"0 0 " + forme.largeur() + " " + forme.hauteur() + "\" >\n";
+        svgContent += forme.enSVG();
+        svgContent += "</svg>";
+        return svgContent;
+    }
+
 }

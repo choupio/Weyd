@@ -1,10 +1,12 @@
 package fr.univrennes.istic.l2gen.Interface;
 
 import fr.univrennes.istic.l2gen.station.StationAPI;
+import java.awt.event.*;
 import java.awt.*;
+
 import com.formdev.flatlaf.FlatLightLaf;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+
+import javax.swing.*;
 
 /**
  * Cette classe représente l'interface d'accueil de l'application.
@@ -36,28 +38,15 @@ public class Accueil {
             e.printStackTrace();
         }
 
-        ///////// Création police de toute l'interface /////////
-        Font style1 = new Font("SansSerif", Font.PLAIN, 18);
-        Font style2 = new Font("SansSerif", Font.BOLD, 18);
-        // Changement de la police pour tous les composants
-        UIManager.put("Button.font", style2);
+        ///////// Création police de l'accueil /////////
+        Font style1 = new Font("SansSerif", Font.BOLD, 25);
+        Font style2 = new Font("SansSerif", Font.BOLD, 30);
+        // Changement de la police pour les composants
+        UIManager.put("Button.font", style1);
         UIManager.put("Label.font", style2);
-        UIManager.put("CheckBox.font", style1);
-        UIManager.put("RadioButton.font", style2);
-        UIManager.put("ComboBox.font", style1);
-        UIManager.put("TextField.font", style2);
-        UIManager.put("TextArea.font", style2);
-        UIManager.put("List.font", style2);
-        UIManager.put("Table.font", style2);
-        UIManager.put("TabbedPane.font", style2);
-        UIManager.put("MenuBar.font", style2);
-        UIManager.put("Menu.font", style2);
-        UIManager.put("MenuItem.font", style2);
-        UIManager.put("PopupMenu.font", style2);
-        UIManager.put("OptionPane.font", style2);
 
         ///////// Création de la fenêtre /////////
-        CreationFenetre fenetre = new CreationFenetre("LES COURS DU CARBURANT EN FRANCE");
+        CreationFenetre fenetre = new CreationFenetre("Weyd Accueil");
 
         ///////// Taille de la fenêtre /////////
         // On récupère la taille de l'écran
@@ -66,22 +55,99 @@ public class Accueil {
         Rectangle tailleUtilisable = tailleEcran.getMaximumWindowBounds();
         fenetre.getFenetre().setSize((int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
 
-        ///////// Ajout Onglets /////////
-        Onglet onglets = new Onglet("Accueil", "Statistiques", "Exemples", (int) tailleUtilisable.getWidth(),
-                (int) tailleUtilisable.getHeight());
-        fenetre.getFenetre().add(onglets.GetPanel());
-
-        ///////// Ajout Image /////////
-        fenetre.ajouterImage(onglets.GetOnglet1(),
+        ///////// Ajout d'image à l'Accueil /////////
+        JPanel accueil = new JPanel();
+        fenetre.ajouterImage(accueil,
                 "ressources/ImagesInterface/imaccueil.jpg",
                 (int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
+        accueil.setBounds(0, 0, (int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
 
-        fenetre.ajouterImage(onglets.GetOnglet3(), "ressources/ImagesInterface/ImageTest.png",
-                1000, (int) 700);
+        ///////// Bouton qui créer les onglets Statistique et Exemples /////////
+        JButton commencer = new JButton("Commencer");
+        commencer.setPreferredSize(new Dimension(300, 100));
+        commencer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Ouerture d'une nouvelle fenêtre
+                CreationFenetre appli = new CreationFenetre("Weyd");
+                // Fermeture de la fenêtre d'accueil
+                fenetre.getFenetre().dispose();
+                // Taille de la fenêtre
+                appli.getFenetre().setSize((int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
+                // Ajout Onglets
+                Onglet onglets = new Onglet("Statistiques", "Exemples", (int) tailleUtilisable.getWidth(),
+                        (int) tailleUtilisable.getHeight());
 
-        fenetre.ajouterImage(onglets.GetPanelPrevi(), "ressources/ImagesInterface/rapport.png",onglets.GetPanelPrevi().getWidth(), onglets.GetPanelPrevi().getHeight());
+                appli.getFenetre().add(onglets.GetPanel());
 
-        fenetre.getFenetre().pack();
+                ///////// Ajout Image /////////
+                // Création d'un GridLayout avec deux colonnes
+                GridLayout gridLayout = new GridLayout(2, 2);
+                onglets.GetOnglet2().setLayout(gridLayout);
+
+                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple1.png",
+                        329, (int) 632);
+
+                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple2.png",
+                        326, (int) 654);
+
+                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple3.png",
+                        491, (int) 619);
+
+                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple4.png",
+                        608, (int) 540);
+
+                /*
+                 * fenetre.ajouterImage(onglets.GetPanelPrevi(), "prévisua.png",
+                 * onglets.GetPanelPrevi().getWidth(),
+                 * onglets.GetPanelPrevi().getHeight());
+                 */
+            }
+        });
+
+        // Message d'accueil
+        JLabel txtAccueil = new JLabel(
+                "<html><div style='text-align: center;'>Bienvenue sur l'application Weyd. <br> Vous pouvez choisir les données qui vous intéressent dès maintenant en cliquant sur \"Commencer\".</div></html>");
+        txtAccueil.setPreferredSize(new Dimension(700, 200));
+
+        // Création du panneau pour le texte et le bouton
+        JPanel panelTexteBouton = new JPanel(new BorderLayout());
+        // Créer un autre JPanel avec FlowLayout pour centrer horizontalement le JLabel
+        JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        textPanel.add(txtAccueil);
+        textPanel.setPreferredSize(new Dimension(700, 200));
+        // Ajouter le topPanel à la position nord du panel principal
+        panelTexteBouton.add(textPanel, BorderLayout.NORTH);
+        JPanel commencerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        commencerPanel.add(commencer);
+        commencerPanel.setPreferredSize(new Dimension(300, 50));
+        panelTexteBouton.add(commencerPanel, BorderLayout.CENTER);
+        // Ajout d'un fond semi-transparent au panneau
+        panelTexteBouton.setBackground(new Color(0, 0, 0, 0));
+        commencerPanel.setBackground(new Color(0, 0, 0, 0));
+        textPanel.setBackground(new Color(0, 0, 0, 0));
+
+        // Centrage du panneau dans l'écran
+        panelTexteBouton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panelTexteBouton.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+        // Création du JLayeredPane pour superposer le panneau sur l'image
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new Dimension((int) tailleUtilisable.getWidth(),
+                (int) tailleUtilisable.getHeight()));
+
+        // Définition des limites du panneau de texte et de bouton
+        int panelWidth = 1000;
+        int panelHeight = 850;
+        int panelX = ((int) tailleUtilisable.getWidth() - panelWidth) / 2;
+        int panelY = ((int) tailleUtilisable.getHeight() - panelHeight) / 2;
+        panelTexteBouton.setBounds(panelX, panelY, panelWidth, panelHeight);
+
+        // Ajout de l'image et du panneau au JLayeredPane
+        layeredPane.add(accueil, Integer.valueOf(1));
+        layeredPane.add(panelTexteBouton, Integer.valueOf(2));
+
+        // Ajout du JLayeredPane à la fenêtre
+        fenetre.getFenetre().add(layeredPane);
         fenetre.getFenetre().setVisible(true);
     }
 

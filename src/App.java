@@ -18,6 +18,8 @@ import javax.swing.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;*/
 
+import fr.univrennes.istic.l2gen.Interface.Accueil;
+
 /**
  * Cette classe représente l'application principale.
  * 
@@ -29,17 +31,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;*/
 public class App {
 
     public static void main(String[] args) throws Exception {
+        // Création d'un diagramme en camemberts
 
-      
-
-      /*DiagCamemberts visualiseur = new DiagCamemberts( " Emissions de CO2 ( en Mt ) ",3);
-      visualiseur . legender ( " Afrique " , " Amerique " , " Asie " , " Europe " , " Oceanie " );
-      visualiseur . ajouterDonnees ( " 2010 " , 1600 , 6800 , 16000 , 4300 , 300);
-      visualiseur . ajouterDonnees ( " 2015 " , 1900 , 6600 , 17500 , 3800 , 330);
-      visualiseur . ajouterDonnees ( " 2020 " , 2100 , 6200 , 17800 , 3600 , 340);
-      visualiseur . colorier ( " Blue " , " Green " , " Red " , " Yellow " , " Maroon " );
-      visualiseur.agencer().createSvgFile();
-      visualiseur.description(0); */
+        /*
+         * DiagCamemberts visualiseur = new DiagCamemberts(
+         * " Emissions de CO2 ( en Mt ) ",3);
+         * visualiseur . legender ( " Afrique " , " Amerique " , " Asie " , " Europe " ,
+         * " Oceanie " );
+         * visualiseur . ajouterDonnees ( " 2010 " , 1600 , 6800 , 16000 , 4300 , 300);
+         * visualiseur . ajouterDonnees ( " 2015 " , 1900 , 6600 , 17500 , 3800 , 330);
+         * visualiseur . ajouterDonnees ( " 2020 " , 2100 , 6200 , 17800 , 3600 , 340);
+         * visualiseur . colorier ( " Blue " , " Green " , " Red " , " Yellow " ,
+         * " Maroon " );
+         * visualiseur.agencer().createSvgFile();
+         * visualiseur.description(0);
+         */
 
         /*
          * Groupe tableau = new Groupe();
@@ -176,5 +182,7 @@ public class App {
          * secteurs.createSvgFile();
          * System.out.println(secteurs.description(3));
          */
+
+        Accueil appli = new Accueil();
     }
 }

@@ -226,7 +226,7 @@ public class DiagBarres implements IDataVisualiseur {
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5,
                     donnees.centre().x() - donnees.largeur() / 2 + 5,
                     donnees.centre().y() - donnees.hauteur() / 2 + donnees.hauteur() * i / 5));
-            DecimalFormat df = new DecimalFormat("#.##");
+            DecimalFormat df = new DecimalFormat("#.##"); // Pour faire l'arrondi à 2 chiffres après la virgule
             Texte valeurTxt = new Texte(0, 0, tailleTxtLegende,
                     df.format(echelle_max * (5 - i) / 5));
             valeurTxt.deplacer(

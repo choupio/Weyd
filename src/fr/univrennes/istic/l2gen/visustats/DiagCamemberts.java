@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
+import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.IForme;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.Rectangle;
@@ -25,10 +26,11 @@ public class DiagCamemberts implements IDataVisualiseur {
     private double largeur;
     private int nbcamemberts;
     private int nbcourantcamembert;
-    private ArrayList <Camembert> groupecamembert;
-    private ArrayList <Rectangle> rectangles;
+    private ArrayList<Camembert> groupecamembert;
+    private ArrayList<Rectangle> rectangles;
     private ArrayList<String> legendes;
-    private ArrayList <Texte> nomDonneesTexte;
+    private Groupe diagrammeGroupe;
+    private ArrayList<Texte> nomDonneesTexte;
     private String titre;
     private int nbsecteurs;
     private String[] couleurs;
@@ -36,18 +38,20 @@ public class DiagCamemberts implements IDataVisualiseur {
     // Constructeur
 
     /**
-     * Crée une instance de la classe DiagCamemberts avec le nom spécifié et le nombre de camemberts.
+     * Crée une instance de la classe DiagCamemberts avec le nom spécifié et le
+     * nombre de camemberts.
      *
-     * @param nom Le nom du diagramme camembert.
+     * @param nom          Le nom du diagramme camembert.
      * @param nbcamemberts Le nombre de camemberts dans le diagramme.
      */
     public DiagCamemberts(String nom, int nbcamemberts) {
         this.nom = nom;
         this.nbcamemberts = nbcamemberts;
-        this.groupecamembert = new ArrayList <>();
-        this.rectangles = new ArrayList <>();
-        this.legendes = new ArrayList <>();
-        this.nomDonneesTexte = new ArrayList <>();
+        this.groupecamembert = new ArrayList<>();
+        this.rectangles = new ArrayList<>();
+        this.legendes = new ArrayList<>();
+        this.nomDonneesTexte = new ArrayList<>();
+        this.diagrammeGroupe = new Groupe();
     }
 
     // Getters et Setters
@@ -68,19 +72,19 @@ public class DiagCamemberts implements IDataVisualiseur {
         this.couleurs = couleurs;
     }
 
-    public ArrayList <Texte> getNomDonneesTexte() {
+    public ArrayList<Texte> getNomDonneesTexte() {
         return nomDonneesTexte;
     }
 
-    public void setNomDonneesTexte(ArrayList <Texte> nomDonneesTexte) {
+    public void setNomDonneesTexte(ArrayList<Texte> nomDonneesTexte) {
         this.nomDonneesTexte = nomDonneesTexte;
     }
 
-    public ArrayList <Rectangle> getRectangles() {
+    public ArrayList<Rectangle> getRectangles() {
         return rectangles;
     }
 
-    public void setRectangles(ArrayList <Rectangle> rectangles) {
+    public void setRectangles(ArrayList<Rectangle> rectangles) {
         this.rectangles = rectangles;
     }
 
@@ -142,17 +146,17 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     public int getNbcamemberts() {
         return nbcamemberts;
-    } 
+    }
 
     public void setNbcamemberts(int nbcamemberts) {
         this.nbcamemberts = nbcamemberts;
     }
 
-    public ArrayList <Camembert> getGroupecamembert() {
+    public ArrayList<Camembert> getGroupecamembert() {
         return groupecamembert;
     }
 
-    public void setGroupecamembert(ArrayList <Camembert> groupecamembert) {
+    public void setGroupecamembert(ArrayList<Camembert> groupecamembert) {
         this.groupecamembert = groupecamembert;
     }
 
@@ -161,12 +165,13 @@ public class DiagCamemberts implements IDataVisualiseur {
     /**
      * Calcule le centre géométrique du groupe de camemberts.
      * 
-     * @return Le point représentant les coordonnées du centre géométrique du groupe de camemberts.
+     * @return Le point représentant les coordonnées du centre géométrique du groupe
+     *         de camemberts.
      *         Retourne null si le groupe de camemberts est vide.
      */
     @Override
     public Point centre() {
-        if(groupecamembert.isEmpty()){
+        if (groupecamembert.isEmpty()) {
             return null;
         }
         double coordonnesX = 0;
@@ -177,7 +182,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         }
         return new Point(coordonnesX / groupecamembert.size(), coordonnesY / groupecamembert.size());
     }
-
 
     /**
      * Renvoie une description détaillée de l'objet DiagCamemberts.
@@ -199,7 +203,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         return description;
     }
 
-
     /**
      * Renvoie la hauteur du diagramme maximale parmi les camemberts.
      *
@@ -208,14 +211,24 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public double hauteur() {
-        for (Camembert camembert : groupecamembert) {
-            if (camembert.hauteur() > 0) {
-                hauteur = camembert.hauteur();
-            }
-        }
-        return hauteur;
-    }
+        Groupe groupe = new Groupe(); // initialisation du groupe
 
+        // Ajout des camemberts dans groupe
+        for (Camembert camembert : groupecamembert) {
+            groupe.ajouter(camembert);
+        }
+
+        // Ajout des légendes
+        Texte legende = new Texte(390 + 20, 200 + 15, 14, "test");
+        groupe.ajouter(legende);
+
+        // Ajout du titre
+        double titley = 50;
+        double titlex = this.centre().x();
+        Texte titre = new Texte(titlex, titley, 30, getNom());
+        groupe.ajouter(titre);
+        return groupe.hauteur();
+    }
 
     /**
      * Retourne la largeur du diagramme de groupe.
@@ -231,7 +244,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         return largeur;
     }
 
-
     /**
      * Deplace le diagramme et ces camemberts selon les valeurs spécifiées.
      */
@@ -244,7 +256,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         return this;
     }
 
-
     /**
      * Duplique le diagramme et tous ces camemberts
      */
@@ -252,10 +263,10 @@ public class DiagCamemberts implements IDataVisualiseur {
     @Override
     public IForme dupliquer() {
         DiagCamemberts diagCamemberts = new DiagCamemberts(nom, nbcamemberts);
-        groupecamembert.stream().map(camembert -> (Camembert) camembert.dupliquer()).forEach(dup -> diagCamemberts.getGroupecamembert().add(dup));
+        groupecamembert.stream().map(camembert -> (Camembert) camembert.dupliquer())
+                .forEach(dup -> diagCamemberts.getGroupecamembert().add(dup));
         return diagCamemberts;
     }
-
 
     /**
      * Redimensionne la forme en utilisant les dimensions spécifiées.
@@ -273,10 +284,10 @@ public class DiagCamemberts implements IDataVisualiseur {
         return this;
     }
 
-    
     /**
      * Génère une représentation SVG de l'objet DiagCamemberts.
-     * Cette méthode parcourt tous les camemberts du groupe et génère leur représentation SVG.
+     * Cette méthode parcourt tous les camemberts du groupe et génère leur
+     * représentation SVG.
      * Elle ajoute également le titre du diagramme et les légendes.
      * 
      * @return Une chaîne de caractères représentant le contenu SVG du diagramme.
@@ -298,23 +309,20 @@ public class DiagCamemberts implements IDataVisualiseur {
         return svg.toString();
     }
 
-    
     /**
      * Crée un fichier SVG pour le diagramme en camembert.
      */
 
-     @Override
-     public void createSvgFile() {
-         SVGFile.createSvgFile(this, "diagCamenberts");
-     }
- 
+    @Override
+    public void createSvgFile() {
+        SVGFile.createSvgFile(this, "diagCamenberts");
+    }
 
     /**
      * Colorie les secteurs d'un camembert avec les couleurs spécifiées.
      * 
      * @param couleurs Les couleurs à utiliser pour colorier les secteurs.
      * @return Une instance de l'interface IForme.
-     * @throws IllegalArgumentException Si le nombre de couleurs spécifiées n'est pas égal au nombre de secteurs dans le camembert.
      */
     @Override
     public IForme colorier(String... couleurs) {
@@ -322,10 +330,7 @@ public class DiagCamemberts implements IDataVisualiseur {
         String[] stockeCouleurs = couleurs;
         setCouleurs(stockeCouleurs);
 
-        if (couleurs.length != getNbsecteurs()) {
-            throw new IllegalArgumentException("Le nombre de couleurs doit être égal au nombre de secteur dans un camembert.");
-        }
-        for(Camembert camembert : getGroupecamembert()){
+        for (Camembert camembert : getGroupecamembert()) {
             List<Secteur> secteurs = camembert.getSecteurs();
             for (int i = 0; i < secteurs.size(); i++) {
                 secteurs.get(i).colorier(couleurs[i]);
@@ -337,7 +342,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         }
         return this;
     }
-
 
     /**
      * Effectue une rotation de la forme selon un angle donné.
@@ -354,7 +358,6 @@ public class DiagCamemberts implements IDataVisualiseur {
         return this;
     }
 
-
     /**
      * Aligne le diagramme de groupe selon l'alignement spécifié et la cible donnée.
      *
@@ -366,18 +369,19 @@ public class DiagCamemberts implements IDataVisualiseur {
 
     @Override
     public IForme aligner(Alignement alignement, double cible) {
-        for(Camembert camembert : getGroupecamembert()){
+        for (Camembert camembert : getGroupecamembert()) {
             camembert.aligner(alignement, cible);
         }
         return this;
     }
 
-    
     /**
      * Agence les camemberts dans la visualisation des données.
-     * Cette méthode déplace les camemberts horizontalement en les espaçant et ajuste la position des légendes.
+     * Cette méthode déplace les camemberts horizontalement en les espaçant et
+     * ajuste la position des légendes.
      * 
-     * @return Une instance de IDataVisualiseur représentant la visualisation des données agencée.
+     * @return Une instance de IDataVisualiseur représentant la visualisation des
+     *         données agencée.
      */
     @Override
     public IDataVisualiseur agencer() {
@@ -387,7 +391,8 @@ public class DiagCamemberts implements IDataVisualiseur {
         for (Camembert camembert : getGroupecamembert()) {
             camembert.deplacer(axeX, 0);
             axeX += camembert.largeur() + espacement;
-            getNomDonneesTexte().get(i).setCentre((new Point(camembert.getCentre().x(), getNomDonneesTexte().get(i).centre().y() + (getNbcamemberts() * 1.2))));
+            getNomDonneesTexte().get(i).setCentre((new Point(camembert.getCentre().x(),
+                    getNomDonneesTexte().get(i).centre().y() + (getNbcamemberts() * 1.2))));
 
             getLegendes().add(getNomDonneesTexte().get(i).enSVG());
             i++;
@@ -395,14 +400,14 @@ public class DiagCamemberts implements IDataVisualiseur {
         return this;
     }
 
-
     /**
      * Ajoute des données pour visualisation.
      * 
-     * @param str le texte associé aux données
+     * @param str     le texte associé aux données
      * @param doubles les valeurs numériques des données
      * @return l'objet IDataVisualiseur mis à jour
-     * @throws IllegalArgumentException si le nombre maximum de camemberts est atteint
+     * @throws IllegalArgumentException si le nombre maximum de camemberts est
+     *                                  atteint
      */
     @Override
     public IDataVisualiseur ajouterDonnees(String str, double... doubles) {
@@ -425,29 +430,32 @@ public class DiagCamemberts implements IDataVisualiseur {
         return this;
     }
 
-
     /**
      * Ajoute des légendes à la visualisation des données.
-     * Les légendes sont affichées à côté des graphiques pour expliquer leur signification.
+     * Les légendes sont affichées à côté des graphiques pour expliquer leur
+     * signification.
      *
      * @param strings Les légendes à ajouter.
      * @return Une instance de IDataVisualiseur avec les légendes ajoutées.
      */
     @Override
-    public IDataVisualiseur legender(String...strings) {
+    public IDataVisualiseur legender(String... strings) {
         double axeY = 390;
         double axeX = 200;
-        for(int i = 0; i < strings.length; i++){
-            Texte texte = new Texte(axeX, axeY, 14, strings[i]);
+        for (int i = 0; i < strings.length; i++) {
+            Texte texte = new Texte(axeX + 20, axeY + 15, 14, strings[i]);
             Rectangle rectangle = new Rectangle(axeX - 40, axeY - 10, 20, 10);
             getLegendes().add(texte.enSVG());
             getRectangles().add(rectangle);
-            // axeY += 20; afficher les légendes de façon verticale si l'on veut être originale
-            axeX += 100;
+            // axeY += 50; // afficher les légendes de façon verticale si l'on veut être
+            // originale
+            axeX += 200;
+
+            diagrammeGroupe.ajouter(rectangle);
+            diagrammeGroupe.ajouter(texte);
         }
         return this;
     }
-
 
     /**
      * Définit les options pour la visualisation des données.

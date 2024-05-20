@@ -102,7 +102,7 @@ public class Camembert implements IForme {
      * @return Une référence à l'instance de la forme géométrique, pour permettre
      *         les opérations en chaîne.
      */
-    public Camembert ajouterSecteur(String description, double proportion) {
+    public IForme ajouterSecteur(String description, double proportion) {
         if (proportion <= 0 || proportion > 1) {
             throw new IllegalArgumentException(
                     "La proportion doit être strictement supérieure à 0 et inférieur ou égale à 1.");
@@ -195,7 +195,7 @@ public class Camembert implements IForme {
     @Override
     public IForme deplacer(double dx, double dy) {
         this.centre.plus(dx, dy);
-        for(Secteur secteur : secteurs){
+        for (Secteur secteur : secteurs) {
             secteur.deplacer(dx, dy);
         }
         return this;
@@ -343,7 +343,6 @@ public class Camembert implements IForme {
         return secteurs.size();
     }
 
-    
     public Point getCentre() {
         return centre;
     }

@@ -5,8 +5,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import javax.swing.GroupLayout.Group;
-
+import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
 import fr.univrennes.istic.l2gen.station.StationAPI;
@@ -21,31 +20,43 @@ public class TraitementCases {
     private HashMap<String, Boolean> isCheckedCarb = Carburant.getIsCheckedCarb();
     private HashMap<String, Boolean> isCheckedStat = Statistique.getIsCheckedStat();
     private HashMap<String, Boolean>[] isCheckedDiag = Diag.getIsCheckedDiag();
-    private HashMap<String, Boolean> isCheckedDiagPrixMoy = isCheckedDiag[0];
-    private HashMap<String, Boolean> isCheckedDiagPrixMed = isCheckedDiag[1];
-    private HashMap<String, Boolean> isCheckedDiagPrixMin = isCheckedDiag[2];
-    private Boolean isCheckedPos = Onglet.getIsSationsAffichees();
+    private Boolean isCheckedPos = Onglet.getIsStationsAffichees();
     private HashMap<String, Boolean> isCheckedReg = Region.getIsCheckedReg();
 
     public TraitementCases() {
 
     }
 
-    public void traitement() {
-        ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet().stream().filter(entry -> entry.getValue())
+    public ArrayList<String> traitement() {
+        // Liste qui contiendra les chaine de caractère des différents svg
+        ArrayList<String> svgContent = new ArrayList<>();
+
+        ArrayList<String> depListe = new ArrayList<>(isCheckedDept.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList()));
+
+        ArrayList<String> regListe = new ArrayList<>(isCheckedReg.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList()));
+
+        ArrayList<String> carbListe = new ArrayList<>(isCheckedCarb.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue())
                 .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        ArrayList<String> regListe = new ArrayList<>(isCheckedReg.entrySet().stream().filter(entry -> entry.getValue())
-                .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        ArrayList<String> carbListe = new ArrayList<>(
-                isCheckedCarb.entrySet().stream().filter(entry -> entry.getValue())
-                        .map(entry -> entry.getKey()).collect(Collectors.toList()));
-        ArrayList<String> servListe = new ArrayList<>(
-                isCheckedServ.entrySet().stream().filter(entry -> entry.getValue())
-                        .map(entry -> entry.getKey()).collect(Collectors.toList()));
+
+        ArrayList<String> servListe = new ArrayList<>(isCheckedServ.entrySet()
+                .stream().filter(entry -> entry.getValue())
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList()));
+
         StationAPI api = new StationAPI();
 
         /**
-         * Donne létat de séléction entre département et région : true si départements,
+         * Donne l'état de séléction entre département et région : true si départements,
          * false si régions.
          */
         Boolean depOuReg;
@@ -69,7 +80,7 @@ public class TraitementCases {
         }
 
         // Génération des diagrammes de prix moyen, médians et minimum
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             HashMap<String, HashMap<String, Double>> donnes = new HashMap<>();
 
             // Initialisation du titre du diagramme
@@ -85,6 +96,12 @@ public class TraitementCases {
             } else if (i == 2 && isCheckedStat.get("Prix minimum")) { // Prix min
                 donnes = api.getPrixMin();
                 titre = "Prix minimum";
+            } else if (i == 3 && isCheckedStat.get("Nombre de stations proposant ce carburant")) {
+                donnes = api.getNbStationProposeCarb();
+                titre = "Nombre de stations proposant ce carburant";
+            } else if (i == 4 && isCheckedStat.get("Nombre de stations proposant ces services")) {
+                donnes = api.getNbStationProposeServices();
+                titre = "Nombre de stations proposant ces services";
             }
 
             if (!donnes.isEmpty()) {
@@ -106,7 +123,7 @@ public class TraitementCases {
                 } else {
                     diagramme.legender(regListe.toArray(new String[0]));
                 }
-                for (String carburant : carbListe) {
+                for (String carburant : donnes.keySet()) {
                     diagramme.ajouterDonnees(carburant,
                             donnes.get(carburant).values().stream().mapToDouble(Double::doubleValue).toArray());
                 }
@@ -114,18 +131,27 @@ public class TraitementCases {
                 diagramme.colorier(couleurs.toArray(new String[0]));
                 diagramme.agencer();
                 statistiques.ajouter(diagramme);
+                svgContent.add(SVGFile.contentSvgFile(diagramme));
+                System.out.println(SVGFile.contentSvgFile(diagramme));
             }
-
         }
 
         // Gestion du nombre de stations qui proposent chaque carburants
         if (isCheckedStat.get("Nombre de stations proposant ce carburant")) {
 
         }
+
         statistiques.empilerElements(Alignement.HAUT, 350, 50); // TODO changer le 350
         statistiques.createSvgFile();
+        return svgContent;
     }
 
+    /**
+     * Méthode pour savoir si le rapport peut être créé ou non.
+     *
+     * @param granularite les régions ou départements sélectionnés.
+     * @return un ArrayList<String> couleurs par granularité.
+     */
     private ArrayList<String> generationCouleur(ArrayList<String> granularite) {
         ArrayList<String> couleurs = new ArrayList<>();
 
@@ -143,5 +169,29 @@ public class TraitementCases {
         }
 
         return couleurs;
+    }
+
+    /**
+     * Méthode pour savoir si le rapport peut être créé ou non.
+     *
+     * @return un Booléen indiquant si on peut générer le rapport.
+     */
+    public boolean isAnyChecked() {
+        if (isCheckedStat.get("Nombre de stations proposant ces services").equals(true)) {
+            if (isCheckedServ.values().stream().anyMatch(Boolean::booleanValue)) {
+                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
+                        || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
+                    return true;
+                }
+            }
+        } else if (isCheckedStat.values().stream().anyMatch(Boolean::booleanValue)) {
+            if (isCheckedCarb.values().stream().anyMatch(Boolean::booleanValue)) {
+                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
+                        || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

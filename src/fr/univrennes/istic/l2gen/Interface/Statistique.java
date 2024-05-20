@@ -79,6 +79,10 @@ public class Statistique {
                                 Diag.getDiag()[3].setEnabled(true);
                             } else {
                                 Diag.getDiag()[4].setEnabled(true);
+                                Services.getTousServices().setEnabled(true);
+                                for (int i = 0; i < Services.getRadioCheck().length; i += 1) {
+                                    Services.getRadioCheck()[i].setEnabled(true);
+                                }
                             }
                         } else if (e.getStateChange() == ItemEvent.DESELECTED) {
                             isChecked.put(tabStat.get(index), false);
@@ -90,6 +94,10 @@ public class Statistique {
                                 Diag.getDiag()[3].setEnabled(false);
                             } else {
                                 Diag.getDiag()[4].setEnabled(false);
+                                Services.getTousServices().setEnabled(false);
+                                for (int i = 0; i < Services.getRadioCheck().length; i += 1) {
+                                    Services.getRadioCheck()[i].setEnabled(false);
+                                }
                             }
                         }
                     }
