@@ -55,6 +55,7 @@ public class Accueil {
         UIManager.put("MenuItem.font", style2);
         UIManager.put("PopupMenu.font", style2);
         UIManager.put("OptionPane.font", style2);
+        UIManager.put("TitledBorder.font", style2);
 
         ///////// Création de la fenêtre /////////
         CreationFenetre fenetre = new CreationFenetre("Weyd");

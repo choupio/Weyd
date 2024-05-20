@@ -184,7 +184,7 @@ public class Onglet {
 
         // Prévisualisation
         JButton previsua = new JButton("Prévisualisation");
-        TitledBorder border = BorderFactory.createTitledBorder("prévisualisation");
+        TitledBorder border = BorderFactory.createTitledBorder("Prévisualisation");
         previ.setBorder(border);
         // previ.setVisible(false);
         previsua.addActionListener(new ActionListener() {
@@ -201,15 +201,15 @@ public class Onglet {
                     TranscoderOutput output = new TranscoderOutput(pngFile);
                     // Créer un transcodeur pour convertir le SVG en PNG
                     PNGTranscoder transcoder = new PNGTranscoder();
-                    //effectue la conversion
+                    // effectue la conversion
                     transcoder.transcode(input, output);
                     // Fermer les flux
                     svgFile.close();
                     pngFile.close();
-                } catch (IOException | TranscoderException ex ) {
+                } catch (IOException | TranscoderException ex) {
                     ex.printStackTrace();
                 }
-                Panel_Image previm =new Panel_Image("prévisua.png");
+                Panel_Image previm = new Panel_Image("prévisua.png");
                 previ.add(previm);
                 // previ.setVisible(true);
             }
