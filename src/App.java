@@ -18,6 +18,8 @@ import javax.swing.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;*/
 
+import fr.univrennes.istic.l2gen.Interface.Accueil;
+
 /**
  * Cette classe représente l'application principale.
  * 
@@ -180,5 +182,7 @@ public class App {
          * secteurs.createSvgFile();
          * System.out.println(secteurs.description(3));
          */
+
+        Accueil appli = new Accueil();
     }
 }
