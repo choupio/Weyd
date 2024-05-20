@@ -198,7 +198,7 @@ public class Onglet {
                 TraitementCases test = new TraitementCases();
                 if (test.isAnyChecked() == true) {
                     new MessageErreur(
-                            "<html><div style='text-align: center;'>Cette fonctionnalité est en cours de développement. <br> Elle sera disponible prochainement, merci de votre soutien et de votre patience.</div></html>");
+                            "<html><div style='text-align: center;'>Cette fonctionnalité est en cours de développement. <br> Elle sera disponible prochainement, <br> merci de votre soutien et de votre patience.</div></html>");
                     // Nous n'avons pas trouvé la bonne solution, à la fin on partait vers Apache
                     // (puis on a supprimé et changé).
                     /*
