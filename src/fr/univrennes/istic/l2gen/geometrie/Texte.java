@@ -147,7 +147,7 @@ public class Texte implements IForme {
 
 	@Override
 	public Point centre() {
-		return new Point(x, y);
+		return new Point(x + largeur() / 2, y + hauteur() / 2);
 	}
 
 	public void setCentre(Point centre) {
@@ -190,7 +190,7 @@ public class Texte implements IForme {
 		// Calculer la largeur du texte
 		int largeurTexte = fm.stringWidth(texte);
 
-		return largeurTexte;
+		return largeurTexte + 2; // +2 car marge d'erreur car imprécie0
 	}
 
 	@Override
