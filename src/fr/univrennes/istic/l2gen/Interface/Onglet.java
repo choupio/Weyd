@@ -205,6 +205,11 @@ public class Onglet {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
                 if (test.isAnyChecked() == true) {
+                    /*
+                     * //TODO BACKUP new MessageErreur(
+                     * "<html><div style='text-align: center;'>Cette fonctionnalité est en cours de développement. <br> Elle sera disponible prochainement, merci de votre soutien et de votre patience.</div></html>"
+                     * );
+                     */
                     test.traitement();
                     try {
                         // Charger le fichier SVG
