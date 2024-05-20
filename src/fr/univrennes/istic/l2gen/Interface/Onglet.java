@@ -292,7 +292,7 @@ public class Onglet {
                     JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
                     // Créer le JLabel avec du texte et utiliser HTML pour les retours à la ligne
                     JLabel label = new JLabel(
-                            "<html><div style='text-align: center;'>Vous devez sélectionner au moins une statistique, un carburant, <br> un département ou une région pour pouvoir générer un rapport.</div></html>",
+                            "<html><div style='text-align: center;'>Vous devez sélectionner au moins une statistique ou un carburant, <br> avec au moins un département ou une région pour pouvoir générer un rapport.</div></html>",
                             SwingConstants.CENTER);
                     // Ajouter le JLabel au topPanel
                     topPanel.add(label);
