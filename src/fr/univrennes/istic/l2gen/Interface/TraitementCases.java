@@ -176,18 +176,17 @@ public class TraitementCases {
      * @return un Booléen indiquant si on peut générer le rapport.
      */
     public boolean isAnyChecked() {
-        if (isCheckedStat.get("Nombre de stations proposant ces services").equals(true)) {
-            if (isCheckedServ.values().stream().anyMatch(Boolean::booleanValue)) {
-                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
-                        || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
-                    return true;
-                }
-            }
-        } else if (isCheckedStat.values().stream().anyMatch(Boolean::booleanValue)) {
+        Boolean depOuReg = Onglet.getGranChecked();
+        if (isCheckedStat.values().stream().anyMatch(Boolean::booleanValue)) {
             if (isCheckedCarb.values().stream().anyMatch(Boolean::booleanValue)) {
-                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
-                        || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
-                    return true;
+                if (isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
+                    if (depOuReg) {
+                        return true;
+                    }
+                } else if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)) {
+                    if (!depOuReg) {
+                        return true;
+                    }
                 }
             }
         }
