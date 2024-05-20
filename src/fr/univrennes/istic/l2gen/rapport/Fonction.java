@@ -33,13 +33,19 @@ public class Fonction {
                 "  svg {\n" +
                 "    display: block;\n" +
                 "    margin: 0;\n" +
-                "    width:  25%;\n" +
+                "    width:  80%;\n" +
                 "    background-color: white; \n" +
                 "  }\n" +
                 "  h2 {\n" +
                 "    position: down;\n" +
                 "    bottom: 150px;\n" +
                 "    left: 10px;\n" +
+                "    animation: blink 7s linear infinite;\n" +
+                "  }\n" +
+                "  @keyframes blink {\n" +
+                "    0% { opacity: 1; }\n" +
+                "    50% { opacity: 0; }\n" +
+                "    100% { opacity: 1; }\n" +
                 "  }\n" +
                 "  form {\n" +
                 "    display: flex;\n" +
@@ -51,6 +57,13 @@ public class Fonction {
                 "  }\n" +
                 "  input, textarea {\n" +
                 "    margin-bottom: 10px;\n" +
+                "  }\n" +
+                "  img {\n" +
+                "    position: fixed;\n" +
+                "    bottom: 0;\n" +
+                "    right: 0;\n" +
+                "    width: 140px;\n" +
+                "    height: 140px;\n" +
                 "  }\n" +
                 "</style>\n" +
                 "</head>\n" +
@@ -66,6 +79,7 @@ public class Fonction {
                 "  <textarea id=\"review\" name=\"review\"></textarea><br>\n" +
                 "  <input type=\"submit\" value=\"Soumettre\">\n" +
                 "</form>\n" +
+                "<img src='ressources\\ImagesInterface\\giphy.gif'>\n" +
                 "</body>\n" +
                 "</html>";
 
