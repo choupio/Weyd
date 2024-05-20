@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import javax.swing.GroupLayout.Group;
-
 import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
