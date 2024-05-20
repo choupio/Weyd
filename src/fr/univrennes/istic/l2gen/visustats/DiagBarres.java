@@ -203,7 +203,7 @@ public class DiagBarres implements IDataVisualiseur {
         diagGroupe.ajouter(texteNom);
 
         // Groupe pour les légendes
-        legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
+        legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - donnees.largeur() / 2, 10);
         legendeGroupe.alignerElements(Alignement.BAS,
                 donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);
