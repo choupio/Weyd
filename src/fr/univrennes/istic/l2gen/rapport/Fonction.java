@@ -40,6 +40,12 @@ public class Fonction {
                 "    position: down;\n" +
                 "    bottom: 150px;\n" +
                 "    left: 10px;\n" +
+                "    animation: blink 7s linear infinite;\n" +
+                "  }\n" +
+                "  @keyframes blink {\n" +
+                "    0% { opacity: 1; }\n" +
+                "    50% { opacity: 0; }\n" +
+                "    100% { opacity: 1; }\n" +
                 "  }\n" +
                 "  form {\n" +
                 "    display: flex;\n" +
