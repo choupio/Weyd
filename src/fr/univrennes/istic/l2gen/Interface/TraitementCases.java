@@ -56,7 +56,7 @@ public class TraitementCases {
         StationAPI api = new StationAPI();
 
         /**
-         * Donne létat de séléction entre département et région : true si départements,
+         * Donne l'état de séléction entre département et région : true si départements,
          * false si régions.
          */
         Boolean depOuReg;
@@ -146,6 +146,12 @@ public class TraitementCases {
         return svgContent;
     }
 
+    /**
+     * Méthode pour savoir si le rapport peut être créé ou non.
+     *
+     * @param granularite les régions ou départements sélectionnés.
+     * @return un ArrayList<String> couleurs par granularité.
+     */
     private ArrayList<String> generationCouleur(ArrayList<String> granularite) {
         ArrayList<String> couleurs = new ArrayList<>();
 
@@ -165,6 +171,11 @@ public class TraitementCases {
         return couleurs;
     }
 
+    /**
+     * Méthode pour savoir si le rapport peut être créé ou non.
+     *
+     * @return un Booléen indiquant si on peut générer le rapport.
+     */
     public boolean isAnyChecked() {
         if (isCheckedStat.get("Nombre de stations proposant ces services").equals(true)) {
             if (isCheckedServ.values().stream().anyMatch(Boolean::booleanValue)) {
