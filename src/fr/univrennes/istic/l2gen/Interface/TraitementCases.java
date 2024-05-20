@@ -140,7 +140,7 @@ public class TraitementCases {
 
         }
 
-        statistiques.empilerElements(Alignement.HAUT, 350, 50); // TODO changer le 350
+        statistiques.empilerElements(Alignement.HAUT, 350, 50);
         statistiques.createSvgFile();
         return svgContent;
     }

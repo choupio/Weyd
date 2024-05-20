@@ -113,7 +113,7 @@ public class StationAPI {
 
                     }
                 } catch (Exception e) {
-                    // TODO modifer ça
+                    // erreur quand station.getServices_service() est vide
                 }
 
             }
@@ -357,8 +357,7 @@ public class StationAPI {
                         }
                     });
                 } catch (Exception e) {
-                    // TODO corriger ça pour enlever le try-catch (erreur sur
-                    // station.getServices_service() quand vide)
+                    // (erreur sur station.getServices_service() quand vide)
                 }
 
             }
@@ -409,8 +408,7 @@ public class StationAPI {
                         }
                     });
                 } catch (Exception e) {
-                    // TODO corriger ça pour enlever le try-catch (erreur sur
-                    // station.getServices_service() quand vide)
+                    // (erreur sur station.getServices_service() quand vide)
                 }
             }
         }
