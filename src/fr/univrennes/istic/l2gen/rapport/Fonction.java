@@ -28,7 +28,7 @@ public class Fonction {
                 "<style>\n" +
                 "  body {\n" +
                 "    background-color: #f0f0f0;\n" +
-                "    font-family: 'Times New Roman', serif;\n" + // Change the font here
+                "    font-family: 'Times New Roman', serif;\n" + // Changer la police ici
                 "  }\n" +
                 "  svg {\n" +
                 "    display: block;\n" +
