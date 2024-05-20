@@ -24,12 +24,6 @@ import java.io.FileOutputStream;
  * Cette classe représente un ensemble d'onglets dans une interface graphique.
  */
 public class Onglet {
-
-    /**
-     * CreationFenetre page de message d'erreur.
-     */
-    private CreationFenetre message;
-
     /**
      * Boolean pour indiquer si on a sélectionné Région ou Département.
      */
