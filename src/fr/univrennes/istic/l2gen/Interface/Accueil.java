@@ -80,12 +80,27 @@ public class Accueil {
                 appli.getFenetre().add(onglets.GetPanel());
 
                 ///////// Ajout Image /////////
+                // Création d'un GridLayout avec deux colonnes
+                GridLayout gridLayout = new GridLayout(2, 2);
+                onglets.GetOnglet2().setLayout(gridLayout);
 
-                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/ImageTest.png",
-                        1000, (int) 700);
+                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple1.png",
+                        329, (int) 632);
 
-                fenetre.ajouterImage(onglets.GetPanelPrevi(), "prévisua.png", onglets.GetPanelPrevi().getWidth(),
-                        onglets.GetPanelPrevi().getHeight());
+                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple2.png",
+                        326, (int) 654);
+
+                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple3.png",
+                        491, (int) 619);
+
+                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple4.png",
+                        608, (int) 540);
+
+                /*
+                 * fenetre.ajouterImage(onglets.GetPanelPrevi(), "prévisua.png",
+                 * onglets.GetPanelPrevi().getWidth(),
+                 * onglets.GetPanelPrevi().getHeight());
+                 */
             }
         });
 
