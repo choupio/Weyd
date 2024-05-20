@@ -132,7 +132,6 @@ public class TraitementCases {
                 diagramme.agencer();
                 statistiques.ajouter(diagramme);
                 svgContent.add(SVGFile.contentSvgFile(diagramme));
-                System.out.println(SVGFile.contentSvgFile(diagramme));
             }
         }
 
