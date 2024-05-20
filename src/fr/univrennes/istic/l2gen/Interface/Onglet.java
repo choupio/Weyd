@@ -12,14 +12,6 @@ import fr.univrennes.istic.l2gen.rapport.Fonction;
 
 import java.awt.*;
 
-import org.apache.batik.transcoder.TranscoderException;
-import org.apache.batik.transcoder.TranscoderInput;
-import org.apache.batik.transcoder.TranscoderOutput;
-import org.apache.batik.transcoder.image.PNGTranscoder;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-
 /**
  * Cette classe représente un ensemble d'onglets dans une interface graphique.
  */
@@ -205,34 +197,31 @@ public class Onglet {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
                 if (test.isAnyChecked() == true) {
+                    new MessageErreur(
+                            "<html><div style='text-align: center;'>Cette fonctionnalité est en cours de développement. <br> Elle sera disponible prochainement, <br> merci de votre soutien et de votre patience.</div></html>");
+                    // Nous n'avons pas trouvé la bonne solution, à la fin on partait vers Apache
+                    // (puis on a supprimé et changé).
                     /*
-                     * //TODO BACKUP new MessageErreur(
-                     * "<html><div style='text-align: center;'>Cette fonctionnalité est en cours de développement. <br> Elle sera disponible prochainement, merci de votre soutien et de votre patience.</div></html>"
-                     * );
+                     * try {
+                     * // Charger l'image
+                     * ImageIcon imageIcon = new ImageIcon("Groupe.png");
+                     * 
+                     * // Créer un JLabel pour afficher l'image
+                     * JLabel label = new JLabel(imageIcon);
+                     * 
+                     * // Ajouter le JLabel au panel
+                     * previ.removeAll();
+                     * previ.setLayout(new BorderLayout());
+                     * previ.add(label, BorderLayout.CENTER);
+                     * previ.revalidate();
+                     * previ.repaint();
+                     * } catch (Exception ex) {
+                     * ex.printStackTrace();
+                     * }
                      */
-                    test.traitement();
-                    try {
-                        // Charger le fichier SVG
-                        FileInputStream svgFile = new FileInputStream("Groupe.svg");
-                        TranscoderInput input = new TranscoderInput(svgFile);
-                        // Définir le fichier de sortie (image PNG)
-                        FileOutputStream pngFile = new FileOutputStream("prévisua.png");
-                        TranscoderOutput output = new TranscoderOutput(pngFile);
-                        // Créer un transcodeur pour convertir le SVG en PNG
-                        PNGTranscoder transcoder = new PNGTranscoder();
-                        // effectue la conversion
-                        transcoder.transcode(input, output);
-                        // Fermer les flux
-                        svgFile.close();
-                        pngFile.close();
-                    } catch (IOException | TranscoderException ex) {
-                        ex.printStackTrace();
-                    }
-                    // previ.setVisible(true);
-                    CreationFenetre.ajouterImage(previ, "prévisua.png", 100, 100);
                 } else {
                     new MessageErreur(
-                            "<html><div style='text-align: center;'>Veuillez sélectionner au moins une statistique ou un carburant, <br> avec au moins un département ou une région afin de générer <br> une prévisualisation.</div></html>");
+                            "<html><div style='text-align: center;'>Veuillez sélectionner au moins un carburant, <br> avec au moins un département ou une région afin de générer <br> une prévisualisation.</div></html>");
                 }
             }
         });
@@ -285,7 +274,7 @@ public class Onglet {
                     }
                 } else {
                     new MessageErreur(
-                            "<html><div style='text-align: center;'>Veuillez sélectionner au moins une statistique ou un carburant, <br> avec au moins un département ou une région afin de générer un rapport.</div></html>");
+                            "<html><div style='text-align: center;'>Veuillez sélectionner au moins un carburant, <br> avec au moins un département ou une région afin de générer un rapport.</div></html>");
                 }
             }
         });

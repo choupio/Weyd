@@ -62,8 +62,8 @@ public class Fonction {
                 "    position: fixed;\n" +
                 "    bottom: 0;\n" +
                 "    right: 0;\n" +
-                "    width: 140px;\n" +
-                "    height: 140px;\n" +
+                "    width: 130px;\n" +
+                "    height: 130px;\n" +
                 "  }\n" +
                 "</style>\n" +
                 "</head>\n" +
@@ -79,7 +79,7 @@ public class Fonction {
                 "  <textarea id=\"review\" name=\"review\"></textarea><br>\n" +
                 "  <input type=\"submit\" value=\"Soumettre\">\n" +
                 "</form>\n" +
-                "<img src='ressources\\ImagesInterface\\giphy.gif'>\n" +
+                "<img src='https://www.gifsanimes.com/data/media/1423/pompe-a-essence-image-animee-0005.gif'>\n" +
                 "</body>\n" +
                 "</html>";
 
