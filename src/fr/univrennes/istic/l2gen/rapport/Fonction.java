@@ -58,6 +58,13 @@ public class Fonction {
                 "  input, textarea {\n" +
                 "    margin-bottom: 10px;\n" +
                 "  }\n" +
+                "  img {\n" +
+                "    position: fixed;\n" +
+                "    bottom: 0;\n" +
+                "    right: 0;\n" +
+                "    width: 100px;\n" +
+                "    height: 100px;\n" +
+                "  }\n" +
                 "</style>\n" +
                 "</head>\n" +
                 "<body>\n" +
@@ -72,6 +79,7 @@ public class Fonction {
                 "  <textarea id=\"review\" name=\"review\"></textarea><br>\n" +
                 "  <input type=\"submit\" value=\"Soumettre\">\n" +
                 "</form>\n" +
+                "<img src='ressources\\ImagesInterface\\giphy.gif'>\n" +
                 "</body>\n" +
                 "</html>";
 
