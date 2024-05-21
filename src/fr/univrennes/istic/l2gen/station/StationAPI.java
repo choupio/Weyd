@@ -2,26 +2,30 @@ package fr.univrennes.istic.l2gen.station;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class StationAPI {
-    private HashMap<String, Station> stationsMap;
     private List<StationParCarb> stationsParCarb;
-    private HashMap<String, List<Station>> stationsParReg;
-    private HashMap<String, List<Station>> stationsParDep;
+    private List<Station2> stationsParCarb2;
+    private HashSet<String> Regions;
+    private HashSet<String> Departements;
+    private HashSet<String> carburants;
     private HashSet<String> services;
     private HashMap<String, HashMap<String, List<Double>>> filtre; // de la forme {Carburant : Granularité : List<Prix>}
     private HashMap<String, HashMap<String, Integer>> NbStationProposeServices;
-    private HashMap<String, HashMap<String, StationParCarb>> stationMoinsChere; // pour répertorier les stations les
-                                                                                // moins chère de la forme {Granularité
-                                                                                // : Carburant : stationParCarb}
+    private HashMap<String, HashMap<String, Station2>> stationMoinsChere; // pour répertorier les stations les
+                                                                          // moins chère de la forme {Granularité
+                                                                          // : Carburant : stationParCarb}
 
     public StationAPI() {
         // Créez un ObjectMapper
@@ -31,7 +35,7 @@ public class StationAPI {
          * try {
          * // URL de l'API
          * URL url = new URL(
-         * "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/prix-des-carburants-en-france-flux-instantane-v2/records?limit=20"
+         * "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/prix-des-carburants-en-france-flux-instantane-v2/exports/json?lang=fr&timezone=Europe%2FParis"
          * );
          * 
          * // Ouvrir une connexion HTTP
@@ -63,51 +67,73 @@ public class StationAPI {
 
         // Essayez d'ouvrir et de mapper le fichier JSON en un objet Java
         try {
+            @SuppressWarnings("deprecation")
+            URL url = new URL(
+                    "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/prix-des-carburants-en-france-flux-instantane-v2/exports/json?lang=fr&timezone=Europe%2FParis");
+
             // Utilisez la méthode readValue() de l'ObjectMapper pour mapper le fichier JSON
             // en un objet Java.
-            stationsParCarb = objectMapper.readValue(new File(cheminFichier),
-                    new TypeReference<List<StationParCarb>>() {
+            // stationsParCarb = objectMapper.readValue(new File(cheminFichier),
+            // new TypeReference<List<StationParCarb>>() {
+            // });
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            stationsParCarb2 = objectMapper.readValue(url,
+                    new TypeReference<List<Station2>>() {
                     });
 
-            stationsMap = new HashMap<>();
-            stationsParDep = new HashMap<>();
-            stationsParReg = new HashMap<>();
+            Departements = new HashSet<>();
+            Regions = new HashSet<>();
             services = new HashSet<>();
             filtre = new HashMap<>();
+            carburants = new HashSet<>();
 
-            for (StationParCarb station : stationsParCarb) {
+            for (Station2 station : stationsParCarb2) {
                 // Change le String unicode en normal
-                station.setReg_name(decodeUnicode(station.getReg_name()));
-                station.setDep_name(decodeUnicode(station.getDep_name()));
+                station.setRegion(decodeUnicode(station.getRegion()));
+                station.setDepartement(decodeUnicode(station.getDepartement()));
                 station.setAdresse(decodeUnicode(station.getAdresse()));
                 station.setVille(decodeUnicode(station.getVille()));
-
-                if (!stationsMap.containsKey(station.getId())) {
-                    stationsMap.put(station.getId(),
-                            new Station(station.getServices_service(), station.getDep_name(), station.getVille(),
-                                    station.getAdresse(),
-                                    station.getReg_name(), station.getDep_code(), station.getReg_code()));
-                }
-                // Ajout des stations par région
-                if (station.getReg_name() != "") {
-                    if (!stationsParReg.containsKey(station.getReg_name())) {
-                        stationsParReg.put(station.getReg_name(), new ArrayList<>());
+                if (station.getPrix() != null) {
+                    for (Prix prix : station.getPrix()) {
+                        Double prix_carb = 0.0;
+                        try {
+                            prix_carb = Double.parseDouble(prix.getValeur());
+                        } catch (Exception e) {
+                            // le prix n'est pas un double
+                        }
+                        prix.setValeurDouble(prix_carb);
                     }
-                    stationsParReg.get(station.getReg_name()).add(stationsMap.get(station.getId()));
+                } else {
+                    station.setPrix(new ArrayList<>());
                 }
 
-                // Ajout des stations par département
-                if (station.getDep_name() != "") {
-                    if (!stationsParDep.containsKey(station.getDep_name())) {
-                        stationsParDep.put(station.getDep_name(), new ArrayList<>());
+                // Ajout des régions
+                if (station.getRegion() != "") {
+                    Regions.add(station.getRegion());
+                }
+
+                // Ajout des départements
+                if (station.getDepartement() != "") {
+                    Departements.add(station.getDepartement());
+                }
+
+                // Ajout des carburants de la station à l'enseble des carburants existant
+                if (station.getCarburants_disponibles() == null) {
+                    station.setCarburants_disponibles(new ArrayList<>());
+                }
+                station.getCarburants_disponibles().stream().forEach(carb -> {
+                    if (carb != "" && carb != null) {
+                        carburants.add(carb);
                     }
-                    stationsParDep.get(station.getDep_name()).add(stationsMap.get(station.getId()));
+                });
+                if (station.getCarburants_indisponibles() == null) {
+                    station.setCarburants_indisponibles(new ArrayList<>());
                 }
-
-                // Ajout des carburants de la station
-                if (station.getPrix_nom() != "" || station.getPrix_nom() != null) {
-                    stationsMap.get(station.getId()).ajoutCarburant(station.getPrix_nom(), station.getPrix_valeur());
-                }
+                station.getCarburants_indisponibles().stream().forEach(carb -> {
+                    if (carb != "" && carb != null) {
+                        carburants.add(carb);
+                    }
+                });
 
                 // Ajout des services proposé
                 try {
@@ -174,12 +200,9 @@ public class StationAPI {
      * @return liste de String
      */
     public ArrayList<String> getNomsCarburants() {
-        HashSet<String> nomsCarburant = new HashSet<>();
-        for (StationParCarb station : stationsParCarb) {
-            nomsCarburant.add(station.getPrix_nom());
-        }
-        nomsCarburant.remove(null);
-        return new ArrayList<>(nomsCarburant);
+        ArrayList<String> nomsCarburants = new ArrayList<>(carburants);
+        nomsCarburants.sort(null);
+        return nomsCarburants;
     }
 
     /**
@@ -190,7 +213,7 @@ public class StationAPI {
      * @return liste de String
      */
     public ArrayList<String> getNomsRegion() {
-        ArrayList<String> nomsRegion = new ArrayList<>(stationsParReg.keySet());
+        ArrayList<String> nomsRegion = new ArrayList<>(Regions);
         nomsRegion.sort(null);
         return nomsRegion;
     }
@@ -203,7 +226,7 @@ public class StationAPI {
      * @return liste de String
      */
     public ArrayList<String> getNomsDepartement() {
-        ArrayList<String> nomsDep = new ArrayList<>(stationsParDep.keySet());
+        ArrayList<String> nomsDep = new ArrayList<>(Departements);
         nomsDep.sort(null);
         return nomsDep;
     }
@@ -288,13 +311,13 @@ public class StationAPI {
      * 
      * @return une HashMap de la forme {Granularité : {carburant : adresse}}
      */
-    public HashMap<String, HashMap<String, String>> getAdresseStationMoinsChere() {
-        HashMap<String, HashMap<String, String>> adresseStationMoinsChere = new HashMap<>();
+    public HashMap<String, HashMap<String, Station2>> getAdresseStationMoinsChere() {
+        HashMap<String, HashMap<String, Station2>> adresseStationMoinsChere = new HashMap<>();
         for (String granu : stationMoinsChere.keySet()) {
             adresseStationMoinsChere.put(granu, new HashMap<>());
             for (String carburant : stationMoinsChere.get(granu).keySet()) {
-                StationParCarb station = stationMoinsChere.get(granu).get(carburant);
-                adresseStationMoinsChere.get(granu).put(carburant, station.getAdresse() + " " + station.getVille());
+                Station2 station = stationMoinsChere.get(granu).get(carburant);
+                adresseStationMoinsChere.get(granu).put(carburant, station);
             }
         }
         return adresseStationMoinsChere;
@@ -350,48 +373,65 @@ public class StationAPI {
         stationMoinsChere = new HashMap<>();
 
         filtre = new HashMap<>();
-        for (StationParCarb station : stationsParCarb) {
-            String nomCarb = station.getPrix_nom();
-            String nomDep = station.getDep_name();
-            if (nomCarb != "" && nomCarb != null && nomDep != "" && nomDep != null && carburants.contains(nomCarb)
-                    && departement.contains(nomDep)) {
-                if (!filtre.keySet().contains(nomCarb)) {
-                    filtre.put(nomCarb, new HashMap<>());
-                }
+        for (Station2 station : stationsParCarb2) {
+            String nomDep = station.getDepartement();
 
-                if (!filtre.get(nomCarb).keySet().contains(nomDep)) {
-                    filtre.get(nomCarb).put(nomDep, new ArrayList<>());
-                }
-                if (!NbStationProposeServices.containsKey(nomDep)) {
-                    NbStationProposeServices.put(nomDep, new HashMap<>());
-                    services.stream().forEach(x -> NbStationProposeServices.get(nomDep).put(x, 0));
+            for (Prix prix : station.getPrix()) {
+                Double prix_carb = prix.getValeurDouble();
+                String nomCarb = prix.getNom();
+                if (prix_carb != 0.0 && nomCarb != "" && nomCarb != null && nomDep != "" && nomDep != null
+                        && carburants.contains(nomCarb)
+                        && departement.contains(nomDep)) {
+                    if (!filtre.keySet().contains(nomCarb)) {
+                        filtre.put(nomCarb, new HashMap<>());
+                    }
 
-                    stationMoinsChere.put(nomDep, new HashMap<>());
-                }
+                    if (!filtre.get(nomCarb).keySet().contains(nomDep)) {
+                        filtre.get(nomCarb).put(nomDep, new ArrayList<>());
+                    }
+                    if (!NbStationProposeServices.containsKey(nomDep)) {
+                        NbStationProposeServices.put(nomDep, new HashMap<>());
+                        services.stream().forEach(x -> NbStationProposeServices.get(nomDep).put(x, 0));
 
-                if (!stationMoinsChere.get(nomDep).containsKey(nomCarb)) {
-                    stationMoinsChere.get(nomDep).put(nomCarb, station);
-                }
-                if (station.getPrix_valeur() < stationMoinsChere.get(nomDep).get(nomCarb).getPrix_valeur()) {
-                    stationMoinsChere.get(nomDep).put(nomCarb, station);
-                }
+                        stationMoinsChere.put(nomDep, new HashMap<>());
+                    }
 
-                filtre.get(nomCarb).get(nomDep).add(station.getPrix_valeur());
-                try {
-                    station.getServices_service().stream().forEach(service -> {
-                        if (services.contains(service)) {
-                            NbStationProposeServices
-                                    .get(nomDep)
-                                    .put(service, NbStationProposeServices
-                                            .get(nomDep)
-                                            .get(service) + 1);
+                    if (!stationMoinsChere.get(nomDep).containsKey(nomCarb)) {
+                        stationMoinsChere.get(nomDep).put(nomCarb, station);
+                    }
+
+                    // vérifie que la station qui à été ajouté comme la moins chères pour ce
+                    // carburant est bien la moins chère
+                    AtomicBoolean changerValeur = new AtomicBoolean(false);
+                    stationMoinsChere.get(nomDep).get(nomCarb).getPrix().stream().forEach(elt -> {
+                        if (elt.getNom().equals(nomCarb)) {
+                            if (elt.getValeurDouble() > prix_carb) {
+                                changerValeur.set(true);
+                            }
                         }
                     });
-                } catch (Exception e) {
-                    // (erreur sur station.getServices_service() quand vide)
-                }
+                    if (changerValeur.get()) {
+                        stationMoinsChere.get(nomDep).put(nomCarb, station);
+                    }
 
+                    filtre.get(nomCarb).get(nomDep).add(prix_carb);
+                    try {
+                        station.getServices_service().stream().forEach(service -> {
+                            if (services.contains(service)) {
+                                NbStationProposeServices
+                                        .get(nomDep)
+                                        .put(service, NbStationProposeServices
+                                                .get(nomDep)
+                                                .get(service) + 1);
+                            }
+                        });
+                    } catch (Exception e) {
+                        // (erreur sur station.getServices_service() quand vide)
+                    }
+
+                }
             }
+
         }
 
     }
@@ -411,45 +451,60 @@ public class StationAPI {
         stationMoinsChere = new HashMap<>();
 
         filtre = new HashMap<>();
-        for (StationParCarb station : stationsParCarb) {
-            String nomCarb = station.getPrix_nom();
-            String nomReg = station.getReg_name();
-            if (nomCarb != "" && nomCarb != null && nomReg != "" && nomReg != null && carburants.contains(nomCarb)
-                    && region.contains(nomReg)) {
-                if (!filtre.keySet().contains(nomCarb)) {
-                    filtre.put(nomCarb, new HashMap<>());
-                }
 
-                if (!NbStationProposeServices.containsKey(nomReg)) {
-                    NbStationProposeServices.put(nomReg, new HashMap<>());
-                    services.stream().forEach(x -> NbStationProposeServices.get(nomReg).put(x, 0));
+        for (Station2 station : stationsParCarb2) {
+            String nomReg = station.getRegion();
 
-                    stationMoinsChere.put(nomReg, new HashMap<>());
-                }
+            for (Prix prix : station.getPrix()) {
+                Double prix_carb = prix.getValeurDouble();
+                String nomCarb = prix.getNom();
 
-                if (!stationMoinsChere.get(nomReg).containsKey(nomCarb)) {
-                    stationMoinsChere.get(nomReg).put(nomCarb, station);
-                }
-                if (station.getPrix_valeur() < stationMoinsChere.get(nomReg).get(nomCarb).getPrix_valeur()) {
-                    stationMoinsChere.get(nomReg).put(nomCarb, station);
-                }
-                if (!filtre.get(nomCarb).keySet().contains(nomReg)) {
-                    filtre.get(nomCarb).put(nomReg, new ArrayList<>());
-                }
-                filtre.get(nomCarb).get(nomReg).add(station.getPrix_valeur());
+                if (prix_carb != 0.0 && nomCarb != "" && nomCarb != null && nomReg != "" && nomReg != null
+                        && carburants.contains(nomCarb)
+                        && region.contains(nomReg)) {
+                    if (!filtre.keySet().contains(nomCarb)) {
+                        filtre.put(nomCarb, new HashMap<>());
+                    }
 
-                try {
-                    station.getServices_service().stream().forEach(service -> {
-                        if (services.contains(service)) {
-                            NbStationProposeServices
-                                    .get(nomReg)
-                                    .put(service, NbStationProposeServices
-                                            .get(nomReg)
-                                            .get(service) + 1);
+                    if (!NbStationProposeServices.containsKey(nomReg)) {
+                        NbStationProposeServices.put(nomReg, new HashMap<>());
+                        services.stream().forEach(x -> NbStationProposeServices.get(nomReg).put(x, 0));
+
+                        stationMoinsChere.put(nomReg, new HashMap<>());
+                    }
+
+                    if (!stationMoinsChere.get(nomReg).containsKey(nomCarb)) {
+                        stationMoinsChere.get(nomReg).put(nomCarb, station);
+                    }
+
+                    // vérifie que la station qui à été ajouté comme la moins chères pour ce
+                    // carburant est bien la moins chère
+                    AtomicBoolean changerValeur = new AtomicBoolean(false);
+                    stationMoinsChere.get(nomReg).get(nomCarb).getPrix().stream().forEach(elt -> {
+                        if (elt.getNom().equals(nomCarb)) {
+                            if (elt.getValeurDouble() > prix_carb) {
+                                changerValeur.set(true);
+                            }
                         }
                     });
-                } catch (Exception e) {
-                    // (erreur sur station.getServices_service() quand vide)
+                    if (!filtre.get(nomCarb).keySet().contains(nomReg)) {
+                        filtre.get(nomCarb).put(nomReg, new ArrayList<>());
+                    }
+                    filtre.get(nomCarb).get(nomReg).add(prix_carb);
+
+                    try {
+                        station.getServices_service().stream().forEach(service -> {
+                            if (services.contains(service)) {
+                                NbStationProposeServices
+                                        .get(nomReg)
+                                        .put(service, NbStationProposeServices
+                                                .get(nomReg)
+                                                .get(service) + 1);
+                            }
+                        });
+                    } catch (Exception e) {
+                        // (erreur sur station.getServices_service() quand vide)
+                    }
                 }
             }
         }

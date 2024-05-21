@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
+import fr.univrennes.istic.l2gen.station.Geom;
+import fr.univrennes.istic.l2gen.station.Station2;
 import fr.univrennes.istic.l2gen.station.StationAPI;
 import fr.univrennes.istic.l2gen.visustats.DiagBarres;
 import fr.univrennes.istic.l2gen.visustats.DiagCamemberts;
@@ -141,17 +143,26 @@ public class TraitementCases {
                 svgContent.add(SVGFile.contentSvgFile(diagramme));
 
                 if (stationMoinChere) {
-                    HashMap<String, HashMap<String, String>> adresseStationMoinsChere = api
+                    HashMap<String, HashMap<String, Station2>> adresseStationMoinsChere = api
                             .getAdresseStationMoinsChere();
 
+                    String html = "";
                     for (String granu : adresseStationMoinsChere.keySet()) {
+                        html += "<p>" + "dans " + granu + ":</p>";
+                        https: // www.google.com/maps/search/4682826,556786/
                         for (String carburant : adresseStationMoinsChere.get(granu).keySet()) {
-                            String adresse = adresseStationMoinsChere.get(granu).get(carburant);
-                            String lien = "https://www.google.com/maps/place/" + adresse.replace(" ", "+");
-                            svgContent.add("<a href=\"" + lien + "\" >" + adresse + "</a></br>");
+                            html += "<p>&nbsp;&nbsp;&nbsp;pour " + carburant + ":</p>";
+                            Station2 station = adresseStationMoinsChere.get(granu).get(carburant);
+                            String lien = "https://www.google.com/maps/search/"
+                                    + String.valueOf(station.getGeom().getLat()) + ","
+                                    + String.valueOf(station.getGeom().getLon());
+                            String baliseLien = "<a href=\"" + lien + "\" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                                    + station.getAdresse() + " "
+                                    + station.getVille() + "</a></br>";
+                            html += baliseLien;
                         }
-
                     }
+                    svgContent.add(html);
                 }
             }
         }
