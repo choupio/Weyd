@@ -1,419 +1,104 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-<text x="100.0" y="153.89127032498146" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Gazole</text>
-<text x="220.0" y="311.9814853373176" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E85</text>
-<text x="340.0" y="144.99999999999994" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E10</text>
-<rect x="50.0" y="433.0055391715524" height="21.994460828447547" width="100.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="410.8718615471498" height="22.133677624402594" width="100.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="388.5368000516485" height="22.335061495501314" width="100.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="366.41184094644115" height="22.124959105207353" width="100.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="344.06780708520444" height="22.344033861236692" width="100.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="321.73623188299985" height="22.331575202204597" width="100.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="299.31053685789084" height="22.42569502510901" width="100.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="276.2784082176548" height="23.032128640236007" width="100.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="254.12398646277086" height="22.15442175488401" width="100.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="231.75635055679075" height="22.367635905980105" width="100.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="209.54085622511275" height="22.215494331678002" width="100.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="187.33337203407075" height="22.20748419104201" width="100.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="163.89127032498146" height="23.442101709089275" width="100.0"
-	fill="#90ad01" stroke="black" transform="rotate(0)"/>
+<text x="90.0" y="310.04022899761634" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">GPLc</text>
+<text x="220.0" y="322.52480887791353" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E85</text>
+<text x="350.0" y="220.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E10</text>
+<rect x="50.0" y="322.6719373539165" height="107.32806264608351" width="20.0"
+	fill="#4b3e97" stroke="black" transform="rotate(0)"/>
+<rect x="80.0" y="320.04022899761634" height="109.95977100238365" width="20.0"
+	fill="#db9668" stroke="black" transform="rotate(0)"/>
+<rect x="110.0" y="325.2043503101804" height="104.79564968981957" width="20.0"
+	fill="#da480c" stroke="black" transform="rotate(0)"/>
 
-<rect x="170.0" y="443.89240764336625" height="11.107592356633694" width="100.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="432.9664068530653" height="10.92600079030099" width="100.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="421.84010289846356" height="11.126303954601735" width="100.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="410.64921235087934" height="11.190890547584209" width="100.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="399.48109555262175" height="11.168116798257573" width="100.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="388.535137696908" height="10.94595785571377" width="100.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="377.6572876853024" height="10.877850011605616" width="100.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="366.3482106357366" height="11.30907704956575" width="100.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="355.3140482686948" height="11.034162367041805" width="100.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="344.06413678016975" height="11.249911488525065" width="100.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="333.34214083420784" height="10.721995945961874" width="100.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="321.9814853373176" height="11.360655496890242" width="100.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
+<rect x="180.0" y="333.595810014731" height="96.404189985269" width="20.0"
+	fill="#4b3e97" stroke="black" transform="rotate(0)"/>
+<rect x="210.0" y="332.52480887791353" height="97.47519112208647" width="20.0"
+	fill="#db9668" stroke="black" transform="rotate(0)"/>
+<rect x="240.0" y="337.09894872427185" height="92.90105127572814" width="20.0"
+	fill="#da480c" stroke="black" transform="rotate(0)"/>
 
-<rect x="290.0" y="432.52624230123126" height="22.473757698768672" width="100.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="409.6802927821379" height="22.84594951909338" width="100.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="386.6945654019416" height="22.985727380196316" width="100.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="364.0577726168553" height="22.6367927850863" width="100.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="340.8705413825119" height="23.187231234343383" width="100.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="318.0915533426755" height="22.778988039836346" width="100.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="295.02990169385805" height="23.061651648817477" width="100.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="271.51140286834504" height="23.51849882551302" width="100.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="248.7035574422789" height="22.80784542606613" width="100.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="225.45516687208976" height="23.24839057018915" width="100.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="202.6713607947337" height="22.783806077356065" width="100.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="179.58874590776276" height="23.082614886970962" width="100.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="154.99999999999994" height="24.588745907762817" width="100.0"
-	fill="#90ad01" stroke="black" transform="rotate(0)"/>
+<rect x="310.0" y="232.05059408595136" height="197.94940591404864" width="20.0"
+	fill="#4b3e97" stroke="black" transform="rotate(0)"/>
+<rect x="340.0" y="230.0" height="200.0" width="20.0"
+	fill="#db9668" stroke="black" transform="rotate(0)"/>
+<rect x="370.0" y="233.86283879939708" height="196.13716120060292" width="20.0"
+	fill="#da480c" stroke="black" transform="rotate(0)"/>
 
 
-<text x="220.0" y="130.99999999999994" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Prix moyen</text>
-<rect x="20.0" y="484.0" height="7.0" width="20.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<text x="50.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Bretagne</text>
-<rect x="127.0" y="484.0" height="7.0" width="20.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<text x="157.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Hauts-de-France</text>
-<rect x="288.0" y="484.0" height="7.0" width="20.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<text x="318.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Centre-Val de Loire</text>
-<rect x="467.0" y="484.0" height="7.0" width="20.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<text x="497.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Pays de la Loire</text>
-<rect x="621.0" y="484.0" height="7.0" width="20.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<text x="651.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Provence-Alpes-Côte d'Azur</text>
-<rect x="861.0" y="484.0" height="7.0" width="20.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<text x="891.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Grand Est</text>
-<rect x="974.0" y="484.0" height="7.0" width="20.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<text x="1004.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Bourgogne-Franche-Comté</text>
-<rect x="1211.0" y="484.0" height="7.0" width="20.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<text x="1241.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Île-de-France</text>
-<rect x="1344.0" y="484.0" height="7.0" width="20.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<text x="1374.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Normandie</text>
-<rect x="1464.0" y="484.0" height="7.0" width="20.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<text x="1494.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Auvergne-Rhône-Alpes</text>
-<rect x="1668.0" y="484.0" height="7.0" width="20.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<text x="1698.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Nouvelle-Aquitaine</text>
-<rect x="1841.0" y="484.0" height="7.0" width="20.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
-<text x="1871.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Occitanie</text>
-<rect x="1948.0" y="484.0" height="7.0" width="20.0"
-	fill="#90ad01" stroke="black" transform="rotate(0)"/>
-<text x="1978.0" y="481.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Corse</text>
+<text x="220.0" y="206.0" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Prix moyen</text>
+<rect x="143.0" y="449.0" height="7.0" width="20.0"
+	fill="#4b3e97" stroke="black" transform="rotate(0)"/>
+<text x="173.0" y="446.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Hauts-de-France</text>
+<rect x="260.0" y="449.0" height="7.0" width="20.0"
+	fill="#db9668" stroke="black" transform="rotate(0)"/>
+<text x="290.0" y="446.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Pays de la Loire</text>
+<rect x="376.0" y="449.0" height="7.0" width="20.0"
+	fill="#da480c" stroke="black" transform="rotate(0)"/>
+<text x="406.0" y="446.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Occitanie</text>
 
-<polyline points="50.0 455.0 50.0 455.0 390.0 455.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<polyline points="50.0 154.99999999999994 50.0 154.99999999999994 50.0 455.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<polyline points="45.0 154.99999999999994 45.0 154.99999999999994 55.0 154.99999999999994 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="42.0" y="154.99999999999994" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">2</text>
-<polyline points="45.0 214.99999999999994 45.0 214.99999999999994 55.0 214.99999999999994 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="214.99999999999994" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,6</text>
-<polyline points="45.0 275.0 45.0 275.0 55.0 275.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="275.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,2</text>
-<polyline points="45.0 335.0 45.0 335.0 55.0 335.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="335.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,8</text>
-<polyline points="45.0 395.0 45.0 395.0 55.0 395.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="395.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,4</text>
-<polyline points="45.0 455.0 45.0 455.0 55.0 455.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="42.0" y="455.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0</text>
+<polyline points="50.0 430.0 50.0 430.0 390.0 430.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="50.0 230.0 50.0 230.0 50.0 430.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="45.0 230.0 45.0 230.0 55.0 230.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="230.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,87</text>
+<polyline points="45.0 270.0 45.0 270.0 55.0 270.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="37.5" y="270.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,5</text>
+<polyline points="45.0 310.0 45.0 310.0 55.0 310.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="310.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,12</text>
+<polyline points="45.0 350.0 45.0 350.0 55.0 350.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="350.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,75</text>
+<polyline points="45.0 390.0 45.0 390.0 55.0 390.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="390.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,37</text>
+<polyline points="45.0 430.0 45.0 430.0 55.0 430.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="42.0" y="430.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0</text>
 
-<text x="100.0" y="690.5067134289332" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Gazole</text>
-<text x="220.0" y="849.2134185568723" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E85</text>
-<text x="340.0" y="681.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E10</text>
-<rect x="50.0" y="969.0978272148091" height="21.902172785191024" width="100.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="946.9590760993628" height="22.138751115446073" width="100.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="924.7331645464544" height="22.225911552908457" width="100.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="902.8309917612635" height="21.902172785191024" width="100.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="880.4307593334302" height="22.40023242783323" width="100.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="858.1425903251915" height="22.288169008238736" width="100.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="835.7423578973583" height="22.40023242783323" width="100.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="812.9063232822131" height="22.836034615145163" width="100.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="790.7551206757009" height="22.151202606512125" width="100.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="768.4794031585283" height="22.275717517172676" width="100.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="746.3406520430822" height="22.138751115446073" width="100.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="724.1520949633718" height="22.188557079710293" width="100.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="700.5067134289332" height="23.645381534438748" width="100.0"
-	fill="#90ad01" stroke="black" transform="rotate(0)"/>
+<text x="100.0" y="668.7361918604649" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">GPLc</text>
+<text x="220.0" y="686.9411337209301" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E85</text>
+<text x="340.0" y="530.9999999999998" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E10</text>
+<rect x="50.0" y="787.6388081395348" height="53.36119186046512" width="100.0"
+	fill="#4b3e97" stroke="black" transform="rotate(0)"/>
+<rect x="50.0" y="731.5523255813953" height="56.08648255813954" width="100.0"
+	fill="#db9668" stroke="black" transform="rotate(0)"/>
+<rect x="50.0" y="678.7361918604649" height="52.81613372093024" width="100.0"
+	fill="#da480c" stroke="black" transform="rotate(0)"/>
 
-<rect x="170.0" y="979.8061095316164" height="11.193890468383588" width="100.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="968.8612488845539" height="10.944860647062484" width="100.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="957.7171643804345" height="11.144084504119368" width="100.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="946.523273912051" height="11.193890468383588" width="100.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="935.3293834436674" height="11.193890468383588" width="100.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="924.5090377072654" height="10.820345736401933" width="100.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="913.9377217921847" height="10.57131591508083" width="100.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="902.743831323801" height="11.193890468383588" width="100.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="892.1725154087202" height="10.57131591508083" width="100.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="880.9786249403367" height="11.193890468383588" width="100.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="870.4073090252558" height="10.57131591508083" width="100.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="859.2134185568723" height="11.193890468383588" width="100.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
+<rect x="170.0" y="792.2172965116279" height="48.7827034883721" width="100.0"
+	fill="#4b3e97" stroke="black" transform="rotate(0)"/>
+<rect x="170.0" y="743.2165697674418" height="49.00072674418605" width="100.0"
+	fill="#db9668" stroke="black" transform="rotate(0)"/>
+<rect x="170.0" y="696.9411337209301" height="46.27543604651163" width="100.0"
+	fill="#da480c" stroke="black" transform="rotate(0)"/>
 
-<rect x="290.0" y="968.5063813891713" height="22.493618610828644" width="100.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="945.6578952829601" height="22.848486106211215" width="100.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="922.846763649947" height="22.81113163301305" width="100.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="900.3095648203872" height="22.537198829559838" width="100.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="877.0377280179301" height="23.27183680245709" width="100.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="854.1394359474547" height="22.898292070475435" width="100.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="831.1166289663187" height="23.02280698113599" width="100.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="807.6580197978708" height="23.458609168447918" width="100.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="784.8842426380559" height="22.773777159814884" width="100.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="761.7369207462593" height="23.14732189179654" width="100.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="738.9880465685766" height="22.748874177682776" width="100.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="715.84072467678" height="23.14732189179654" width="100.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="691.0" height="24.84072467678004" width="100.0"
-	fill="#90ad01" stroke="black" transform="rotate(0)"/>
+<rect x="290.0" y="740.9818313953488" height="100.01816860465117" width="100.0"
+	fill="#4b3e97" stroke="black" transform="rotate(0)"/>
+<rect x="290.0" y="639.6555232558138" height="101.32630813953489" width="100.0"
+	fill="#db9668" stroke="black" transform="rotate(0)"/>
+<rect x="290.0" y="540.9999999999999" height="98.65552325581396" width="100.0"
+	fill="#da480c" stroke="black" transform="rotate(0)"/>
 
 
-<text x="220.0" y="667.0" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Prix médian</text>
-<rect x="20.0" y="1020.0" height="7.0" width="20.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<text x="50.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Bretagne</text>
-<rect x="127.0" y="1020.0" height="7.0" width="20.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<text x="157.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Hauts-de-France</text>
-<rect x="288.0" y="1020.0" height="7.0" width="20.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<text x="318.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Centre-Val de Loire</text>
-<rect x="467.0" y="1020.0" height="7.0" width="20.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<text x="497.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Pays de la Loire</text>
-<rect x="621.0" y="1020.0" height="7.0" width="20.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<text x="651.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Provence-Alpes-Côte d'Azur</text>
-<rect x="861.0" y="1020.0" height="7.0" width="20.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<text x="891.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Grand Est</text>
-<rect x="974.0" y="1020.0" height="7.0" width="20.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<text x="1004.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Bourgogne-Franche-Comté</text>
-<rect x="1211.0" y="1020.0" height="7.0" width="20.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<text x="1241.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Île-de-France</text>
-<rect x="1344.0" y="1020.0" height="7.0" width="20.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<text x="1374.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Normandie</text>
-<rect x="1464.0" y="1020.0" height="7.0" width="20.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<text x="1494.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Auvergne-Rhône-Alpes</text>
-<rect x="1668.0" y="1020.0" height="7.0" width="20.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<text x="1698.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Nouvelle-Aquitaine</text>
-<rect x="1841.0" y="1020.0" height="7.0" width="20.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
-<text x="1871.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Occitanie</text>
-<rect x="1948.0" y="1020.0" height="7.0" width="20.0"
-	fill="#90ad01" stroke="black" transform="rotate(0)"/>
-<text x="1978.0" y="1017.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Corse</text>
+<text x="220.0" y="516.9999999999998" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Prix m�dian</text>
+<rect x="110.0" y="870.0" height="7.0" width="20.0"
+	fill="#4b3e97" stroke="black" transform="rotate(0)"/>
+<text x="140.0" y="867.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Hauts-de-France</text>
+<rect x="260.0" y="870.0" height="7.0" width="20.0"
+	fill="#db9668" stroke="black" transform="rotate(0)"/>
+<text x="290.0" y="867.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Pays de la Loire</text>
+<rect x="404.0" y="870.0" height="7.0" width="20.0"
+	fill="#da480c" stroke="black" transform="rotate(0)"/>
+<text x="434.0" y="867.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Occitanie</text>
 
-<polyline points="50.0 991.0 50.0 991.0 390.0 991.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<polyline points="50.0 691.0 50.0 691.0 50.0 991.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<polyline points="45.0 691.0 45.0 691.0 55.0 691.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="42.0" y="691.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">2</text>
-<polyline points="45.0 751.0 45.0 751.0 55.0 751.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="751.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,6</text>
-<polyline points="45.0 811.0 45.0 811.0 55.0 811.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="811.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,2</text>
-<polyline points="45.0 871.0 45.0 871.0 55.0 871.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="871.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,8</text>
-<polyline points="45.0 931.0 45.0 931.0 55.0 931.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="931.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,4</text>
-<polyline points="45.0 991.0 45.0 991.0 55.0 991.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="42.0" y="991.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0</text>
-
-<text x="100.0" y="1229.8261716214463" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Gazole</text>
-<text x="220.0" y="1392.2953394781255" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E85</text>
-<text x="340.0" y="1217.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">E10</text>
-<rect x="50.0" y="1504.8657665844476" height="22.134233415552384" width="100.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1482.5627677528237" height="22.30299883162404" width="100.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1460.1429313254575" height="22.41983642736596" width="100.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1438.0865896403998" height="22.05634168505777" width="100.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1416.2898870569907" height="21.79670258340906" width="100.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1396.4274957808645" height="19.862391276126186" width="100.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1374.1634428144878" height="22.264052966376735" width="100.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1351.4709853303907" height="22.692457484097105" width="100.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1329.414643645333" height="22.05634168505777" width="100.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1307.1505906789562" height="22.264052966376735" width="100.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1285.2500324548878" height="21.900558224068543" width="100.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1263.0638712190057" height="22.186161235882125" width="100.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
-<rect x="50.0" y="1239.8261716214463" height="23.23769959755939" width="100.0"
-	fill="#90ad01" stroke="black" transform="rotate(0)"/>
-
-<rect x="170.0" y="1516.6144359340517" height="10.385564065948332" width="100.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1506.4365831494224" height="10.177852784629366" width="100.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1496.2068025444632" height="10.229780604959107" width="100.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1485.3928339607944" height="10.8139685836687" width="100.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1474.643775152538" height="10.749058808256523" width="100.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1464.6087238738155" height="10.035051278722575" width="100.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1454.2361417629495" height="10.372582110865897" width="100.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1443.6558483707647" height="10.580293392184862" width="100.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1433.231338439569" height="10.424509931195638" width="100.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1422.858756328703" height="10.372582110865897" width="100.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1412.7977411398156" height="10.061015188887446" width="100.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<rect x="170.0" y="1402.2953394781255" height="10.50240166169025" width="100.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
-
-<rect x="290.0" y="1505.0734778657666" height="21.926522134233416" width="100.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1482.069453459691" height="23.004024406075555" width="100.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1458.9745553680384" height="23.0948980916526" width="100.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1436.1392963780345" height="22.835258990003894" width="100.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1413.6934960405038" height="22.445800337530834" width="100.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1390.9101648708295" height="22.78333116967415" width="100.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1368.1268337011554" height="22.78333116967415" width="100.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1344.7593145527717" height="23.367519148383746" width="100.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1321.8591457873556" height="22.90016876541607" width="100.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1298.647410099961" height="23.211735687394523" width="100.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1276.0328443463586" height="22.61456575360249" width="100.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1252.8990003894587" height="23.13384395689991" width="100.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
-<rect x="290.0" y="1227.0" height="25.899000389458653" width="100.0"
-	fill="#90ad01" stroke="black" transform="rotate(0)"/>
-
-
-<text x="220.0" y="1203.0" font-size="20" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Prix minimum</text>
-<rect x="20.0" y="1556.0" height="7.0" width="20.0"
-	fill="#44e369" stroke="black" transform="rotate(0)"/>
-<text x="50.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Bretagne</text>
-<rect x="127.0" y="1556.0" height="7.0" width="20.0"
-	fill="#a852a0" stroke="black" transform="rotate(0)"/>
-<text x="157.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Hauts-de-France</text>
-<rect x="288.0" y="1556.0" height="7.0" width="20.0"
-	fill="#773377" stroke="black" transform="rotate(0)"/>
-<text x="318.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Centre-Val de Loire</text>
-<rect x="467.0" y="1556.0" height="7.0" width="20.0"
-	fill="#69f55c" stroke="black" transform="rotate(0)"/>
-<text x="497.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Pays de la Loire</text>
-<rect x="621.0" y="1556.0" height="7.0" width="20.0"
-	fill="#d724cf" stroke="black" transform="rotate(0)"/>
-<text x="651.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Provence-Alpes-Côte d'Azur</text>
-<rect x="861.0" y="1556.0" height="7.0" width="20.0"
-	fill="#85cd66" stroke="black" transform="rotate(0)"/>
-<text x="891.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Grand Est</text>
-<rect x="974.0" y="1556.0" height="7.0" width="20.0"
-	fill="#4adb2d" stroke="black" transform="rotate(0)"/>
-<text x="1004.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Bourgogne-Franche-Comté</text>
-<rect x="1211.0" y="1556.0" height="7.0" width="20.0"
-	fill="#d0478e" stroke="black" transform="rotate(0)"/>
-<text x="1241.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Île-de-France</text>
-<rect x="1344.0" y="1556.0" height="7.0" width="20.0"
-	fill="#6b425c" stroke="black" transform="rotate(0)"/>
-<text x="1374.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Normandie</text>
-<rect x="1464.0" y="1556.0" height="7.0" width="20.0"
-	fill="#036091" stroke="black" transform="rotate(0)"/>
-<text x="1494.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Auvergne-Rhône-Alpes</text>
-<rect x="1668.0" y="1556.0" height="7.0" width="20.0"
-	fill="#587d21" stroke="black" transform="rotate(0)"/>
-<text x="1698.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Nouvelle-Aquitaine</text>
-<rect x="1841.0" y="1556.0" height="7.0" width="20.0"
-	fill="#de04da" stroke="black" transform="rotate(0)"/>
-<text x="1871.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Occitanie</text>
-<rect x="1948.0" y="1556.0" height="7.0" width="20.0"
-	fill="#90ad01" stroke="black" transform="rotate(0)"/>
-<text x="1978.0" y="1553.0" font-size="15" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">Corse</text>
-
-<polyline points="50.0 1527.0 50.0 1527.0 390.0 1527.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<polyline points="50.0 1227.0 50.0 1227.0 50.0 1527.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<polyline points="45.0 1227.0 45.0 1227.0 55.0 1227.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="42.0" y="1227.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">2</text>
-<polyline points="45.0 1287.0 45.0 1287.0 55.0 1287.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="1287.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,6</text>
-<polyline points="45.0 1347.0 45.0 1347.0 55.0 1347.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="1347.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,2</text>
-<polyline points="45.0 1407.0 45.0 1407.0 55.0 1407.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="1407.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,8</text>
-<polyline points="45.0 1467.0 45.0 1467.0 55.0 1467.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="37.5" y="1467.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,4</text>
-<polyline points="45.0 1527.0 45.0 1527.0 55.0 1527.0 " fill="white" stroke="black" transform="rotate(0)"/>
-<text x="42.0" y="1527.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0</text>
+<polyline points="50.0 841.0 50.0 841.0 390.0 841.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="50.0 540.9999999999998 50.0 540.9999999999998 50.0 841.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<polyline points="45.0 540.9999999999998 45.0 540.9999999999998 55.0 540.9999999999998 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="540.9999999999998" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,86</text>
+<polyline points="45.0 600.9999999999999 45.0 600.9999999999999 55.0 600.9999999999999 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="600.9999999999999" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,49</text>
+<polyline points="45.0 660.9999999999999 45.0 660.9999999999999 55.0 660.9999999999999 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="660.9999999999999" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">1,12</text>
+<polyline points="45.0 720.9999999999999 45.0 720.9999999999999 55.0 720.9999999999999 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="720.9999999999999" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,74</text>
+<polyline points="45.0 781.0 45.0 781.0 55.0 781.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="34.5" y="781.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0,37</text>
+<polyline points="45.0 841.0 45.0 841.0 55.0 841.0 " fill="white" stroke="black" transform="rotate(0)"/>
+<text x="42.0" y="841.0" font-size="10" text-anchor="middle" fill="black" stroke="black" transform="rotate(0)">0</text>
 
 </svg>
