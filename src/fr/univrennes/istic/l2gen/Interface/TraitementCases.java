@@ -2,12 +2,15 @@ package fr.univrennes.istic.l2gen.Interface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 import fr.univrennes.SVGFile;
 import fr.univrennes.istic.l2gen.geometrie.Alignement;
 import fr.univrennes.istic.l2gen.geometrie.Groupe;
+import fr.univrennes.istic.l2gen.station.Geom;
+import fr.univrennes.istic.l2gen.station.Station2;
 import fr.univrennes.istic.l2gen.station.StationAPI;
 import fr.univrennes.istic.l2gen.visustats.DiagBarres;
 import fr.univrennes.istic.l2gen.visustats.DiagCamemberts;
@@ -86,6 +89,9 @@ public class TraitementCases {
             // Initialisation du titre du diagramme
             String titre = "";
 
+            // Pour ajouter ou non les positions des stations les moins chères
+            Boolean stationMoinChere = false;
+
             // Bloc pour choisir les statistques à représenter
             if (i == 0 && isCheckedStat.get("Prix moyen")) { // Prix moyen
                 donnes = api.getPrixMoyen();
@@ -96,6 +102,7 @@ public class TraitementCases {
             } else if (i == 2 && isCheckedStat.get("Prix minimum")) { // Prix min
                 donnes = api.getPrixMin();
                 titre = "Prix minimum";
+                stationMoinChere = Onglet.getIsStationsAffichees();
             } else if (i == 3 && isCheckedStat.get("Nombre de stations proposant ce carburant")) {
                 donnes = api.getNbStationProposeCarb();
                 titre = "Nombre de stations proposant ce carburant";
@@ -118,11 +125,13 @@ public class TraitementCases {
                         }
                     }
                 }
-                if (depOuReg) {
-                    diagramme.legender(depListe.toArray(new String[0]));
-                } else {
-                    diagramme.legender(regListe.toArray(new String[0]));
+
+                HashSet<String> legendes = new HashSet<>();
+                for (String string : donnes.keySet()) {
+                    legendes.addAll(donnes.get(string).keySet());
                 }
+                diagramme.legender(legendes.toArray(new String[0]));
+
                 for (String carburant : donnes.keySet()) {
                     diagramme.ajouterDonnees(carburant,
                             donnes.get(carburant).values().stream().mapToDouble(Double::doubleValue).toArray());
@@ -132,17 +141,32 @@ public class TraitementCases {
                 diagramme.agencer();
                 statistiques.ajouter(diagramme);
                 svgContent.add(SVGFile.contentSvgFile(diagramme));
-                System.out.println(SVGFile.contentSvgFile(diagramme));
+
+                if (stationMoinChere) {
+                    HashMap<String, HashMap<String, Station2>> adresseStationMoinsChere = api
+                            .getAdresseStationMoinsChere();
+
+                    String html = "";
+                    for (String granu : adresseStationMoinsChere.keySet()) {
+                        html += "<p>" + "dans " + granu + ":</p>";
+                        https: // www.google.com/maps/search/4682826,556786/
+                        for (String carburant : adresseStationMoinsChere.get(granu).keySet()) {
+                            html += "<p>&nbsp;&nbsp;&nbsp;pour " + carburant + ":</p>";
+                            Station2 station = adresseStationMoinsChere.get(granu).get(carburant);
+                            String lien = "https://www.google.com/maps/search/"
+                                    + String.valueOf(station.getGeom().getLat()) + ","
+                                    + String.valueOf(station.getGeom().getLon());
+                            String baliseLien = "<a href=\"" + lien + "\" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                                    + station.getAdresse() + " "
+                                    + station.getVille() + "</a></br>";
+                            html += baliseLien;
+                        }
+                    }
+                    svgContent.add(html);
+                }
             }
         }
 
-        // Gestion du nombre de stations qui proposent chaque carburants
-        if (isCheckedStat.get("Nombre de stations proposant ce carburant")) {
-
-        }
-
-        statistiques.empilerElements(Alignement.HAUT, 350, 50); // TODO changer le 350
-        statistiques.createSvgFile();
         return svgContent;
     }
 
@@ -177,18 +201,17 @@ public class TraitementCases {
      * @return un Booléen indiquant si on peut générer le rapport.
      */
     public boolean isAnyChecked() {
-        if (isCheckedStat.get("Nombre de stations proposant ces services").equals(true)) {
-            if (isCheckedServ.values().stream().anyMatch(Boolean::booleanValue)) {
-                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
-                        || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
-                    return true;
-                }
-            }
-        } else if (isCheckedStat.values().stream().anyMatch(Boolean::booleanValue)) {
+        Boolean depOuReg = Onglet.getGranChecked();
+        if (isCheckedStat.values().stream().anyMatch(Boolean::booleanValue)) {
             if (isCheckedCarb.values().stream().anyMatch(Boolean::booleanValue)) {
-                if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)
-                        || isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
-                    return true;
+                if (isCheckedDept.values().stream().anyMatch(Boolean::booleanValue)) {
+                    if (depOuReg) {
+                        return true;
+                    }
+                } else if (isCheckedReg.values().stream().anyMatch(Boolean::booleanValue)) {
+                    if (!depOuReg) {
+                        return true;
+                    }
                 }
             }
         }

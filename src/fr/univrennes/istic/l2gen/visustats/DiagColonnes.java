@@ -180,7 +180,6 @@ public class DiagColonnes implements IDataVisualiseur {
             }
         }
         double axeX = 50;
-        System.out.println(legendes.size());
         for (IForme faisceau : donnees.getListFormes()) {
             Faisceau f = (Faisceau) faisceau;
             f.agencer(axeX, axeY + texteNom.hauteur() * 2, legendes.size() * 30, 200 / echelle_max, false);
@@ -197,7 +196,7 @@ public class DiagColonnes implements IDataVisualiseur {
         diagGroupe.ajouter(texteNom);
 
         // Groupe pour les légendes
-        legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur(), 10);
+        legendeGroupe.empilerElements(Alignement.GAUCHE, donnees.centre().x() - legendeGroupe.largeur() / 2, 10);
         legendeGroupe.alignerElements(Alignement.BAS,
                 donnees.centre().y() + donnees.hauteur() / 2 + legendeGroupe.hauteur() * 2);
         diagGroupe.ajouter(legendeGroupe);

@@ -48,7 +48,7 @@ public class CreationFenetre {
      * @param width       La largeur de l'image.
      * @param height      La hauteur de l'image.
      */
-    public void ajouterImage(JComponent composant, String cheminImage, int width, int height) {
+    public static void ajouterImage(JComponent composant, String cheminImage, int width, int height) {
 
         // On charge l'image
         ImageIcon imageDeFond = new ImageIcon(

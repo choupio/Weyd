@@ -27,9 +27,7 @@ public class Rectangle implements IForme {
      * @return Le centre du rectangle.
      */
     public Point centre() {
-        return new Point(coin.x() + largeur() / 2, coin.y() + hauteur() / 2); // TODO Le point qui est nommé cente n'est
-                                                                              // pas le cnetre du rectangle mais le coin
-                                                                              // supérieur gauche
+        return new Point(coin.x() + largeur() / 2, coin.y() + hauteur() / 2);
     }
 
     /**

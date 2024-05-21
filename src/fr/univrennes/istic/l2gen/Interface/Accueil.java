@@ -57,7 +57,7 @@ public class Accueil {
 
         ///////// Ajout d'image à l'Accueil /////////
         JPanel accueil = new JPanel();
-        fenetre.ajouterImage(accueil,
+        CreationFenetre.ajouterImage(accueil,
                 "ressources/ImagesInterface/imaccueil.jpg",
                 (int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
         accueil.setBounds(0, 0, (int) tailleUtilisable.getWidth(), (int) tailleUtilisable.getHeight());
@@ -84,16 +84,16 @@ public class Accueil {
                 GridLayout gridLayout = new GridLayout(2, 2);
                 onglets.GetOnglet2().setLayout(gridLayout);
 
-                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple1.png",
+                CreationFenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple1.png",
                         329, (int) 632);
 
-                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple2.png",
+                CreationFenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple2.png",
                         326, (int) 654);
 
-                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple3.png",
+                CreationFenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple3.png",
                         491, (int) 619);
 
-                fenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple4.png",
+                CreationFenetre.ajouterImage(onglets.GetOnglet2(), "ressources/ImagesInterface/Exemple4.png",
                         608, (int) 540);
 
                 /*

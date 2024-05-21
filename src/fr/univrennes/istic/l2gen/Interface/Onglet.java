@@ -12,19 +12,10 @@ import fr.univrennes.istic.l2gen.rapport.Fonction;
 
 import java.awt.*;
 
-import org.apache.batik.transcoder.TranscoderException;
-import org.apache.batik.transcoder.TranscoderInput;
-import org.apache.batik.transcoder.TranscoderOutput;
-import org.apache.batik.transcoder.image.PNGTranscoder;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-
 /**
  * Cette classe représente un ensemble d'onglets dans une interface graphique.
  */
 public class Onglet {
-
     /**
      * Boolean pour indiquer si on a sélectionné Région ou Département.
      */
@@ -205,28 +196,33 @@ public class Onglet {
         previsua.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases test = new TraitementCases();
-                test.traitement();
-
-                try {
-                    // Charger le fichier SVG
-                    FileInputStream svgFile = new FileInputStream("Groupe.svg");
-                    TranscoderInput input = new TranscoderInput(svgFile);
-                    // Définir le fichier de sortie (image PNG)
-                    FileOutputStream pngFile = new FileOutputStream("prévisua.png");
-                    TranscoderOutput output = new TranscoderOutput(pngFile);
-                    // Créer un transcodeur pour convertir le SVG en PNG
-                    PNGTranscoder transcoder = new PNGTranscoder();
-                    // effectue la conversion
-                    transcoder.transcode(input, output);
-                    // Fermer les flux
-                    svgFile.close();
-                    pngFile.close();
-                } catch (IOException | TranscoderException ex) {
-                    ex.printStackTrace();
+                if (test.isAnyChecked() == true) {
+                    new MessageErreur(
+                            "<html><div style='text-align: center;'>Cette fonctionnalité est en cours de développement. <br> Elle sera disponible prochainement, <br> merci de votre soutien et de votre patience.</div></html>");
+                    // Nous n'avons pas trouvé la bonne solution, à la fin on partait vers Apache
+                    // (puis on a supprimé et changé).
+                    /*
+                     * try {
+                     * // Charger l'image
+                     * ImageIcon imageIcon = new ImageIcon("Groupe.png");
+                     * 
+                     * // Créer un JLabel pour afficher l'image
+                     * JLabel label = new JLabel(imageIcon);
+                     * 
+                     * // Ajouter le JLabel au panel
+                     * previ.removeAll();
+                     * previ.setLayout(new BorderLayout());
+                     * previ.add(label, BorderLayout.CENTER);
+                     * previ.revalidate();
+                     * previ.repaint();
+                     * } catch (Exception ex) {
+                     * ex.printStackTrace();
+                     * }
+                     */
+                } else {
+                    new MessageErreur(
+                            "<html><div style='text-align: center;'>Veuillez sélectionner au moins un carburant, <br> avec au moins un département ou une région afin de générer <br> une prévisualisation.</div></html>");
                 }
-                Panel_Image previm = new Panel_Image("prévisua.png");
-                previ.add(previm);
-                // previ.setVisible(true);
             }
         });
 
@@ -259,8 +255,6 @@ public class Onglet {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TraitementCases traitement = new TraitementCases();
-                // mettre ici la fonction crée pour verifier si y'a au moins une case
-                // selectionner
                 if (traitement.isAnyChecked() == true) {
                     ArrayList<String> listeSVG = traitement.traitement();
                     Fonction.createHTMLFile(listeSVG, "Rapport des selections", "rapport");
@@ -279,39 +273,8 @@ public class Onglet {
                         ex.printStackTrace();
                     }
                 } else {
-                    CreationFenetre message = new CreationFenetre("Erreur");
-                    message.getFenetre().setSize(700, 225);
-                    // Calcule les coordonnées x et y pour centrer la fenêtre
-                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                    int x = (screenSize.width - message.getFenetre().getWidth()) / 2;
-                    int y = (screenSize.height - message.getFenetre().getHeight()) / 2;
-                    message.getFenetre().setLocation(x, y);
-                    // Créer un JPanel avec un BorderLayout
-                    JPanel panel = new JPanel(new BorderLayout());
-                    // Créer un autre JPanel avec FlowLayout pour centrer horizontalement le JLabel
-                    JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                    // Créer le JLabel avec du texte et utiliser HTML pour les retours à la ligne
-                    JLabel label = new JLabel(
-                            "<html><div style='text-align: center;'>Veuillez sélectionner au moins une statistique ou un carburant, <br> avec au moins un département ou une région afin de générer un rapport.</div></html>",
-                            SwingConstants.CENTER);
-                    // Ajouter le JLabel au topPanel
-                    topPanel.add(label);
-                    // Ajouter le topPanel à la position nord du panel principal
-                    panel.add(topPanel, BorderLayout.NORTH);
-                    JPanel closePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                    // bouton pour fermer la fenêtre
-                    JButton close = new JButton("Fermer");
-                    closePanel.setPreferredSize(new Dimension(200, 50));
-                    close.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            message.getFenetre().dispose();
-                        }
-                    });
-                    closePanel.add(close);
-                    panel.add(closePanel, BorderLayout.SOUTH);
-
-                    // Ajouter le panel principal à la fenêtre
-                    message.getFenetre().add(panel);
+                    new MessageErreur(
+                            "<html><div style='text-align: center;'>Veuillez sélectionner au moins un carburant, <br> avec au moins un département ou une région afin de générer un rapport.</div></html>");
                 }
             }
         });
@@ -397,7 +360,7 @@ public class Onglet {
     }
 
     /**
-     * Méthode pour récupérer l'état d'affichage des stations.
+     * Méthode pour récupérer l'état d'affichage des stations les moins chère.
      * 
      * @return L'état d'affichage des stations.
      */
